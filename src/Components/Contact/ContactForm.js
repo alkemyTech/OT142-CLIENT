@@ -1,6 +1,12 @@
 import React from 'react'
 import { Form, Formik, Field } from 'formik';
+import { 
+    Button, 
+    Stack,
+} from '@chakra-ui/react'
+import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import * as Yup from 'yup';
+import FieldControl from './FieldControl';
 
 // COMO: Usuario
 // QUIERO: Visualizar un Formulario de Contacto
@@ -15,9 +21,9 @@ import * as Yup from 'yup';
 // listo - Phone deberá ser un número, y contener una longitud mínima de 8 caracteres
 
 let schemaContact = Yup.object().shape({
-    firstName: Yup.string().required('Name required'),
+    firstName: Yup.string().required('Name required').matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
     email: Yup.string().email('Invalid email address').required('Email required'),
-    phone: Yup.number().test('len', 'Must be exactly 8 characters', val => val && val.toString().length >= 8).required('Phone required'),
+    phone: Yup.number().typeError('Only numbers are allowed for this field').test('len', 'Must be exactly 8 characters', val => val && val.toString().length >= 8).required('Phone required'),
     message: Yup.string().required('Message required')
 })
 
@@ -36,47 +42,67 @@ const ContactForm = () => {
                 alert(JSON.stringify(values, null, 2));
             }}
         >
-            {({ errors, touched }) => (
+            {(props) => (
                 <Form>
-                    <div>
-                        <label htmlFor="firstName">First Name</label>
-                        <Field id="firstName" type="text" name="firstName" placeholder="Nombre" />
-                        {errors.firstName && touched.firstName ? (
-                            <div>{errors.firstName}</div>
-                        ) : null}
-                    </div>
+                    <Stack spacing={13} p={10}>
+                        <Field name='firstName'>
+                            {({field, form}) => (
 
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <Field id="email" name="email" type="email" placeholder="Email" />
-                        {errors.email && touched.email ? (
-                            <div>{errors.email}</div>
-                        ) : null}
-                    </div>
+                                <FieldControl 
+                                    type='text'
+                                    field={field} 
+                                    form={form}
+                                    idName='firstName'
+                                    title='First Name'
+                                    icon={AiOutlineUser}
+                                />
 
-                    <div>
-                        <label htmlFor="phone">Phone Number</label>
-                        <Field id="phone" name="phone" type="tel" placeholder="Phone Number" />
-                        {errors.phone && touched.phone ? (
-                            <div>{errors.phone}</div>
-                        ) : null}
-                    </div>
+                            )}
+                        </Field>
 
-                    <div>
-                        <label htmlFor="message">Message</label>
-                        <Field 
-                            id="message"
-                            name="message"
-                            placeholder="Message"
-                            as='textarea'
-                        />
-                        {errors.message && touched.message ? (
-                            <div>{errors.message}</div>
-                        ) : null}
-                    </div>
+                        <Field name='email'>
+                            {({field, form}) => (
 
+                                <FieldControl 
+                                    type='text'
+                                    field={field} 
+                                    form={form}
+                                    idName='email'
+                                    title='Email'
+                                    icon={AiOutlineMail}
+                                />
+                            )}
+                        </Field>
 
-                    <button type="submit">Submit</button>
+                        <Field name='phone'>
+                            {({field, form}) => (
+
+                                <FieldControl 
+                                    type='text'
+                                    field={field} 
+                                    form={form}
+                                    idName='phone'
+                                    title='Phone Number'
+                                    icon={AiOutlinePhone}
+                                />
+
+                            )}
+                        </Field>
+
+                        <Field name='message'>
+                            {({field, form}) => (
+
+                                <FieldControl 
+                                    type='textarea'
+                                    field={field} 
+                                    form={form}
+                                    idName='message'
+                                    title='Message'
+                                />
+                            )}
+                        </Field>
+                        <Button type="submit" colorScheme='blue'>Submit</Button>
+                    </Stack>
                 </Form>
             )}
         </Formik>
