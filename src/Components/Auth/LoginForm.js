@@ -1,33 +1,85 @@
-import React, { useState } from 'react';
 import '../FormStyles.css';
+import { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const LoginForm = () => {
-    const [initialValues, setInitialValues] = useState({
-        email: '',
-        password: ''
-    });
+    const [inputValue, setInputValue] = useState({})
 
-    const handleChange = (e) => {
-        if(e.target.name === 'email'){
-            setInitialValues({...initialValues, email: e.target.value})
-        } if(e.target.name === 'password'){
-            setInitialValues({...initialValues, password: e.target.value})
-        }
-    }
-    
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
-        localStorage.setItem('token', 'tokenValueExample')
-    }
+    console.log(inputValue)
 
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="email" value={initialValues.name} onChange={handleChange} placeholder="Enter email"></input>
-            <input className="input-field" type="text" name="password" value={initialValues.password} onChange={handleChange} placeholder="Enter password"></input>
-            <button className="submit-btn" type="submit">Log In</button>
-        </form>
+        <div className="contenedor">
+            <Formik
+                initialValues={{
+                    email: "",
+                    password: ""
+                }}
+                validate={(values) => {
+                    let errores = {};
+                    //Validación email
+                    if (!values.email) {
+                        errores.email = "Por favor, ingresá tu correo electrónico.";
+                    } else if (
+                        !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+                            values.email
+                        )
+                    ) {
+                        errores.email =
+                            "Debe contener solo letras, números, guiones o puntos.";
+                    }
+                    //Validación password
+                    if (!values.password) {
+                        errores.password = "Por favor, ingresá tu contraseña.";
+                    } else if (
+                        !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(
+                            values.password
+                        )
+                    ) {
+                        errores.password =
+                            "Debe contener una longitud mínima de 6 caracteres, y  al menos un número, una letra y un símbolo (por ejemplo @#$%).";
+                    }
+                    return errores;
+                }}
+                onSubmit={(values, { resetForm }) => {
+                    setInputValue(values)
+                    resetForm();
+                }}
+            >
+                {({ errors }) => (
+                    <Form className="formulario">
+                        <div>
+                            <label htmlFor="email">Email</label>
+                            <Field
+                                id="email"
+                                type="email"
+                                name="email"
+                                placeholder="correo@correo.com"
+                            />
+                            <ErrorMessage
+                                name="email"
+                                component={() => <div className="error">{errors.email}</div>}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password">Contraseña</label>
+                            <Field
+                                id="password"
+                                type="password"
+                                name="password"
+                                placeholder="contraseña"
+                            />
+                            <ErrorMessage
+                                name="password"
+                                component={() => <div className="error">{errors.password}</div>}
+                            />
+                        </div>
+
+                        <button type="submit">Login</button>
+                    </Form>
+                )}
+            </Formik>
+        </div>
     );
 }
- 
+
 export default LoginForm;
