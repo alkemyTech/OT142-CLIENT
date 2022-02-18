@@ -13,7 +13,7 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import { NoveltyDetail } from './Components/News/Detail/NoveltyDetail'
+import { NewsDetail } from './Components/News/Detail/NewsDetail'
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
-          <Route path="/Novedades/:id" component={NoveltyDetail} />
+          <Route path="/Novedades/:id" component={NewsDetail} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-user" component={UserForm} />
