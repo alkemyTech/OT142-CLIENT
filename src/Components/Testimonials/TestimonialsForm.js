@@ -75,9 +75,9 @@ const TestimonialForm = () => {
             .required("Nombre requerido")
             .min(4, 'Se requieren al menos 4 caracteres'),
         description: Yup.string()
-            .required("descripción requerida"),     
+            .required("Descripción requerida"),     
         image: Yup.mixed()
-            .required("imagen requerida")
+            .required("Imagen requerida")
             .test("fileFormat", "Formato no soportado: ingrese extensión .jpg o .png",
             value=> value &&   SUPPORTED_FORMATS.includes(value.type)
         )      
@@ -122,22 +122,24 @@ const TestimonialForm = () => {
                         </Box>
 
                         <FormControl isInvalid={formik.errors.name && formik.touched.name}>
-                            <FormLabel>Nombre</FormLabel>
+                            <FormLabel>Título del testimonio</FormLabel>
                             <Input 
                                 onChange={formik.handleChange} 
                                 value={formik.values.name}
                                 type="text" 
                                 name="name" 
-                                placeholder="Título de la actividad"
+                                placeholder="Título"
                                 onBlur={formik.handleBlur}/>
                                 <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
                         </FormControl>
 
                         <FormControl isInvalid={formik.errors.description && formik.touched.description}>
-                            <FormLabel>Descripción</FormLabel>
+                            <FormLabel>Descripción del testimonio</FormLabel>
                             <CKEditor
+                                config={{placeholder: "..."}} 
                                 editor={ClassicEditor}
                                 data={formik.values.description}
+                                                       
                                 onChange={(event, editor) => {
                                     const data = editor.getData();
                                     formik.setFieldValue('description', data);
