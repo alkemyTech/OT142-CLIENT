@@ -25,6 +25,7 @@ function App() {
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/Novedades/:id" component={NewsDetail} />
+          <Route path="/backoffice" component={Dashboard} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-user" component={UserForm} />
@@ -34,6 +35,7 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
         </Switch>
       </BrowserRouter>
+      <div className="App"></div>
     </>
   );
 }
