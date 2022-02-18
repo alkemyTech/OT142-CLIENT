@@ -62,16 +62,13 @@ const ActivitiesForm = () => {
     ];
 
     const responseAPI = {
-        "id": 0,
-        "name": "string",
-        "slug": "string",
-        "description": "string",
-        "image": "string",
-        "user_id": 0,
-        "category_id": 0,
-        "created_at": "2022-02-17T18:31:56.997Z",
-        "updated_at": "2022-02-17T18:31:56.997Z",
-        "deleted_at": "2022-02-17T18:31:56.997Z"   
+       "id": 0,
+        "name": "",
+        "image": "",
+        "description": "",
+        "created_at": "2022-02-17T20:56:26.749Z",
+        "updated_at": "2022-02-17T20:56:26.749Z",
+        "deleted_at": "2022-02-17T20:56:26.749Z" 
     }
 
     const formSchema = Yup.object().shape({
@@ -79,7 +76,7 @@ const ActivitiesForm = () => {
             .required("Nombre requerido"),
         description: Yup.string(),       
         image: Yup.mixed()
-            .required("imagen requerida")
+            .required("Imagen requerida")
             .test("fileFormat", "Formato no soportado: ingrese extensión .jpg o .png",
             value=> value &&   SUPPORTED_FORMATS.includes(value.type)
         )      
@@ -126,21 +123,22 @@ const ActivitiesForm = () => {
                         </Box>                      
 
                         <FormControl isInvalid={formik.errors.name && formik.touched.name}>
-                            <FormLabel>Nombre</FormLabel>
+                            <FormLabel>Título de la actividad</FormLabel>
                             <Input 
                                 onChange={formik.handleChange} 
                                 value={formik.values.name}
                                 type="text" 
                                 name="name" 
-                                placeholder="Título de la actividad"
+                                placeholder="Título"
                                 onBlur={formik.handleBlur}/>
                                 <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
                         </FormControl>
 
                         <FormControl isInvalid={formik.errors.description && formik.touched.description}>
-                            <FormLabel>Descripción</FormLabel>
+                            <FormLabel>Descripción de la actividad</FormLabel>
                             <CKEditor
                                 editor={ClassicEditor}
+                                config={{placeholder: "..."}}
                                 data={formik.values.description}
                                 onChange={(event, editor) => {
                                     const data = editor.getData();
