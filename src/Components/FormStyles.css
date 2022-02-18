@@ -86,3 +86,7 @@ body {
 .formulario input[type="radio"] {
     width: auto;
 }
+
+.ck-editor__editable {
+    min-height: 300px;
+}
