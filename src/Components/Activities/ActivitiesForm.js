@@ -8,6 +8,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import React, { useState } from 'react';
 
+//PETICIONES PARA SER USADAS POSTERIORMENTE 
 
 // const url = 'http://ongapi.alkemy.org/api';
 // const endpoint = 'activities'
@@ -49,9 +50,10 @@ import React, { useState } from 'react';
 const ActivitiesForm = () => {
 
     const [values, setValues] = useState([])
-    console.log(`valores ingresados: `,values)
+    console.log(`valores ingresados: `, values)
     
-    const location = useLocation().pathname.toLocaleLowerCase();    
+    //Returns the url string but converted to lowercase
+    const location = useLocation().pathname.toLocaleLowerCase();   
 
     const SUPPORTED_FORMATS = [
       "image/jpg",
@@ -59,7 +61,6 @@ const ActivitiesForm = () => {
       "image/png"
     ];
 
-    // respuesta de la api
     const responseAPI = {
         "id": 0,
         "name": "string",
