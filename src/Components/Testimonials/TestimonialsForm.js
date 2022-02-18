@@ -62,9 +62,9 @@ const TestimonialForm = () => {
     
     const responseAPI = {
         "id": 0,
-        "name": "string",
-        "image": "string",
-        "description": "string",
+        "name": "",
+        "image": "",
+        "description": "",
         "created_at": "2022-02-17T20:56:26.749Z",
         "updated_at": "2022-02-17T20:56:26.749Z",
         "deleted_at": "2022-02-17T20:56:26.749Z"  
