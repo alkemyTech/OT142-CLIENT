@@ -21,10 +21,10 @@ import FieldControl from './FieldControl';
 // listo - Phone deberá ser un número, y contener una longitud mínima de 8 caracteres
 
 let schemaContact = Yup.object().shape({
-    firstName: Yup.string().required('Name required').matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for this field"),
-    email: Yup.string().email('Invalid email address').required('Email required'),
-    phone: Yup.number().typeError('Only numbers are allowed for this field').test('len', 'Must be exactly 8 characters', val => val && val.toString().length >= 8).required('Phone required'),
-    message: Yup.string().required('Message required')
+    firstName: Yup.string().required('Nombre requerido').matches(/^[aA-zZ\s]+$/, "Este campo solo acepta letras"),
+    email: Yup.string().email('Email invalido').required('Email requiro'),
+    phone: Yup.number().typeError('Este campo solo acepta numeros').test('len', 'Tiene que ser mayor de 8 numeros', val => val && val.toString().length >= 8).required('Telefono requerido'),
+    message: Yup.string().required('Mensaje requiro')
 })
 
 const ContactForm = () => {
