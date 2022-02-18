@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "../FormStyles.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -8,6 +7,8 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
+  Container,
+  Flex,
 } from "@chakra-ui/react";
 
 const initialValues = {
@@ -46,57 +47,63 @@ const RegisterForm = () => {
     validationSchema,
   });
 
+
   return (
-    <form className="form-container" onSubmit={formik.handleSubmit}>
-      <FormControl isInvalid={formik.errors.email}>
-        <FormLabel htmlFor="email">Email address</FormLabel>
-        <Input
-          variant="outline"
-          type="email"
-          name="email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="Enter email"
-        ></Input>
-        {formik.touched.email && formik.errors.email ? (
-          <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-        ) : null}
-      </FormControl>
-      <FormControl isInvalid={formik.errors.password}>
-        <FormLabel htmlFor="password">Password</FormLabel>
-        <Input
-          variant="outline"
-          type="password"
-          name="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="Enter your password"
-        ></Input>
-        {formik.touched.password && formik.errors.password ? (
-          <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-        ) : null}
-      </FormControl>
-      <FormControl isInvalid={formik.errors.passwordRepeat}>
-        <FormLabel htmlFor="passwordRepeated">Repeat your password</FormLabel>
-        <Input
-          variant="outline"
-          type="password"
-          name="passwordRepeat"
-          value={formik.values.passwordRepeat}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          placeholder="Repeat your password"
-        ></Input>
-        {formik.touched.passwordRepeat && formik.errors.passwordRepeat ? (
-          <FormErrorMessage>{formik.errors.passwordRepeat}</FormErrorMessage>
-        ) : null}
-      </FormControl>
-      <Button colorScheme="blue" size="md" type="submit">
-        Register
-      </Button>
-    </form>
+    <Container>
+      <form className="form-container" onSubmit={formik.handleSubmit}>
+        <FormControl isInvalid={formik.errors.email}>
+          <FormLabel htmlFor="email">Email address</FormLabel>
+          <Input
+            isInvalid={formik.errors.email}
+            variant="outline"
+            type="email"
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Enter email"
+          ></Input>
+          {formik.touched.email && formik.errors.email ? (
+            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+          ) : null}
+        </FormControl>
+        <FormControl isInvalid={formik.errors.password}>
+          <FormLabel htmlFor="password">Password</FormLabel>
+          <Input
+            variant="outline"
+            type="password"
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Enter your password"
+          ></Input>
+          {formik.touched.password && formik.errors.password ? (
+            <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
+          ) : null}
+        </FormControl>
+        <FormControl isInvalid={formik.errors.passwordRepeat}>
+          <FormLabel htmlFor="passwordRepeated">Repeat your password</FormLabel>
+          <Input
+            variant="outline"
+            type="password"
+            name="passwordRepeat"
+            value={formik.values.passwordRepeat}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Repeat your password"
+          ></Input>
+          {formik.touched.passwordRepeat && formik.errors.passwordRepeat ? (
+            <FormErrorMessage>{formik.errors.passwordRepeat}</FormErrorMessage>
+          ) : null}
+        </FormControl>
+        <Flex>
+          <Button colorScheme="blue" size="md" type="submit">
+            Register
+          </Button>
+        </Flex>
+      </form>
+    </Container>
   );
 };
 
