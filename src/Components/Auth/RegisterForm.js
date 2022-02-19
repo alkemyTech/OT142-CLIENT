@@ -9,6 +9,7 @@ import {
   FormErrorMessage,
   Container,
   Flex,
+  VStack
 } from "@chakra-ui/react";
 
 const initialValues = {
@@ -49,11 +50,11 @@ const RegisterForm = () => {
 
   return (
     <Container>
+      
       <form className="form-container" onSubmit={formik.handleSubmit}>
-        <FormControl isInvalid={formik.errors.email && formik.touched.email}>
+        <FormControl mb="4" isInvalid={formik.errors.email && formik.touched.email}>
           <FormLabel htmlFor="email">Email address</FormLabel>
           <Input
-            isInvalid={formik.errors.email}
             variant="outline"
             type="email"
             name="email"
@@ -65,7 +66,7 @@ const RegisterForm = () => {
 
           <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
         </FormControl>
-        <FormControl
+        <FormControl mb="4"
           isInvalid={formik.errors.password && formik.touched.password}
         >
           <FormLabel htmlFor="password">Password</FormLabel>
@@ -81,7 +82,7 @@ const RegisterForm = () => {
 
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         </FormControl>
-        <FormControl
+        <FormControl mb="4"
           isInvalid={
             formik.errors.passwordRepeat && formik.touched.passwordRepeat
           }
@@ -99,12 +100,13 @@ const RegisterForm = () => {
 
           <FormErrorMessage>{formik.errors.passwordRepeat}</FormErrorMessage>
         </FormControl>
-        <Flex>
+        <Flex mt="4">
           <Button type="submit" size="md" variant="solid" colorScheme="teal">
             Register
           </Button>
         </Flex>
       </form>
+      
     </Container>
   );
 };
