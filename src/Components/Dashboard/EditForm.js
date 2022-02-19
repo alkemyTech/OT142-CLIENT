@@ -1,0 +1,159 @@
+import "../FormStyles.css";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import {
+  Button,
+  Input,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Container,
+  Flex,
+} from "@chakra-ui/react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+const initialValues = {
+  name: "",
+  // logo: "",
+  shortDescription: "",
+  longDescription: "",
+  socialLinks: "",
+};
+
+const onSubmit = (values) => {
+  const user = { ...values };
+
+  localStorage.setItem("token", "tokenValueExample");
+};
+
+const validationSchema = Yup.object({
+  // email: Yup.string()
+  //   .email("Invalid email format")
+  //   .required("Please enter your email"),
+  name: Yup.string()
+    .required("Please enter your name")
+    .min(6, "Must be at least 6 characters"),
+
+  // logo: Yup.string()
+  //   .required("Please enter your password")
+  //   .oneOf([Yup.ref("password"), null], "Passwords must match"),
+  shortDescription: Yup.string()
+    .required("Please enter a short description")
+    .min(6, "Must be at least 6 characters"),
+  longDescription: Yup.string()
+    .required("Please enter a long description")
+    .min(6, "Must be at least 6 characters"),
+  socialLinks: Yup.string()
+    //falta el matches url
+    .min(6, "Must be at least 6 characters"),
+});
+
+const EditForm = () => {
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validationSchema,
+  });
+
+  return (
+    <Container>
+      <form className="form-container" onSubmit={formik.handleSubmit}>
+        <FormControl isInvalid={formik.errors.name && formik.touched.name}>
+          <FormLabel htmlFor="email">Name</FormLabel>
+          <Input
+            variant="outline"
+            type="text"
+            name="name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Enter your name"
+          ></Input>
+
+          <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
+        </FormControl>
+        <FormControl
+          isInvalid={
+            formik.errors.shortDescription && formik.touched.shortDescription
+          }
+        >
+          <FormLabel htmlFor="shortDescription">Short description</FormLabel>
+          {/* <Input
+            variant="outline"
+            type="text"
+            name="shortDescription"
+            value={formik.values.shortDescription}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Write a short description"
+          ></Input> */}
+          <CKEditor
+            config={{placeholder: "..."}}
+            editor={ClassicEditor}
+            data={formik.values.shortDescription}
+            name="shortDescription"
+            // onReady={(editor) => {
+            //   // You can store the "editor" and use when it is needed.
+            //   console.log("Editor is ready to use!", editor);
+            // }}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              formik.setFieldValue("shortDescription", data);
+              console.log({ event, editor, data });
+            }}
+            onBlur={(event, editor) => {
+              console.log("Blur.", editor);
+            }}
+            // onFocus={(event, editor) => {
+            //   console.log("Focus.", editor);
+            // }}
+          />
+
+          <FormErrorMessage>{formik.errors.shortDescription}</FormErrorMessage>
+        </FormControl>
+        <FormControl
+          isInvalid={
+            formik.errors.longDescription && formik.touched.longDescription
+          }
+        >
+          <FormLabel htmlFor="longDescription">Long description</FormLabel>
+          <Input
+            variant="outline"
+            type="text"
+            name="longDescription"
+            value={formik.values.longDescription}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Write a long description"
+          ></Input>
+
+          <FormErrorMessage>{formik.errors.longDescription}</FormErrorMessage>
+        </FormControl>
+        <FormControl
+          isInvalid={formik.errors.socialLinks && formik.touched.socialLinks}
+        >
+          <FormLabel htmlFor="longDescription">Social links</FormLabel>
+          <Input
+            variant="outline"
+            type="text"
+            name="socialLinks"
+            value={formik.values.socialLinks}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Enter a social link"
+          ></Input>
+
+          <FormErrorMessage>{formik.errors.socialLinks}</FormErrorMessage>
+        </FormControl>
+        <Flex mt="4">
+          <Button type="submit" size="md" variant="solid" colorScheme="teal">
+            Edit
+          </Button>
+        </Flex>
+      </form>
+    </Container>
+  );
+};
+
+export default EditForm;
