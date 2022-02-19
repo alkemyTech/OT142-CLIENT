@@ -1,110 +1,191 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import * as Yup from 'yup';
 import { useParams } from 'react-router-dom'
+import { Formik } from "formik";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { 
-    Button, 
-    Stack,
+    Button,
     Input,
     Select,
-    Img
+    Img,
+    Box,
+    Heading,
+    FormControl, 
+    FormErrorMessage, 
+    FormLabel,
+    VStack
 } from '@chakra-ui/react'
-import axios from 'axios';
-import '../FormStyles.css';
 
-const NewsForm = () => {
-    const [initialValues, setInitialValues] = useState({
+// Custom
+import '../FormStyles.css';
+import { getNew, postNew, patchNew } from '../../Services/publicApiService';
+import useForm from '../../hooks/useForm';
+
+
+const initialState = {
+    data: {
         title: '',
         content: '',
         category: '',
-        image: ''
-    });
+        image: '',
+    },
+    err: null
+}
+
+// const SUPPORTED_FORMATS = [
+//     "image/jpg",
+//     "image/jpeg",
+//     "image/png"
+//   ];
+
+const NewsForm = () => {
 
     const { id } = useParams();
+    const {
+        form,
+        setForm
+    } = useForm(initialState);
 
     useEffect(() => {
 
-        const URL = 'http://ongapi.alkemy.org/api/categories'
-
-        const getCategory = async() => {
-
-            const res = await axios.get(`${URL}/${id}`)
-            const {data} = await res.data;
-
-            setInitialValues({
-                title: data.name,
-                content: data.description,
-                category: '',
-                image: data.image
-            })
-        }
-
         if(id){
-            getCategory()
+            getNew(id)
+                .then(res => setForm({...res}))
         }
 
-    }, [id])
+    }, [id, setForm])
 
-    const handleChange = (e) => {
-        setInitialValues({
-            ...initialValues,
-            [e.target.name]: e.target.value
-        })
-    }
+    console.log(form)
 
-    const handleContent = (e, editor) => {
-        const data = editor.getData();
-        
-        setInitialValues({
-            ...initialValues,
-            content: data 
-        })
-    }
-
-    const handleImage = (e) =>{
-        setInitialValues({
-            ...initialValues,
-            image: e.target.files[0].name 
-        })
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        alert(JSON.stringify(initialValues, null, 2));
-    }
-
-    console.log(initialValues)
+    const formNewsSchema = Yup.object().shape({
+        title: Yup.string()
+            .required("Nombre requerido")
+            .min(4, 'Se requieren al menos 4 caracteres'),
+        content: Yup.string()
+            .required("Descripción requerida"),
+        category: Yup.string()
+            .required("Categoria requerida")  
+    })
+    // image: Yup.mixed()
+    // .required("Imagen requerida")
+    // .test("fileFormat", "Formato no soportado: ingrese extensión .jpg o .png",
+    // value=> value && SUPPORTED_FORMATS.includes(value.type)) 
 
     return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <Stack spacing={13} p={10}>
-                <Input name="title" value={initialValues.title} onChange={handleChange} mb={2} />
-                <CKEditor
-                        editor={ ClassicEditor }
-                        // data={initialValues.content}
-                        onChange={handleContent}
-                />
-                <Select name="category" value={initialValues.category} onChange={handleChange}>
-                    <option value="" disabled>Select category</option>
-                    <option value="1">Demo option 1</option>
-                    <option value="2">Demo option 2</option>
-                    <option value="3">Demo option 3</option>
-                </Select>
-                <input type='file' onChange={handleImage}></input>
-                {
-                    initialValues.image !== '' &&
-                        <Img 
-                            src={initialValues.image} 
-                            alt={initialValues.title}
-                            boxSize='150px'
-                            objectFit='cover'
-                            mb={2}
-                        />
+        <Formik
+            enableReinitialize={true}
+            initialValues={form.data}
+            validationSchema={formNewsSchema}       
+            onSubmit={(values) => {
+
+                if(id){
+                    console.log('actualizar')
+                    patchNew(values).then(res => console.log(res))
+                    alert(JSON.stringify(values, null, 2));
+                }else{
+                    console.log('create')
+                    postNew(values).then(res => console.log(res))
+                    alert(JSON.stringify(values, null, 2));
                 }
-                <Button colorScheme="blue" type="submit">Send</Button>
-            </Stack> 
-        </form>
-    );
+
+                console.log(values)
+                
+            }}        
+        >
+            {formik =>(
+                
+                <VStack 
+                    as="form"
+                    mx="auto"
+                    w={{ base: "90%", md: 800 }}
+                    justifyContent="center"
+                    onSubmit={formik.handleSubmit}>
+
+                        <Box                            
+                            w="100%"
+                            p={4}
+                            bg="teal.600"
+                            color="white"
+                            textAlign="center">
+                            <Heading>{ id ? 'Editar novedad' : 'Crear novedad'}</Heading>
+                        </Box>
+
+                        <FormControl isInvalid={formik.errors.title && formik.touched.title}>
+                            <FormLabel>Título de la novedad</FormLabel>
+                            <Input 
+                                onChange={formik.handleChange} 
+                                value={formik.values.title}
+                                type="text" 
+                                name="title" 
+                                placeholder="Título"
+                                onBlur={formik.handleBlur} 
+                            />
+                            <FormErrorMessage>{formik.errors.title}</FormErrorMessage>
+                        </FormControl>
+
+                        <FormControl isInvalid={formik.errors.content && formik.touched.content}>
+                            <FormLabel>Contenido de la novedad</FormLabel>
+                            <CKEditor
+                                config={{placeholder: "..."}} 
+                                editor={ClassicEditor}
+                                data={formik.values.content}
+                                                       
+                                onChange={(event, editor) => {
+                                    const data = editor.getData();
+                                    formik.setFieldValue('content', data);
+                                }}
+                            />                          
+                            <FormErrorMessage>{formik.errors.content}</FormErrorMessage>
+                        </FormControl>
+
+                        <FormControl isInvalid={formik.errors.category && formik.touched.category}>
+                            <Select name="category" value={formik.values.category} onChange={formik.handleChange}>
+                                <option value="" disabled>Select category</option>
+                                <option value="1">Demo option 1</option>
+                                <option value="2">Demo option 2</option>
+                                <option value="3">Demo option 3</option>
+                            </Select>
+                            <FormErrorMessage>{formik.errors.category}</FormErrorMessage>
+                        </FormControl>
+
+                        <FormControl isInvalid={formik.errors.image && formik.touched.image}>
+                            <FormLabel>Imagen</FormLabel>
+                            <Input
+                                id="image"
+                                type="file"
+                                variant="flushed"
+                                onChange={event => {
+                                    const files = event.target.files;
+                                    let myFiles = Array.from(files);                                    
+                                    formik.setFieldValue('image', myFiles[0]);                                 
+                                }}
+                                mb={2}
+                            />
+                            <FormErrorMessage>{formik.errors.image}</FormErrorMessage>
+                            {
+                                formik.values.image !== '' &&
+                                    <Img 
+                                        src={form.data.image} 
+                                        alt={form.data.title}
+                                        boxSize='150px'
+                                        objectFit='cover'
+                                    />
+                            }
+                        </FormControl>               
+                            
+                        <Button 
+                            type="submit" 
+                            size='md'  
+                            variant="solid" 
+                            colorScheme="teal">
+                            {id ? 'Editar' : 'Crear'}
+                        </Button>
+
+                  </VStack>
+            )}
+        </Formik> 
+    )
 }
  
 export default NewsForm;
