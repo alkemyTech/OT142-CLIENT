@@ -47,11 +47,10 @@ const RegisterForm = () => {
     validationSchema,
   });
 
-
   return (
     <Container>
       <form className="form-container" onSubmit={formik.handleSubmit}>
-        <FormControl isInvalid={formik.errors.email}>
+        <FormControl isInvalid={formik.errors.email && formik.touched.email}>
           <FormLabel htmlFor="email">Email address</FormLabel>
           <Input
             isInvalid={formik.errors.email}
@@ -63,11 +62,12 @@ const RegisterForm = () => {
             onBlur={formik.handleBlur}
             placeholder="Enter email"
           ></Input>
-          {formik.touched.email && formik.errors.email ? (
-            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-          ) : null}
+
+          <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
         </FormControl>
-        <FormControl isInvalid={formik.errors.password}>
+        <FormControl
+          isInvalid={formik.errors.password && formik.touched.password}
+        >
           <FormLabel htmlFor="password">Password</FormLabel>
           <Input
             variant="outline"
@@ -78,11 +78,14 @@ const RegisterForm = () => {
             onBlur={formik.handleBlur}
             placeholder="Enter your password"
           ></Input>
-          {formik.touched.password && formik.errors.password ? (
-            <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-          ) : null}
+
+          <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         </FormControl>
-        <FormControl isInvalid={formik.errors.passwordRepeat}>
+        <FormControl
+          isInvalid={
+            formik.errors.passwordRepeat && formik.touched.passwordRepeat
+          }
+        >
           <FormLabel htmlFor="passwordRepeated">Repeat your password</FormLabel>
           <Input
             variant="outline"
@@ -93,12 +96,11 @@ const RegisterForm = () => {
             onBlur={formik.handleBlur}
             placeholder="Repeat your password"
           ></Input>
-          {formik.touched.passwordRepeat && formik.errors.passwordRepeat ? (
-            <FormErrorMessage>{formik.errors.passwordRepeat}</FormErrorMessage>
-          ) : null}
+
+          <FormErrorMessage>{formik.errors.passwordRepeat}</FormErrorMessage>
         </FormControl>
         <Flex>
-          <Button colorScheme="blue" size="md" type="submit">
+          <Button type="submit" size="md" variant="solid" colorScheme="teal">
             Register
           </Button>
         </Flex>
