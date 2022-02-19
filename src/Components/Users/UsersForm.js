@@ -105,8 +105,8 @@ const UserForm = (userDat) => {
                     placeholder="Password">
                 </Field>
                 <ErrorMessage name='password' />
-                <select className="input-field" value={data.roleId || ''} onChange={e => setData({...data.roleId, roleId: e.target.value})}>
-                    <option value="" disabled >Select the role</option>
+                <select className="input-field" value={userData === null ? values.roleId : initialValues.roleId} /*data.roleId || ''}*/ onChange={e => setData({...data.roleId, roleId: e.target.value})}>
+                    <option value="" disabled >{userData === null ? null : initialValues.roleId}Select the role</option>
                     <option value="1">Admin</option>
                     <option value="2">User</option>
                 </select>
