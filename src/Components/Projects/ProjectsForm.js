@@ -37,7 +37,7 @@ const ProjectsForm = ({ patchObject }) => {
 
         <Box my="4">
           <Formik
-            initialValues={{ title: '', description: '', image: '', date: '' }}
+            initialValues={{ title: '', description: '', image: '', due_date: '' }}
 
             validationSchema={ProjectsSchema}
 
@@ -103,7 +103,7 @@ const ProjectsForm = ({ patchObject }) => {
                   <FormLabel>Due date</FormLabel>
                   <Input
                     type="date"
-                    name='date'
+                    name='due_date'
                     value={values.date}
                     onChange={handleChange}
                     onBlur={handleBlur}
