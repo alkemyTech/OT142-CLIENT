@@ -14,35 +14,22 @@ import axios from 'axios';
 
 const BASE_URL = 'http://ongapi.alkemy.org/api';
 
-const getId = async(url, id) => {
+const getCategories = async(id) => {
 
-    let getData = {
-        data: {},
-        err: null
-    };
+    let categories = [];
 
     try{
 
-        const res = await axios.get(`${url}/${id}`);
+        const res = await axios.get(`${BASE_URL}/categories`);
         const { data } = await res.data;
 
-        getData = {
-            ...getData,
-            data
-        }
+        categories = data.map(d => d.id)
 
     }catch(error){
-        getData = {
-            data: {},
-            err: {
-                message: 'Id no encontrado',
-                status: true,
-                error
-            }
-        }
+        console.log(error)
     }
 
-    return getData
+    return categories
 }
 
 const getNew = async(id) => {
@@ -135,7 +122,7 @@ const patchNew = async(data) => {
 }
 
 export {
-    getId,
+    getCategories,
     getNew,
     postNew,
     patchNew

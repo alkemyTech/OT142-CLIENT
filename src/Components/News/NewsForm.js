@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom'
 import { Formik } from "formik";
@@ -19,7 +19,7 @@ import {
 
 // Custom
 import '../FormStyles.css';
-import { getNew, postNew, patchNew } from '../../Services/publicApiService';
+import { getCategories, getNew, postNew, patchNew } from '../../Services/publicApiService';
 import useForm from '../../hooks/useForm';
 
 
@@ -46,6 +46,7 @@ const NewsForm = () => {
         form,
         setForm
     } = useForm(initialState);
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
 
@@ -56,7 +57,10 @@ const NewsForm = () => {
 
     }, [id, setForm])
 
-    console.log(form)
+    useEffect(() => {
+        getCategories()
+            .then(res => setCategories(res))
+    }, [])
 
     const formNewsSchema = Yup.object().shape({
         title: Yup.string()
@@ -73,118 +77,138 @@ const NewsForm = () => {
     // value=> value && SUPPORTED_FORMATS.includes(value.type)) 
 
     return (
-        <Formik
-            enableReinitialize={true}
-            initialValues={form.data}
-            validationSchema={formNewsSchema}       
-            onSubmit={(values) => {
+        <>
+            {
+                form.err ?
 
-                if(id){
-                    console.log('actualizar')
-                    patchNew(values).then(res => console.log(res))
-                    alert(JSON.stringify(values, null, 2));
-                }else{
-                    console.log('create')
-                    postNew(values).then(res => console.log(res))
-                    alert(JSON.stringify(values, null, 2));
-                }
+                <Box                            
+                    w="100%"
+                    p={4}
+                    bg="red.600"
+                    color="white"
+                    textAlign="center">
+                    <Heading>{form.err.message}</Heading>
+                </Box>
 
-                console.log(values)
-                
-            }}        
-        >
-            {formik =>(
-                
-                <VStack 
-                    as="form"
-                    mx="auto"
-                    w={{ base: "90%", md: 800 }}
-                    justifyContent="center"
-                    onSubmit={formik.handleSubmit}>
+                :
 
-                        <Box                            
-                            w="100%"
-                            p={4}
-                            bg="teal.600"
-                            color="white"
-                            textAlign="center">
-                            <Heading>{ id ? 'Editar novedad' : 'Crear novedad'}</Heading>
-                        </Box>
+                    <Formik
+                        enableReinitialize={true}
+                        initialValues={form.data || initialState}
+                        validationSchema={formNewsSchema}       
+                        onSubmit={(values) => {
 
-                        <FormControl isInvalid={formik.errors.title && formik.touched.title}>
-                            <FormLabel>Título de la novedad</FormLabel>
-                            <Input 
-                                onChange={formik.handleChange} 
-                                value={formik.values.title}
-                                type="text" 
-                                name="title" 
-                                placeholder="Título"
-                                onBlur={formik.handleBlur} 
-                            />
-                            <FormErrorMessage>{formik.errors.title}</FormErrorMessage>
-                        </FormControl>
-
-                        <FormControl isInvalid={formik.errors.content && formik.touched.content}>
-                            <FormLabel>Contenido de la novedad</FormLabel>
-                            <CKEditor
-                                config={{placeholder: "..."}} 
-                                editor={ClassicEditor}
-                                data={formik.values.content}
-                                                       
-                                onChange={(event, editor) => {
-                                    const data = editor.getData();
-                                    formik.setFieldValue('content', data);
-                                }}
-                            />                          
-                            <FormErrorMessage>{formik.errors.content}</FormErrorMessage>
-                        </FormControl>
-
-                        <FormControl isInvalid={formik.errors.category && formik.touched.category}>
-                            <Select name="category" value={formik.values.category} onChange={formik.handleChange}>
-                                <option value="" disabled>Select category</option>
-                                <option value="1">Demo option 1</option>
-                                <option value="2">Demo option 2</option>
-                                <option value="3">Demo option 3</option>
-                            </Select>
-                            <FormErrorMessage>{formik.errors.category}</FormErrorMessage>
-                        </FormControl>
-
-                        <FormControl isInvalid={formik.errors.image && formik.touched.image}>
-                            <FormLabel>Imagen</FormLabel>
-                            <Input
-                                id="image"
-                                type="file"
-                                variant="flushed"
-                                onChange={event => {
-                                    const files = event.target.files;
-                                    let myFiles = Array.from(files);                                    
-                                    formik.setFieldValue('image', myFiles[0]);                                 
-                                }}
-                                mb={2}
-                            />
-                            <FormErrorMessage>{formik.errors.image}</FormErrorMessage>
-                            {
-                                formik.values.image !== '' &&
-                                    <Img 
-                                        src={form.data.image} 
-                                        alt={form.data.title}
-                                        boxSize='150px'
-                                        objectFit='cover'
-                                    />
+                            if(id){
+                                console.log('actualizar')
+                                patchNew(values).then(res => console.log(res))
+                                alert(JSON.stringify(values, null, 2));
+                            }else{
+                                console.log('create')
+                                postNew(values).then(res => console.log(res))
+                                alert(JSON.stringify(values, null, 2));
                             }
-                        </FormControl>               
-                            
-                        <Button 
-                            type="submit" 
-                            size='md'  
-                            variant="solid" 
-                            colorScheme="teal">
-                            {id ? 'Editar' : 'Crear'}
-                        </Button>
 
-                  </VStack>
-            )}
-        </Formik> 
+                            console.log(values)
+                            
+                        }}        
+                    >
+                    {formik =>(
+                        
+                        <VStack 
+                            as="form"
+                            mx="auto"
+                            w={{ base: "90%", md: 800 }}
+                            justifyContent="center"
+                            onSubmit={formik.handleSubmit}>
+
+                                <Box                            
+                                    w="100%"
+                                    p={4}
+                                    bg="teal.600"
+                                    color="white"
+                                    textAlign="center">
+                                    <Heading>{ id ? 'Editar novedad' : 'Crear novedad'}</Heading>
+                                </Box>
+
+                                <FormControl isInvalid={formik.errors.title && formik.touched.title}>
+                                    <FormLabel>Título de la novedad</FormLabel>
+                                    <Input 
+                                        onChange={formik.handleChange} 
+                                        value={formik.values.title}
+                                        type="text" 
+                                        name="title" 
+                                        placeholder="Título"
+                                        onBlur={formik.handleBlur} 
+                                    />
+                                    <FormErrorMessage>{formik.errors.title}</FormErrorMessage>
+                                </FormControl>
+
+                                <FormControl isInvalid={formik.errors.content && formik.touched.content}>
+                                    <FormLabel>Contenido de la novedad</FormLabel>
+                                    <CKEditor
+                                        config={{placeholder: "..."}} 
+                                        editor={ClassicEditor}
+                                        data={formik.values.content}
+                                                            
+                                        onChange={(event, editor) => {
+                                            const data = editor.getData();
+                                            formik.setFieldValue('content', data);
+                                        }}
+                                    />                          
+                                    <FormErrorMessage>{formik.errors.content}</FormErrorMessage>
+                                </FormControl>
+
+                                <FormControl isInvalid={formik.errors.category && formik.touched.category}>
+                                    <Select name="category" value={formik.values.category} onChange={formik.handleChange}>
+                                        <option value="" disabled>Select category</option>
+                                        {
+                                            categories.map(cat => {
+                                                return <option value={cat} key={cat}>Categoria {cat}</option>
+                                            })
+                                        }
+                                    </Select>
+                                    <FormErrorMessage>{formik.errors.category}</FormErrorMessage>
+                                </FormControl>
+
+                                <FormControl isInvalid={formik.errors.image && formik.touched.image}>
+                                    <FormLabel>Imagen</FormLabel>
+                                    <Input
+                                        id="image"
+                                        type="file"
+                                        variant="flushed"
+                                        onChange={event => {
+                                            const files = event.target.files;
+                                            let myFiles = Array.from(files);                                    
+                                            formik.setFieldValue('image', myFiles[0]);                                 
+                                        }}
+                                        mb={2}
+                                    />
+                                    <FormErrorMessage>{formik.errors.image}</FormErrorMessage>
+                                    {
+                                        formik.values.image !== '' &&
+                                            <Img 
+                                                src={form.data.image} 
+                                                alt={form.data.title}
+                                                boxSize='150px'
+                                                objectFit='cover'
+                                            />
+                                    }
+                                </FormControl>               
+                                    
+                                <Button 
+                                    type="submit" 
+                                    size='md'  
+                                    variant="solid" 
+                                    colorScheme="teal">
+                                    {id ? 'Editar' : 'Crear'}
+                                </Button>
+
+                        </VStack>
+                    )}
+                </Formik> 
+
+            }
+        </>
     )
 }
  
