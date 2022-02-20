@@ -15,7 +15,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const initialValues = {
   name: "",
-  // logo: "",
+  logo: "",
   shortDescription: "",
   longDescription: "",
   socialLinks: "",
@@ -27,17 +27,21 @@ const onSubmit = (values) => {
   localStorage.setItem("token", "tokenValueExample");
 };
 
+const FORMATS = [
+  "application/png",
+  "application/jpg"
+];
+
 const validationSchema = Yup.object({
-  // email: Yup.string()
-  //   .email("Invalid email format")
-  //   .required("Please enter your email"),
   name: Yup.string()
     .required("Please enter your name")
     .min(6, "Must be at least 6 characters"),
 
-  // logo: Yup.string()
-  //   .required("Please enter your password")
-  //   .oneOf([Yup.ref("password"), null], "Passwords must match"),
+  logo: Yup.mixed()
+    .required("Please upload a logo")
+    .test('fileFormat', '.png o .jpg only', (value) => {
+      console.log("value dfile yup ", value); return value && FORMATS.includes(value.type);
+    }),
   shortDescription: Yup.string()
     .required("Please enter a short description")
     .min(6, "Must be at least 6 characters"),
@@ -46,7 +50,11 @@ const validationSchema = Yup.object({
     .min(6, "Must be at least 6 characters"),
   socialLinks: Yup.string()
     //falta el matches url
-    .min(6, "Must be at least 6 characters"),
+    .min(6, "Must be at least 6 characters")
+    .matches(
+      /^(ftp|https?):\/\/+(www\.)?[a-z0-9\-\.]{3,}\.[a-z]{3}$/,
+      "Please enter a valid url"
+    ),
 });
 
 const EditForm = () => {
@@ -73,41 +81,45 @@ const EditForm = () => {
 
           <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
         </FormControl>
+        <FormControl isInvalid={formik.errors.logo && formik.touched.logo}>
+          <FormLabel htmlFor="logo">Logo</FormLabel>
+          <Input
+            // variant="outline"
+            type="file"
+            name="logo"
+            // value={formik.values.logo}
+            onChange={(event, editor) => {
+              const file = event.target.files;
+              // let myFiles = Array.from(file);                                    
+              formik.setFieldValue('logo', file);
+              console.log({ event, editor });
+            }}
+            
+          ></Input>
+
+          <FormErrorMessage>{formik.errors.logo}</FormErrorMessage>
+        </FormControl>
         <FormControl
           isInvalid={
             formik.errors.shortDescription && formik.touched.shortDescription
           }
         >
           <FormLabel htmlFor="shortDescription">Short description</FormLabel>
-          {/* <Input
-            variant="outline"
-            type="text"
-            name="shortDescription"
-            value={formik.values.shortDescription}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            placeholder="Write a short description"
-          ></Input> */}
           <CKEditor
-            config={{placeholder: "..."}}
+            config={{name: "shortDescription"}}
             editor={ClassicEditor}
             data={formik.values.shortDescription}
             name="shortDescription"
-            // onReady={(editor) => {
-            //   // You can store the "editor" and use when it is needed.
-            //   console.log("Editor is ready to use!", editor);
-            // }}
             onChange={(event, editor) => {
               const data = editor.getData();
               formik.setFieldValue("shortDescription", data);
               console.log({ event, editor, data });
             }}
             onBlur={(event, editor) => {
+              const data = editor.getData();
+              formik.setFieldValue("shortDescription", data);
               console.log("Blur.", editor);
             }}
-            // onFocus={(event, editor) => {
-            //   console.log("Focus.", editor);
-            // }}
           />
 
           <FormErrorMessage>{formik.errors.shortDescription}</FormErrorMessage>
