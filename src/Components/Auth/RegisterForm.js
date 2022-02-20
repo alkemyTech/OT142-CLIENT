@@ -9,10 +9,11 @@ import {
   FormErrorMessage,
   Container,
   Flex,
-  VStack
 } from "@chakra-ui/react";
 
 const initialValues = {
+  name: "",
+  lastName: "",
   email: "",
   password: "",
   passwordRepeat: "",
@@ -25,6 +26,10 @@ const onSubmit = (values) => {
 };
 
 const validationSchema = Yup.object({
+  name: Yup.string()
+    .required("Please enter your name"),
+  lastName: Yup.string()
+    .required("Please enter your lastname"),
   email: Yup.string()
     .email("Invalid email format")
     .required("Please enter your email"),
@@ -37,7 +42,7 @@ const validationSchema = Yup.object({
       "Need one special character or number"
     ),
   passwordRepeat: Yup.string()
-    .required("Please enter your password")
+    .required("Please repeat your password")
     .oneOf([Yup.ref("password"), null], "Passwords must match"),
 });
 
@@ -52,6 +57,34 @@ const RegisterForm = () => {
     <Container>
       
       <form className="form-container" onSubmit={formik.handleSubmit}>
+      <FormControl mb="4" isInvalid={formik.errors.name && formik.touched.name}>
+          <FormLabel htmlFor="name">Name</FormLabel>
+          <Input
+            variant="outline"
+            type="text"
+            name="name"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Enter your name"
+          ></Input>
+
+          <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
+        </FormControl>
+        <FormControl mb="4" isInvalid={formik.errors.lastName && formik.touched.lastName}>
+          <FormLabel htmlFor="lastName">Lastname</FormLabel>
+          <Input
+            variant="outline"
+            type="text"
+            name="lastName"
+            value={formik.values.lastName}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            placeholder="Enter your lastname"
+          ></Input>
+
+          <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
+        </FormControl>
         <FormControl mb="4" isInvalid={formik.errors.email && formik.touched.email}>
           <FormLabel htmlFor="email">Email address</FormLabel>
           <Input
