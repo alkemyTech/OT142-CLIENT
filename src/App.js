@@ -14,6 +14,10 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Dashboard from "./Components/Dashboard/Dashboard";
+//ver cambiar ruta o crear otra carpeta
+import EditForm from "./Components/Dashboard/EditForm";
+//borrar es para probar el form nada mas
+import RegisterForm from "./Components/Auth/RegisterForm";
 function App() {
   return (
     <>
@@ -23,14 +27,17 @@ function App() {
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
-          <Route path="/backoffice" component={Dashboard} />
+          <Route exact path="/backoffice" component={Dashboard} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
+          <Route path="/backoffice/organization/edit" component={EditForm} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-user" component={UserForm} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
+          {/* borrar tmb es para probar el form */}
+          <Route path="/register" component={RegisterForm} />
         </Switch>
       </BrowserRouter>
       <div className="App"></div>
