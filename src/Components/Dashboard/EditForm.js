@@ -22,9 +22,7 @@ const initialValues = {
 };
 
 const onSubmit = (values) => {
-  const user = { ...values };
-
-  localStorage.setItem("token", "tokenValueExample");
+  
 };
 
 const FORMATS = [
@@ -49,7 +47,6 @@ const validationSchema = Yup.object({
     .required("Please enter a long description")
     .min(6, "Must be at least 6 characters"),
   socialLinks: Yup.string()
-    //falta el matches url
     .min(6, "Must be at least 6 characters")
     .matches(
       /^(ftp|https?):\/\/+(www\.)?[a-z0-9\-\.]{3,}\.[a-z]{3}$/,
@@ -89,10 +86,9 @@ const EditForm = () => {
             name="logo"
             // value={formik.values.logo}
             onChange={(event, editor) => {
-              const file = event.target.files;
-              // let myFiles = Array.from(file);                                    
+              const file = event.target.files;                                   
               formik.setFieldValue('logo', file);
-              console.log({ event, editor });
+              // console.log({ event, editor });
             }}
             
           ></Input>
