@@ -1,4 +1,5 @@
 import React from 'react';
+import { ChakraProvider } from '@chakra-ui/react'
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -9,7 +10,9 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ChakraProvider>
+        <App />
+      </ChakraProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
