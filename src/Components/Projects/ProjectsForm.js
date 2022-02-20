@@ -17,7 +17,7 @@ import { Formik } from 'formik';
 import { ProjectsSchema } from './ProjectsSchema';
 import { MdTitle, MdImage } from 'react-icons/md';
 
-const ProjectsForm = ({ patchObject }) => {
+const ProjectsForm = () => {
 
   //Por ahora guardamos los valores en estado hasta implementar peticiones
   const [inputValues, setInputValues] = useState(null);
