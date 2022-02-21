@@ -1,40 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import * as Yup from 'yup';
 import '../FormStyles.css';
 
+const SUPPORTED_FORMATS = ['image/jpg', 'image/png'];
+
 const SignupSchema = Yup.object().shape({
+    file: Yup.mixed().test('fileFormat', "Solo se permite formato .jpg o .png", value => SUPPORTED_FORMATS.includes(value?.type)),
     name: Yup.string().required('El campo Name no puede estar vacío').min(4, 'El campo name debe tener al menos 4 caracteres').max(10, 'El campo name puede tener máximo 10 caracteres'),
     email: Yup.string().email('Email inválido').required('El campo Email no puede estar vacío'),
-    password:Yup.string().required('El campo Password no puede estar vacío').min(8, 'El campo password debe tener al menos 8 caracteres').max(10, 'El campo password puede tener máximo 15 caracteres')
-  });
+    password: Yup.string().required('El campo Password no puede estar vacío').min(8, 'El campo password debe tener al menos 8 caracteres').max(10, 'El campo password puede tener máximo 15 caracteres'),
+    userRole: Yup.string().oneOf(['Admin', 'User'], 'Role inválido').required('Debe seleccionar un role')
+});
 
- 
-  let userData = null
-   /*
-   //Testing
-   let userData = {
-      name: 'joel',
-      email: 'joel@example.com',
-      password: 'password',
-      roleId: 'user'
-  }*/
+let userData = null
+/*
+//Testing
+let userData = {
+    file: 'imagen.jpg',
+    name: 'joel',
+    email: 'joel@example.com',
+    password: 'password',
+    roleId: 'user'
+}*/
 //userDat = userData
 const UserForm = (userDat) => {
+    const ref = useRef();
+    const reset = () => {
+        ref.current.value = "";
+    };
     const [data, setData] = useState({
+        file: '',
         name: '',
         email: '',
         password: '',
-        roleId: ''
+        userRole: ''
         })
 
         useEffect(() => {
             if (userData === null) {
-                Swal.fire('Usuario inexistente, completar el formulario para crear un nuevo usuario');
+             /*   Swal.fire('Usuario inexistente, completar el formulario para crear un nuevo usuario');*/
                 } else {
-                   Swal.fire('Usuario existente, completar el formulario para actualizar el usuario');
+                   /* Swal.fire('Usuario existente, completar el formulario para actualizar el usuario');*/
                    setData(userData);
                 }
         }, [data])
@@ -64,16 +73,20 @@ const UserForm = (userDat) => {
         <Formik
             initialValues={initialValues}
             validationSchema={SignupSchema}
-            onSubmit={(values, { resetForm })=>{
+            onSubmit={(values, {resetForm})=>{
                 resetForm();
+                reset();
             }}
         >
-            {({ values, handleSubmit, handleChange, handleBlur }) => (
+            {({ values, handleSubmit, handleChange, handleBlur, setFieldValue }) => (
             <Form className="form-container" onSubmit={handleSubmit}>
                 <input 
-                    className="input-field" 
-                    type="file">
-                </input>
+                className="input-field"
+                ref={ref}
+                name='file'
+                type='file'
+                onChange={(event) => setFieldValue('file', event.target.files[0])}/>
+                <ErrorMessage name='file' />
                 <Field 
                     className="input-field" 
                     autoComplete="off"
@@ -105,11 +118,12 @@ const UserForm = (userDat) => {
                     placeholder="Password">
                 </Field>
                 <ErrorMessage name='password' />
-                <select className="input-field" value={userData === null ? values.roleId : initialValues.roleId} /*data.roleId || ''}*/ onChange={e => setData({...data.roleId, roleId: e.target.value})}>
-                    <option value="" disabled >{userData === null ? null : initialValues.roleId}Select the role</option>
-                    <option value="1">Admin</option>
-                    <option value="2">User</option>
-                </select>
+                <Field className="input-field" component='select' name='userRole' onChange={handleChange('userRole')}>
+                    <option value="" disabled >{initialValues.userRole === '' ? 'Role del usuario' : initialValues.userRole}</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </Field>
+                <ErrorMessage name='userRole' />
                 <button className="submit-btn" type="submit">Send</button>
             </Form>
             )}
