@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import {
   Flex,
   Box,
@@ -16,16 +15,13 @@ import {
 import { Formik } from 'formik';
 import { ProjectsSchema } from './ProjectsSchema';
 import { MdTitle, MdImage } from 'react-icons/md';
+import { useParams } from 'react-router-dom'
+import createProject from '../../Services/ProjectApiService';
 
 const ProjectsForm = () => {
 
-  //Por ahora guardamos los valores en estado hasta implementar peticiones
-  const [inputValues, setInputValues] = useState(null);
-
-  useEffect(() => {
-    console.log(inputValues);
-  }, [inputValues])
-
+  const { id } = useParams();
+ 
   return (
     <Flex justifyContent="center" alignItems="center" flexDirection="column-reverse">
 
@@ -41,13 +37,13 @@ const ProjectsForm = () => {
 
             validationSchema={ProjectsSchema}
 
-            onSubmit={(values, action) => {
-              setInputValues(values);
+            onSubmit={ async (values, action) => {
+              await createProject(id, values); //Si existe un id hara una peticion PUT de lo contrario POST
               action.setSubmitting(false);
               action.resetForm();
             }}
           >
-            {({ handleSubmit, handleChange, handleBlur, values, errors, isSubmitting }) => (
+            {({ handleSubmit, handleChange, handleBlur, setFieldValue, values, errors, isSubmitting }) => (
               <form onSubmit={handleSubmit}>
                 <FormControl isRequired isInvalid={errors.title}>
                   <FormLabel>Title</FormLabel>
@@ -91,8 +87,10 @@ const ProjectsForm = () => {
                       type="file"
                       name='image'
                       accept='.png, .jpg'
-                      value={values.image}
-                      onChange={handleChange}
+                      onChange={(e) => {
+                        const file = e.currentTarget.files[0].name;
+                        setFieldValue('image', file);
+                      }}
                       onBlur={handleBlur}
                     />
                   </InputGroup>
