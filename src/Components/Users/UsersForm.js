@@ -4,6 +4,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import * as Yup from 'yup';
 import '../FormStyles.css';
+import './UsersForm.css'
 
 const SUPPORTED_FORMATS = ['image/jpg', 'image/png'];
 
@@ -87,7 +88,8 @@ const UserForm = (userDat) => {
                 name='file'
                 type='file'
                 onChange={(event) => setFieldValue('file', event.target.files[0])}/>
-                <ErrorMessage name='file' />
+                <ErrorMessage name='file' render={msg => <div className="error">{msg}</div>}/>
+
                 <Field 
                     className="input-field" 
                     autoComplete="off"
@@ -98,7 +100,8 @@ const UserForm = (userDat) => {
                     onBlur={handleBlur} 
                     placeholder="Name">
                 </Field>
-                <ErrorMessage name='name' />
+                <ErrorMessage name='name' component="div" render={msg => <div className="error">{msg}</div>}/>
+
                 <Field 
                     className="input-field" 
                     autoComplete="off"
@@ -108,7 +111,8 @@ const UserForm = (userDat) => {
                     onChange={handleChange} 
                     placeholder="Email">
                 </Field>
-                <ErrorMessage name='email' />
+                <ErrorMessage name='email' render={msg => <div className="error">{msg}</div>}/>
+
                 <Field 
                     className="input-field"
                     type="password"
@@ -118,13 +122,14 @@ const UserForm = (userDat) => {
                     onChange={handleChange} 
                     placeholder="Password">
                 </Field>
-                <ErrorMessage name='password' />
+                <ErrorMessage name='password' render={msg => <div className="error">{msg}</div>}/>
+
                 <Field className="input-field" component='select' name='userRole' onChange={handleChange('userRole')}>
                     <option value="" disabled >{initialValues.userRole === '' ? 'Role del usuario' : initialValues.userRole}</option>
                     <option value="Admin">Admin</option>
                     <option value="User">User</option>
                 </Field>
-                <ErrorMessage name='userRole' />
+                <ErrorMessage name='userRole' render={msg => <div className="error">{msg}</div>}/>
                 <button className="submit-btn" type="submit">Send</button>
             </Form>
             )}
