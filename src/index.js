@@ -12,7 +12,7 @@ import theme from './theme';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-        <ChakraProvider theme={theme}>
+        <ChakraProvider >
              <App />
         </ChakraProvider>
     </Provider>
