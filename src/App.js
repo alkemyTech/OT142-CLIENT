@@ -25,7 +25,7 @@ function App() {
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
-          <Route path="/create-news" component={NewsForm} />
+          <Route path="/create-news/:id?" component={NewsForm} />
           <Route path="/Novedades/:id" component={NewsDetail} />
           <Route path="/backoffice" component={Dashboard} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
