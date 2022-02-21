@@ -28,9 +28,11 @@ let userData = {
 //userDat = userData
 const UserForm = (userDat) => {
     const ref = useRef();
+    
     const reset = () => {
         ref.current.value = "";
     };
+
     const [data, setData] = useState({
         file: '',
         name: '',
@@ -67,7 +69,6 @@ const UserForm = (userDat) => {
         })
     }*/
     const initialValues = data;
-    console.log('initialValues', initialValues)
     
     return (
         <Formik
