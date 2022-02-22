@@ -17,9 +17,9 @@ import {
 
 const OrganizationBoard = ({ data }) => {
   return (
-    <Container style={{ border: "1px solid green" }} maxW="container.sm">
+    <Container  maxW="container.sm">
       <Stack
-        style={{ border: "1px solid red" }}
+        
         justifyContent="left"
         p={2}
         spacing={6}
@@ -35,7 +35,7 @@ const OrganizationBoard = ({ data }) => {
 
         <Stat>
           <StatLabel fontSize="xl">Logo actual:</StatLabel>
-          <Box boxSize="300px" style={{ border: "1px solid red" }}>
+          <Box boxSize="300px" >
             <Image
               objectFit="cover"
               src={process.env.PUBLIC_URL + '/images/LOGO-SOMOS-MAS.png'}
