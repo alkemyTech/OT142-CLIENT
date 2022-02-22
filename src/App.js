@@ -14,7 +14,7 @@ import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import { NewsDetail } from "./Components/News/Detail/NewsDetail";
-import Footer from "./Components/Footer";
+import Footer from "./Components/Footer/index.js";
 import Dashboard from "./Components/Dashboard";
 function App() {
   return (
@@ -36,8 +36,9 @@ function App() {
           <Route path="/toys-campaign" component={ToysCampaign} />
         </Switch>
       </BrowserRouter>
-      <div className="App"></div>
-      <Footer />
+      <div className="App">
+        <Footer></Footer>
+      </div>
     </>
   );
 }
