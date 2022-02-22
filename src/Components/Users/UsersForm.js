@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import '../FormStyles.css';
 import './UsersForm.css'
 
-const SUPPORTED_FORMATS = ['image/jpg', 'image/png'];
+const SUPPORTED_FORMATS = ['image/jpeg', 'image/png'];
 
 const SignupSchema = Yup.object().shape({
     file: Yup.mixed().test('fileFormat', "Solo se permite formato .jpg o .png", value => SUPPORTED_FORMATS.includes(value?.type)),
@@ -16,7 +16,6 @@ const SignupSchema = Yup.object().shape({
     userRole: Yup.string().oneOf(['Admin', 'User'], 'Role inválido').required('Debe seleccionar un role')
 });
 
-let userData = null
 /*
 //Testing
 let userData = {
@@ -26,8 +25,7 @@ let userData = {
     password: 'password',
     roleId: 'user'
 }*/
-//userDat = userData
-const UserForm = (userDat) => {
+const UserForm = (userData) => {
     const ref = useRef();
     
     const reset = () => {
@@ -43,7 +41,7 @@ const UserForm = (userDat) => {
         })
 
         useEffect(() => {
-            if (userData === null) {
+            if (userData) {
              /*   Swal.fire('Usuario inexistente, completar el formulario para crear un nuevo usuario');*/
                 } else {
                    /* Swal.fire('Usuario existente, completar el formulario para actualizar el usuario');*/
@@ -81,13 +79,14 @@ const UserForm = (userDat) => {
             }}
         >
             {({ values, handleSubmit, handleChange, handleBlur, setFieldValue }) => (
-            <Form className="form-container" onSubmit={handleSubmit}>
+                <Form className="form-container" onSubmit={handleSubmit}>
                 <input 
                 className="input-field"
                 ref={ref}
                 name='file'
                 type='file'
                 onChange={(event) => setFieldValue('file', event.target.files[0])}/>
+                
                 <ErrorMessage name='file' render={msg => <div className="error">{msg}</div>}/>
 
                 <Field 
@@ -95,10 +94,10 @@ const UserForm = (userDat) => {
                     autoComplete="off"
                     type="text" 
                     name="name" 
-                    value={userData === null ? values.name : initialValues.name}
+                    value={userData ? values.name : initialValues.name}
                     onChange={handleChange}
                     onBlur={handleBlur} 
-                    placeholder="Name">
+                    placeholder="Nombre">
                 </Field>
                 <ErrorMessage name='name' component="div" render={msg => <div className="error">{msg}</div>}/>
 
@@ -107,9 +106,9 @@ const UserForm = (userDat) => {
                     autoComplete="off"
                     type="text" 
                     name="email" 
-                    value={userData === null ? values.email : initialValues.email} 
+                    value={userData ? values.email : initialValues.email} 
                     onChange={handleChange} 
-                    placeholder="Email">
+                    placeholder="Correo electrónico">
                 </Field>
                 <ErrorMessage name='email' render={msg => <div className="error">{msg}</div>}/>
 
@@ -118,19 +117,19 @@ const UserForm = (userDat) => {
                     type="password"
                     autoComplete="off"
                     name="password" 
-                    value={userData === null ? values.password : initialValues.password}
+                    value={userData ? values.password : initialValues.password}
                     onChange={handleChange} 
-                    placeholder="Password">
+                    placeholder="Contraseña">
                 </Field>
                 <ErrorMessage name='password' render={msg => <div className="error">{msg}</div>}/>
 
                 <Field className="input-field" component='select' name='userRole' onChange={handleChange('userRole')}>
                     <option value="" disabled >{initialValues.userRole === '' ? 'Role del usuario' : initialValues.userRole}</option>
-                    <option value="Admin">Admin</option>
-                    <option value="User">User</option>
+                    <option value="Admin">Administrador</option>
+                    <option value="User">Usuario</option>
                 </Field>
                 <ErrorMessage name='userRole' render={msg => <div className="error">{msg}</div>}/>
-                <button className="submit-btn" type="submit">Send</button>
+                <button className="submit-btn" type="submit">Enviar</button>
             </Form>
             )}
         </Formik>
