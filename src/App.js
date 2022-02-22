@@ -17,6 +17,8 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import { NewsDetail } from './Components/News/Detail/NewsDetail'
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
+import ContactForm from './Components/Contact/ContactForm';
+
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/register" component={RegisterForm} />
+          <Route path='/contact-form' component={ContactForm} />
         </Switch>
       </BrowserRouter>
       <div className="App"></div>
