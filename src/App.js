@@ -13,8 +13,10 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
-import { NewsDetail } from './Components/News/Detail/NewsDetail';
-import Dashboard from './Components/Dashboard';
+import Dashboard from "./Components/Dashboard/Dashboard";
+import { NewsDetail } from './Components/News/Detail/NewsDetail'
+import EditForm from "./Components/Dashboard/EditForm";
+import RegisterForm from "./Components/Auth/RegisterForm";
 import ContactForm from './Components/Contact/ContactForm';
 
 
@@ -30,12 +32,14 @@ function App() {
           <Route path="/Novedades/:id" component={NewsDetail} />
           <Route path="/backoffice" component={Dashboard} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
+          <Route path="/backoffice/organization/edit" component={EditForm} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-user" component={UserForm} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
+          <Route path="/register" component={RegisterForm} />
           <Route path='/contact-form' component={ContactForm} />
         </Switch>
       </BrowserRouter>
