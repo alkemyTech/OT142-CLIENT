@@ -35,8 +35,8 @@ function App() {
           <Route path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice" component={Dashboard} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
-          <Route path="/backoffice/organization" component={OrganizationBoard} />
           <Route path="/backoffice/organization/edit" component={EditForm} />
+          <Route path="/backoffice/organization" component={OrganizationBoard} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-user" component={UserForm} />
           <Route path="/create-member" component={MembersForm} />
