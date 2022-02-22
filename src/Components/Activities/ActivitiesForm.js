@@ -8,46 +8,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import React, { useState } from 'react';
 
-//PETICIONES PARA SER USADAS POSTERIORMENTE 
-
-// const url = 'http://ongapi.alkemy.org/api';
-// const endpoint = 'activities'
-//pedir id
-
-//petición para tomar actividades    
-// const GetActivities = async (endpoint, id = null, url) => {
-//     try {
-//         const data = await axios.get(`${url}/${endpoint}${id}`);
-//         return data;
-//     } catch (error) {
-//         return error;
-//     }
-// };
-//petiición para crear actividades   
-// const postActivitiesCreate = async (endpoint, body, id = null, url) => {
-//     try {
-//         const resp = await axios.post(`${url}/${endpoint}/${id}`, body, {
-//             headers: token,
-//         });
-//         return resp;
-//     } catch (error) {
-//        console.error(error);
-//     }
-// };
-//petiición para editar actividades   
-// const  patchActivitiesEdit = async (endpoint, body, id = null, url ) => {
-//     try {
-//         const resp = await axios.patch(`${url}/${endpoint}/${id}`, body, {
-//             headers: token,
-//         });
-//         return resp;
-//     } catch (error) {
-//        console.error(error);
-//     }
-// };
-
-
-const ActivitiesForm = () => {
+//<ActivitiesForm { ...responseAPI} />
+const ActivitiesForm = (activitiesData) => {
 
     const [values, setValues] = useState([])
     console.log(`valores ingresados: `, values)
@@ -59,17 +21,13 @@ const ActivitiesForm = () => {
       "image/jpg",
       "image/jpeg",
       "image/png"
-    ];
+    ]; 
 
-    const responseAPI = {
-       "id": 0,
-        "name": "",
-        "image": "",
-        "description": "",
-        "created_at": "2022-02-17T20:56:26.749Z",
-        "updated_at": "2022-02-17T20:56:26.749Z",
-        "deleted_at": "2022-02-17T20:56:26.749Z" 
-    }
+    const initialValues = {
+        name: activitiesData?.name || '',
+        description: activitiesData?.description || '',
+        image: activitiesData?.image || '',
+    };    
 
     const formSchema = Yup.object().shape({
         name: Yup.string()
@@ -80,26 +38,21 @@ const ActivitiesForm = () => {
             .test("fileFormat", "Formato no soportado: ingrese extensión .jpg o .png",
             value=> value &&   SUPPORTED_FORMATS.includes(value.type)
         )      
-    })
-
-    const initialValues = {
-        name: responseAPI?.name || '',
-        description: responseAPI?.description || '',
-        image: responseAPI?.image || '',
-    };       
+    })       
     
     return (        
         <Formik
             initialValues={initialValues}
             validationSchema={formSchema}            
-            onSubmit= {(values,actions) =>{
+            onSubmit= {(values,{resetForm}) =>{
                 if(location.includes('create')){
                     // postActivitiesCreate(values)                     
                     setValues(values)                      
                 }else if (location.includes('edit')){
                     // patchActivitiesEdit(values)   
                     setValues(values)
-                }                
+                }       
+                resetForm()         
             }}
         
         >
