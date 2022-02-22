@@ -20,6 +20,7 @@ import { NewsDetail } from './Components/News/Detail/NewsDetail'
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import ContactForm from './Components/Contact/ContactForm';
+import EditHomeForm from './Components/Dashboard/editHomeForm';
 
 
 function App() {
@@ -32,7 +33,8 @@ function App() {
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/Novedades/:id" component={NewsDetail} />
-          <Route path="/backoffice" component={Dashboard} />
+          <Route path="/backoffice"  component={Dashboard}/>
+          <Route path="/backoffice/organization" component={EditHomeForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/backoffice/organization/edit" component={EditForm} />
           <Route path="/create-testimonials" component={TestimonialForm} />
