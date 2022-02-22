@@ -13,6 +13,8 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
+import ActivityDetail from './Activities/Detail/Components/ActivityDetail';
+import Activities from './Activities/Detail/Components/Activities';
 import Dashboard from "./Components/Dashboard/Dashboard";
 import { NewsDetail } from './Components/News/Detail/NewsDetail'
 import EditForm from "./Components/Dashboard/EditForm";
@@ -39,11 +41,12 @@ function App() {
           <Route path="/create-project" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
+          <Route path="/actividades/:id" component={ActivityDetail} />
+          <Route path="/actividades" component={Activities} />
           <Route path="/register" component={RegisterForm} />
           <Route path='/contact-form' component={ContactForm} />
         </Switch>
       </BrowserRouter>
-      <div className="App"></div>
     </>
   );
 }
