@@ -6,7 +6,7 @@ import { VStack } from "@chakra-ui/layout";
 import { Formik, Form, useFormik } from "formik";
 import { Checkbox, Center } from "@chakra-ui/react";
 import { Box } from "@chakra-ui/react";
-import { Fade, ScaleFade, Slide, SlideFade } from "@chakra-ui/react";
+import { SlideFade } from "@chakra-ui/react";
 import {
   AlertTitle,
   Alert,
@@ -27,8 +27,10 @@ const Footer = () => {
     email: Yup.string()
       .email("Por favor, introduzca un email válido.")
       .required("Por favor, introduzca un email"),
-
-    acceptSuscribe: Yup.bool().oneOf([true], "jesus"),
+    acceptSuscribe: Yup.bool().oneOf(
+      [true],
+      "Debes tildar el casillero para recibir novedades."
+    ),
   });
 
   const InitialValues = {
