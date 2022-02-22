@@ -6,4 +6,4 @@ const MembersEdit = () => {
     )
 }
 
-export default MembersEdit
+export default MembersEdit;
