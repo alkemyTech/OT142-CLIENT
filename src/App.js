@@ -15,7 +15,7 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import ActivityDetail from './Activities/Detail/Components/ActivityDetail';
 import Activities from './Activities/Detail/Components/Activities';
-import Dashboard from "./Components/Dashboard/Dashboard";
+import Dashboard from "./Components/Dashboard/index.js";
 import { NewsDetail } from './Components/News/Detail/NewsDetail'
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
@@ -32,7 +32,7 @@ function App() {
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route path="/Novedades/:id" component={NewsDetail} />
-          <Route path="/backoffice" component={Dashboard} />
+          <Route exact path="/backoffice" component={Dashboard} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/backoffice/organization/edit" component={EditForm} />
           <Route path="/create-testimonials" component={TestimonialForm} />
