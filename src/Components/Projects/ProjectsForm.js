@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   Flex,
   Box,
@@ -13,15 +14,34 @@ import {
   Icon
 } from '@chakra-ui/react';
 import { Formik } from 'formik';
-import { ProjectsSchema } from './ProjectsSchema';
+import * as Yup from 'yup';
 import { MdTitle, MdImage } from 'react-icons/md';
 import { useParams } from 'react-router-dom'
-import createProject from '../../Services/ProjectApiService';
+import { API } from './hooks/API';
 
-const ProjectsForm = () => {
+const ProjectsForm = ({ updatedValues }) => {
 
   const { id } = useParams();
- 
+
+  const [initialValues, setIntialValues] = useState(
+    { title: '', description: '', image: '', due_date: '' }
+  )
+
+  useEffect(() => {
+    if (updatedValues) {
+      setIntialValues(updatedValues); //con esto rellenamos los campos si existe un objeto para actualizar
+    }
+  }, [updatedValues]);
+
+  const ProjectsSchema = Yup.object().shape({
+    title: Yup.string()
+      .required('Title is required'),
+    description: Yup.string()
+      .required(`Description is required`),
+    image: Yup.string()
+      .required('Image is required')
+  });
+
   return (
     <Flex justifyContent="center" alignItems="center" flexDirection="column-reverse">
 
@@ -33,12 +53,18 @@ const ProjectsForm = () => {
 
         <Box my="4">
           <Formik
-            initialValues={{ title: '', description: '', image: '', due_date: '' }}
-
+            enableReinitialize={true}
+            initialValues={initialValues}
             validationSchema={ProjectsSchema}
 
-            onSubmit={ async (values, action) => {
-              await createProject(id, values); //Si existe un id hara una peticion PUT de lo contrario POST
+            onSubmit={async (values, action) => {
+              if (!updatedValues) {
+                await API.post('/projects', values);
+                console.log('Project created');
+              } else {
+                await API.put(`/projects/${id}`, values);
+                console.log('Project updated');
+              }
               action.setSubmitting(false);
               action.resetForm();
             }}
