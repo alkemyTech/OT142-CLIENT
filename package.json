@@ -4,21 +4,35 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^1.8.3",
+<<<<<<< HEAD
     "@ckeditor/ckeditor5-build-classic": "^32.0.0",
     "@ckeditor/ckeditor5-react": "^4.0.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+=======
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+>>>>>>> 6c83c5306b4334572c25572c4e3ae5f87cb8e5af
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
+<<<<<<< HEAD
     "axios": "^0.21.4",
     "framer-motion": "^4.1.17",
+=======
+    "axios": "^0.21.1",
+    "formik": "^2.2.9",
+    "framer-motion": "4.1.17",
+>>>>>>> 6c83c5306b4334572c25572c4e3ae5f87cb8e5af
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "sweetalert2": "^11.4.0",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
