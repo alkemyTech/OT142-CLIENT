@@ -79,7 +79,6 @@ const RegisterForm = () => {
               <FormLabel htmlFor="name">Nombre</FormLabel>
               
                 <Input
-                  focusBorderColor="#D69E2E"
                   variant="outline"
                   type="text"
                   name="name"
@@ -101,7 +100,6 @@ const RegisterForm = () => {
               </Stack>
               
               <Input
-                focusBorderColor="#D69E2E"
                 variant="outline"
                 type="text"
                 name="lastName"
@@ -122,7 +120,6 @@ const RegisterForm = () => {
               </Stack>
              
               <Input
-                focusBorderColor="#D69E2E"
                 variant="outline"
                 type="email"
                 name="email"
@@ -143,7 +140,6 @@ const RegisterForm = () => {
               </Stack>
               
               <Input
-                focusBorderColor="#D69E2E"
                 variant="outline"
                 type="password"
                 name="password"
@@ -168,7 +164,6 @@ const RegisterForm = () => {
               </Stack>
               
               <Input
-                focusBorderColor="#D69E2E"
                 variant="outline"
                 type="password"
                 name="passwordRepeat"
