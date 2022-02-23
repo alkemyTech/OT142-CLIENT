@@ -104,7 +104,7 @@ const ContactForm = () => {
                                 />
                             )}
                         </Field>
-                        <Button type="submit" colorScheme='blue'>Submit</Button>
+                        <Button type="submit" colorScheme='blue'>Enviar</Button>
                     </Stack>
                 </Form>
             )}
