@@ -20,6 +20,7 @@ import {
 } from "@chakra-ui/react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import styleCS from './styleCS.css'
 
 const state = {
   name: "",
@@ -29,21 +30,9 @@ const state = {
 
 const CategoriesForm = () => {
   const { categorie } = useParams();
-  const [initialValues, setInitialValues] = useState(state);
+  const [initialValues, setInitialValues] = useState(state==false);
 
-  // if (categorie) {
-  //   var BASE_URL = `http://ongapi.alkemy.org/api/categories/${categorie}`;
-  //   axios
-  //     .get(BASE_URL)
-  //     .then((res) => res.data.data)
-  //     .then((data) =>
-  //       setInitialValues({
-  //         name: data.name,
-  //         description: data.description,
-  //         image: data.image,
-  //       })
-  //     );
-  // }
+
   useEffect(() => {
   
     if (categorie) {
@@ -88,7 +77,7 @@ const CategoriesForm = () => {
 
   return (
     <>
-        <form className="form-container" onSubmit={handleSubmit}>
+        <form className="global" onSubmit={handleSubmit}>
           <Stack>
             <Heading>Edit/Categorie</Heading>
           </Stack>
@@ -112,7 +101,7 @@ const CategoriesForm = () => {
             <FormControl isRequired>
               <FormLabel htmlFor="first-name">Description</FormLabel>
               <CKEditor
-                config={{ placeholder: "..." }}
+                config={{ placeholder: "...Description" }}
                 editor={ClassicEditor}
                 data={initialValues.description}
                 onChange={(event, editor) => {
@@ -145,7 +134,7 @@ const CategoriesForm = () => {
             </FormControl>
           </Stack>
           <Stack spacing={4}>
-            <Button mt={4} colorScheme="red" type="submit">
+            <Button mt={4} colorScheme="teal" type="submit">
               Send
             </Button>
           </Stack>

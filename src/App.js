@@ -14,7 +14,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import { ChakraProvider } from "@chakra-ui/react";
-import Slides from './Components/Slides/Slides';
+
 
 
 function App() {
