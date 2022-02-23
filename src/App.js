@@ -15,7 +15,7 @@ import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import ActivityDetail from './Activities/Detail/Components/ActivityDetail';
 import Activities from './Activities/Detail/Components/Activities';
-import Dashboard from "./Components/Dashboard/Dashboard";
+import Dashboard from "./Components/Dashboard";
 import { NewsDetail } from './Components/News/Detail/NewsDetail'
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
