@@ -29,22 +29,22 @@ const onSubmit = (values) => {
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("Please enter your name"),
-  lastName: Yup.string().required("Please enter your lastname"),
+  name: Yup.string().required("Por favor ingrese un nombre"),
+  lastName: Yup.string().required("Por favor ingrese un apellido"),
   email: Yup.string()
-    .email("Invalid email format")
-    .required("Please enter your email"),
+    .email("Formato de email inválido")
+    .required("Por favor ingrese un email"),
   password: Yup.string()
-    .required("Please enter your password")
+    .required("Por favor ingrese una contraseña")
     .trim()
-    .min(6, "Must be at least 6 characters")
+    .min(6, "Debe contener al menos 6 carácteres")
     .matches(
       /^[0-9A-Za-z]*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?][0-9a-zA-Z]*$/,
-      "Need one special character or number"
+      "Es necesario un carácter especial o número"
     ),
   passwordRepeat: Yup.string()
-    .required("Please repeat your password")
-    .oneOf([Yup.ref("password"), null], "Passwords must match"),
+    .required("Por favor repita su contraseña")
+    .oneOf([Yup.ref("password"), null], "La contraseña debe coincidir"),
 });
 
 const RegisterForm = () => {
@@ -86,7 +86,7 @@ const RegisterForm = () => {
                   value={formik.values.name}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  placeholder="Ingresa tu nombre"
+                  placeholder="Ingrese su nombre"
                 ></Input>
 
                 <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
@@ -108,7 +108,7 @@ const RegisterForm = () => {
                 value={formik.values.lastName}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Ingresa tu apellido"
+                placeholder="Ingrese su apellido"
               ></Input>
 
               <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
@@ -129,7 +129,7 @@ const RegisterForm = () => {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="name@example.com"
+                placeholder="name@ejemplo.com"
               ></Input>
 
               <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
@@ -150,7 +150,7 @@ const RegisterForm = () => {
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Ingresa tu contraseña"
+                placeholder="Ingrese su contraseña"
               ></Input>
 
               <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
@@ -175,7 +175,7 @@ const RegisterForm = () => {
                 value={formik.values.passwordRepeat}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Confirma tu contraseña"
+                placeholder="Confirme su contraseña"
               ></Input>
 
               <FormErrorMessage>
