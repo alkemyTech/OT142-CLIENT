@@ -30,26 +30,26 @@ const FORMATS = ["application/png", "application/jpg"];
 
 const validationSchema = Yup.object({
   name: Yup.string()
-    .required("Please enter your name")
-    .min(6, "Must be at least 6 characters"),
+    .required("Por favor ingrese su nombre")
+    .min(6, "Debe contener al menos 6 caracteres"),
 
   logo: Yup.mixed()
-    .required("Please upload a logo")
+    .required("Por favor cargue un logo")
     .test("fileFormat", ".png o .jpg only", (value) => {
       console.log("value dfile yup ", value);
       return value && FORMATS.includes(value.type);
     }),
   shortDescription: Yup.string()
-    .required("Please enter a short description")
-    .min(6, "Must be at least 6 characters"),
+    .required("Por favor ingrese una descripción corta")
+    .min(6, "Debe contener al menos 6 caracteres"),
   longDescription: Yup.string()
-    .required("Please enter a long description")
-    .min(6, "Must be at least 6 characters"),
+    .required("Por favor ingrese una descripción larga")
+    .min(6, "Debe contener al menos 6 caracteres"),
   socialLinks: Yup.string()
-    .min(6, "Must be at least 6 characters")
+    .min(6, "Debe contener al menos 6 caracteres")
     .matches(
       /^(ftp|https?):\/\/+(www\.)?[a-z0-9\-\.]{3,}\.[a-z]{3}$/,
-      "Please enter a valid url"
+      "Por favor ingrese una URL válida"
     ),
 });
 
@@ -124,6 +124,7 @@ const EditForm = () => {
               </Stack>
              
               <CKEditor
+                className="ck-editor__editable"
                 config={{ name: "shortDescription", placeholder: "Ingrese nueva descripción corta" }}
                 editor={ClassicEditor}
                 data={formik.values.shortDescription}
