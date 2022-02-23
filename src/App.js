@@ -32,9 +32,8 @@ function App() {
           <Route exact path="/create-category" component={CategoriesForm} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice" component={Dashboard} />
-          <Route exact path="/backoffice/news/:id" component={NewsForm} />
+          <Route exact path="/backoffice/news/:id?" component={NewsForm} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
-          <Route exact path="/backoffice/organization/edit" component={EditForm} />
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
           <Route exact path="/create-testimonials" component={TestimonialForm} />
           <Route exact path="/create-user" component={UserForm} />
@@ -42,8 +41,8 @@ function App() {
           <Route exact path="/create-project" component={ProjectsForm} />
           <Route exact path="/school-campaign" component={SchoolCampaign} />
           <Route exact path="/toys-campaign" component={ToysCampaign} />
-          <Route exact path="/actividades/:id" component={ActivityDetail} />
           <Route exact path="/actividades" component={Activities} />
+          <Route exact path="/actividades/:id" component={ActivityDetail} />
           <Route exact path="/register" component={RegisterForm} />
           <Route exact path='/contact' component={Contact} />
         </Switch>
