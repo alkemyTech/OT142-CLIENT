@@ -43,14 +43,14 @@ const getNew = async(id) => {
 
         const res = await axios.get(`${BASE_URL}/news/${id}`);
         const { data } = await res.data;
-        const { name, image, content, parent_category_id } = data;
+        const { name, image, content, category_id } = data;
 
         getData = {
             ...getData,
             data: {
                 title: name,
                 content,
-                category: parent_category_id || '',
+                category: category_id || '',
                 image
             }
         }

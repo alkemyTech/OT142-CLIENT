@@ -76,6 +76,9 @@ const NewsForm = () => {
             .then(res => setCategories(res))
     }, [])
 
+    console.log(categories)
+    console.log(form)
+
 
     return (
         <>
@@ -102,8 +105,7 @@ const NewsForm = () => {
                             const data = {
                                 name: values.title,
                                 content: values.content,
-                                category_id: values.category,
-                                image: values.image.name
+                                category_id: values.category
                             }
 
                             if(id){
