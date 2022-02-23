@@ -21,7 +21,10 @@ import {
 import '../FormStyles.css';
 import { getCategories, getNew, postNew, patchNew } from '../../Services/publicApiService';
 import useForm from '../../hooks/useForm';
+import { messageErrors } from '../../utils/messageErrors';
 
+
+const {title, shortDescription, category, logo} = messageErrors
 
 const initialState = {
     data: {
@@ -41,15 +44,15 @@ const SUPPORTED_FORMATS = [
 
 const formNewsSchema = Yup.object().shape({
     title: Yup.string()
-        .required("Nombre requerido")
-        .min(4, 'Se requieren al menos 4 caracteres'),
+        .required(title.messageRequired)
+        .min(4, title.minCharacters),
     content: Yup.string()
-        .required("Descripción requerida"),
+        .required(shortDescription.messageRequired),
     category: Yup.string()
-        .required("Categoria requerida"),
+        .required(category.messageRequired),
     image: Yup.mixed()
-        .required("Imagen requerida")
-        .test("fileFormat", "Formato no soportado: ingrese extensión .jpg o .png", value => value && SUPPORTED_FORMATS.includes(value.type))
+        .required(logo.messageRequired)
+        .test("fileFormat", logo.formatInvalid, value => value && SUPPORTED_FORMATS.includes(value.type))
 })
 
 
@@ -76,10 +79,6 @@ const NewsForm = () => {
             .then(res => setCategories(res))
     }, [])
 
-    console.log(categories)
-    console.log(form)
-
-
     return (
         <>
             {
@@ -96,28 +95,31 @@ const NewsForm = () => {
 
                 :
 
-                    <Formik
-                        enableReinitialize={true}
-                        initialValues={form.data || initialState}
-                        validationSchema={formNewsSchema}       
-                        onSubmit={(values) => {
+                <Formik
+                    enableReinitialize={true}
+                    initialValues={form.data || initialState}
+                    validationSchema={formNewsSchema}       
+                    onSubmit={(values, {resetForm}) => {
 
-                            const data = {
-                                name: values.title,
-                                content: values.content,
-                                category_id: values.category
-                            }
+                        const data = {
+                            name: values.title,
+                            content: values.content,
+                            category_id: values.category
+                        }
 
-                            if(id){
-                                patchNew(id, data)
-                                alert(JSON.stringify(data, null, 2));
-                            }else{
-                                postNew(data)
-                                alert(JSON.stringify(data, null, 2));
-                            }
-                            
-                        }}        
-                    >
+                        if(id){
+                            patchNew(id, data)
+                            alert(JSON.stringify(data, null, 2));
+                        }else{
+                            postNew(data)
+                            alert(JSON.stringify(data, null, 2));
+                        }
+
+                        setForm(initialState);
+                        resetForm();
+                        
+                    }}        
+                >
                     {formik =>(
                         
                         <VStack 
@@ -184,9 +186,8 @@ const NewsForm = () => {
                                         variant="flushed"
                                         onChange={event => {
                                             const files = event.target.files;
-                                            let [myFile] = Array.from(files);
-                                            console.log(myFile)                               
-                                            formik.setFieldValue('image', myFile);                                 
+                                            let [myFile] = Array.from(files);               
+                                            formik.setFieldValue('image', myFile);                        
                                         }}
                                         mb={2}
                                     />
