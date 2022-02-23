@@ -20,8 +20,8 @@ import OrganizationBoard from "./Components/Dashboard/OrganizationBoard.js";
 import { NewsDetail } from './Components/News/Detail/NewsDetail'
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
-import ContactForm from './Components/Contact/ContactForm';
-
+import ContactForm from "./Components/Contact/ContactForm";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -41,12 +41,13 @@ function App() {
           <Route path="/create-user" component={UserForm} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
+          <Route path="/update-project/:id" component={ProjectsForm} />
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/actividades/:id" component={ActivityDetail} />
           <Route path="/actividades" component={Activities} />
           <Route path="/register" component={RegisterForm} />
-          <Route path='/contact-form' component={ContactForm} />
+          <Route path="/contact-form" component={ContactForm} />
         </Switch>
       </BrowserRouter>
     </>
