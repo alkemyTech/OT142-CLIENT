@@ -190,7 +190,7 @@ const NewsForm = () => {
                                     />
                                     <FormErrorMessage>{formik.errors.image}</FormErrorMessage>
                                     {
-                                        formik.values.image !== '' &&
+                                        form.data.image !== '' &&
                                             <Img 
                                                 src={form.data.image} 
                                                 alt={form.data.title}
