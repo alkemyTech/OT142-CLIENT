@@ -35,7 +35,7 @@ const validationSchema = Yup.object({
 
   logo: Yup.mixed()
     .required("Por favor cargue un logo")
-    .test("fileFormat", ".png o .jpg only", (value) => {
+    .test("fileFormat", "sòlo se permiten formatos .png o .jpg", (value) => {
       console.log("value dfile yup ", value);
       return value && FORMATS.includes(value.type);
     }),
