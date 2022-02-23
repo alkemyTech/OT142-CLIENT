@@ -71,54 +71,25 @@ const getNew = async(id) => {
 
 const postNew = async(data) => {
 
-    let status = {
-        complete: null,
-        error: null
-    }
-
     axios.post(`${BASE_URL}/news`, data)
-      .then((res) => {
-        console.log(res);
-        status = {
-            complete: true,
-            error: null
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        status = {
-            complete: null,
-            error
-        }
-      });
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        });
 
-    return status
 }
 
-const patchNew = async(data) => {
+const patchNew = async(id, data) => {
 
-    let status = {
-        complete: null,
-        error: null
-    }
-
-    axios.patch(`${BASE_URL}/news`, data)
-      .then((res) => {
-        console.log(res);
-        status = {
-            complete: true,
-            error: null
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        status = {
-            complete: null,
-            error
-        }
-      });
-
-    return status
+    axios.put(`${BASE_URL}/news/${id}`, data)
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        });
 }
 
 export {

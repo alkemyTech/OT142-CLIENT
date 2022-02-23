@@ -33,11 +33,25 @@ const initialState = {
     err: null
 }
 
-// const SUPPORTED_FORMATS = [
-//     "image/jpg",
-//     "image/jpeg",
-//     "image/png"
-//   ];
+const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/jpeg",
+    "image/png"
+];
+
+const formNewsSchema = Yup.object().shape({
+    title: Yup.string()
+        .required("Nombre requerido")
+        .min(4, 'Se requieren al menos 4 caracteres'),
+    content: Yup.string()
+        .required("Descripción requerida"),
+    category: Yup.string()
+        .required("Categoria requerida"),
+    image: Yup.mixed()
+        .required("Imagen requerida")
+        .test("fileFormat", "Formato no soportado: ingrese extensión .jpg o .png", value => value && SUPPORTED_FORMATS.includes(value.type))
+})
+
 
 const NewsForm = () => {
 
@@ -62,19 +76,6 @@ const NewsForm = () => {
             .then(res => setCategories(res))
     }, [])
 
-    const formNewsSchema = Yup.object().shape({
-        title: Yup.string()
-            .required("Nombre requerido")
-            .min(4, 'Se requieren al menos 4 caracteres'),
-        content: Yup.string()
-            .required("Descripción requerida"),
-        category: Yup.string()
-            .required("Categoria requerida")  
-    })
-    // image: Yup.mixed()
-    // .required("Imagen requerida")
-    // .test("fileFormat", "Formato no soportado: ingrese extensión .jpg o .png",
-    // value=> value && SUPPORTED_FORMATS.includes(value.type)) 
 
     return (
         <>
@@ -98,17 +99,20 @@ const NewsForm = () => {
                         validationSchema={formNewsSchema}       
                         onSubmit={(values) => {
 
-                            if(id){
-                                console.log('actualizar')
-                                patchNew(values).then(res => console.log(res))
-                                alert(JSON.stringify(values, null, 2));
-                            }else{
-                                console.log('create')
-                                postNew(values).then(res => console.log(res))
-                                alert(JSON.stringify(values, null, 2));
+                            const data = {
+                                name: values.title,
+                                content: values.content,
+                                category_id: values.category,
+                                image: values.image.name
                             }
 
-                            console.log(values)
+                            if(id){
+                                patchNew(id, data)
+                                alert(JSON.stringify(data, null, 2));
+                            }else{
+                                postNew(data)
+                                alert(JSON.stringify(data, null, 2));
+                            }
                             
                         }}        
                     >
@@ -178,8 +182,9 @@ const NewsForm = () => {
                                         variant="flushed"
                                         onChange={event => {
                                             const files = event.target.files;
-                                            let myFiles = Array.from(files);                                    
-                                            formik.setFieldValue('image', myFiles[0]);                                 
+                                            let [myFile] = Array.from(files);
+                                            console.log(myFile)                               
+                                            formik.setFieldValue('image', myFile);                                 
                                         }}
                                         mb={2}
                                     />
@@ -206,7 +211,6 @@ const NewsForm = () => {
                         </VStack>
                     )}
                 </Formik> 
-
             }
         </>
     )
