@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const config = {
     headers: {
-        Group: 01                //Aqui va el ID del equipo!!
+        Group: ''               //Aqui va el ID del equipo!!
     }
 }
 
@@ -11,5 +11,13 @@ const Get = () => {
     .then(res => console.log(res))
     .catch(err => console.log(err))
 }
+
+export const API_SERVICE_POST = axios.create({
+    baseURL: 'http://ongapi.alkemy.org/public/api',
+    method: 'post',
+    url: '',
+    responseType: 'json',
+});
+
 
 export default Get
