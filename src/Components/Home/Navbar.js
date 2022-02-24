@@ -13,15 +13,14 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
 
   return (
-    <Box maxHeight="80px" style={{ border: "1px solid red" }}>
+    <Box maxHeight="80px">
       <Flex
         maxHeight="80px"
         alignItems="center"
-        style={{ border: "6px solid blue" }}
         justifyContent={"space-between"}
       >
         <Link to="/">
-          <Flex style={{ border: "6px solid green" }} maxHeight="80px">
+          <Flex maxHeight="80px">
             <Image
               objectFit="cover"
               src={process.env.PUBLIC_URL + "/images/LOGO-SOMOS-MAS.png"}
@@ -33,7 +32,6 @@ const Navbar = () => {
         <Stack
           direction={"row"}
           spacing={8}
-          style={{ border: "2px solid pink" }}
         >
           <Flex>
             <Link to="/">
