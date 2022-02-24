@@ -14,6 +14,7 @@ import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
 import { ChakraProvider } from "@chakra-ui/react";
+import CategorieList from './Components/Categories/CategorieList';
 
 
 
@@ -34,7 +35,7 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/create-category/:categorie?" component={CategoriesForm}/>
-          
+          <Route path="/backoffice/categories" component={CategorieList}/>
           
 
         </Switch>

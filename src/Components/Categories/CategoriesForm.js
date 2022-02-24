@@ -17,6 +17,7 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Box
 } from "@chakra-ui/react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -112,11 +113,17 @@ const CategoriesForm = () => {
               />
             </FormControl>
           </Stack>
+          
 
+         
           <Stack spacing={4}>
             <FormControl isRequired>
               <FormLabel htmlFor="first-name">Image</FormLabel>
+            
+  
               <Input
+             
+                accept="image/x-png,image/jpeg"
                 id="image"
                 type="file"
                 variant="flushed"
@@ -130,9 +137,11 @@ const CategoriesForm = () => {
                 }}
                 mb={2}
               />
+              
               <Image id="img-preview"></Image>
             </FormControl>
           </Stack>
+         
           <Stack spacing={4}>
             <Button mt={4} colorScheme="teal" type="submit">
               Send
