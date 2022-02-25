@@ -14,7 +14,7 @@ const Card = (props) => {
   return (
     <Center py={6}>
       <Box
-        maxW={/*'445px'*/"350px"}
+        maxW={/*'445px'*/"310px"}
         maxH={"500px"}
         w={'full'}
         bg={useColorModeValue('white', 'gray.900')}
