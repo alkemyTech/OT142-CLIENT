@@ -22,6 +22,7 @@ import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
+import About from './Components/About';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route exact path="/actividades" component={Activities} />
           <Route exact path="/register" component={RegisterForm} />
           <Route exact path='/contact' component={Contact} />
+          <Route exact path='/nosotros' component={About} />
         </Switch>
       </BrowserRouter>
     </>
