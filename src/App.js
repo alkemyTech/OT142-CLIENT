@@ -22,6 +22,7 @@ import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
+import { NewsScreen } from './News/NewsScreen';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/create-category" component={CategoriesForm} />
+          <Route exact path="/Novedades/" component={NewsScreen} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
