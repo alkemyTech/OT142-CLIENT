@@ -8,13 +8,13 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ChakraProvider>
-        <App />
-      </ChakraProvider>
-    </Provider>
-  </React.StrictMode>,
+  <ChakraProvider>
+    <React.StrictMode>
+      <Provider store={store}>
+          <App />
+      </Provider>
+    </React.StrictMode>
+  </ChakraProvider>,
   document.getElementById("root")
 );
 

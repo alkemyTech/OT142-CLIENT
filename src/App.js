@@ -7,6 +7,7 @@ import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
 import SlidesForm from './Components/Slides/SlidesForm';
+import CarouselSlides from './Components/Slides/CarouselSlides';
 import TestimonialForm from './Components/Testimonials/TestimonialsForm';
 import UserForm from './Components/Users/UsersForm';
 import SchoolCampaign from './Campaigns/School/SchoolCampaign';
@@ -29,6 +30,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+          <Route exact path="/provisional-home" component={CarouselSlides} />
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/create-category" component={CategoriesForm} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
