@@ -21,6 +21,8 @@ import { NewsDetail } from './Components/News/Detail/NewsDetail'
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import ContactForm from './Components/Contact/ContactForm';
+import Donation from './Components/Donations/Donation';
+import Thanks from './Components/Donations/Thanks';
 
 
 function App() {
@@ -47,6 +49,8 @@ function App() {
           <Route path="/actividades" component={Activities} />
           <Route path="/register" component={RegisterForm} />
           <Route path='/contact-form' component={ContactForm} />
+          <Route path='/donation' component={Donation} />
+          <Route path='/thanks' component={Thanks} />
         </Switch>
       </BrowserRouter>
     </>
