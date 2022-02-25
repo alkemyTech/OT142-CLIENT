@@ -23,6 +23,7 @@ import RegisterForm from "./Components/Auth/RegisterForm";
 import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
 import About from './Components/About';
+import BackOfficeActivities from './Components/Activities/backoffice';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
           <Route exact path="/backoffice/organization" component={OrganizationBoard} />
           <Route exact path="/backoffice/news/:id?" component={NewsForm} />
+          <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
           <Route exact path="/create-testimonials" component={TestimonialForm} />
           <Route exact path="/create-user" component={UserForm} />
           <Route exact path="/create-member" component={MembersForm} />
