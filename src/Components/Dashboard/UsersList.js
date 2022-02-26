@@ -11,21 +11,26 @@ import {
     Text,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getUsers } from '../../Services/api/user';
 
 const UserList = () => {
 
-    const [users, setUsers] = useState([
-        { id: 0, name: 'Test 1', email: 'usuario1@gmail.com' },
-        { id: 1, name: 'Test 2', email: 'usuario2@gmail.com' },
-        { id: 2, name: 'Test 3', email: 'usuario3@gmail.com' },
-        { id: 3, name: 'Test 4', email: 'usuario4@gmail.com' }
-    ]);
+    const [users, setUsers] = useState([]);
 
     //Funcion de prueba
     const handleDelete = (id) => {
         setUsers(users.filter((user) => user.id !== id));
     }
+
+    useEffect(() => {
+
+        getUsers()
+            .then(res => res.data)
+            .then(data => setUsers(data))
+
+    }, [])
+    
 
     return (
         <Flex flexDirection="column" justifyContent="center" alignItems="center" p="2">
