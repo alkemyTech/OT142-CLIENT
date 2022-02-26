@@ -13,6 +13,7 @@ import SchoolCampaign from './Campaigns/School/SchoolCampaign';
 import ToysCampaign from './Campaigns/Toys/ToysCampaign';
 import MembersForm from './Components/Members/MembersForm';
 import ProjectsForm from './Components/Projects/ProjectsForm';
+import TableCategorie from './Components/Categories/TableCategorie';
 import { ChakraProvider } from "@chakra-ui/react";
 
 
@@ -24,7 +25,6 @@ function App() {
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route path="/create-activity" component={ActivitiesForm} />
-          {/* <Route path="/create-category" component={CategoriesForm} /> */}
           <Route path="/create-news" component={NewsForm} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/create-testimonials" component={TestimonialForm} />
@@ -34,6 +34,12 @@ function App() {
           <Route path="/school-campaign" component={SchoolCampaign} />
           <Route path="/toys-campaign" component={ToysCampaign} />
           <Route path="/create-category/:categorie?" component={CategoriesForm}/>
+          <Route path="/backoffice/categories" component={TableCategorie}/>
+         
+
+        
+          
+
           
           
 

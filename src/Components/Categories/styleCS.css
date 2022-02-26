@@ -1,7 +1,16 @@
-.global{display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-align-content: space-around;
-justify-content: space-evenly;
-align-items: stretch;
+.global {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-evenly;
+  align-items: stretch;
+}
+.headinTable {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
 }
