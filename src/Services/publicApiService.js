@@ -12,7 +12,25 @@ import axios from 'axios';
 //     .catch(err => console.log(err))
 // }
 
-const BASE_URL = 'http://ongapi.alkemy.org/api';
+export const axiosInstance = axios.create({
+    baseURL: 'http://ongapi.alkemy.org/api',
+});
+  
+export const getRequest = (path) => {
+    return axiosInstance.get(path);
+};
+
+export const putRequest = (path, body) => {
+    return axiosInstance.put(path, body);
+};
+
+export const postRequest = (path, body) => {
+    return axiosInstance.post(path, body);
+};
+
+export const deleteRequest = (path) => {
+    return axiosInstance.delete(path);
+};
 
 const getCategories = async(id) => {
 
