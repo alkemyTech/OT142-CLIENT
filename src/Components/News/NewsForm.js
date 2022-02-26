@@ -16,10 +16,10 @@ import {
     FormLabel,
     VStack
 } from '@chakra-ui/react'
+import axios from 'axios';
 
 // Custom
 import '../FormStyles.css';
-import { getCategories, getNew, postNew, patchNew } from '../../Services/publicApiService';
 import useForm from '../../hooks/useForm';
 import { messageErrors } from '../../utils/messageErrors';
 
@@ -54,6 +54,63 @@ const formNewsSchema = Yup.object().shape({
         .required(logo.messageRequired)
         .test("fileFormat", logo.formatInvalid, value => value && SUPPORTED_FORMATS.includes(value.type))
 })
+
+const getCategories = async(id) => {
+
+    const BASE_URL = 'http://ongapi.alkemy.org/api';
+    let categories = [];
+
+    try{
+
+        const res = await axios.get(`${BASE_URL}/categories`);
+        const { data } = await res.data;
+
+        categories = data.map(d => d.id)
+
+    }catch(error){
+        console.log(error)
+    }
+
+    return categories
+}
+
+const getNew = async(id) => {
+
+    const BASE_URL = 'http://ongapi.alkemy.org/api';
+    let getData = {
+        data: {},
+        err: null
+    };
+
+    try{
+
+        const res = await axios.get(`${BASE_URL}/news/${id}`);
+        const { data } = await res.data;
+        const { name, image, content, category_id } = data;
+
+        getData = {
+            ...getData,
+            data: {
+                title: name,
+                content,
+                category: category_id || '',
+                image
+            }
+        }
+
+    }catch(error){
+        getData = {
+            data: {},
+            err: {
+                message: 'Id no encontrado',
+                status: true,
+                error
+            }
+        }
+    }
+
+    return getData
+}
 
 
 const NewsForm = () => {
@@ -108,10 +165,10 @@ const NewsForm = () => {
                         }
 
                         if(id){
-                            patchNew(id, data)
+                            alert('actualizar');
                             alert(JSON.stringify(data, null, 2));
                         }else{
-                            postNew(data)
+                            alert('crear');
                             alert(JSON.stringify(data, null, 2));
                         }
 
