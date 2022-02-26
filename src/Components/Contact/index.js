@@ -3,7 +3,7 @@ import { Heading } from '@chakra-ui/react'
 import ContactForm from './ContactForm'
 
 
-const index = () => {
+const Contact = () => {
   return (
     <>
 
@@ -17,4 +17,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Contact
