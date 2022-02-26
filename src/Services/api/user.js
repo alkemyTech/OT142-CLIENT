@@ -2,7 +2,7 @@ import { getRequestAll, getRequestById, putRequest, postRequest, deleteRequest }
 
 export const getUsers = () => {
 
-    return getRequestAll('/users')
+    return getRequestAll(`/users?limit=10`)
         .then(res => {
             if (res.status === 200) return res.data;
             return Promise.reject(res.statusText);
