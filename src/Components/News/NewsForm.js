@@ -55,9 +55,9 @@ const formNewsSchema = Yup.object().shape({
         .test("fileFormat", logo.formatInvalid, value => value && SUPPORTED_FORMATS.includes(value.type))
 })
 
+const BASE_URL = 'http://ongapi.alkemy.org/api';
 const getCategories = async(id) => {
 
-    const BASE_URL = 'http://ongapi.alkemy.org/api';
     let categories = [];
 
     try{
@@ -75,8 +75,7 @@ const getCategories = async(id) => {
 }
 
 const getNew = async(id) => {
-
-    const BASE_URL = 'http://ongapi.alkemy.org/api';
+    
     let getData = {
         data: {},
         err: null
