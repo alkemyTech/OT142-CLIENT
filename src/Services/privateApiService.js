@@ -9,9 +9,28 @@ const config = {
   },
 };
 
-const Delete = (route, id) => {
+export const Delete = (route, id) => {
   return axios.delete(`${BASE_URL}/${route}/${id}`, config)
     .then(res => res.data)
     .catch(error => console.log(error));
 }
-export default Delete;
+
+export const Get = () => {
+  axios
+    .get("https://jsonplaceholder.typicode.com/users", config)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+};
+
+// PATCH METHOD
+export const patchPrivate = async (endpoint, id, body) => {
+    try {  
+        const response = await axios.patch(`http://ongapi.alkemy.org/api/${endpoint}/${id}`,body,{
+            headers: tokenFunction(),
+        });   
+        return response;    
+    } catch (err) {
+        return err;
+    }
+};
+
