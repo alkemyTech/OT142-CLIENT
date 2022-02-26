@@ -22,7 +22,6 @@ import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
-import SlidesTable from './Components/Slides/SlidesTable';
 
 function App() {
   return (
@@ -35,7 +34,6 @@ function App() {
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
-          <Route exact path="/backoffice/Slides" component={SlidesTable} />
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
           <Route exact path="/backoffice/organization" component={OrganizationBoard} />
           <Route exact path="/backoffice/news/:id?" component={NewsForm} />
