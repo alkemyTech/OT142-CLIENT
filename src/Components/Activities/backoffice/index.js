@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {
     Table,
     Thead,
@@ -10,24 +10,20 @@ import {
     Box,
     Button
 } from '@chakra-ui/react'
-import axios from 'axios';
 import TrTable from './TrTable';
 import { Link } from 'react-router-dom';
 
 const BackOfficeActivities = () => {
 
-    const [activities, setactivities] = useState([])
-
-    useEffect(() => {
-
-        axios.get('http://ongapi.alkemy.org/api/activities')
-            .then(res => res.data)
-            .then(activities => {
-                const {data} = activities
-                setactivities(data)
-            })
-
-    }, [])
+    const [activities, setactivities] = useState([
+        { key: 1, name:'actividad 1', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
+        { key: 2, name:'actividad 2', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
+        { key: 3, name:'actividad 3', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
+        { key: 4, name:'actividad 4', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
+        { key: 5, name:'actividad 5', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
+        { key: 6, name:'actividad 6', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
+        { key: 7, name:'actividad 7', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
+    ])
     
     return (
         <Container maxW='90%'>
