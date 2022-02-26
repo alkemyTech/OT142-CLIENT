@@ -22,6 +22,7 @@ import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
+import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           <Route exact path="/actividades" component={Activities} />
           <Route exact path="/register" component={RegisterForm} />
           <Route exact path='/contact' component={Contact} />
+          <Route exact path='/about-us/members' component={MembersList} />
         </Switch>
       </BrowserRouter>
     </>
