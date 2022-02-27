@@ -24,8 +24,8 @@ import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
-import { NewsScreen } from './News/NewsScreen';
 import ActivitiesList from './Activities/Detail/Components/ActivitiesList';
+import { NewsScreen } from './Components/News';
 
 function App() {
   return (
