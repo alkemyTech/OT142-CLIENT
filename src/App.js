@@ -25,7 +25,7 @@ import Footer from "./Components/Footer";
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
 import ActivitiesList from './Activities/Detail/Components/ActivitiesList';
-import { NewsScreen } from './Components/News';
+import { News } from './Components/News';
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/create-category" component={CategoriesForm} />
-          <Route exact path="/Novedades/" component={NewsScreen} />
+          <Route exact path="/Novedades/" component={News} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
