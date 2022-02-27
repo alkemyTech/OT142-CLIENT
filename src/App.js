@@ -27,13 +27,20 @@ import EditHomeForm from './Components/Dashboard/editHomeForm';
 =======
 import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
+<<<<<<< HEAD
 >>>>>>> 2550e39c419e8701d171fe760bfbe48fdc5d42cb
+=======
+import Home from "./Components/Home";
+import MembersList from './Components/AboutUs/MembersList';
+import UserList from './Components/Dashboard/UsersList';
+>>>>>>> 041eec2818efceb20f2ea8fb44b27ae176a13ad5
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Switch>
+<<<<<<< HEAD
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
 <<<<<<< HEAD
           <Route path="/create-activity" component={ActivitiesForm} />
@@ -55,6 +62,9 @@ function App() {
           <Route path="/register" component={RegisterForm} />
           <Route path='/contact-form' component={ContactForm} />
 =======
+=======
+          <Route path="/" exact component={Home} />
+>>>>>>> 041eec2818efceb20f2ea8fb44b27ae176a13ad5
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/create-category" component={CategoriesForm} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
@@ -63,6 +73,7 @@ function App() {
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
           <Route exact path="/backoffice/organization" component={OrganizationBoard} />
           <Route exact path="/backoffice/news/:id?" component={NewsForm} />
+          <Route exact path="/backoffice/users" component={UserList} />
           <Route exact path="/create-testimonials" component={TestimonialForm} />
           <Route exact path="/create-user" component={UserForm} />
           <Route exact path="/create-member" component={MembersForm} />
@@ -74,7 +85,11 @@ function App() {
           <Route exact path="/actividades" component={Activities} />
           <Route exact path="/register" component={RegisterForm} />
           <Route exact path='/contact' component={Contact} />
+<<<<<<< HEAD
 >>>>>>> 2550e39c419e8701d171fe760bfbe48fdc5d42cb
+=======
+          <Route exact path='/about-us/members' component={MembersList} />
+>>>>>>> 041eec2818efceb20f2ea8fb44b27ae176a13ad5
         </Switch>
       </BrowserRouter>
     </>
