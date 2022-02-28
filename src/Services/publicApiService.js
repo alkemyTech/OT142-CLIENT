@@ -22,7 +22,7 @@ export const axiosInstance = axios.create({
 export const getRequest = (path, id) => {
   const route = id ? `${path}/${id}` : `${path}`;
 
-  return axiosInstance
+  const response = axiosInstance
     .get(route)
     .then((response) => {
       return response.data.data;
@@ -30,4 +30,6 @@ export const getRequest = (path, id) => {
     .catch((error) => {
       console.log(error);
     });
+
+  return response;
 };
