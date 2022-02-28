@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import "../FormStyles.css";
 import {
   postRequest,
@@ -25,7 +24,6 @@ const CategoriesForm = () => {
   const [initialValues, setInitialValues] = useState({
     name: "",
     description: "",
-   
   });
 
   const data = useParams();
@@ -34,19 +32,19 @@ const CategoriesForm = () => {
   useEffect(() => {
     if (data.id) {
       getRequest(`categories/${data.id}`)
-     .then((data) => {
-       return data.data;
-     }).then((data)=>{
-       console.log(data.data)
-       setInitialValues({
-         name:data.data.name,
-         description:data.data.description,
-         image:data.data.image
-       })
-     })
+        .then((data) => {
+          return data.data;
+        })
+        .then((data) => {
+          console.log(data.data);
+          setInitialValues({
+            name: data.data.name,
+            description: data.data.description,
+            image: data.data.image,
+          });
+        });
     }
   }, []);
-
 
   const handleChange = (e) => {
     if (e.target.name === "name") {
@@ -58,14 +56,12 @@ const CategoriesForm = () => {
     e.preventDefault();
     console.log("enviado ", initialValues);
     if (data.id) {
-      patchRequest(`categories/${data.id}`,initialValues).then((data) => {
-       console.log(data)
-        
+      patchRequest(`categories/${data.id}`, initialValues).then((data) => {
+        console.log(data);
       });
     } else {
-      postRequest("/categories",initialValues).then((data) => {
-        console.log(data)
-        
+      postRequest("/categories", initialValues).then((data) => {
+        console.log(data);
       });
     }
   };
@@ -91,15 +87,13 @@ const CategoriesForm = () => {
                 value={initialValues.name}
                 onChange={handleChange}
                 placeholder="Name"
-              >
-               
-              </Input>
+              ></Input>
             </FormControl>
           </Stack>
           <Stack spacing={4}>
             <FormControl isRequired>
               <FormLabel htmlFor="first-name">Description</FormLabel>
-             
+
               <CKEditor
                 config={{ placeholder: "...Description" }}
                 editor={ClassicEditor}
@@ -135,7 +129,7 @@ const CategoriesForm = () => {
               />
               <Image src={initialValues.image} id="img-preview"></Image>
             </FormControl>
-          </Stack> 
+          </Stack>
 
           <Stack spacing={4}>
             <Button mt={4} colorScheme="teal" type="submit">

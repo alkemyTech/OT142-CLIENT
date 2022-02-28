@@ -26,6 +26,7 @@ import About from './Components/About';
 import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
+import TitleContact from './Components/Contact/TitleContact';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
           <Route exact path='/contact' component={Contact} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
+          
         </Switch>
       </BrowserRouter>
     </>
