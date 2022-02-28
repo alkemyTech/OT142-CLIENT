@@ -49,8 +49,8 @@ function App() {
           <Route path="/actividades" component={Activities} />
           <Route path="/register" component={RegisterForm} />
           <Route path='/contact-form' component={ContactForm} />
-          <Route path='/donation' component={Donation} />
           <Route path='/thanks' component={Thanks} />
+          <Route path='/donation' component={Donation} />
         </Switch>
       </BrowserRouter>
     </>
