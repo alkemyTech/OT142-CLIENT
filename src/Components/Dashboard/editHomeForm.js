@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 
+
 const EditHomeForm = () => {
     const [editData, setEditData] = useState({});
     const [sendedForm, setSendedForm] = useState(false);
@@ -39,7 +40,7 @@ const EditHomeForm = () => {
                 }}
             >
             {( {errors} ) => (
-                <Form> 
+                <Form className="formulario"> 
                     <div>
                         <label htmlFor="welcomeText">Texto de bienvenida</label>
                         <Field 
