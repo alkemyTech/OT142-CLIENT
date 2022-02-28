@@ -19,9 +19,48 @@ import {
 
 // Custom
 import '../FormStyles.css';
-// import { getCategories, getNew, postNew, patchNew } from '../../Services/publicApiService';
 import useForm from '../../hooks/useForm';
 import { messageErrors } from '../../utils/messageErrors';
+import axios from 'axios';
+
+const BASE_URL = 'http://ongapi.alkemy.org/api/';
+
+const getNew = async(id) => {
+
+    let getData = {
+        data: {},
+        err: null
+    };
+
+    try{
+
+        const res = await axios.get(`${BASE_URL}/news/${id}`);
+        const { data } = await res.data;
+        const { name, image, content, category_id } = data;
+
+        getData = {
+            ...getData,
+            data: {
+                title: name,
+                content,
+                category: category_id || '',
+                image
+            }
+        }
+
+    }catch(error){
+        getData = {
+            data: {},
+            err: {
+                message: 'Id no encontrado',
+                status: true,
+                error
+            }
+        }
+    }
+
+    return getData
+}
 
 
 const {title, shortDescription, category, logo} = messageErrors
@@ -65,18 +104,17 @@ const NewsForm = () => {
     } = useForm(initialState);
     const [categories, setCategories] = useState([]);
 
+    useEffect(() => {
+
+        if(id){
+            getNew(id)
+                .then(res => setForm({...res}))
+        }
+
+    }, [id, setForm])
+
     // useEffect(() => {
-
-    //     if(id){
-    //         getNew(id)
-    //             .then(res => setForm({...res}))
-    //     }
-
-    // }, [id, setForm])
-
-    // useEffect(() => {
-    //     getCategories()
-    //         .then(res => setCategories(res))
+    //     console.log(categories)
     // }, [])
 
     return (
@@ -108,10 +146,10 @@ const NewsForm = () => {
                         }
 
                         if(id){
-                            // patchNew(id, data)
+                            //patchNew(id, data)
                             alert(JSON.stringify(data, null, 2));
                         }else{
-                            // postNew(data)
+                            //postNew(data)
                             alert(JSON.stringify(data, null, 2));
                         }
 

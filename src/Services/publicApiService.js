@@ -29,3 +29,10 @@ export const postRequest = (path, body) => {
 export const deleteRequest = (path) => {
     return axiosInstance.delete(path);
 };
+
+export const API_SERVICE_POST = axios.create({
+    BASE_URL: 'http://ongapi.alkemy.org/public/api',
+    method: 'post',
+    url: '',
+    responseType: 'json',
+});
