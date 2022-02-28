@@ -43,7 +43,7 @@ export const editUser = (id, user) => {
 
 export const deleteUser = (id) => {
 
-    return deleteRequest(id)
+    return deleteRequest(`/users/${id}`)
         .then(res => res.data);
 
 }
