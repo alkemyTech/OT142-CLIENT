@@ -1,35 +1,11 @@
 import axios from 'axios';
 
-// const config = {
-//     headers: {
-//         Group: 142                //Aqui va el ID del equipo!!
-//     }
-// }
+const config = {
+    headers: {
+        Group: ''               //Aqui va el ID del equipo!!
+    },
 
-// const Get = () => {
-//     axios.get('https://jsonplaceholder.typicode.com/users', config)
-//     .then(res => console.log(res))
-//     .catch(err => console.log(err))
-// }
-
-const BASE_URL = 'http://ongapi.alkemy.org/api';
-
-const getCategories = async(id) => {
-
-    let categories = [];
-
-    try{
-
-        const res = await axios.get(`${BASE_URL}/categories`);
-        const { data } = await res.data;
-
-        categories = data.map(d => d.id)
-
-    }catch(error){
-        console.log(error)
-    }
-
-    return categories
+    return: categories,
 }
 
 const getNew = async(id) => {
@@ -92,9 +68,12 @@ const patchNew = async(id, data) => {
         });
 }
 
-export {
-    getCategories,
-    getNew,
-    postNew,
-    patchNew
-}
+export const API_SERVICE_POST = axios.create({
+    baseURL: 'http://ongapi.alkemy.org/public/api',
+    method: 'post',
+    url: '',
+    responseType: 'json',
+});
+
+
+export default Get
