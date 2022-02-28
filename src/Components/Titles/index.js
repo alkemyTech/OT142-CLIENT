@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Image } from "@chakra-ui/react"
 export default function Title({ children, imageUrl }) {
+    
     return(
         <Flex flexDirection="column" justifyContent="center" alignItems="center">
             <Box width="100%" mt="8">

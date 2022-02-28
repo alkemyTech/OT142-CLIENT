@@ -56,9 +56,10 @@ const Home = () => {
 
       <GridItem>
         <Flex justify={"space-around"}>
-          {placeholder.slice(0, 4).map((novedad) => {
+          {placeholder.slice(0, 4).map((novedad, id) => {
             return (
               <Image
+                key={id}
                 objectFit="cover"
                 src={process.env.PUBLIC_URL + "/images/placeholder/270x180.png"}
                 alt="placeholder"
@@ -98,9 +99,10 @@ const Home = () => {
 
       <GridItem>
         <Flex justify={"space-around"}>
-          {placeholder.slice(0, 4).map((novedad) => {
+          {placeholder.slice(0, 4).map((novedad, id) => {
             return (
               <Image
+                key={id}
                 objectFit="cover"
                 src={process.env.PUBLIC_URL + "/images/placeholder/270x180.png"}
                 alt="placeholder"
