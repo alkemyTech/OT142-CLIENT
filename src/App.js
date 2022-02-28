@@ -12,7 +12,7 @@ import UserForm from "./Components/Users/UsersForm";
 import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
 import MembersForm from "./Components/Members/MembersForm";
-import MembersEdit from "./Components/Members/MembersEdit";
+import Members from "./Components/Members/Members";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import Dashboard from "./Components/Dashboard/Dashboard";
 function App() {
@@ -25,7 +25,7 @@ function App() {
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
           <Route exact path="/backoffice" component={Dashboard} />
-          <Route path="/backoffice/members/edit" component={MembersEdit} />
+          <Route path="/backoffice/members/edit" component={Members} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-user" component={UserForm} />

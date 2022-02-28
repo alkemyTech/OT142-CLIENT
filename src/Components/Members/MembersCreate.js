@@ -14,20 +14,31 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const initialValues = {
-    name: "Juan Perez",
-    image: "IMG_20220110_143501.png",
-    description: "Mensaje de descripción",
-    socialMedia: "https://google.com",
+    name: "",
+    image: "",
+    description: "",
+    socialMedia: "",
 };
 
 const onSubmit = (values) => {
     console.log(values);
 };
 
+const FORMATS = [
+    "image/png",
+    "image/jpg"
+];
+
 const validationSchema = Yup.object({
     name: Yup.string()
         .required("Por favor, ingrese su nombre.")
         .min(4, "Debe contener una longitud mínima de 4 caracteres."),
+
+    image: Yup.mixed()
+        .required("Por favor, seleccione una imagen.")
+        .test('fileFormat', 'Solo es válido formato .png o .jpg', (value) => {
+            return value && FORMATS.includes(value.type);
+        }),
 
     description: Yup.string()
         .required("Por favor, ingrese una descripción."),
@@ -40,7 +51,7 @@ const validationSchema = Yup.object({
         ),
 });
 
-const MembersEdit = () => {
+const MembersCreate = () => {
     const formik = useFormik({
         initialValues,
         onSubmit,
@@ -50,7 +61,7 @@ const MembersEdit = () => {
     return (
         <Container className='form__contenedor'>
             <Heading className='form__titulo' as='h4' size='md' marginBottom={5}>
-                Formulario Edición de Miembros
+                Formulario Creación de Miembros
             </Heading>
 
             <form onSubmit={formik.handleSubmit} method='POST'>
@@ -125,4 +136,4 @@ const MembersEdit = () => {
     );
 };
 
-export default MembersEdit;
+export default MembersCreate;
