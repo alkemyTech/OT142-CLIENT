@@ -19,7 +19,7 @@ import {
 
 // Custom
 import '../FormStyles.css';
-import { getCategories, getNew, postNew, patchNew } from '../../Services/publicApiService';
+// import { getCategories, getNew, postNew, patchNew } from '../../Services/publicApiService';
 import useForm from '../../hooks/useForm';
 import { messageErrors } from '../../utils/messageErrors';
 
@@ -65,19 +65,19 @@ const NewsForm = () => {
     } = useForm(initialState);
     const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if(id){
-            getNew(id)
-                .then(res => setForm({...res}))
-        }
+    //     if(id){
+    //         getNew(id)
+    //             .then(res => setForm({...res}))
+    //     }
 
-    }, [id, setForm])
+    // }, [id, setForm])
 
-    useEffect(() => {
-        getCategories()
-            .then(res => setCategories(res))
-    }, [])
+    // useEffect(() => {
+    //     getCategories()
+    //         .then(res => setCategories(res))
+    // }, [])
 
     return (
         <>
@@ -108,10 +108,10 @@ const NewsForm = () => {
                         }
 
                         if(id){
-                            patchNew(id, data)
+                            // patchNew(id, data)
                             alert(JSON.stringify(data, null, 2));
                         }else{
-                            postNew(data)
+                            // postNew(data)
                             alert(JSON.stringify(data, null, 2));
                         }
 

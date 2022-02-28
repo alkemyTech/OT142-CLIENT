@@ -60,7 +60,6 @@ const UserList = () => {
                 </Tbody>
             </Table>
         </Flex>
-
     )
 }
 export default UserList;
