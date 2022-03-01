@@ -6,6 +6,7 @@ import { API } from '../hooks/API';
 
 const ActivitiesList = () => {
 
+
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
     const [error, setError] = useState(false);
