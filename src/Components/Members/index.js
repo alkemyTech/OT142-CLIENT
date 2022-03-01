@@ -10,6 +10,7 @@ import {
   TableCaption,
   Box,
   Center,
+  Button,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
@@ -21,6 +22,20 @@ import { Link } from "react-router-dom";
 // redirigirá a la ruta /backoffice/members/create.
 
 const Members = ({ members }) => {
+  const _members = [
+    {
+      image: "https://picsum.photos/100/",
+      name: "Prueba Uno",
+    },
+    {
+      image: "https://picsum.photos/100/",
+      name: "Prueba Dos",
+    },
+    {
+      image: "https://picsum.photos/100/",
+      name: "Prueba Tres",
+    },
+  ];
   return (
     <Box p="1em">
       <Link to="/backoffice/members/create">Add Members</Link>
@@ -33,6 +48,22 @@ const Members = ({ members }) => {
               <Th>Actions</Th>
             </Tr>
           </Thead>
+          <Tbody>
+            {_members.map((member) => {
+              return (
+                <Tr>
+                  <Td>
+                    <img src={member.image} alt={member.name} />
+                  </Td>
+                  <Td>{member.name}</Td>
+                  <Td>
+                    <Button>Editar</Button>
+                    <Button rm="1em">Eliminar</Button>
+                  </Td>
+                </Tr>
+              );
+            })}
+          </Tbody>
         </Table>
       </Center>
     </Box>
