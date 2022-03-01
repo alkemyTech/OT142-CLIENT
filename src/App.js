@@ -27,6 +27,8 @@ import About from './Components/About';
 import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
+import ActivitiesList from './Activities/Detail/Components/ActivitiesList';
+import { News } from './Components/News';
 import SlidesTable from './Components/Slides/SlidesTable';
 
 function App() {
@@ -34,30 +36,10 @@ function App() {
     <>
       <BrowserRouter>
         <Switch>
-<<<<<<< HEAD
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route path="/create-activity" component={ActivitiesForm} />
-          <Route path="/create-category" component={CategoriesForm} />
-          <Route path="/create-news" component={NewsForm} />
-          <Route path="/Novedades/:id" component={NewsDetail} />
-          <Route path="/backoffice" component={Dashboard} />
-          <Route path="/backoffice/create-slide" component={SlidesForm} />
-          <Route path="/backoffice/organization/edit" component={EditForm} />
-          <Route path="/backoffice/members/edit" component={MembersEdit} />
-          <Route path="/create-testimonials" component={TestimonialForm} />
-          <Route path="/create-user" component={UserForm} />
-          <Route path="/create-member" component={MembersForm} />
-          <Route path="/create-project" component={ProjectsForm} />
-          <Route path="/school-campaign" component={SchoolCampaign} />
-          <Route path="/toys-campaign" component={ToysCampaign} />
-          <Route path="/actividades/:id" component={ActivityDetail} />
-          <Route path="/actividades" component={Activities} />
-          <Route path="/register" component={RegisterForm} />
-          <Route path='/contact-form' component={ContactForm} />
-=======
           <Route path="/" exact component={Home} />
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/create-category" component={CategoriesForm} />
+          <Route exact path="/Novedades/" component={News} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice/slides" component={SlidesTable} />
           <Route exact path="/backoffice" component={Dashboard} />
@@ -79,7 +61,7 @@ function App() {
           <Route exact path='/contact' component={Contact} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
->>>>>>> 869030e5b1502c811a5d1ff375c64e7a3c5739e8
+          <Route path='/contact-form' component={ContactForm} />
         </Switch>
       </BrowserRouter>
     </>
