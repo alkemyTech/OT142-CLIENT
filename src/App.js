@@ -26,8 +26,9 @@ import Footer from "./Components/Footer";
 import About from "./Components/About";
 import Home from "./Components/Home";
 import MembersList from "./Components/AboutUs/MembersList";
-import Members from "./Components/Members/index";
 import UserList from "./Components/Dashboard/UsersList";
+import SlidesTable from "./Components/Slides/SlidesTable";
+import Members from "./Components/Members/index";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/create-category" component={CategoriesForm} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
+          <Route exact path="/backoffice/slides" component={SlidesTable} />
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
           <Route
@@ -59,7 +61,11 @@ function App() {
             component={TestimonialForm}
           />
           <Route exact path="/create-user" component={UserForm} />
-          <Route exact path="/create-member" component={MembersForm} />
+          <Route
+            exact
+            path="backoffice/members/create"
+            component={MembersForm}
+          />
           <Route exact path="/create-project" component={ProjectsForm} />
           <Route exact path="/update-project/:id" component={ProjectsForm} />
           <Route exact path="/school-campaign" component={SchoolCampaign} />
