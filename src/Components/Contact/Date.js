@@ -1,17 +1,58 @@
-import React from 'react'
-import ContactDate from './ContactDate'
-import TitleContact from "./TitleContact";
-import {AiFillFacebook} from "react-icons/ai";
-
+import React from "react";
+import {
+  List,
+  ListItem,
+  ListIcon,
+  Box,
+} from "@chakra-ui/react";
+import { AiFillFacebook } from "react-icons/ai";
+import { BsInstagram } from "react-icons/bs";
+import { HiOutlineMail } from "react-icons/hi";
+import { BsTelephoneForward } from "react-icons/bs";
 
 export default function Date(props) {
-   
- console.log(props)   
-    
+  console.log(props);
+
   return (
     <>
-     <TitleContact/>
-    <AiFillFacebook/>
+      <Box
+        style={{
+          display: " flex",
+          flexDirection: "column",
+          flexWrap: "nowrap",
+          alignContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Box>
+        <List spacing={3}>
+          <ListItem>
+            <ListIcon size={5}>
+              <AiFillFacebook />
+            </ListIcon>
+            {props.facebook}
+          </ListItem>
+          <ListItem>
+            <ListIcon>
+              <HiOutlineMail />
+            </ListIcon>
+            {props.mail}
+          </ListItem>
+          <ListItem>
+            <ListIcon>
+              <BsInstagram />
+            </ListIcon>
+            {props.instagram}
+          </ListItem>
+          <ListItem>
+            <ListIcon>
+              <BsTelephoneForward />
+            </ListIcon>
+            {props.teléfonoDeContacto}
+          </ListItem>
+        </List>
+        </Box>
+      </Box>
     </>
-  )
+  );
 }
