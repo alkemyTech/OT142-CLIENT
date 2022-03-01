@@ -8,6 +8,8 @@ import {
   Th,
   Td,
   TableCaption,
+  Box,
+  Center,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
@@ -20,10 +22,20 @@ import { Link } from "react-router-dom";
 
 const Members = ({ members }) => {
   return (
-    <>
+    <Box p="1em">
       <Link to="/backoffice/members/create">Add Members</Link>
-      <div>Members</div>
-    </>
+      <Center>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Image</Th>
+              <Th>Name</Th>
+              <Th>Actions</Th>
+            </Tr>
+          </Thead>
+        </Table>
+      </Center>
+    </Box>
   );
 };
 
