@@ -1,31 +1,38 @@
 import React from 'react';
+import { Box,SimpleGrid, GridItem} from '@chakra-ui/react'
+
 import '../CardListStyles.css';
 
-const NewsList = () => {
-    const newsMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
+const NewsList = () => {  
+
+    const list = [
+        {id: 1, name: 'Titulo '},
+        {id: 2, name: 'Titulo '},
+        {id: 3, name: 'Titulo '},
+        {id: 4, name: 'Titulo '},
+        {id: 5, name: 'Titulo '},
     ];
 
     return (
-        <div>
-            <h1>Listado de Novedades</h1>
-            <ul className="list-container">
-                {newsMock.length > 0 ? 
-                    newsMock.map((element) => {
-                        return(
-                            <li className="card-info" key={element.id}>
-                                <h3>{element.name}</h3>
-                                <p>{element.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay novedades</p>
+        <Box bg='#DB5752'  p={4} >
+            <SimpleGrid columns={[2, 4, 5]}  spacing='30px' m='50px'>
+                {
+                    list.length>0 
+                    ? list.map((news) =>(
+                            <GridItem 
+                                w='100%' 
+                                bg='#9AC9FB' 
+                                key={news.id} 
+                                maxHeight='250px' 
+                                textAlign='center'>
+                                    {/* <Card ...props/> */}                                    
+                                    {news.name}                                                           
+                            </GridItem>                            
+                    ))
+                    : <p>No hay novedades</p>
                 }
-            </ul>
-        </div>
+            </SimpleGrid>
+        </Box>        
     );
 }
  
