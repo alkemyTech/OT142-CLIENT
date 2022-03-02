@@ -11,18 +11,10 @@ async function getComment() {
     }
 }
 
-const sendComment = () => { 
+const sendComment = (comment) => { 
     axios
     .post(`${baseURL}`, {
-            "id": 0,
-            "new_id": 0,
-            "user_id": 0,
-            "image": "string",
-            "text": "string",
-            "visible": true,
-            "deleted_at": "2022-02-24T22:11:59.684Z",
-            "created_at": "2022-02-24T22:11:59.684Z",
-            "updated_at": "2022-02-24T22:11:59.684Z"
+            comment
         })
         .then((response) => {
             console.log(response);
@@ -40,18 +32,10 @@ async function getCommentById(id) {
     }
 }
 
-const updateComment = (id) => { 
+const updateComment = (comment, id) => { 
     axios
       .put(`${baseURL}/${id}`, {
-            "id": 0,
-            "new_id": 0,
-            "user_id": 0,
-            "image": "string",
-            "text": "string",
-            "visible": true,
-            "deleted_at": "2022-02-24T22:15:45.643Z",
-            "created_at": "2022-02-24T22:15:45.643Z",
-            "updated_at": "2022-02-24T22:15:45.643Z"
+        comment
       })
       .then((response) => {
         console.log(response.data);
@@ -61,18 +45,10 @@ const updateComment = (id) => {
       })
   }
 
-const deleteComment = (id) => { 
+const deleteComment = (comment, id) => { 
     axios
       .delete(`${baseURL}/${id}`, {
-            "id": 0,
-            "new_id": 0,
-            "user_id": 0,
-            "image": "string",
-            "text": "string",
-            "visible": true,
-            "deleted_at": "2022-02-24T22:15:45.643Z",
-            "created_at": "2022-02-24T22:15:45.643Z",
-            "updated_at": "2022-02-24T22:15:45.643Z"
+            comment
       })
       .then((response) => {
         console.log(response.data);
