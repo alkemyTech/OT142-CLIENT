@@ -10,7 +10,7 @@ import {
   Image
 } from '@chakra-ui/react';
 
-const Card = (props) => {
+const Card = ({data}) => {
   return (
     <Center py={6}>
       <Box
@@ -32,8 +32,8 @@ const Card = (props) => {
           overflow={"hidden"}>
               
           <Image
-            src={props.image
-                     ? props.image
+            src={data.image
+                     ? data.image
                      : process.env.PUBLIC_URL + '/images/placeholder/270x180.png'
             }
             layout={'fill'}
@@ -47,8 +47,8 @@ const Card = (props) => {
             fontSize={'sm'}
             letterSpacing={1.1}>
             {
-                props.section
-                    ? props.section
+                data.section
+                    ? data.section
                     : "Blog"
             }
           </Text>
@@ -57,15 +57,15 @@ const Card = (props) => {
             fontSize={'2xl'}
             fontFamily={'body'}>
             {
-                props.title
-                    ? props.title
+                data.title
+                    ? data.title
                     : "Título de prueba"
             }
           </Heading>
           <Text color={'gray.500'}>
             {
-                props.description
-                    ? props.description
+                data.description
+                    ? data.description
                     : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum."
             }
           </Text>
