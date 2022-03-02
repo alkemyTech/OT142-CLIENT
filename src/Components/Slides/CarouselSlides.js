@@ -12,13 +12,13 @@ import {
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 // And react-slick as our Carousel Lib
 import Slider from 'react-slick';
+import { useState } from 'react';
+import pic1 from '../../Assets/pic1-test.jpg'
+import pic2 from '../../Assets/pic2-test.jpg'
+import pic3 from '../../Assets/pic3-test.jpg'
 
-//Test data
-const slidesData = {
-    image: 'imageTest', 
-    title: 'titleTest',
-    description: 'descriptionTest'
-}
+
+//La información se mostrára de forma dinámica obtenida del endpoint de Slides. Inicialmente, estos datos serán obtenidos de un array de objetos (en nuestro caso se llamara "cards") con las propiedades: image, title y description
 
 // Settings for the slider
 const settings = {
@@ -33,10 +33,10 @@ const settings = {
   slidesToScroll: 1,
 };
 
-export default function CarouselSlides() {
+export default function CarouselSlides(slidesData) {
   // As we have used custom buttons, we need a reference variable to
   // change the state
-  const [slider, setSlider] = React.useState<Slider | null>(null);
+  const [slider, setSlider] = useState(null);
 
   // These are the breakpoints which changes the position of the
   // buttons as the screen size changes
@@ -47,25 +47,25 @@ export default function CarouselSlides() {
   // This can be static or loaded from a server
   const cards = [
     {
-      title: 'Design Projects 1',
-      text:
-        "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+      title: 'Nosotros',
+      description:
+        "Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y papás, abuelos y vecinos del barrio La Cava generando procesos de crecimiento y de inserción social.",
       image:
-        'https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+        pic1,
     },
     {
-      title: 'Design Projects 2',
-      text:
-        "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+      title: 'Visión',
+      description:
+        "Mejorar la calidad de vida de niños y familias en situación de vulnerabilidad en el barrio La Cava, otorgando un cambio de rumbo en cada individuo a través de la educación, salud, trabajo, deporte, responsabilidad y compromiso.",
       image:
-        'https://images.unsplash.com/photo-1438183972690-6d4658e3290e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2274&q=80',
+        pic2,
     },
     {
-      title: 'Design Projects 3',
-      text:
-        "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+      title: 'Misión',
+      description:
+        "Trabajar articuladamente con los distintos aspectos de la vida de las familias,generando espacios de desarrollo personal y familiar, brindando herramientas que logren mejorar la calidad de vida a través de su propio esfuerzo.",
       image:
-        'https://images.unsplash.com/photo-1507237998874-b4d52d1dd655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+        pic3,
     },
   ];
 
@@ -116,26 +116,33 @@ export default function CarouselSlides() {
         {cards.map((card, index) => (
           <Box
             key={index}
-            height={'6xl'}
+            height={'lg'}
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
             backgroundImage={`url(${card.image})`}>
             {/* This is the block you need to change, to customize the caption */}
-            <Container size="container.lg" height="600px" position="relative">
+            <Container size="container.md" height="600px" w={{base:'250px', sm:'400px'}} centerContent position="relative">
               <Stack
                 spacing={6}
                 w={'full'}
-                maxW={'lg'}
+                maxW={{base:'lg'}}
                 position="absolute"
-                top="50%"
+                top={{base:"22%", sm: 110, lg:150}}
+                left={{base:'-2%',sm:-5, md:-155, lg:-250}}
+                border='1px solid'
+                borderRadius='5px'
+                padding='0.5rem'
+                backgroundColor='rgba(0,0,0,0.5)'
                 transform="translate(0, -50%)">
-                <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
+                <Heading fontSize={{ base: 'md', md: '4xl', lg: '5xl' }}
+                  color='yellow'
+                >
                   {card.title}
                 </Heading>
-                <Text fontSize={{ base: 'md', lg: 'lg' }} color="GrayText">
-                  {card.text}
+                <Text fontSize={{ base: 'sm', lg: 'lg' }} color="white" fontWeight='bold'>
+                  {card.description}
                 </Text>
               </Stack>
             </Container>
