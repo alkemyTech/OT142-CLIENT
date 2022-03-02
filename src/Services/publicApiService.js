@@ -7,8 +7,9 @@ const config = {
 }
 
 //Setting default global config for all request:
-
-axios.defaults.headers.common['Group'] = 142
+export const axiosInstance = axios.create({
+  baseURL: 'http://ongapi.alkemy.org/api'
+});
 
 const Get = () => {
     axios.get('https://jsonplaceholder.typicode.com/users', config)
@@ -16,9 +17,9 @@ const Get = () => {
     .catch(err => console.log(err))
 }
 
-export function updatePublicServer(url, id, body) {
-    axios
-      .put(`${url}/${id}`, {
+export function updatePublicServer(path, id, body) {
+    axiosInstance
+      .put(`${path}/${id}`, {
         body
       })
       .then((response) => {
