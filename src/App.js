@@ -41,14 +41,15 @@ function App() {
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/create-category" component={CategoriesForm} />
           <Route exact path="/Novedades/" component={News} />
-          <Route path="/backoffice/news" component={NewsList} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice/slides" component={SlidesTable} />
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
           <Route exact path="/backoffice/organization" component={OrganizationBoard} />
-          <Route exact path="/backoffice/news/:id?" component={NewsForm} />
+          <Route exact path="/backoffice/news/create" component={NewsForm} />
+          <Route exact path="/backoffice/news/:id" component={NewsForm} />
+          <Route path="/backoffice/news" component={NewsList} />
           <Route exact path="/backoffice/users" component={UserList} />
           <Route exact path="/create-testimonials" component={TestimonialForm} />
           <Route exact path="/create-user" component={UserForm} />

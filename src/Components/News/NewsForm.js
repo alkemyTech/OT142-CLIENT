@@ -16,12 +16,14 @@ import {
     FormLabel,
     VStack
 } from '@chakra-ui/react'
+import { postNews, editNews } from "../../Services/newsService";
 
 // Custom
 import '../FormStyles.css';
 import useForm from '../../hooks/useForm';
 import { messageErrors } from '../../utils/messageErrors';
 import axios from 'axios';
+
 
 const BASE_URL = 'http://ongapi.alkemy.org/api/';
 
@@ -96,8 +98,17 @@ const formNewsSchema = Yup.object().shape({
 
 
 const NewsForm = () => {
-
     const { id } = useParams();
+    const handleCreateEditNews = (values, id) => {
+        // console.log(values, id)
+        if (id) {
+            editNews("news", id, values); 
+        } else {
+            postNews("news", id, values.title, null, values.content, values.image, null, values.category, null, null, null, null)
+        }
+    }
+
+    
     const {
         form,
         setForm
@@ -242,6 +253,7 @@ const NewsForm = () => {
                                 </FormControl>               
                                     
                                 <Button 
+                                    onClick={() => handleCreateEditNews(formik.values, id)}
                                     type="submit" 
                                     size='md'  
                                     variant="solid" 
