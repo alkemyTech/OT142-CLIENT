@@ -24,13 +24,13 @@ export const Get = () => {
 
 // PATCH METHOD
 export const patchPrivate = async (endpoint, id, body) => {
-    try {  
-        const response = await axios.patch(`http://ongapi.alkemy.org/api/${endpoint}/${id}`,body,{
-            headers: tokenFunction(),
-        });   
-        return response;    
-    } catch (err) {
-        return err;
-    }
+  try {
+    const response = await axios.patch(`http://ongapi.alkemy.org/api/${endpoint}/${id}`, body, {
+      headers: tokenFunction(),
+    });
+    return response;
+  } catch (err) {
+    return err;
+  }
 };
 
