@@ -2,9 +2,6 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
     baseURL: `http://ongapi.alkemy.org/public/api`,
-    headers: {
-        group_id: 142,
-    }
 });
 
 export const getRequest = (path) => {

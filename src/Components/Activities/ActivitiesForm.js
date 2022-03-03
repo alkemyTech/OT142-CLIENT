@@ -12,8 +12,8 @@ import { postRequest, patchRequest } from "../../Services/ServiceActivities";
 //<ActivitiesForm { ...responseAPI} />
 const ActivitiesForm = (activitiesData) => {
 
-    const [values, setValues] = useState([])
-    console.log(`valores ingresados: `, values)
+    /*     const [values, setValues] = useState([])
+        console.log(`valores ingresados: `, values) */
 
     //Returns the url string but converted to lowercase
     const location = useLocation().pathname.toLocaleLowerCase();
@@ -47,12 +47,12 @@ const ActivitiesForm = (activitiesData) => {
             validationSchema={formSchema}
             onSubmit={(values, { resetForm }) => {
                 if (location.includes('create')) {
-                    // postRequest(values)  
-                    setValues(values)
+                    postRequest('/activities', values)
+                    console.log(values)
 
                 } else if (location.includes('edit')) {
-                    // patchRequest(values)   
-                    setValues(values)
+                    patchRequest('/activities', values)
+                    console.log(values)
                 }
                 resetForm()
             }}
