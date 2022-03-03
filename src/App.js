@@ -30,7 +30,7 @@ import UserList from "./Components/Dashboard/UsersList";
 import ActivitiesList from "./Activities/Detail/Components/ActivitiesList";
 import { News } from "./Components/News";
 import SlidesTable from "./Components/Slides/SlidesTable";
-import Members from "./Components/Members/MembersTable";
+import Members from "./Components/Members";
 import ContactForm from "./Components/Contact/ContactForm";
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/create-category" component={CategoriesForm} />
           <Route exact path="/Novedades/" component={News} />
-          <Route path="/backoffice/news" component={NewsList} />
+          <Route exact path="/backoffice/news" component={NewsList} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice/slides" component={SlidesTable} />
           <Route exact path="/backoffice" component={Dashboard} />

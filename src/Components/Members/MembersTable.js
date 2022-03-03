@@ -12,28 +12,11 @@ import {
   Center,
   Button,
   Text,
+  Image,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const Members = ({ members }) => {
-  const _members = [
-    {
-      image: "https://picsum.photos/101/",
-      name: "The Mock Johnson",
-      id: 1,
-    },
-    {
-      image: "https://picsum.photos/102/",
-      name: "Camila Mock",
-      id: 2,
-    },
-    {
-      image: "https://picsum.photos/100/",
-      name: "Mockaulay Culkin",
-      id: 3,
-    },
-  ];
-
   const tableHeads = ["Foto de Perfil", "Nombre", "Administrar"];
 
   return (
@@ -60,11 +43,18 @@ const Members = ({ members }) => {
               </Tr>
             </Thead>
             <Tbody>
-              {_members.map((member) => {
+              {members.map((member) => {
                 return (
                   <Tr key={member.id}>
                     <Td>
-                      <img src={member.image} alt={member.name} />
+                      <Center>
+                        <Image
+                          align={"center"}
+                          boxSize="3em"
+                          src={member.image}
+                          alt={member.name}
+                        />
+                      </Center>
                     </Td>
                     <Td>
                       <Center>

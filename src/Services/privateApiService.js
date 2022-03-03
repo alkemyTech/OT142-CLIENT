@@ -18,21 +18,19 @@ const config = {
 const Get = (route, id) => {
   const endPoint = id ? `/${route}/${id}` : `${route}`;
 
-  const response = axiosInstance
+  return axiosInstance
     .get(endPoint)
     .then((response) => {
-      return response.data.data;
+      return response.data;
     })
     .catch((error) => {
       console.error(error);
     });
-
-  return response;
 };
 
-const Post = (route, body) => {
+const Post = (route, data) => {
   axiosInstance
-    .post(route, body, config)
+    .post(route, data)
     .then((response) => {
       console.log(response);
       return response;
@@ -50,7 +48,7 @@ export const Delete = (route, id) => {
 };
 
 const tokenFunction = () => {
-  return config.headers;
+  return config.headers.Authorization;
 };
 
 //  Members HTTP Methods:
