@@ -30,7 +30,7 @@ const Get = (route, id) => {
 
 const Post = (route, data) => {
   axiosInstance
-    .post(route, data)
+    .post(route, data, config)
     .then((response) => {
       console.log(response);
       return response;
@@ -38,6 +38,10 @@ const Post = (route, data) => {
     .catch((error) => {
       console.error(error);
     });
+};
+
+const Put = (route, id, body, config) => {
+  return axiosInstance.put(`${route}/${id}`, body, config);
 };
 
 export const Delete = (route, id) => {
@@ -67,6 +71,10 @@ export const postMember = (member) => {
 
 export const deleteMember = (id) => {
   Delete("members", id);
+};
+
+export const putMember = (id, body) => {
+  Put("members", id, body);
 };
 
 // PATCH METHOD

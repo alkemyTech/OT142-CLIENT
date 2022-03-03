@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../FormStyles.css";
+import { postMember } from "../../Services/privateApiService";
 
 const MembersForm = () => {
   const [initialValues, setInitialValues] = useState({
@@ -18,6 +19,7 @@ const MembersForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    postMember(initialValues);
     console.log(initialValues);
   };
 
