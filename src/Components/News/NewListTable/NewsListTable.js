@@ -17,7 +17,8 @@ import {
 } from '@chakra-ui/react';
 
 
-const NewListTable = ({ data }) => {
+const NewsListTable = ({ data, handleDeleteNews }) => {
+
 
     return (
         <VStack>
@@ -51,12 +52,15 @@ const NewListTable = ({ data }) => {
                                 <Tr key={tableContent.id}>
                                     <Td>{tableContent.name}</Td>
                                     <Td>{tableContent.image}</Td>
-                                    <Td>{tableContent.createdAt}</Td>
+                                    <Td>{tableContent.created_at}</Td>
                                     <Td>
-                                        <Button colorScheme='blue'>Editar</Button>
+                                        <Link to={`news/${tableContent.id}`}>
+                                            <Button colorScheme='blue'>Editar</Button>
+                                        </Link>
+                                   
                                     </Td>
                                     <Td>
-                                        <Button colorScheme='red'>Eliminar</Button>
+                                        <Button onClick={() => handleDeleteNews("news", tableContent.id)} colorScheme='red'>Eliminar</Button>
                                     </Td>
                                 </Tr>
                             )
@@ -68,4 +72,4 @@ const NewListTable = ({ data }) => {
     )
 }
 
-export default NewListTable;
+export default NewsListTable;
