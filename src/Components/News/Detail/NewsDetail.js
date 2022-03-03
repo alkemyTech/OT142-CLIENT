@@ -13,7 +13,14 @@ export const NewsDetail = ({tittle, news}) => {
           <Heading>{tittle}This is a news tittle </Heading>
         </Center>
         <img src={pictureMock} alt='News img'/>
-        <Text fontSize='md' p='2'>{news} Lorem ipsum dolor sit amet consectetur adipiscing elit, pulvinar litora   placerat ornare cubilia maecenas massa, lacinia fermentum nullam malesuada  consequat at. Auctor commodo conubia pellentesque erat tempor id integer   primis donec, montes inceptos posuere condimentum sapien nam vehicula est,  iaculis mollis lacinia parturient netus ornare imperdiet dui. Nascetur   aliquam erat condimentum elementum nostra sapien penatibus cras enim congue,  orci volutpat morbi quis litora magnis arcu habitasse sed, quisque ultricies   id interdum turpis eget mollis mauris convallis. </Text>
+        <Text fontSize='md' p='2'>{news} Lorem ipsum dolor sit amet consectetur adipiscing elit, pulvinar litora   placerat ornare cubilia maecenas massa, 
+        lacinia fermentum nullam malesuada  consequat at. 
+
+        Auctor commodo conubia pellentesque erat tempor id integer   primis donec, montes inceptos posuere condimentum sapien nam vehicula est,  iaculis mollis lacinia parturient netus ornare imperdiet 
+        
+        dui. Nascetur   aliquam erat condimentum elementum nostra sapien penatibus cras enim congue,  orci volutpat morbi quis litora magnis arcu habitasse sed, quisque ultricies   id interdum turpis eget 
+        
+        mollis mauris convallis. </Text>
       </Box>
     </>
   )
