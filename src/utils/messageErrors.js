@@ -21,11 +21,11 @@ export const messageErrors = {
         passIncorrect: 'La contraseña debe coincidir'
     },
     logo: {
-        messageRequired: 'Por favor cargue un logo',
+        messageRequired: 'Por favor cargue un logo o imagen',
         formatInvalid: 'solo se permiten formatos .png y .jpg'
     },
     shortDescription: {
-        messageRequired: 'Por favor ingrese una descripción cortar',
+        messageRequired: 'Por favor ingrese una descripción corta',
         minCharacters: 'Debe contener al menos 6 caracteres'
     },
     longDescription: {
@@ -43,5 +43,12 @@ export const messageErrors = {
     },
     message: {
         messageRequired: 'Por favor ingrese un mensaje'
+    },
+    category: {
+        messageRequired: 'Por favor ingrese una categoria'
+    },
+    title: {
+        messageRequired: 'Por favor ingrese un titulo',
+        minCharacters: 'Debe contener al menos 4 caracteres'
     }
 }

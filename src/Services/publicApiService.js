@@ -1,32 +1,59 @@
-import axios from 'axios';
+import axios from "axios";
+import { API } from "../Activities/Detail/hooks/API";
 
-const config = {
-    headers: {
-        Group: 142                
-    }
-}
+// const config = {
+//     headers: {
+//         Group: 142                //Aqui va el ID del equipo!!
+//     }
+// }
 
-//Setting default global config for all request:
 export const axiosInstance = axios.create({
-  baseURL: 'http://ongapi.alkemy.org/api'
+    baseURL: 'http://ongapi.alkemy.org/api',
+});
+  
+export const getRequestAll = (path) => {
+    return axiosInstance.get(path);
+};
+
+export const getRequestById = (path) => {
+    return axiosInstance.get(path);
+};
+
+export const putRequest = (path, body) => {
+    return axiosInstance.put(path, body);
+};
+
+export const postRequest = (path, body) => {
+    return axiosInstance.post(path, body);
+};
+
+export const deleteRequest = (path) => {
+    return axiosInstance.delete(path);
+};
+
+export const API_SERVICE_POST = axios.create({
+  BASE_URL: "http://ongapi.alkemy.org/public/api",
+  method: "post",
+  url: "",
+  responseType: "json",
 });
 
-const Get = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users', config)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
-}
+export const axiosInstance = axios.create({
+  baseURL: "http://ongapi.alkemy.org/public/api",
+  responseType: "json",
+});
 
-export function updatePublicServer(path, id, body) {
-    axiosInstance
-      .put(`${path}/${id}`, body)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
+export const getRequest = (path, id) => {
+  const route = id ? `${path}/${id}` : `${path}`;
 
+  const response = axiosInstance
+    .get(route)
+    .then((response) => {
+      return response.data.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-export default Get
+  return response;
+};
