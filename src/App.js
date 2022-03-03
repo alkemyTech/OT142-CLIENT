@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
-import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ActivitiesForm from './Components/Activities/ActivitiesForm';
-import CategoriesForm from './Components/Categories/CategoriesForm';
-import NewsForm from './Components/News/NewsForm';
-import SlidesForm from './Components/Slides/SlidesForm';
-import TestimonialForm from './Components/Testimonials/TestimonialsForm';
-import UserForm from './Components/Users/UsersForm';
-import SchoolCampaign from './Campaigns/School/SchoolCampaign';
-import ToysCampaign from './Campaigns/Toys/ToysCampaign';
-import MembersForm from './Components/Members/MembersForm';
-import MembersEdit from './Components/Members/MembersEdit';
-import ProjectsForm from './Components/Projects/ProjectsForm';
-import ActivityDetail from './Activities/Detail/Components/ActivityDetail';
-import Activities from './Activities/Detail/Components/Activities';
+import "./App.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import ActivitiesForm from "./Components/Activities/ActivitiesForm";
+import CategoriesForm from "./Components/Categories/CategoriesForm";
+import NewsForm from "./Components/News/NewsForm";
+import NewsList from "./Components/News/NewListTable/NewsList";
+import SlidesForm from "./Components/Slides/SlidesForm";
+import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
+import UserForm from "./Components/Users/UsersForm";
+import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
+import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
+import MembersForm from "./Components/Members/MembersForm";
+import ProjectsForm from "./Components/Projects/ProjectsForm";
+import ActivityDetail from "./Activities/Detail/Components/ActivityDetail";
+import Activities from "./Activities/Detail/Components/Activities";
 import Dashboard from "./Components/Dashboard/index.js";
 /* import OrganizationBoard from "./Components/Dashboard/OrganizationBoard.js"; */
 import { NewsDetail } from './Components/News/Detail/NewsDetail'
@@ -23,7 +23,7 @@ import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 /* import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
-import About from './Components/About';
+import About from "./Components/About";
 import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList'; */
