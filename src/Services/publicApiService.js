@@ -19,9 +19,7 @@ const Get = () => {
 
 export function updatePublicServer(path, id, body) {
     axiosInstance
-      .put(`${path}/${id}`, {
-        body
-      })
+      .put(`${path}/${id}`, body)
       .then((response) => {
         console.log(response.data);
       })
