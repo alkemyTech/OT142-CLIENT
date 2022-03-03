@@ -11,21 +11,34 @@ import {
     Text,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getUsers, deleteUser } from '../../Services/api/user';
 
 const UserList = () => {
 
-    const [users, setUsers] = useState([
-        { id: 0, name: 'Test 1', email: 'usuario1@gmail.com' },
-        { id: 1, name: 'Test 2', email: 'usuario2@gmail.com' },
-        { id: 2, name: 'Test 3', email: 'usuario3@gmail.com' },
-        { id: 3, name: 'Test 4', email: 'usuario4@gmail.com' }
-    ]);
+    const [users, setUsers] = useState([]);
 
     //Funcion de prueba
     const handleDelete = (id) => {
         setUsers(users.filter((user) => user.id !== id));
+        deleteUser(id)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
     }
+
+    const handleEdit = (id) => {
+        console.log(id)
+    }
+
+    useEffect(() => {
+
+        getUsers()
+            .then(res => res.data)
+            .then(data => setUsers(data))
+            .catch(err => console.log(err))
+
+    }, [])
+    
 
     return (
         <Flex flexDirection="column" justifyContent="center" alignItems="center" p="2">
@@ -46,16 +59,15 @@ const UserList = () => {
                             <Td>{user.email}</Td>
                             <Td>
                                 <Flex justifyContent="center" alignItems="center">
-                                    <Button colorScheme="blue" size="sm">Editar</Button>
+                                    <Button onClick={() => handleEdit(user.id)} colorScheme="blue" size="sm">Editar</Button>
                                     <Button onClick={() => handleDelete(user.id)} colorScheme="red" size="sm" ms="1">Eliminar</Button>
                                 </Flex>
                             </Td>
                         </Tr>
-                    )) : <Td>No hay usuarios</Td>}
+                    )) : <Tr><Td>No hay usuarios</Td></Tr>}
                 </Tbody>
             </Table>
         </Flex>
-
     )
 }
 export default UserList;
