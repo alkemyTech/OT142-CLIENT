@@ -45,11 +45,9 @@ const updateComment = (comment, id) => {
       })
   }
 
-const deleteComment = (comment, id) => { 
+const deleteComment = (id) => { 
     axios
-      .delete(`${baseURL}/${id}`, {
-            comment
-      })
+      .delete(`${baseURL}/${id}`)
       .then((response) => {
         console.log(response.data);
       })
