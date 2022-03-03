@@ -113,6 +113,7 @@ const SlidesForm = ({ state }) => {
         <FormControl isRequired>
           <FormLabel htmlFor="first-name">Image</FormLabel>
           <Input
+           accept="image/x-png,image/jpeg"
             id="image"
             type="file"
             variant="flushed"
