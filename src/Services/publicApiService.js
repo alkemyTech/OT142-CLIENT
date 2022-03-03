@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from "axios";
+import { API } from "../Activities/Detail/hooks/API";
 
 // const config = {
 //     headers: {
@@ -31,8 +32,28 @@ export const deleteRequest = (path) => {
 };
 
 export const API_SERVICE_POST = axios.create({
-    BASE_URL: 'http://ongapi.alkemy.org/public/api',
-    method: 'post',
-    url: '',
-    responseType: 'json',
+  BASE_URL: "http://ongapi.alkemy.org/public/api",
+  method: "post",
+  url: "",
+  responseType: "json",
 });
+
+export const axiosInstance = axios.create({
+  baseURL: "http://ongapi.alkemy.org/public/api",
+  responseType: "json",
+});
+
+export const getRequest = (path, id) => {
+  const route = id ? `${path}/${id}` : `${path}`;
+
+  const response = axiosInstance
+    .get(route)
+    .then((response) => {
+      return response.data.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return response;
+};
