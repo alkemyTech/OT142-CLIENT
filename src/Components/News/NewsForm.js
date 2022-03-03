@@ -124,9 +124,9 @@ const NewsForm = () => {
 
     }, [id, setForm])
 
-    useEffect(() => {
-        console.log(categories)
-    }, [])
+    // useEffect(() => {
+    //     console.log(categories)
+    // }, [])
 
     return (
         <>
