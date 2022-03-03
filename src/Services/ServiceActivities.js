@@ -2,6 +2,9 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
     baseURL: `http://ongapi.alkemy.org/public/api`,
+    headers: {
+        group_id: 142,
+    }
 });
 
 export const getRequest = (path) => {
@@ -19,7 +22,7 @@ export const putRequest = (path, { name, description, image }) => {
 };
 
 export const postRequest = (path, { name, description, image }) => {
-    const response = axiosInstance.post("/activities", {
+    const response = axiosInstance.post(path, {
         name,
         description,
         image

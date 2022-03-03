@@ -47,10 +47,9 @@ const ActivitiesForm = (activitiesData) => {
             validationSchema={formSchema}
             onSubmit={(values, { resetForm }) => {
                 if (location.includes('create')) {
+                    // postRequest(values)  
                     setValues(values)
-                    postRequest("/activities", initialValues).then((data) => {
-                        console.log(data);
-                    });
+
                 } else if (location.includes('edit')) {
                     // patchRequest(values)   
                     setValues(values)
