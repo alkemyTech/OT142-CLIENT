@@ -25,7 +25,8 @@ import ContactForm from './Components/Contact/ContactForm';
 import EditHomeForm from './Components/Dashboard/editHomeForm';
 import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
-import About from "./Components/About";
+import About from './Components/About';
+import BackOfficeActivities from './Components/Activities/backoffice';
 import Home from "./Components/Home";
 import MembersList from "./Components/AboutUs/MembersList";
 import UserList from "./Components/Dashboard/UsersList";
@@ -53,6 +54,7 @@ function App() {
           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
           <Route exact path="/backoffice/organization" component={OrganizationBoard} />
           <Route exact path="/backoffice/news/:id?" component={NewsForm} />
+          <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
           <Route exact path="/backoffice/users" component={UserList} />
           <Route exact path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-news" component={NewsForm} />
