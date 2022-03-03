@@ -28,6 +28,18 @@ export const Get = (route, id) => {
 }
 
 
+// POST METHOD 
+export const PostPrivate = async (endpoint, body) => {
+
+  try{
+    const res = await axios.post(`http://ongapi.alkemy.org/api/${endpoint}`, body, config);
+    return res  
+  }catch(err){
+    return err
+  }
+
+}
+
 // PATCH METHOD
 export const patchPrivate = async (endpoint, id, body) => {
     try {  
