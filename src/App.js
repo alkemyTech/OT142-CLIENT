@@ -21,7 +21,9 @@ import OrganizationBoard from "./Components/Dashboard/OrganizationBoard.js";
 import { NewsDetail } from "./Components/News/Detail/NewsDetail";
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
-import Contact from "./Components/Contact";
+import ContactForm from './Components/Contact/ContactForm';
+import EditHomeForm from './Components/Dashboard/editHomeForm';
+import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
 import About from "./Components/About";
 import Home from "./Components/Home";
@@ -47,24 +49,13 @@ function App() {
           <Route exact path="/backoffice/slides" component={SlidesTable} />
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
-          <Route
-            exact
-            path="/backoffice/organization/edit"
-            component={EditForm}
-          />
-          <Route
-            exact
-            path="/backoffice/organization"
-            component={OrganizationBoard}
-          />
-          <Route exact path="/backoffice/members" component={Members} />
+          <Route exact path="/backoffice/organization/edit" component={EditForm} />
+          <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
+          <Route exact path="/backoffice/organization" component={OrganizationBoard} />
           <Route exact path="/backoffice/news/:id?" component={NewsForm} />
           <Route exact path="/backoffice/users" component={UserList} />
-          <Route
-            exact
-            path="/create-testimonials"
-            component={TestimonialForm}
-          />
+          <Route exact path="/create-testimonials" component={TestimonialForm} />
+          <Route path="/create-news" component={NewsForm} />
           <Route exact path="/create-user" component={UserForm} />
           <Route
             exact
@@ -78,10 +69,10 @@ function App() {
           <Route exact path="/actividades/:id" component={ActivityDetail} />
           <Route exact path="/actividades" component={Activities} />
           <Route exact path="/register" component={RegisterForm} />
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/nosotros" component={About} />
-          <Route exact path="/about-us/members" component={MembersList} />
-          <Route path="/contact-form" component={ContactForm} />
+          <Route exact path='/contact' component={Contact} />
+          <Route path='/contact-form' component={ContactForm} />
+          <Route exact path='/nosotros' component={About} />
+          <Route exact path='/about-us/members' component={MembersList} />
         </Switch>
       </BrowserRouter>
     </>
