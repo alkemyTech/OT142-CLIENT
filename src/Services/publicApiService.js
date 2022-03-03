@@ -38,10 +38,10 @@ export const API_SERVICE_POST = axios.create({
   responseType: "json",
 });
 
-export const axiosInstance = axios.create({
-  baseURL: "http://ongapi.alkemy.org/public/api",
-  responseType: "json",
-});
+// export const axiosInstance = axios.create({
+//   baseURL: "http://ongapi.alkemy.org/public/api",
+//   responseType: "json",
+// });
 
 export const getRequest = (path, id) => {
   const route = id ? `${path}/${id}` : `${path}`;
