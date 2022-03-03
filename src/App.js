@@ -30,7 +30,7 @@ import UserList from "./Components/Dashboard/UsersList";
 import ActivitiesList from "./Activities/Detail/Components/ActivitiesList";
 import { News } from "./Components/News";
 import SlidesTable from "./Components/Slides/SlidesTable";
-import Members from "./Components/Members/index";
+import Members from "./Components/Members/MembersTable";
 import ContactForm from "./Components/Contact/ContactForm";
 
 function App() {
