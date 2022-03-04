@@ -8,10 +8,10 @@ const override = css`
   margin-top: 10%;
 `;
 
-const Spinner = ({isLoading}) => {
+const Spinner = ({isLoading, color, size}) => {
 
     return (   
-            <MoonLoader  loading={isLoading} css={override} size={60} color={"#3182ce"} />
+            <MoonLoader  loading={isLoading} css={override} size={size} color={color} />
         
     )
 }
