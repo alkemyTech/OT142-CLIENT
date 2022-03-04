@@ -33,7 +33,6 @@ import UserList from './Components/Dashboard/UsersList';
 import ActivitiesList from './Activities/Detail/Components/ActivitiesList';
 import { News } from './Components/News';
 import SlidesTable from './Components/Slides/SlidesTable';
-import ContactForm from "./Components/Contact";
 
 function App() {
   return (
@@ -54,7 +53,7 @@ function App() {
           <Route exact path="/backoffice/news/create" component={NewsForm} />
           <Route exact path="/backoffice/news/:id" component={NewsForm} />
           <Route path="/backoffice/news" component={NewsList} />
-            <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
+          <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
           <Route exact path="/backoffice/users" component={UserList} />
           <Route exact path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-news" component={NewsForm} />
