@@ -2,7 +2,7 @@ import { Button, Image, Box, Container, Text, Heading, Spinner, Grid } from '@ch
 import Title from '../../../Components/Titles'
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
-import { getRequest } from "../../../Services/ServiceActivities";
+import { get } from "../../../Services/publicApiService";
 
 const ActivitiesList = () => {
 
@@ -15,7 +15,7 @@ const ActivitiesList = () => {
 
     const getData = useCallback(async () => {
         try {
-            const { data } = await getRequest("/activities");
+            const { data } = await get("/activities");
             setData(data.data);
             setLoading(false);
         } catch (e) {

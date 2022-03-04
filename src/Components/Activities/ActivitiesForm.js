@@ -7,7 +7,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import React, { useState } from 'react';
-import { postRequest, patchRequest } from "../../Services/ServiceActivities";
+import { post } from "../../Services/publicApiService";
 
 //<ActivitiesForm { ...responseAPI} />
 const ActivitiesForm = (activitiesData) => {
@@ -47,11 +47,10 @@ const ActivitiesForm = (activitiesData) => {
             validationSchema={formSchema}
             onSubmit={(values, { resetForm }) => {
                 if (location.includes('create')) {
-                    postRequest('/activities', values)
+                    post('/activities', values)
                     console.log(values)
 
                 } else if (location.includes('edit')) {
-                    patchRequest('/activities', values)
                     console.log(values)
                 }
                 resetForm()

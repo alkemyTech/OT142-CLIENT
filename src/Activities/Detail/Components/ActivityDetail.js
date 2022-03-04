@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { Container, Text, Image, Spinner } from '@chakra-ui/react';
 import { useParams } from "react-router-dom";
-import { getRequest } from "../../../Services/ServiceActivities";
+import { get } from "../../../Services/publicApiService";
 
 const ActivityDetail = () => {
     const { id } = useParams();
@@ -11,7 +11,7 @@ const ActivityDetail = () => {
 
     const getData = useCallback(async () => {
         try {
-            const { data } = await getRequest(`/activities/${id}`)
+            const { data } = await get(`/activities/${id}`)
             setActivity(data.data);
         } catch (e) {
             setError(true);

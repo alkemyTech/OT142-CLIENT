@@ -2,7 +2,6 @@ import axios from "axios";
 
 const BASE_URL = "http://ongapi.alkemy.org/api";
 
-
 const getAuthorizationToken = () => {
   const auth = {
     Authorization: localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null
@@ -10,14 +9,12 @@ const getAuthorizationToken = () => {
   return auth;
 }
 
-
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     Group: "142"
   }
 });
-
 
 export const remove = (route, id) => {
 
@@ -28,22 +25,23 @@ export const remove = (route, id) => {
     .catch(error => console.log(error));
 }
 
-export const Get = () => {
-  axios
-    .get("https://jsonplaceholder.typicode.com/users", config)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
-};
+export const get = (route, id) => {
+  const fullRoute = id ? `${BASE_URL}/${route}/${id}` : `${BASE_URL}/${route}`;
+  return axiosInstance.get(fullRoute, {
+    headers: getAuthorizationToken(),
+  })
+}
 
-// PATCH METHOD
-export const patchPrivate = async (endpoint, id, body) => {
-  try {
-    const response = await axios.patch(`http://ongapi.alkemy.org/api/${endpoint}/${id}`, body, {
-      headers: tokenFunction(),
-    });
-    return response;
-  } catch (err) {
-    return err;
-  }
-};
+export const post = (route, payload) => {
+  return axiosInstance.post(route, payload, {
+    headers: getAuthorizationToken(),
+  })
+}
+
+export const put = (route, id, payload) => {
+  return axiosInstance.put(`${BASE_URL}/${route}/${id}`, payload, {
+    headers: getAuthorizationToken(),
+  })
+}
+
 
