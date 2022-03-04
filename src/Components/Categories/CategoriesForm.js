@@ -1,32 +1,156 @@
-import React, { useState } from 'react';
-import '../FormStyles.css';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import "../FormStyles.css";
+import axios from "axios";
+import {
+  Image,
+  Input,
+  Button,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Stack,
+  Textarea,
+  Heading,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  Box
+} from "@chakra-ui/react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import styleCS from './styleCS.css'
+
+const state = {
+  name: "",
+  description: "",
+  image: "",
+};
 
 const CategoriesForm = () => {
-    const [initialValues, setInitialValues] = useState({
-        name: '',
-        description: ''
-    })
+  const { categorie } = useParams();
+  const [initialValues, setInitialValues] = useState(state==false);
 
-    const handleChange = (e) => {
-        if(e.target.name === 'name'){
-            setInitialValues({...initialValues, name: e.target.value})
-        } if(e.target.name === 'description'){
-            setInitialValues({...initialValues, description: e.target.value})
+
+  useEffect(() => {
+  
+    if (categorie) {
+      var BASE_URL = `http://ongapi.alkemy.org/api/categories/${categorie}`;
+      axios
+        .get(BASE_URL)
+        .then((res) => res.data.data)
+        .then((data) =>{
+            setInitialValues({
+                      name: data.name,
+                      description: data.description,
+                      image: data.image,
+                    })
+        
         }
+        
+        
+          
+        );
+        
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(initialValues);
+   
+  },[categorie]);
+  const handleChange = (e) => {
+    if (e.target.name === "name") {
+      setInitialValues({ ...initialValues, name: e.target.value });
     }
+  };
 
-    return (
-        <form className="form-container" onSubmit={handleSubmit}>
-            <input className="input-field" type="text" name="name" value={initialValues.name} onChange={handleChange} placeholder="Title"></input>
-            <input className="input-field" type="text" name="description" value={initialValues.description} onChange={handleChange} placeholder="Write some description"></input>
-            <button className="submit-btn" type="submit">Send</button>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("enviado ", initialValues);
+    if (categorie) {
+      const res = await axios.patch("/categories", initialValues);
+      return res;
+    } else {
+      const res = await axios.post("/categories", initialValues);
+      return res;
+    }
+  };
+
+  return (
+    <>
+        <form className="global" onSubmit={handleSubmit}>
+          <Stack>
+            <Heading>Edit/Categorie</Heading>
+          </Stack>
+          <Stack>
+            <FormControl isRequired>
+              <FormLabel htmlFor="first-name">Name</FormLabel>
+              <Input
+                isInvalid
+                focusBorderColor="red.300"
+                variant="filled"
+                type="text"
+                minLength={4}
+                name="name"
+                value={initialValues.name}
+                onChange={handleChange}
+                placeholder="Name"
+              ></Input>
+            </FormControl>
+          </Stack>
+          <Stack spacing={4}>
+            <FormControl isRequired>
+              <FormLabel htmlFor="first-name">Description</FormLabel>
+              <CKEditor
+                config={{ placeholder: "...Description" }}
+                editor={ClassicEditor}
+                data={initialValues.description}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  console.log(data);
+                  setInitialValues({ ...initialValues, description: data });
+                }}
+              />
+            </FormControl>
+          </Stack>
+          
+
+         
+          <Stack spacing={4}>
+            <FormControl isRequired>
+              <FormLabel htmlFor="first-name">Image</FormLabel>
+            
+  
+              <Input
+             
+                accept="image/x-png,image/jpeg"
+                id="image"
+                type="file"
+                variant="flushed"
+                onChange={(event) => {
+                  const files = event.target.files;
+                  let myFiles = Array.from(files);
+                  setInitialValues({
+                    ...initialValues,
+                    image: myFiles[0].name,
+                  });
+                }}
+                mb={2}
+              />
+              
+              <Image id="img-preview"></Image>
+            </FormControl>
+          </Stack>
+         
+          <Stack spacing={4}>
+            <Button mt={4} colorScheme="teal" type="submit">
+              Send
+            </Button>
+          </Stack>
         </form>
-    );
-}
- 
+      
+    </>
+  );
+};
+
 export default CategoriesForm;

@@ -28,7 +28,7 @@ const FieldControl = ({type, field, form, idName, title, icon}) => {
                 <Input id={idName} placeholder={title} {...field} />
             </InputGroup> 
             :
-            <Textarea id="firstName" placeholder="Message" {...field} mb={2} maxH={300} />
+            <Textarea id="firstName" placeholder={title} {...field} mb={2} maxH={300} />
         }
 
         {form.errors[idName] && form.touched[idName] ? (
