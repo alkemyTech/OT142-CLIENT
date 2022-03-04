@@ -8,7 +8,7 @@ import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import * as Yup from 'yup';
 import FieldControl from './FieldControl';
 import { messageErrors } from '../../utils/messageErrors';
-import { createContact } from '../../Services/contactApiService';
+import { createContact } from '../../Services/contactService';
 
 const {name, email, phone, message} = messageErrors;
 

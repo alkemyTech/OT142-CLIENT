@@ -2,53 +2,51 @@ import axios from "axios";
 
 const BASE_URL = "http://ongapi.alkemy.org/api";
 
-const config = {
-  headers: {
-    // Group: 01, //Aqui va el ID del equipo!!
+
+const getAuthorizationToken = () => {
+  const auth = {
     Authorization: localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null
-  },
-};
+  }
+  return auth;
+}
+
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
-  config
+  headers : {
+    Group: "142" 
+  }
 });
 
 
-export const Delete = (route, id) => {
-  return axios.delete(`${BASE_URL}/${route}/${id}`, config)
+export const remove = (route, id) => {
+
+  return axios.delete(`${BASE_URL}/${route}/${id}`,  {
+      headers:  getAuthorizationToken(),
+    })
     .then(res => res.data)
     .catch(error => console.log(error));
 }
 
 
-export const Get = (route, id) => {
+export const get = (route, id) => {
   const fullRoute = id ? `${BASE_URL}/${route}/${id}` : `${BASE_URL}/${route}`;
-  return axiosInstance.get(fullRoute)
+  return axiosInstance.get(fullRoute,  {
+    headers: getAuthorizationToken(),
+  })
+}
+
+export const post = (route, payload) => {
+  return axiosInstance.post(route, payload,  {
+    headers: getAuthorizationToken(),
+  })
+}
+
+export const put = (route, id, payload) => {
+  return axiosInstance.put(`${BASE_URL}/${route}/${id}`, payload,  {
+    headers: getAuthorizationToken(),
+  })
 }
 
 
-// POST METHOD 
-export const PostPrivate = async (endpoint, body) => {
-
-  try{
-    const res = await axios.post(`http://ongapi.alkemy.org/api/${endpoint}`, body, config);
-    return res  
-  }catch(err){
-    return err
-  }
-
-}
-
-// PATCH METHOD
-export const patchPrivate = async (endpoint, id, body) => {
-    try {  
-        const response = await axios.patch(`http://ongapi.alkemy.org/api/${endpoint}/${id}`,body,{
-            // headers: tokenFunction(),
-        });   
-        return response;    
-    } catch (err) {
-        return err;
-    }
-};
 
