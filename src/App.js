@@ -31,7 +31,7 @@ import UserList from './Components/Dashboard/UsersList'; */
 
 function App() {
   return (
-    <>
+    <> <ChakraProvider>
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
@@ -55,6 +55,12 @@ function App() {
           {/*           <Route path='/contact-form' component={ContactForm} /> */}
         </Switch>
       </BrowserRouter>
+    </ChakraProvider>
+      <div className="App">
+        <header className="App-header">
+
+        </header>
+      </div>
     </>
   );
 }
