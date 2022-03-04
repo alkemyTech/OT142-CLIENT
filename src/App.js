@@ -70,8 +70,14 @@ function App() {
           <Route exact path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
+
         </Switch>
       </BrowserRouter>
+    <div className="App">
+      <header className="App-header">
+        
+      </header>
+    </div>
     </>
   );
 }
