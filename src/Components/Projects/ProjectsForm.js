@@ -59,7 +59,8 @@ const ProjectsForm = ({ updatedValues }) => {
 
             onSubmit={async (values, action) => {
               if (!updatedValues) {
-                await API.post('/projects', values);
+                const gg = await API.post('/projects', values);
+                console.log(gg);
                 console.log('Project created');
               } else {
                 await API.put(`/projects/${id}`, values);
@@ -114,8 +115,8 @@ const ProjectsForm = ({ updatedValues }) => {
                       name='image'
                       accept='.png, .jpg'
                       onChange={(e) => {
-                        const file = e.currentTarget.files[0].name;
-                        setFieldValue('image', file);
+                        const file = e.currentTarget.files[0];
+                        setFieldValue('image', URL.createObjectURL(file));
                       }}
                       onBlur={handleBlur}
                     />
