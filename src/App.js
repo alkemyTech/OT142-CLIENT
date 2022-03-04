@@ -55,17 +55,13 @@ function App() {
           <Route exact path="/backoffice/organization" component={OrganizationBoard} />
           <Route exact path="/backoffice/news/create" component={NewsForm} />
           <Route exact path="/backoffice/news/:id" component={NewsForm} />
-          <Route path="/backoffice/news" component={NewsList} />
-            <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
+          <Route exact path="/backoffice/news" component={NewsList} />
+          <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
           <Route exact path="/backoffice/users" component={UserList} />
           <Route exact path="/create-testimonials" component={TestimonialForm} />
-          <Route path="/create-news" component={NewsForm} />
+          <Route exact path="/create-news" component={NewsForm} />
           <Route exact path="/create-user" component={UserForm} />
-          <Route
-            exact
-            path="/backoffice/members/create"
-            component={MembersForm}
-          />
+          <Route exact path="/backoffice/members/create" component={MembersForm} />
           <Route exact path="/create-project" component={ProjectsForm} />
           <Route exact path="/update-project/:id" component={ProjectsForm} />
           <Route exact path="/school-campaign" component={SchoolCampaign} />
@@ -74,7 +70,7 @@ function App() {
           <Route exact path="/actividades" component={Activities} />
           <Route exact path="/register" component={RegisterForm} />
           <Route exact path='/contact' component={Contact} />
-          <Route path='/contact-form' component={ContactForm} />
+          <Route exact path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
 
