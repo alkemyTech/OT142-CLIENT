@@ -2,15 +2,28 @@ import axios from "axios";
 
 const BASE_URL = "http://ongapi.alkemy.org/api";
 
-const config = {
-  headers: {
-    // Group: 01, //Aqui va el ID del equipo!!
-    Authorization: localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null
-  },
-};
 
-export const Delete = (route, id) => {
-  return axios.delete(`${BASE_URL}/${route}/${id}`, config)
+const getAuthorizationToken = () => {
+  const auth = {
+    Authorization: localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null
+  }
+  return auth;
+}
+
+
+export const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    Group: "142"
+  }
+});
+
+
+export const remove = (route, id) => {
+
+  return axios.delete(`${BASE_URL}/${route}/${id}`, {
+    headers: getAuthorizationToken(),
+  })
     .then(res => res.data)
     .catch(error => console.log(error));
 }
