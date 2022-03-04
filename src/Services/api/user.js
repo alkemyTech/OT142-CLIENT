@@ -1,8 +1,8 @@
-import { getRequestAll, getRequestById, putRequest, postRequest, deleteRequest } from '../publicApiService';
+import { get, getById, put, post, remove } from '../publicApiService';
 
 export const getUsers = () => {
 
-    return getRequestAll(`/users?limit=10`)
+    return get(`/users?limit=10`)
         .then(res => {
             if (res.status === 200) return res.data;
             return Promise.reject(res.statusText);
@@ -12,7 +12,7 @@ export const getUsers = () => {
 
 export const getUser = (id) => {
 
-    return getRequestById(`/users/${id}`)
+    return getById(`/users/${id}`)
         .then(res => {
             if(res.status === 200) return res.data;
             return Promise.reject(res.statusText);
@@ -24,7 +24,7 @@ export const createUser = (user) => {
 
     const createNewUser = {...user};
 
-    return postRequest('/users', createNewUser)
+    return post('/users', createNewUser)
         .then(res => {
             if(res.status === 200) return res.data;
             return Promise.reject(res.statusText);
@@ -36,14 +36,14 @@ export const editUser = (id, user) => {
 
     const updateUser = {...user};
 
-    return putRequest(`/users/${id}`, updateUser)
+    return put(`/users/${id}`, updateUser)
         .then(res => res.data);
 
 }
 
 export const deleteUser = (id) => {
 
-    return deleteRequest(`/users/${id}`)
+    return remove(`/users/${id}`)
         .then(res => res.data);
 
 }
