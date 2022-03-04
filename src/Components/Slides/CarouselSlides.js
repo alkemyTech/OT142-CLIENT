@@ -8,19 +8,14 @@ import {
   Text,
   Container,
 } from '@chakra-ui/react';
-// Here we have used react-icons package for the icons
+
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
-// And react-slick as our Carousel Lib
 import Slider from 'react-slick';
 import { useState } from 'react';
 import pic1 from '../../Assets/pic1-test.jpg'
 import pic2 from '../../Assets/pic2-test.jpg'
 import pic3 from '../../Assets/pic3-test.jpg'
 
-
-//La información se mostrára de forma dinámica obtenida del endpoint de Slides. Inicialmente, estos datos serán obtenidos de un array de objetos (en nuestro caso se llamara "cards") con las propiedades: image, title y description
-
-// Settings for the slider
 const settings = {
   dots: true,
   arrows: false,
@@ -34,17 +29,11 @@ const settings = {
 };
 
 export default function CarouselSlides(slidesData) {
-  // As we have used custom buttons, we need a reference variable to
-  // change the state
   const [slider, setSlider] = useState(null);
 
-  // These are the breakpoints which changes the position of the
-  // buttons as the screen size changes
   const top = useBreakpointValue({ base: '90%', md: '50%' });
   const side = useBreakpointValue({ base: '30%', md: '40px' });
 
-  // This list contains all the data for carousels
-  // This can be static or loaded from a server
   const cards = [
     {
       title: 'Nosotros',
