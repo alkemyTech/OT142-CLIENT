@@ -1,14 +1,14 @@
-
+import {PostPrivate} from "./privateApiService"
 // import { get,put,post,remove } from "./privateApiService";
 
-//const ENDPOINT = 'contacts'
+const ENDPOINT = 'contacts'
 
 export const getContact = () => {
     //return get(ENDPOINT);
 }; 
 
 export const createContact = (data) => {
-    //return post(ENDPOINT, data);
+     return PostPrivate(ENDPOINT, data);
 };
 
 export const editContact = (data, id) => {

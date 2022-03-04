@@ -33,7 +33,6 @@ import UserList from './Components/Dashboard/UsersList';
 import ActivitiesList from './Activities/Detail/Components/ActivitiesList';
 import { News } from './Components/News';
 import SlidesTable from './Components/Slides/SlidesTable';
-import ContactForm from "./Components/Contact";
 
 function App() {
   return (
@@ -72,7 +71,7 @@ function App() {
           <Route exact path="/actividades" component={Activities} />
           <Route exact path="/register" component={RegisterForm} />
           <Route exact path='/contact' component={Contact} />
-          <Route path='/contact-form' component={ContactForm} />
+          <Route exact path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
         </Switch>

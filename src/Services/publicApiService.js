@@ -7,9 +7,9 @@ import { API } from "../Activities/Detail/hooks/API";
 //     }
 // }
 
-export const axiosInstance = axios.create({
-    baseURL: 'http://ongapi.alkemy.org/api',
-});
+// export const axiosInstance = axios.create({
+//     baseURL: 'http://ongapi.alkemy.org/api',
+// });
   
 export const getRequestAll = (path) => {
     return axiosInstance.get(path);
