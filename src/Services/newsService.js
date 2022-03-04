@@ -23,6 +23,7 @@ export const postNews = ( id, name, slug, content, image, user_id, category_id, 
     return post("news", payload)
       .then((res) => res.data)
       .catch((error) => console.log(error));
+      
 };
 
 export const deleteNews = ( id) => {
@@ -35,5 +36,8 @@ export const editNews = ( id, payload) => {
     return put("news", id, payload)
         .then(res => res.data)
         .catch(error => console.log(error))
+        
 }
+
+
 
