@@ -34,3 +34,11 @@ Modified by Pablo
 
 
 Otra modificacion por parte de Pablo
+
+### Como implementar Skeleton
+
+Skeleton se utiliza para mostrar un feedback al usuario cuando se esté realizando la carga de contenido.
+
+Para incoporarlo se debe importar el componente reutilizable <SetupSkeleton />. Y se puede hacer uso de las siguientes propiedades, entre otras. Ejemplo:
+
+<SetupSkeleton height={200} mt={5} padding={6} size={50} boxShadow="lg" bg="white" noOfLines={3} spacing={3} />
