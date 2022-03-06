@@ -32,13 +32,13 @@ import UserList from './Components/Dashboard/UsersList';
 import { News } from './Components/News';
 import SlidesTable from './Components/Slides/SlidesTable';
 import { ChakraProvider } from '@chakra-ui/react'
+import ContactOngDate from './Components/Contact/ContactOngDate'
 
 //import ContactForm from "./Components/Contact";
 
 function App() {
   return (
-    <> 
-    <ChakraProvider>
+    <>
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -46,7 +46,6 @@ function App() {
           <Route exact path="/create-category" component={CategoriesForm} />
           <Route exact path="/Novedades/" component={News} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
-          <Route exact path="/backoffice/slides" component={SlidesTable} />
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
@@ -73,14 +72,9 @@ function App() {
           <Route exact path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
+          <Route exact path='/contacto' component={ContactOngDate} />
         </Switch>
       </BrowserRouter>
-      </ChakraProvider>
-    <div className="App">
-      <header className="App-header">
-        
-      </header>
-    </div>
     </>
   );
 }
