@@ -41,9 +41,7 @@ function App() {
     <ChakraProvider>
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
-          <Route exact path="/provisional-home" component={CarouselSlides} />
-          <Route exact path="/" component={Home} />
+          <Route path="/" exact component={Home} />
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/create-category" component={CategoriesForm} />
           <Route exact path="/Novedades/" component={News} />
@@ -56,6 +54,7 @@ function App() {
           <Route exact path="/backoffice/organization" component={OrganizationBoard} />
           <Route exact path="/backoffice/news/create" component={NewsForm} />
           <Route exact path="/backoffice/news/:id" component={NewsForm} />
+          <Route path="/backoffice/news" component={NewsList} />
           <Route exact path="/backoffice/news" component={NewsList} />
           <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
           <Route exact path="/backoffice/users" component={UserList} />
