@@ -5,6 +5,6 @@ import ActivitiesReducer from '../Reducers/activitiesSlice';
 export default configureStore({
   reducer: {
     counter: counterReducer,
-    ActivitiesReducer: ActivitiesReducer
+    ActivitiesReducer
   },
 });
