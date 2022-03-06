@@ -24,13 +24,11 @@ import RegisterForm from "./Components/Auth/RegisterForm";
 import ContactForm from './Components/Contact/ContactForm';
 import EditHomeForm from './Components/Dashboard/editHomeForm';
 import Contact from './Components/Contact';
-import Footer from "./Components/Footer";
 import About from './Components/About';
 import BackOfficeActivities from './Components/Activities/backoffice';
 import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
-import ActivitiesList from './Activities/Detail/Components/ActivitiesList';
 import { News } from './Components/News';
 import SlidesTable from './Components/Slides/SlidesTable';
 import { ChakraProvider } from '@chakra-ui/react'
@@ -39,7 +37,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
   return (
-    <> <ChakraProvider>
+    <> 
+    <ChakraProvider>
       <BrowserRouter>
         <Switch>
           {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
@@ -75,7 +74,6 @@ function App() {
           <Route exact path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
-
         </Switch>
       </BrowserRouter>
       </ChakraProvider>
