@@ -35,6 +35,7 @@ import { News } from './Components/News';
 import SlidesTable from './Components/Slides/SlidesTable';
 import { ChakraProvider } from '@chakra-ui/react'
 import AlertServicie from "./Services/AlertServicie/AlertServicie";
+import { AlertRoute } from "./Services/AlertServicie/AlertRoute";
 
 //import ContactForm from "./Components/Contact";
 
@@ -78,7 +79,9 @@ function App() {
           <Route path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
-          <Route exact path='/alert' component={AlertServicie} />
+          {/* <Route exact path='/alert' component={AlertServicie} /> */}
+          <Route exact path='/alert' component={AlertRoute} />
+
 
 
         </Switch>

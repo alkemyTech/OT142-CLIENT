@@ -37,5 +37,4 @@ Otra modificacion por parte de Pablo
 
 AlertServicie
 The path is accessed via the (http://localhost:3000/alert) path.
-A "Next Task" button was created in this component, which gives functionality to a generalized alert.
-In turn, depending on the option you choose, it triggers a different alert. (Confirmation, Error, Information)
+A service was created in this file where three alert functions are exported (confirmation, error, information). They receive props, in case they are null they have default values.
