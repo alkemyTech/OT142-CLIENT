@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Button } from '@chakra-ui/react'
+import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import * as Yup from 'yup';
@@ -93,7 +95,7 @@ const UserForm = (userData) => {
                     className="input-field" 
                     autoComplete="off"
                     type="text" 
-                    name="name" 
+                    name="name"
                     value={userData ? values.name : initialValues.name}
                     onChange={handleChange}
                     onBlur={handleBlur} 
@@ -129,7 +131,7 @@ const UserForm = (userData) => {
                     <option value="User">Usuario</option>
                 </Field>
                 <ErrorMessage name='userRole' render={msg => <div className="error">{msg}</div>}/>
-                <button className="submit-btn" type="submit">Enviar</button>
+                <Button className="submit-btn" type="submit">Enviar</Button>
             </Form>
             )}
         </Formik>

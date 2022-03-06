@@ -12,7 +12,7 @@ export const getUsers = () => {
 
 export const getUser = (id) => {
 
-    return getById(`/users/${id}`)
+    return getById(`/users`, id)
         .then(res => {
             if(res.status === 200) return res.data;
             return Promise.reject(res.statusText);
@@ -36,14 +36,14 @@ export const editUser = (id, user) => {
 
     const updateUser = {...user};
 
-    return put(`/users/${id}`, updateUser)
+    return put(`/users`, id, updateUser)
         .then(res => res.data);
 
 }
 
 export const deleteUser = (id) => {
 
-    return remove("/users", id)
+    return remove(`/users`, id)
         .then(res => res.data);
 
 }
