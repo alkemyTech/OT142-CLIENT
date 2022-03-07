@@ -29,8 +29,21 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-
 Modified by Pablo
 
+### `Loaders`
+
+The implementation of the loader should be the following :
+
+-Import Loader from Components/Loader
+
+- Add a conditional rendering with a ternary or an OR operator on the component with the data obtained from HTTP request as the first option.
+
+      - apiData ? Loader : apiData
+      - apiData || Loader
+
+- Loader has a prop named type : if u want to display a spinner pass the type prop as 'spinner', otherwise, if you dont pass a prop to the Loader component, it will display a progress bar as the default option.
+
+Modified by Maximiliano Rama
 
 Otra modificacion por parte de Pablo
