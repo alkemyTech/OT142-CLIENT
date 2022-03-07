@@ -2,7 +2,7 @@ import React from "react";
 // import logo from './logo.svg';
 // import { Counter } from './features/counter/Counter';
 import './App.css';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -54,7 +54,6 @@ function App() {
           <Route exact path="/backoffice/news/create" component={NewsForm} />
           <Route exact path="/backoffice/news/:id" component={NewsForm} />
           <Route path="/backoffice/news" component={NewsList} />
-          <Route exact path="/backoffice/news" component={NewsList} />
           <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
           <Route exact path="/backoffice/users" component={UserList} />
           <Route exact path="/create-testimonials" component={TestimonialForm} />
@@ -72,9 +71,14 @@ function App() {
           <Route exact path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
-          <Route exact path='/contacto' component={ContactOngDate} />
         </Switch>
       </BrowserRouter>
+    </ChakraProvider>
+      <div className="App">
+        <header className="App-header">
+
+        </header>
+      </div>
     </>
   );
 }
