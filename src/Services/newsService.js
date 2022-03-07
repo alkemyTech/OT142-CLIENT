@@ -1,12 +1,12 @@
-import { Delete, Get, Post, Put } from "./privateApiService";
+import { remove, get, post, put } from "./privateApiService";
 
-export const getNews = (route, id) => {
-  return Get(route, id)
+export const getNews = (id) => {
+  return get("news", id)
     .then((res) => res.data)
     .catch((error) => console.log(error));
 };
 
-export const postNews = (route, id, name, slug, content, image, user_id, category_id, created_at, updated_at, deleted_at, group_id) => {
+export const postNews = ( id, name, slug, content, image, user_id, category_id, created_at, updated_at, deleted_at, group_id) => {
     const payload = {
         id: id,
         name: name,
@@ -20,23 +20,23 @@ export const postNews = (route, id, name, slug, content, image, user_id, categor
         deleted_at: deleted_at,
         group_id: group_id
     };
-    const Post= Post(route, payload)
+    return post("news", payload)
       .then((res) => res.data)
       .catch((error) => console.log(error));
-      return Post
+      
 };
 
-export const deleteNews = (route, id) => {
-    return Delete(route, id)
+export const deleteNews = ( id) => {
+    return remove("news", id)
         .then(res => res.data)
         .catch(error => console.log(error))
 }
 
-export const editNews = (route, id, payload) => {
-   const Put=Put(route, id, payload)
+export const editNews = ( id, payload) => {
+    return put("news", id, payload)
         .then(res => res.data)
         .catch(error => console.log(error))
-        return Put
+        
 }
 
 

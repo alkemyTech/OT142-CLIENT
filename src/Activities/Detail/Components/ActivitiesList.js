@@ -2,7 +2,7 @@ import { Button, Image, Box, Container, Text, Heading, Spinner, Grid } from '@ch
 import Title from '../../../Components/Titles'
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
-import { API } from '../hooks/API';
+import { get } from "../../../Services/publicApiService";
 
 const ActivitiesList = () => {
 
@@ -10,12 +10,12 @@ const ActivitiesList = () => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
     const [error, setError] = useState(false);
-   
+
     console.log(data);
 
-    const getData = useCallback (async () => {
+    const getData = useCallback(async () => {
         try {
-            const {data} = await API.get();
+            const { data } = await get("/activities");
             setData(data.data);
             setLoading(false);
         } catch (e) {
@@ -34,13 +34,12 @@ const ActivitiesList = () => {
     }
 
     return (
-        <Container>
+        <Container maxW='container.lg'>
+            <Title>Actividades</Title>
 
-           <Title>Actividades</Title>
+            {loading === true && <Spinner size='xl' />}
 
-            {loading == true && <Spinner size='xl' />}
-
-            <Grid bg="grey" maxW="150px" alignItems="center" flexDirection="column">
+            <Grid templateColumns='repeat(3, 1fr)' gap={6}>
                 {data?.length > 0 &&
                     data.map((activity) => (
                         <Box key={activity.id}>
