@@ -71,6 +71,8 @@ function App() {
           <Route exact path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
+          <Route path="/backoffice/members/edit" component={MembersEdit} />
+          <Route path="/create-member" component={MembersForm} />
         </Switch>
       </BrowserRouter>
     </ChakraProvider>
