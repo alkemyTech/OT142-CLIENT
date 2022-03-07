@@ -1,5 +1,4 @@
 import { Progress, Spinner, Center } from "@chakra-ui/react";
-import React from "react";
 
 const Loader = ({ type }) => {
   return type === "spinner" ? (
@@ -14,7 +13,7 @@ const Loader = ({ type }) => {
       />
     </Center>
   ) : (
-    <Progress value={20} isIndeterminate />
+    <Progress height="1em" value={5} isIndeterminate />
   );
 };
 
