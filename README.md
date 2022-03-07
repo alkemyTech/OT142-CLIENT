@@ -31,19 +31,29 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 Modified by Pablo
 
-### `Loaders`
+Otra modificacion por parte de Pablo
 
-The implementation of the loader should be the following :
+# `Loaders`
 
--Import Loader from Components/Loader
+Loader component returns one of two types of loaders:
 
-- Add a conditional rendering with a ternary or an OR operator on the component with the data obtained from HTTP request as the first option.
+- Progress Bar (default).
+- Spinner (passing the type='spinner' prop)
 
-      - apiData ? Loader : apiData
-      - apiData || Loader
+## `Loaders Use`
 
-- Loader has a prop named type : if u want to display a spinner pass the type prop as 'spinner', otherwise, if you dont pass a prop to the Loader component, it will display a progress bar as the default option.
+Loader must be rendered whenever an HTTP request isnt fulfilled. (Conditional Rendering).
+
+### `Loaders props`
+
+Loader component receives the following props:
+
+**type** : String. can be 'spinner' to display an spinner, or null to display a progress bar (default option).
+
+**size** : Must be one of the followings: ( 'xs','sm','md','lg','xl')
+
+**color** : String. Specify the color of the loader.
+
+**height** (only for Progress type): String. specify the height of the Progress Bar.
 
 Modified by Maximiliano Rama
-
-Otra modificacion por parte de Pablo

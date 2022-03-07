@@ -1,6 +1,6 @@
 import { Progress, Spinner, Center } from "@chakra-ui/react";
 
-const Loader = ({ type }) => {
+const Loader = ({ type, size, color, height }) => {
   return type === "spinner" ? (
     <Center>
       <Spinner
@@ -8,12 +8,18 @@ const Loader = ({ type }) => {
         thickness="4px"
         speed="0.65s"
         emptyColor="gray.200"
-        color="blue.500"
-        size="xl"
+        color={color || "blue.500"}
+        size={size || "xl"}
       />
     </Center>
   ) : (
-    <Progress height="1em" value={5} isIndeterminate />
+    <Progress
+      colorScheme={color || "blue"}
+      height={height}
+      size={size || "md"}
+      value={5}
+      isIndeterminate
+    />
   );
 };
 
