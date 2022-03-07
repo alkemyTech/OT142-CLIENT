@@ -17,28 +17,22 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import ActivityDetail from './Activities/Detail/Components/ActivityDetail';
 import Activities from './Activities/Detail/Components/Activities';
 import Dashboard from "./Components/Dashboard/index.js";
-import OrganizationBoard from "./Components/Dashboard/OrganizationBoard.js";
-import { NewsDetail } from "./Components/News/Detail/NewsDetail";
+/* import OrganizationBoard from "./Components/Dashboard/OrganizationBoard.js"; */
+import { NewsDetail } from './Components/News/Detail/NewsDetail'
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
-import ContactForm from './Components/Contact/ContactForm';
-import EditHomeForm from './Components/Dashboard/editHomeForm';
-import Contact from './Components/Contact';
+/* import Contact from './Components/Contact';
+import Footer from "./Components/Footer";
 import About from './Components/About';
 import BackOfficeActivities from './Components/Activities/backoffice';
 import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
-import UserList from './Components/Dashboard/UsersList';
-import { News } from './Components/News';
-import SlidesTable from './Components/Slides/SlidesTable';
-import { ChakraProvider } from '@chakra-ui/react'
-import ContactOngDate from './Components/Contact/ContactOngDate'
-
-//import ContactForm from "./Components/Contact";
+import UserList from './Components/Dashboard/UsersList'; */
 
 function App() {
   return (
     <>
+      {/*      <ChakraProvider> */}
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
