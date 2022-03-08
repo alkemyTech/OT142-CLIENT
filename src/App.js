@@ -33,6 +33,11 @@ import { News } from './Components/News';
 import SlidesTable from './Components/Slides/SlidesTable';
 import { ChakraProvider } from '@chakra-ui/react'
 import ContactOngDate from './Components/Contact/ContactOngDate'
+import NewsList from "./Components/News/NewsList";
+import {Provider} from 'react-redux'
+import store from './app/store'
+import ReducerCategories from "./Components/Reducer/ReducerCategories";
+import TableCategorie from "./Components/Categories/TableCategorie";
 
 //import ContactForm from "./Components/Contact";
 
@@ -43,7 +48,6 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route exact path="/create-activity" component={ActivitiesForm} />
-          <Route exact path="/create-category" component={CategoriesForm} />
           <Route exact path="/Novedades/" component={News} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice" component={Dashboard} />
@@ -73,6 +77,13 @@ function App() {
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
           <Route exact path='/contacto' component={ContactOngDate} />
+       
+          {/* <Route exact path="/create-category/:id?" component={CategoriesForm} /> */}
+          <Route exact path="/create-category/" component={TableCategorie} />
+
+          
+
+          
         </Switch>
       </BrowserRouter>
     </>
