@@ -47,6 +47,3 @@ export const put = (route, id, payload) => {
     headers: getAuthorizationToken(),
   })
 }
-
-
-

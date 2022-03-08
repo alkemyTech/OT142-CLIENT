@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { MdTitle, MdImage } from 'react-icons/md';
+/* import { MdTitle, MdImage } from 'react-icons/md'; */
 import { useParams } from 'react-router-dom'
 import { API } from './hooks/API';
 
@@ -77,7 +77,7 @@ const ProjectsForm = ({ updatedValues }) => {
                   <InputGroup>
                     <InputLeftElement
                       pointerEvents="none"
-                      children={<Icon as={MdTitle} />}
+                    /* children={<Icon as={MdTitle} />} */
                     />
                     <Input
                       type="text"
@@ -108,7 +108,7 @@ const ProjectsForm = ({ updatedValues }) => {
                   <InputGroup>
                     <InputLeftElement
                       pointerEvents="none"
-                      children={<Icon as={MdImage} />}
+                    /*  children={<Icon as={MdImage} />} */
                     />
                     <Input
                       type="file"
