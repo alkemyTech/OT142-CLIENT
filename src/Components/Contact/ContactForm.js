@@ -43,7 +43,6 @@ const ContactForm = () => {
             }}
             validationSchema={schemaContact}
             onSubmit={values => {
-                alert(JSON.stringify(values, null, 2));
                 createContact(values)
             }}
         >

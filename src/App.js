@@ -17,22 +17,28 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import ActivityDetail from './Activities/Detail/Components/ActivityDetail';
 import Activities from './Activities/Detail/Components/Activities';
 import Dashboard from "./Components/Dashboard/index.js";
-/* import OrganizationBoard from "./Components/Dashboard/OrganizationBoard.js"; */
+import OrganizationBoard from "./Components/Dashboard/OrganizationBoard.js";
 import { NewsDetail } from './Components/News/Detail/NewsDetail'
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
-/* import Contact from './Components/Contact';
+import Contact from './Components/Contact';
 import Footer from "./Components/Footer";
 import About from './Components/About';
 import BackOfficeActivities from './Components/Activities/backoffice';
 import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
-import UserList from './Components/Dashboard/UsersList'; */
+import UserList from './Components/Dashboard/UsersList'; 
+import { ChakraProvider } from '@chakra-ui/react'
+import { News } from "./Components/News";
+import EditHomeForm from "./Components/Dashboard/editHomeForm";
+import NewsList from "./Components/News/NewsList";
+import ContactForm from "./Components/Contact/ContactForm"
+import ContactOngDate from "./Components/Contact/ContactOngDate";
 
 function App() {
   return (
     <>
-      {/*      <ChakraProvider> */}
+           <ChakraProvider>
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -61,11 +67,11 @@ function App() {
           <Route exact path="/actividades/:id" component={ActivityDetail} />
           <Route exact path="/actividades" component={Activities} />
           <Route exact path="/register" component={RegisterForm} />
-          <Route exact path='/contact' component={Contact} />
+          <Route exact path='/contacto' component={ContactOngDate} />
           <Route exact path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
-          <Route path="/backoffice/members/edit" component={MembersEdit} />
+          {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
           <Route path="/create-member" component={MembersForm} />
         </Switch>
       </BrowserRouter>
