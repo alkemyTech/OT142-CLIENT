@@ -35,6 +35,11 @@ Otra modificacion por parte de Pablo
 
 # `Loaders`
 
+Loader component uses two Loaders from the Chakra-UI Library, these are following links:
+
+- Spinner: https://chakra-ui.com/docs/components/feedback/spinner
+- Progress: https://chakra-ui.com/docs/components/feedback/progress
+
 Loader component returns one of two types of loaders:
 
 - Progress Bar (default).
@@ -50,13 +55,14 @@ Loader component receives the following props:
 
 **type** : String. can be 'spinner' to display an spinner, or null to display a progress bar (default option).
 
-**size** : Must be one of the followings: ( 'xs','sm','md','lg','xl')
+**size** : Must be one of the followings: ( 'xs','sm','md','lg')
 
 **color** : String. Specify the color of the loader.
 
 **height** (only for Progress type): String. specify the height of the Progress Bar.
 
 Modified by Maximiliano Rama
+
 Otra modificacion por parte de Pablo
 
 # Como utilizar el spinner
