@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const getAllActivities = createAsyncThunk('activitiesReducer/getActivities', async () => {
-  const response = await axios.get('http://ongapi.alkemy.org/api/activities')
+  const response = await axios.get('https://ongapi.alkemy.org/api/activities')
   return response.data
 })
 
