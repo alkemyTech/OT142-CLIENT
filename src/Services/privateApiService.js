@@ -36,13 +36,6 @@ export const get = (route, id) => {
   })
 }
 
-//seguirá siendo  usado en caso de no aceptar el cambio de las variables de entorno, es el "orginal"
-// export const get = (route, id) => {
-//   const fullRoute = id ? `${BASE_URL}/${route}/${id}` : `${BASE_URL}/${route}`;
-//   return axiosInstance.get(fullRoute,  {
-//     headers: getAuthorizationToken(),
-//   })
-// }
 
 export const post = (route, payload) => {
   return axiosInstance.post(route, payload,  {
@@ -57,4 +50,7 @@ export const put = (route, id, payload) => {
 }
 
 
+export const getById = (path, id) => {
+  return axiosInstance.get(`${path}${id}`);
+};
 

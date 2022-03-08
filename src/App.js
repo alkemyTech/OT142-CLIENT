@@ -34,7 +34,8 @@ import SlidesTable from "./Components/Slides/SlidesTable";
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
 import NewsList from "./Components/News/NewsList";
 import ContactForm from "./Components/Contact/ContactForm";
-// import MembersEdit from "./Components/Members/"
+import ContactOngDate from "./Components/Contact/ContactOngDate";
+
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
           <Route exact path="/contact-form" component={ContactForm} />
           <Route exact path="/nosotros" component={About} />
           <Route exact path="/about-us/members" component={MembersList} />
+          <Route exact path='/contacto' component={ContactOngDate} />
           {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
           <Route path="/create-member" component={MembersForm} />
         </Switch>
