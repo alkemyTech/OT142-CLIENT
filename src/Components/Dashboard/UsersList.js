@@ -9,21 +9,23 @@ import {
     Button,
     Flex,
     Text,
+    Spinner
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getUsers, deleteUser } from '../../Services/api/user';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllUsers, getUsersList, renderUserList, deletetUsersApi } from './UsersSlice';
 
 const UserList = () => {
 
-    const [users, setUsers] = useState([]);
+    const dispatch = useDispatch();
+    const users = useSelector(getAllUsers);
 
-    //Funcion de prueba
+    const userStatus = useSelector(state => state.users.status);
+
     const handleDelete = (id) => {
-        setUsers(users.filter((user) => user.id !== id));
-        deleteUser(id)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+        dispatch(deletetUsersApi(id));
+        dispatch(renderUserList(id));
     }
 
     const handleEdit = (id) => {
@@ -31,18 +33,25 @@ const UserList = () => {
     }
 
     useEffect(() => {
-
-        getUsers()
-            .then(res => res.data)
-            .then(data => setUsers(data))
-            .catch(err => console.log(err))
-
-    }, [])
-    
+        if (userStatus === 'idle') {
+            dispatch(getUsersList());
+        }
+    }, [userStatus, dispatch])
 
     return (
         <Flex flexDirection="column" justifyContent="center" alignItems="center" p="2">
             ¿Deseas crear un nuevo usuario? <Text textColor="blue.400"><Link to="/backoffice/users/create">Crear usuario</Link></Text>
+
+            {userStatus === 'loading' &&
+                <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                />
+            }
+
             <Table variant="simple" size="sm" maxW="500px" mt="4">
                 <TableCaption>Gestión de usuarios</TableCaption>
                 <Thead>
