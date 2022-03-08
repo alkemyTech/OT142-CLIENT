@@ -21,20 +21,21 @@ export const axiosInstance = axios.create({
 
 export const remove = (route, id) => {
 
-  return axios.delete(`${BASE_URL}/${route}/${id}`,  {
+  return axios.delete(`${BASE_URL}${route}/${id}`,  {
       headers:  getAuthorizationToken(),
     })
     .then(res => res.data)
     .catch(error => console.log(error));
 }
 
-
+//esta es la que se cambiaria para que reciba la variable de entorno
 export const get = (route, id) => {
-  const fullRoute = id ? `${BASE_URL}/${route}/${id}` : `${BASE_URL}/${route}`;
+  const fullRoute = id ? `${BASE_URL}${route}/${id}` : `${BASE_URL}${route}`;
   return axiosInstance.get(fullRoute,  {
     headers: getAuthorizationToken(),
   })
 }
+
 
 export const post = (route, payload) => {
   return axiosInstance.post(route, payload,  {
@@ -43,10 +44,13 @@ export const post = (route, payload) => {
 }
 
 export const put = (route, id, payload) => {
-  return axiosInstance.put(`${BASE_URL}/${route}/${id}`, payload,  {
+  return axiosInstance.put(`${BASE_URL}${route}/${id}`, payload,  {
     headers: getAuthorizationToken(),
   })
 }
 
 
+export const getById = (path, id) => {
+  return axiosInstance.get(`${path}${id}`);
+};
 
