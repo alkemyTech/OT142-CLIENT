@@ -12,36 +12,28 @@ const getAuthorizationToken = () => {
 };
 
 export const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: "http://ongapi.alkemy.org/api",
   headers: {
     Group: "142",
   },
 });
 
-export const remove = (route, id) => {
-  return axios
-    .delete(`${BASE_URL}/${route}/${id}`, {
-      headers: getAuthorizationToken(),
-    })
-    .then((res) => res.data)
-    .catch((error) => console.log(error));
+export const get = (path) => {
+  return axiosInstance.get(path);
 };
 
-export const get = (route, id) => {
-  const fullRoute = id ? `${BASE_URL}/${route}/${id}` : `${BASE_URL}/${route}`;
-  return axiosInstance.get(fullRoute, {
-    headers: getAuthorizationToken(),
-  });
+export const getById = (path, id) => {
+  return axiosInstance.get(`${path}/${id}`);
 };
 
-export const post = (route, payload) => {
-  return axiosInstance.post(route, payload, {
-    headers: getAuthorizationToken(),
-  });
+export const put = (path, id, body) => {
+  return axiosInstance.put(`${path}/${id}`, body);
 };
 
-export const put = (route, id, payload) => {
-  return axiosInstance.put(`${BASE_URL}/${route}/${id}`, payload, {
-    headers: getAuthorizationToken(),
-  });
+export const post = (path, body) => {
+  return axiosInstance.post(path, body);
+};
+
+export const remove = (path, id) => {
+  return axiosInstance.delete(`${path}/${id}`);
 };

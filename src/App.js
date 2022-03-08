@@ -21,8 +21,6 @@ import OrganizationBoard from "./Components/Dashboard/OrganizationBoard.js";
 import { NewsDetail } from "./Components/News/Detail/NewsDetail";
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
-import ContactForm from "./Components/Contact/ContactForm";
-import EditHomeForm from "./Components/Dashboard/editHomeForm";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 import About from "./Components/About";
@@ -30,26 +28,23 @@ import BackOfficeActivities from "./Components/Activities/backoffice";
 import Home from "./Components/Home";
 import MembersList from "./Components/AboutUs/MembersList";
 import UserList from "./Components/Dashboard/UsersList";
-import ActivitiesList from "./Activities/Detail/Components/ActivitiesList";
-import { News } from "./Components/News";
-import SlidesTable from "./Components/Slides/SlidesTable";
 import { ChakraProvider } from "@chakra-ui/react";
-
-//import ContactForm from "./Components/Contact";
+import { News } from "./Components/News";
+import EditHomeForm from "./Components/Dashboard/editHomeForm";
+import ContactForm from "./Components/Contact/ContactForm";
+import ContactOngDate from "./Components/Contact/ContactOngDate";
 
 function App() {
   return (
     <>
-      {" "}
       <ChakraProvider>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route path="/" exact component={Home} />
             <Route exact path="/create-activity" component={ActivitiesForm} />
             <Route exact path="/create-category" component={CategoriesForm} />
             <Route exact path="/Novedades/" component={News} />
             <Route exact path="/Novedades/:id" component={NewsDetail} />
-            <Route exact path="/backoffice/slides" component={SlidesTable} />
             <Route exact path="/backoffice" component={Dashboard} />
             <Route
               exact
@@ -85,7 +80,7 @@ function App() {
               path="/create-testimonials"
               component={TestimonialForm}
             />
-            <Route path="/create-news" component={NewsForm} />
+            <Route exact path="/create-news" component={NewsForm} />
             <Route exact path="/create-user" component={UserForm} />
             <Route
               exact
@@ -99,10 +94,12 @@ function App() {
             <Route exact path="/actividades/:id" component={ActivityDetail} />
             <Route exact path="/actividades" component={Activities} />
             <Route exact path="/register" component={RegisterForm} />
-            <Route exact path="/contact" component={Contact} />
-            <Route path="/contact-form" component={ContactForm} />
+            <Route exact path="/contacto" component={ContactOngDate} />
+            <Route exact path="/contact-form" component={ContactForm} />
             <Route exact path="/nosotros" component={About} />
             <Route exact path="/about-us/members" component={MembersList} />
+            {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
+            <Route path="/create-member" component={MembersForm} />
           </Switch>
         </BrowserRouter>
       </ChakraProvider>
