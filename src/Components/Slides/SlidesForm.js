@@ -22,38 +22,48 @@ import {
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import styleCS from '../Categories/styleCS.css'
+import { getSlide, newSlide } from "../../app/slides/slidesSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 const SlidesForm = ({ state }) => {
-
-  const [initialValues, setInitialValues] = useState({
-    name: state?.name || "",
-    description: state?.description || "",
-    image: state?.image || "",
-  });
-
-
+      const dispatch = useDispatch();
+      
+      const { slides } = useSelector((state) => state.slides);
+      console.log(slides.data.data[0])
+      
+      
+      const [initialValues, setInitialValues] = useState({
+          name: state?.name || "prueba",
+          description: state?.description || "prueba",
+          order: state?.order || "prueba",
+          image: state?.image || "",
+        });
+        
+        
   const handleChange = (e) => {
     if (e.target.name === "name") {
-      setInitialValues({ ...initialValues, name: e.target.value });
+        setInitialValues({ ...initialValues, name: e.target.value });
     }
     if (e.target.name === "description") {
-      setInitialValues({ ...initialValues, description: e.target.value });
+        setInitialValues({ ...initialValues, description: e.target.value });
     }
     if (e.target.name === "order") {
-      setInitialValues({ ...initialValues, order: e.target.value });
+        setInitialValues({ ...initialValues, order: e.target.value });
     }
-  };
+};
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("enviado ", initialValues);
+    // console.log("enviado ", initialValues);
     if (initialValues) {
-      const res = await axios.patch("Slides/:id", initialValues);
-      return res;
+        dispatch(getSlide())
+        
+        console.log('a')
+        dispatch(newSlide(initialValues))
     } else {
-      const res = await axios.post("Slides/create", initialValues);
-      return res;
+        console.log('b')
     }
   };
 
@@ -67,8 +77,8 @@ const SlidesForm = ({ state }) => {
           <FormLabel htmlFor="first-name">Name</FormLabel>
            <Input
             minLength={4}
-            isInvalid
-            focusBorderColor="red.300"
+            // isInvalid
+            // focusBorderColor="red.300"
             variant="filled"
             type="text"
             name="name"
@@ -82,8 +92,8 @@ const SlidesForm = ({ state }) => {
         <FormControl isRequired>
           <FormLabel htmlFor="first-name">Order</FormLabel>
           <Input
-            isInvalid
-            focusBorderColor="red.300"
+            // isInvalid
+            // focusBorderColor="red.300"
             variant="filled"
             type="text"
             name="order"

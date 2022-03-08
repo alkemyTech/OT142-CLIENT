@@ -3,6 +3,8 @@ import React from "react";
 // import { Counter } from './features/counter/Counter';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import SlidesTable from './Components/Slides/SlidesTable';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -38,7 +40,6 @@ import ContactOngDate from "./Components/Contact/ContactOngDate";
 function App() {
   return (
     <>
-           <ChakraProvider>
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -51,6 +52,8 @@ function App() {
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
           <Route exact path="/backoffice/organization" component={OrganizationBoard} />
+
+          <Route exact path="/backoffice/slides" component={SlidesTable} />
           <Route exact path="/backoffice/news/create" component={NewsForm} />
           <Route exact path="/backoffice/news/:id" component={NewsForm} />
           <Route path="/backoffice/news" component={NewsList} />
@@ -75,7 +78,6 @@ function App() {
           <Route path="/create-member" component={MembersForm} />
         </Switch>
       </BrowserRouter>
-    </ChakraProvider>
       <div className="App">
         <header className="App-header">
 
