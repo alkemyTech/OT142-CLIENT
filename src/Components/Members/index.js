@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import MembersTable from "./MembersTable";
-import { getMembers } from "../../Services/privateApiService";
+import { getMembers } from "../../Services/membersService";
 
 const Members = () => {
   const [members, setMembers] = useState([]);

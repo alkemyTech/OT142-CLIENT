@@ -15,7 +15,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { deleteMember, putMember } from "../../Services/privateApiService";
+import { deleteMember, editMember } from "../../Services/membersService.js";
 
 const Members = ({ members }) => {
   const tableHeads = ["Foto de Perfil", "Nombre", "Administrar"];

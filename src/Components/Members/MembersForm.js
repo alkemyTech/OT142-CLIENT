@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../FormStyles.css";
-import { postMember } from "../../Services/privateApiService";
+import { postMember } from "../../Services/membersService.js";
 
 const MembersForm = () => {
   const [initialValues, setInitialValues] = useState({

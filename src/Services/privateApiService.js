@@ -1,94 +1,28 @@
 import axios from "axios";
 
-const BASE_URL = "http://ongapi.alkemy.org/api";
-
-const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+export const axiosInstance = axios.create({
+  baseURL: "http://ongapi.alkemy.org/api",
+  headers: {
+    Group: "142",
+  },
 });
 
-const config = {
-  headers: {
-    // Group: 01, //Aqui va el ID del equipo!!
-    Authorization: localStorage.getItem("token")
-      ? `Bearer ${localStorage.getItem("token")}`
-      : null,
-  },
+export const get = (path) => {
+  return axiosInstance.get(path);
 };
 
-const Get = (route, id) => {
-  const endPoint = id ? `/${route}/${id}` : `${route}`;
-
-  return axiosInstance
-    .get(endPoint)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+export const getById = (path, id) => {
+  return axiosInstance.get(`${path}/${id}`);
 };
 
-const Post = (route, data) => {
-  axiosInstance
-    .post(route, data, config)
-    .then((response) => {
-      console.log(response);
-      return response;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+export const put = (path, id, body) => {
+  return axiosInstance.put(`${path}/${id}`, body);
 };
 
-const Put = (route, id, body, config) => {
-  return axiosInstance.put(`${route}/${id}`, body, config);
+export const post = (path, body) => {
+  return axiosInstance.post(path, body);
 };
 
-export const Delete = (route, id) => {
-  return axios
-    .delete(`${BASE_URL}/${route}/${id}`, config)
-    .then((res) => res.data)
-    .catch((error) => console.log(error));
-};
-
-const tokenFunction = () => {
-  return config.headers.Authorization;
-};
-
-//  Members HTTP Methods:
-
-export const getMember = (id) => {
-  return Get("members", id);
-};
-
-export const getMembers = () => {
-  return Get("members");
-};
-
-export const postMember = (member) => {
-  Post("members", member);
-};
-
-export const deleteMember = (id) => {
-  Delete("members", id);
-};
-
-export const putMember = (id, body) => {
-  Put("members", id, body);
-};
-
-// PATCH METHOD
-export const patchPrivate = async (endpoint, id, body) => {
-  try {
-    const response = await axios.patch(
-      `http://ongapi.alkemy.org/api/${endpoint}/${id}`,
-      body,
-      {
-        headers: tokenFunction(),
-      }
-    );
-    return response;
-  } catch (err) {
-    return err;
-  }
+export const remove = (path, id) => {
+  return axiosInstance.delete(`${path}/${id}`);
 };
