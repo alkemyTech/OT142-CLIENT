@@ -29,7 +29,7 @@ const ActivitiesList = () => {
 
   const getData = useCallback(async () => {
     try {
-      const { data } = await get("/activites");
+      const { data } = await get("/activities");
       setData(data.data);
       setLoading(false);
     } catch (e) {
