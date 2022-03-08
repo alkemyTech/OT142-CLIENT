@@ -32,9 +32,11 @@ import UserList from './Components/Dashboard/UsersList'; */
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Switch>
-          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
+      <ChakraProvider>
+        <BrowserRouter>
+          <Switch>
+<<<<<<< HEAD
+  {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */ }
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
@@ -43,7 +45,6 @@ function App() {
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/backoffice/organization/edit" component={EditForm} />
           <Route path="/backoffice/members/edit" component={MembersEdit} />
-          <Route path="/create-testimonials" component={TestimonialForm} />
           <Route path="/create-user" component={UserForm} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
@@ -52,17 +53,17 @@ function App() {
           <Route path="/actividades/:id" component={ActivityDetail} />
           <Route path="/actividades" component={Activities} />
           <Route path="/register" component={RegisterForm} />
-          {/*           <Route path='/contact-form' component={ContactForm} /> */}
-        </Switch>
-      </BrowserRouter>
-    </ChakraProvider>
-      <div className="App">
-        <header className="App-header">
-
-        </header>
-      </div>
-    </>
-  );
+  {/*           <Route path='/contact-form' component={ContactForm} /> */ }
+=======
+          <Route path="/" exact component={Home} />
+          <Route exact path="/create-activity" component={ActivitiesForm} />
+          <Route exact path="/create-category" component={CategoriesForm} />
+          <Route exact path="/Novedades/" component={News} />
+          <Route exact path="/Novedades/:id" component={NewsDetail} />
+          <Route exact path="/backoffice" component={Dashboard} />
+          <Route exact path="/backoffice/create-slide" component={SlidesForm} />
+          <Route exact path="/backoffice/organization/edit" component={EditForm} />
+          <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
 }
 
 export default App;

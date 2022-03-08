@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
-import { Container, Text, Image, Spinner} from '@chakra-ui/react';
+import { Container, Text, Image, Spinner } from '@chakra-ui/react';
 import { useParams } from "react-router-dom";
-import { API } from '../hooks/API';
+import { get } from "../../../Services/publicApiService";
 
 const ActivityDetail = () => {
     const { id } = useParams();
@@ -9,9 +9,9 @@ const ActivityDetail = () => {
     const [error, setError] = useState();
     console.log(id, activity);
 
-    const getData = useCallback (async () => {
+    const getData = useCallback(async () => {
         try {
-            const {data} = await API.get(`/${id}`)
+            const { data } = await get(`/activities/${id}`)
             setActivity(data.data);
         } catch (e) {
             setError(true);
@@ -25,21 +25,21 @@ const ActivityDetail = () => {
 
 
     return (
-            <>
-            {activity? 
-            <Container d='flex' justifyContent='center' alignItems='center' flexDirection="column">
-                <Text as="h1">
-                   {activity.name}
-                </Text>
-                <Image boxSize={200} src={activity.image}/>
-                <Text as="h3" align='center'>
-                    {activity.description}
-                </Text>
-            </Container>
-            : <Spinner d="flex" size="xl"/>}
-            
-            </>
+        <>
+            {activity ?
+                <Container d='flex' justifyContent='center' alignItems='center' flexDirection="column">
+                    <Text as="h1">
+                        {activity.name}
+                    </Text>
+                    <Image boxSize={200} src={activity.image} />
+                    <Text as="h3" align='center'>
+                        {activity.description}
+                    </Text>
+                </Container>
+                : <Spinner d="flex" size="xl" />}
+
+        </>
     )
 }
- 
+
 export default ActivityDetail;
