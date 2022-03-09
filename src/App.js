@@ -26,14 +26,19 @@ import Footer from "./Components/Footer";
 import About from "./Components/About";
 import BackOfficeActivities from "./Components/Activities/backoffice";
 import Home from "./Components/Home";
-import MembersList from "./Components/AboutUs/MembersList";
-import UserList from "./Components/Dashboard/UsersList";
-import { ChakraProvider } from "@chakra-ui/react";
+import MembersList from './Components/AboutUs/MembersList';
+import UserList from './Components/Dashboard/UsersList'; 
+import { ChakraProvider } from '@chakra-ui/react'
+import ContactOngDate from './Components/Contact/ContactOngDate'
+import NewsList from "./Components/News/NewsList";
+import TableCategorie from "./Components/Categories/TableCategorie";
+import NewsList from "./Components/News/NewsList";
+
+//import ContactForm from "./Components/Contact";
 import { News } from "./Components/News";
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
-import NewsList from "./Components/News/NewsList";
-import ContactForm from "./Components/Contact/ContactForm";
-import ContactOngDate from "./Components/Contact/ContactOngDate";
+
+import ContactForm from "./Components/Contact/ContactForm"
 
 function App() {
   return (
@@ -43,7 +48,6 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route exact path="/create-activity" component={ActivitiesForm} />
-          <Route exact path="/create-category" component={CategoriesForm} />
           <Route exact path="/Novedades/" component={News} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice" component={Dashboard} />
@@ -73,6 +77,7 @@ function App() {
           <Route exact path='/about-us/members' component={MembersList} />
           {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
           <Route path="/create-member" component={MembersForm} />
+          <Route path="/backoffice-categories" component={TableCategorie} />
         </Switch>
       </BrowserRouter>
     </ChakraProvider>
