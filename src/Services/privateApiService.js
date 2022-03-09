@@ -20,7 +20,6 @@ export const axiosInstance = axios.create({
 
 
 export const remove = (route, id) => {
-
   return axios.delete(`${BASE_URL}/${route}/${id}`,  {
       headers:  getAuthorizationToken(),
     })

@@ -30,7 +30,7 @@ import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList'; 
 import { ChakraProvider } from '@chakra-ui/react'
 import ContactOngDate from './Components/Contact/ContactOngDate'
-import NewsList from "./Components/News/NewsList";
+// import NewsList from "./Components/News/NewsList";
 import TableCategorie from "./Components/Categories/TableCategorie";
 import NewsList from "./Components/News/NewsList";
 
