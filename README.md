@@ -29,9 +29,13 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### Como utilizar el Setup Progress linear
+Implementacion del componente progreso linear
+El spinner fue hecho para el estado de carga de la pantalla.
+
+**value**: recibe un valor de 0 a 100. El 0 es el estado inicial y el 100 es el estado final que indica que ya esta cargado.
 
 Modified by Pablo
-
 
 Otra modificacion por parte de Pablo
 
