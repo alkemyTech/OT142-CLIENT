@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Box,SimpleGrid, GridItem} from '@chakra-ui/react'
+import { Box, SimpleGrid, GridItem } from '@chakra-ui/react'
 import { getNews } from "../../Services/newsService";
 import Card from "../Card";
 
 import '../CardListStyles.css';
 
-const NewsList = () => {  
+const NewsList = () => {
 
     const [newsList, setNewsList] = useState([]);
-    useEffect(async () => {
-      const result = await getNews("news");
-      setNewsList([...result.data]);
-      
+    useEffect(() => {
+        const result = getNews();
+        setNewsList([...result.data]);
+
     }, [])
 
     // const list = [
@@ -23,26 +23,26 @@ const NewsList = () => {
     // ];
 
     return (
-        <Box bg='#DB5752'  p={4} >
-            <SimpleGrid columns={[2, 4, 5]}  spacing='30px' m='50px'>
+        <Box bg='#DB5752' p={4} >
+            <SimpleGrid columns={[2, 4, 5]} spacing='30px' m='50px'>
                 {
-                    newsList.length>0 
-                    ? newsList.map((news) =>(
-                            <GridItem 
-                                w='100%' 
-                                bg='#9AC9FB' 
-                                key={news.id} 
-                                maxHeight='250px' 
+                    newsList.length > 0
+                        ? newsList.map((news) => (
+                            <GridItem
+                                w='100%'
+                                bg='#9AC9FB'
+                                key={news.id}
+                                maxHeight='250px'
                                 textAlign='center'>
-                                    <Card data={news}/>                                    
-                                    {/* {news.name}                                                            */}
-                            </GridItem>                            
-                    ))
-                    : <p>No hay novedades</p>
+                                <Card data={news} />
+                                {/* {news.name}                                                            */}
+                            </GridItem>
+                        ))
+                        : <p>No hay novedades</p>
                 }
             </SimpleGrid>
-        </Box>        
+        </Box>
     );
 }
- 
+
 export default NewsList;
