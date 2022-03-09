@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://ongapi.alkemy.org/api";
+const BASE_URL = "https://ongapi.alkemy.org/api";
 
 
 const getAuthorizationToken = () => {
@@ -13,9 +13,9 @@ const getAuthorizationToken = () => {
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
-  headers : {
-    Group: "142" 
-  }
+  // headers : {
+  //   Group: "142" 
+  // }
 });
 
 

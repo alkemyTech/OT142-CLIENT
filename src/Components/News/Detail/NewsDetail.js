@@ -10,20 +10,21 @@ export const NewsDetail = ({ tittle, news }) => {
   const [loading, setLoading] = useState(true)
 
   const { id } = useParams();
+
   
   useEffect(() => {
     let callFetchApi = 0
-    fetch('http://ongapi.alkemy.org/api/news/1538')
-      .then((res) => res.json())
+    getNews(id)
       .then(newsDetailDataAPI => {
         let dataApi = newsDetailDataAPI.data
+        console.log('dataApi', dataApi)
         setNewsDetail(dataApi);
-      })
+      });
 
       const showComments = () => {
         callFetchApi++;
         if(callFetchApi === 2) {
-          fetch('http://ongapi.alkemy.org/api/comments?news_id=1538')
+          fetch(`https://ongapi.alkemy.org/api/comments?news_id=${newsDetail.id}`)
             .then((res) => res.json())
             .then((newsDetailCommentsDataAPI) => {
               let commentsDataApi = newsDetailCommentsDataAPI.data;
