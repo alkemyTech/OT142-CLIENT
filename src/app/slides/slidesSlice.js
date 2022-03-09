@@ -23,7 +23,6 @@ export const putSlideSlice = createAsyncThunk(
 
 export const removeSlideSlice = createAsyncThunk("slide/deleteSlide", async (id) => {
   await deleteSlides(id);
-
   return id;
 });
 
@@ -85,8 +84,7 @@ const slidesSlice = createSlice({
         [removeSlideSlice.rejected]: (state,action) => {
                 state.status = 'failed'
                 state.error = action.error
-        },
-      
+        },     
 
     }
 
