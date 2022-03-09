@@ -14,24 +14,22 @@ const getAuthorizationToken = () => {
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers : {
-    Group: "142" 
+    // Group: "142" 
   }
 });
 
 
 export const remove = (route, id) => {
 
-  return axios.delete(`${BASE_URL}${route}/${id}`,  {
+  return axios.delete(`${route}/${id}`,  {
       headers:  getAuthorizationToken(),
     })
     .then(res => res.data)
     .catch(error => console.log(error));
 }
 
-//esta es la que se cambiaria para que reciba la variable de entorno
-export const get = (route, id) => {
-  const fullRoute = id ? `${BASE_URL}${route}/${id}` : `${BASE_URL}${route}`;
-  return axiosInstance.get(fullRoute,  {
+export const get = (route) => {
+  return axiosInstance.get( `${route}`,  {
     headers: getAuthorizationToken(),
   })
 }
@@ -44,7 +42,7 @@ export const post = (route, payload) => {
 }
 
 export const put = (route, id, payload) => {
-  return axiosInstance.put(`${BASE_URL}${route}/${id}`, payload,  {
+  return axiosInstance.put(`${route}/${id}`, payload,  {
     headers: getAuthorizationToken(),
   })
 }
