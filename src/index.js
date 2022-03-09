@@ -1,4 +1,5 @@
 import React from 'react';
+import { ChakraProvider } from '@chakra-ui/react'
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -7,7 +8,9 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { ChakraProvider } from '@chakra-ui/react';
 
+
 ReactDOM.render(
+<<<<<<< HEAD
   <React.StrictMode>
     <ChakraProvider>
       <Provider store={store}>
@@ -16,9 +19,20 @@ ReactDOM.render(
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
+=======
+  <ChakraProvider>
+    <React.StrictMode>
+      <Provider store={store}>
+          <App />
+      </Provider>
+    </React.StrictMode>
+  </ChakraProvider>,
+  document.getElementById("root")
+>>>>>>> 6daa3b2b22986e2427d14146516cb43f1e6ddcec
 );
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
