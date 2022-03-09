@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Formik, Field } from 'formik';
-import { 
-    Button, 
+import {
+    Button,
     Stack,
 } from '@chakra-ui/react'
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
@@ -10,17 +10,17 @@ import FieldControl from './FieldControl';
 import { messageErrors } from '../../utils/messageErrors';
 import { createContact } from '../../Services/contactService';
 
-const {name, email, phone, message} = messageErrors;
+const { name, email, phone, message } = messageErrors;
 
 let schemaContact = Yup.object().shape({
     firstName: Yup
         .string()
         .required(name.messageRequired)
         .matches(/^[aA-zZ\s]+$/, name.typeError),
-    email: 
+    email:
         Yup.string()
-        .email(email.formatInvalid)
-        .required(email.messageRequired),
+            .email(email.formatInvalid)
+            .required(email.messageRequired),
     phone: Yup
         .number()
         .typeError(phone.typeError)
@@ -50,11 +50,11 @@ const ContactForm = () => {
                 <Form>
                     <Stack spacing={13} p={10}>
                         <Field name='firstName'>
-                            {({field, form}) => (
+                            {({ field, form }) => (
 
-                                <FieldControl 
+                                <FieldControl
                                     type='text'
-                                    field={field} 
+                                    field={field}
                                     form={form}
                                     idName='firstName'
                                     title='Nombre'
@@ -65,11 +65,11 @@ const ContactForm = () => {
                         </Field>
 
                         <Field name='email'>
-                            {({field, form}) => (
+                            {({ field, form }) => (
 
-                                <FieldControl 
+                                <FieldControl
                                     type='text'
-                                    field={field} 
+                                    field={field}
                                     form={form}
                                     idName='email'
                                     title='Email'
@@ -79,11 +79,11 @@ const ContactForm = () => {
                         </Field>
 
                         <Field name='phone'>
-                            {({field, form}) => (
+                            {({ field, form }) => (
 
-                                <FieldControl 
+                                <FieldControl
                                     type='text'
-                                    field={field} 
+                                    field={field}
                                     form={form}
                                     idName='phone'
                                     title='Telefono'
@@ -94,11 +94,11 @@ const ContactForm = () => {
                         </Field>
 
                         <Field name='message'>
-                            {({field, form}) => (
+                            {({ field, form }) => (
 
-                                <FieldControl 
+                                <FieldControl
                                     type='textarea'
-                                    field={field} 
+                                    field={field}
                                     form={form}
                                     idName='message'
                                     title='Mensaje'
