@@ -1,16 +1,14 @@
 import "./skeleton.css"
 import { Container, Box, Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 
-const SetupSkeleton = ({ boxShadow, bg, height, size, noOfLines, spacing }) => {
-
-    const skeleton = ["skeleton", "circle", "text", "text", "text"]
+const SkeletonGroup = ({ skeletonItems = ["block", "text", "circle"], boxShadow = "lg", bg = "white", height = 200, size = 50, noOfLines = 2, spacing = 3 }) => {
 
     return (
         <Container>
             <Box className="box" boxShadow={boxShadow} bg={bg}>
                 {
-                    skeleton.map((type) => {
-                        if (type === "skeleton") {
+                    skeletonItems.map((type) => {
+                        if (type === "block") {
                             return <Skeleton height={height} />
                         } else if (type === "circle") {
                             return <SkeletonCircle size={size} />
@@ -24,7 +22,4 @@ const SetupSkeleton = ({ boxShadow, bg, height, size, noOfLines, spacing }) => {
     )
 }
 
-export default SetupSkeleton;
-
-
-// EJEMPLO PARA IMPORTAR EL COMPONENTE: <SetupSkeleton height={200} size={50} boxShadow="lg" bg="white" noOfLines={3} spacing={3} />
+export default SkeletonGroup; 
