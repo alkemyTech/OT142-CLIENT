@@ -28,7 +28,7 @@ export const remove = (route, id) => {
     .catch(error => console.log(error));
 }
 
-//esta es la que se cambiaria para que reciba la variable de entorno
+
 export const get = (route, id) => {
   const fullRoute = id ? `${BASE_URL}${route}/${id}` : `${BASE_URL}${route}`;
   return axiosInstance.get(fullRoute,  {
