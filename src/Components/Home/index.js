@@ -21,7 +21,7 @@ const Home = () => {
   const [organizationData, setOrganizationdata] = useState();
   const [newsData, setNewsData] = useState();
   const [testimonialsData, setTestimonialsData] = useState();
-  console.log(organizationData, newsData, testimonialsData);
+  
 
   const getDataOrganization = useCallback(async () => {
     try {
@@ -92,7 +92,6 @@ const Home = () => {
             <Flex justify={"space-around"}>
               {newsData?.length > 0 &&
                 newsData.slice(0, 6).map((novedad) => {
-                  console.log(novedad);
                   return (
                     <Image
                       maxWidth="150px"
@@ -133,7 +132,6 @@ const Home = () => {
             <Flex justify={"space-around"}>
               {testimonialsData?.length > 0 &&
                 testimonialsData.slice(0, 6).map((testimonial) => {
-                  console.log(testimonial);
                   return (                
                       <Image
                         borderRadius="full"
