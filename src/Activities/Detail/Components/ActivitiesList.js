@@ -9,59 +9,49 @@ import {
   Grid,
   Center,
 } from "@chakra-ui/react";
-import Title from "../../../Components/Titles";
-import { useHistory } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
-import { get } from "../../../Services/publicApiService";
 import {
   Alert,
   AlertIcon,
   AlertTitle,
   AlertDescription,
 } from "@chakra-ui/react";
+import Title from "../../../Components/Titles";
+import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllActivities } from "../../../Reducers/activitiesSlice";
 
 const ActivitiesList = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState({});
-  const [error, setError] = useState(false);
+  const [data, setData] = useState([]);
 
-  console.log(data);
-
-  const getData = useCallback(async () => {
-    try {
-      const { data } = await get("/activities");
-      setData(data.data);
-      setLoading(false);
-    } catch (e) {
-      setError(true);
-      setLoading(false);
-    }
-  }, []);
+  const dispatch = useDispatch();
+  const { activitiesReducer } = useSelector((state) => state);
 
   useEffect(() => {
-    getData();
-  }, [getData]);
+    dispatch(getAllActivities());
+  }, [dispatch]);
 
-  const history = useHistory();
+  useEffect(() => {
+    setData(activitiesReducer.activities);
+  }, [activitiesReducer]);
 
-  const handleActivity = (id) => {
-    history.push(`/actividades/${id}`);
+  const handleActivity = () => {
+    console.log("-------------");
   };
 
   return (
     <Container maxW="container.lg">
       <Title>Actividades</Title>
 
-      {loading === true && (
+      {activitiesReducer.status === "loading" && (
         <Center>
-          <Spinner mt="1em" p="1em" size="xl" />
+          <Spinner mt="1em" size="xl" />
         </Center>
       )}
 
-      {error === false ? (
-        data?.length > 0 &&
-        data.map((activity) => (
-          <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+      <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+        {data?.length > 0 &&
+          data.map((activity) => (
             <Box key={activity.id}>
               <Heading as="h3">{activity.name}</Heading>
               <Text>{activity.description}</Text>
@@ -76,9 +66,10 @@ const ActivitiesList = () => {
                 Ver Detalle
               </Button>
             </Box>
-          </Grid>
-        ))
-      ) : (
+          ))}
+      </Grid>
+
+      {activitiesReducer.status === "failed" && (
         <Center>
           <Alert mt="1em" p="1em" status="error" width="auto">
             <AlertIcon />
@@ -89,4 +80,5 @@ const ActivitiesList = () => {
     </Container>
   );
 };
+
 export default ActivitiesList;
