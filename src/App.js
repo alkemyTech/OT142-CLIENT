@@ -38,7 +38,7 @@ import ContactOngDate from "./Components/Contact/ContactOngDate";
 function App() {
   return (
     <>
-    <ChakraProvider>
+      <ChakraProvider>
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
