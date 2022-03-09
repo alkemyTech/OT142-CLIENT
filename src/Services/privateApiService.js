@@ -13,17 +13,17 @@ const getAuthorizationToken = () => {
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
-  headers : {
-    Group: "142" 
+  headers: {
+    Group: "142"
   }
 });
 
 
 export const remove = (route, id) => {
 
-  return axios.delete(`${BASE_URL}/${route}/${id}`,  {
-      headers:  getAuthorizationToken(),
-    })
+  return axios.delete(`${BASE_URL}/${route}/${id}`, {
+    headers: getAuthorizationToken(),
+  })
     .then(res => res.data)
     .catch(error => console.log(error));
 }
@@ -31,17 +31,17 @@ export const remove = (route, id) => {
 
 export const get = (route, id) => {
   const fullRoute = id ? `${BASE_URL}/${route}/${id}` : `${BASE_URL}/${route}`;
-  return axiosInstance.get(fullRoute,  {
+  return axiosInstance.get(fullRoute, {
     headers: getAuthorizationToken(),
   })
 }
 
 export const post = (route, payload) => {
-  return axiosInstance.post(route, payload,  {
+  return axiosInstance.post(route, payload, {
     headers: getAuthorizationToken(),
   })
 }
 
-export const remove = (path, id) => {
+export const put = (path, id) => {
   return axiosInstance.delete(`${path}/${id}`);
-};
+}; 

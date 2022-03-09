@@ -7,8 +7,8 @@ import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/Categories/CategoriesForm";
 import NewsForm from "./Components/News/NewsForm";
 import SlidesForm from "./Components/Slides/SlidesForm";
-import CarouselSlides from "./Components/Slides/CarouselSlides";
-import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
+/* import CarouselSlides from "./Components/Slides/CarouselSlides";
+import TestimonialForm from "./Components/Testimonials/TestimonialsForm"; */
 import UserForm from "./Components/Users/UsersForm";
 import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
 import ToysCampaign from "./Campaigns/Toys/ToysCampaign";
@@ -32,12 +32,11 @@ import UserList from './Components/Dashboard/UsersList'; */
 function App() {
   return (
     <>
-      <ChakraProvider>
-<<<<<<< HEAD
-  <BrowserRouter>
-    <Switch>
-<<<<<<< HEAD
-  {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */ }
+      {/*    <ChakraProvider> */}
+      <BrowserRouter>
+        <Switch>
+
+          {/* <Route path="/" exact component={} />           Esta ruta debe ser para el Home */}
           <Route path="/create-activity" component={ActivitiesForm} />
           <Route path="/create-category" component={CategoriesForm} />
           <Route path="/create-news" component={NewsForm} />
@@ -45,7 +44,7 @@ function App() {
           <Route path="/backoffice" component={Dashboard} />
           <Route path="/backoffice/create-slide" component={SlidesForm} />
           <Route path="/backoffice/organization/edit" component={EditForm} />
-          <Route path="/backoffice/members/edit" component={MembersEdit} />
+          {/*           <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
           <Route path="/create-user" component={UserForm} />
           <Route path="/create-member" component={MembersForm} />
           <Route path="/create-project" component={ProjectsForm} />
@@ -54,55 +53,21 @@ function App() {
           <Route path="/actividades/:id" component={ActivityDetail} />
           <Route path="/actividades" component={Activities} />
           <Route path="/register" component={RegisterForm} />
-  {/*           <Route path='/contact-form' component={ContactForm} /> */ }
-=======
-=======
-      <BrowserRouter>
-        <Switch>
->>>>>>> 6daa3b2b22986e2427d14146516cb43f1e6ddcec
-          <Route path="/" exact component={Home} />
+          {/*           <Route path='/contact-form' component={ContactForm} /> */}
+          {/*           <Route path="/" exact component={Home} /> */}
           <Route exact path="/create-activity" component={ActivitiesForm} />
-          <Route exact path="/Novedades/" component={News} />
+          {/*           <Route exact path="/Novedades/" component={News} /> */}
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
-          <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
-<<<<<<< HEAD
-=======
-          <Route exact path="/backoffice/organization" component={OrganizationBoard} />
-          <Route exact path="/backoffice/news/create" component={NewsForm} />
-          <Route exact path="/backoffice/news/:id" component={NewsForm} />
-          <Route path="/backoffice/news" component={NewsList} />
-          <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
-          <Route exact path="/backoffice/users" component={UserList} />
-          <Route exact path="/create-testimonials" component={TestimonialForm} />
-          <Route exact path="/create-news" component={NewsForm} />
-          <Route exact path="/create-user" component={UserForm} />
-          <Route exact path="/backoffice/members/create" component={MembersForm} />
-          <Route exact path="/create-project" component={ProjectsForm} />
-          <Route exact path="/update-project/:id" component={ProjectsForm} />
-          <Route exact path="/school-campaign" component={SchoolCampaign} />
-          <Route exact path="/toys-campaign" component={ToysCampaign} />
-          <Route exact path="/actividades/:id" component={ActivityDetail} />
-          <Route exact path="/actividades" component={Activities} />
-          <Route exact path="/register" component={RegisterForm} />
-          <Route exact path='/contacto' component={ContactOngDate} />
-          <Route exact path='/contact-form' component={ContactForm} />
-          <Route exact path='/nosotros' component={About} />
-          <Route exact path='/about-us/members' component={MembersList} />
-          {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
-          <Route path="/create-member" component={MembersForm} />
-          <Route path="/backoffice-categories" component={TableCategorie} />
+          {/*           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} /> */}
+
         </Switch>
       </BrowserRouter>
-    </ChakraProvider>
-      <div className="App">
-        <header className="App-header"></header>
-      </div>
+      {/*    </ChakraProvider> */}
     </>
-  );
->>>>>>> 6daa3b2b22986e2427d14146516cb43f1e6ddcec
+  )
 }
 
 export default App;
