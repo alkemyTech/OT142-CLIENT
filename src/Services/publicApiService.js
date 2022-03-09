@@ -25,5 +25,3 @@ export const post = (path, body) => {
 
 export const remove = (path, id) => {
   return axiosInstance.delete(`${path}/${id}`);
-};
-
