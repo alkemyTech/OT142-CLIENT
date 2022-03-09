@@ -22,22 +22,20 @@ import {
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import styleCS from '../Categories/styleCS.css'
-import { getSlide, newSlide } from "../../app/slides/slidesSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { postSlideRequest } from "./services/SlidesApiService";
+import {getSlidesSlice, newSlideSlice,putSlideSlice} from "../../app/slides/slidesSlice"
+import { toBase64 } from "../../utils/toBase64";
 
-
-const SlidesForm = ({ state }) => {
-      const dispatch = useDispatch();
-      
-      const { slides } = useSelector((state) => state.slides);
-      console.log(slides.data.data[0])
-      
+const SlidesForm = ({ state }) => {    
+       
+      const dispatch = useDispatch();  
       
       const [initialValues, setInitialValues] = useState({
           name: state?.name || "prueba",
           description: state?.description || "prueba",
-          order: state?.order || "prueba",
+          order: state?.order || 0,
           image: state?.image || "",
         });
         
@@ -56,14 +54,10 @@ const SlidesForm = ({ state }) => {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("enviado ", initialValues);
-    if (initialValues) {
-        dispatch(getSlide())
-        
-        console.log('a')
-        dispatch(newSlide(initialValues))
+    if (initialValues) {        
+        (dispatch(newSlideSlice(initialValues)))
     } else {
-        console.log('b')
+        dispatch(putSlideSlice(initialValues))
     }
   };
 
@@ -127,12 +121,12 @@ const handleSubmit = async (e) => {
             id="image"
             type="file"
             variant="flushed"
-            onChange={(event) => {
-              const files = event.target.files;
-              let myFiles = Array.from(files);
+            onChange={async(e) => {
+                const file = e.currentTarget.files[0];
+                  const imagen =  await(toBase64(file))
               setInitialValues({
                 ...initialValues,
-                image: myFiles[0].name,
+                image: imagen,
               });
             }}
             mb={2}

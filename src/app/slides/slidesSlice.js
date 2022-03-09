@@ -1,21 +1,31 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import { getSlideRequest, postSlideRequest } from "../../Components/Slides/services/SlidesApiService";
+import { deleteSlides, editSlides, getSlides, postSlides } from "../../Services/slidesService";
 
-export const getSlide = createAsyncThunk(
+export const getSlidesSlice = createAsyncThunk(
     "slide/getSlide" , 
     async (data) => {
-        return await getSlideRequest(data)
+        return await getSlides(data)
     }
 )
-
-
-
-export const newSlide = createAsyncThunk(
+export const newSlideSlice = createAsyncThunk(
     "slide/newSlide" , 
     async (data) => {
-        return await postSlideRequest(data)
+        return await postSlides(data)
     }
 )
+
+export const putSlideSlice = createAsyncThunk(
+    "slide/putSlide" , 
+    async (data) => {
+        return await editSlides(data, data.id)
+    }
+)
+
+export const removeSlideSlice = createAsyncThunk("slide/deleteSlide", async (id) => {
+  await deleteSlides(id);
+
+  return id;
+});
 
 const slidesSlice = createSlice({
     name: "slide",
@@ -26,30 +36,57 @@ const slidesSlice = createSlice({
     },
     extraReducers: {
 
-         [getSlide.pending]: (state) => {
+         [getSlidesSlice.pending]: (state) => {
                  state.status = 'loading'                       
         },
-        [getSlide.fulfilled]: (state,action) => {
+        [getSlidesSlice.fulfilled]: (state,action) => {
                  state.status = 'success'
-                 state.slides = action.payload
+                 state.slides = action.payload.data
         },
-        [getSlide.rejected]: (state,action) => {
+        [getSlidesSlice.rejected]: (state,action) => {
                 state.status = 'failed'
                 state.error = action.error
         },
 
 
-        [newSlide.pending]: (state) => {
+        [newSlideSlice.pending]: (state) => {
                  state.status = 'loading'                       
         },
-        [newSlide.fulfilled]: (state,action) => {
+        [newSlideSlice.fulfilled]: (state,action) => {
                  state.status = 'success'
                  state.slides = state.slides.concat(action.payload)  
         },
-        [newSlide.rejected]: (state,action) => {
+        [newSlideSlice.rejected]: (state,action) => {
                 state.status = 'failed'
                 state.error = action.error
         },
+
+
+        [putSlideSlice.pending]: (state) => {
+                 state.status = 'loading'                       
+        },
+        [putSlideSlice.fulfilled]: (state,action) => {
+                 state.status = 'success'
+                 state.slides = {}  
+        },
+        [putSlideSlice.rejected]: (state,action) => {
+                state.status = 'failed'
+                state.error = action.error
+        },
+
+
+         [removeSlideSlice.pending]: (state) => {
+                 state.status = 'loading'                       
+        },
+        [removeSlideSlice.fulfilled]: (state,{payload}) => {
+                 state.status = 'success'
+                 state.slides = state.slides.filter(({ id }) => id !== payload); 
+        },
+        [removeSlideSlice.rejected]: (state,action) => {
+                state.status = 'failed'
+                state.error = action.error
+        },
+      
 
     }
 
