@@ -19,6 +19,7 @@
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-icons": "^4.3.1",
+<<<<<<< HEAD
         "react-redux": "^7.2.6",
         "react-router-dom": "^5.2.0",
         "react-scripts": "^4.0.3",
@@ -26,7 +27,14 @@
         "redux-devtools": "^3.7.0",
         "react-lazy-load-image-component": "^1.5.1",
         "react-spinners": "^0.11.0",
+=======
+        "react-lazy-load-image-component": "^1.5.1",
+        "react-redux": "^7.2.6",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "^4.0.3",
+>>>>>>> 6daa3b2b22986e2427d14146516cb43f1e6ddcec
         "react-slick": "^0.28.1",
+        "react-spinners": "^0.11.0",
         "sweetalert2": "^11.4.0",
         "yup": "^0.32.11"
     },
