@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, SimpleGrid, GridItem } from '@chakra-ui/react'
 import { getNews } from "../../Services/newsService";
 import Card from "../Card";
+import axios from "axios";
 
 import '../CardListStyles.css';
 
@@ -14,6 +15,17 @@ const NewsList = () => {
         setNewsList([...result.data]);
 
     }, [])
+
+
+    /*     axios.get('https://ongapi.alkemy.org/api/news')
+            .then(function (response) {
+                // handle success
+                setNewsList(response.data.data);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            }) */
 
 
 

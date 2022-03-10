@@ -4,10 +4,10 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
-import CategoriesForm from "./Components/Categories/CategoriesForm";
+/* import CategoriesForm from "./Components/Categories/CategoriesForm"; */
 import NewsForm from "./Components/News/NewsForm";
 import SlidesForm from "./Components/Slides/SlidesForm";
-import CarouselSlides from "./Components/Slides/CarouselSlides";
+/* import CarouselSlides from "./Components/Slides/CarouselSlides"; */
 import TestimonialForm from "./Components/Testimonials/TestimonialsForm";
 import UserForm from "./Components/Users/UsersForm";
 import SchoolCampaign from "./Campaigns/School/SchoolCampaign";
@@ -21,15 +21,15 @@ import OrganizationBoard from "./Components/Dashboard/OrganizationBoard.js";
 import { NewsDetail } from "./Components/News/Detail/NewsDetail";
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
-import Contact from "./Components/Contact";
-import Footer from "./Components/Footer";
+/* import Contact from "./Components/Contact";
+import Footer from "./Components/Footer"; */
 import About from "./Components/About";
 import BackOfficeActivities from "./Components/Activities/backoffice";
 import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
 import { ChakraProvider } from '@chakra-ui/react'
-import AlertServicie from "./Services/AlertServicie/AlertServicie";
+/* import AlertServicie from "./Services/AlertServicie/AlertServicie"; */
 import { AlertRoute } from "./Services/AlertServicie/AlertRoute";
 import ContactOngDate from './Components/Contact/ContactOngDate'
 // import NewsList from "./Components/News/NewsList";
@@ -57,10 +57,10 @@ function App() {
             <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
             <Route exact path="/backoffice/organization" component={OrganizationBoard} />
 
-            <Route exact path="/backoffice/slides" component={SlidesTable} />
+            {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
             <Route exact path="/backoffice/news/create" component={NewsForm} />
             <Route exact path="/backoffice/news/:id" component={NewsForm} />
-            <Route path="/backoffice/news" component={NewsList} />
+            {/*        <Route path="/backoffice/news" component={NewsList} /> */}
             <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
             <Route exact path="/backoffice/users" component={UserList} />
             <Route exact path="/create-testimonials" component={TestimonialForm} />
@@ -85,11 +85,12 @@ function App() {
             <Route path="/backoffice-categories" component={TableCategorie} />
           </Switch>
         </BrowserRouter>
-        <div className="App">
-          <header className="App-header"></header>
-        </div>
-      </>
-      );
+      </ChakraProvider>
+      <div className="App">
+        <header className="App-header"></header>
+      </div>
+    </>
+  );
 }
 
-      export default App;
+export default App;
