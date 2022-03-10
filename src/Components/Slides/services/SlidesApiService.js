@@ -6,7 +6,7 @@ const path = process.env.REACT_APP_SLIDES;
 
 export const getSlideRequest = (id) => {
   const fullPath = id ? `${path}/${id}` : path;
-  return get(path);
+  return get(fullPath);
 };
 
 export const postSlideRequest = (values) => {
