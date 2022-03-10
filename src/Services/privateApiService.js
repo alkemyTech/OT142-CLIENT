@@ -13,31 +13,29 @@ const getAuthorizationToken = () => {
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
-  headers : {
-    Group: "142" 
-  }
+  headers: {
+    Group: "142",
+  },
 });
-
 
 export const remove = (route, id) => {
 
   return axiosInstance.delete(`${route}/${id}`,  {
       headers:  getAuthorizationToken(),
     })
-    .then(res => res.data)
-    .catch(error => console.log(error));
-}
-
+    .then((res) => res.data)
+    .catch((error) => console.log(error));
+};
 
 export const get = (route, id) => {
   const fullRoute = id ? `${route}/${id}` : `${route}`;
   return axiosInstance.get(fullRoute,  {
     headers: getAuthorizationToken(),
-  })
-}
+  });
+};
 
 export const post = (route, payload) => {
-  return axiosInstance.post(route, payload,  {
+  return axiosInstance.post(route, payload, {
     headers: getAuthorizationToken(),
   })
 }
@@ -50,4 +48,3 @@ export const put = (route, body, id) => {
     .then(res => res.data)
     .catch(error => console.log(error));
 }
-
