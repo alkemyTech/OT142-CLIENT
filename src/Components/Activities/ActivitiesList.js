@@ -1,32 +1,54 @@
-import React from 'react';
-import '../CardListStyles.css';
-
+import { Button, Image, Box, Container, Text, Heading, Spinner, Grid } from '@chakra-ui/react';
+import Title from '../Titles'
+import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllActivities } from '../../app/features/activitiesSlice';
 const ActivitiesList = () => {
-    const activitiesMock = [
-        {id: 2, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 1, name: 'Titulo de prueba', description: 'Descripcion de prueba'},
-        {id: 3, name: 'Titulo de prueba', description: 'Descripcion de prueba'}
-    ];
+
+    const [data, setData] = useState([]);
+
+    const dispatch = useDispatch();
+    const { activitiesReducer } = useSelector(state => state);
+
+    useEffect(() => {
+        dispatch(getAllActivities());
+    }, [dispatch]);
+
+    useEffect(() => {
+        setData(activitiesReducer.activities)
+    }, [activitiesReducer])
+
+    const history = useHistory();
+
+    const handleActivity = (id) => {
+        history.push(`/actividades/${id}`);
+    }
 
     return (
-        <div>
-            <h1>Listado Actividades</h1>
-            <ul className="list-container">
-                {activitiesMock.length > 0 ?
-                    activitiesMock.map((activity) => {
-                        return(
-                            <li className="card-info" key={activity.id}>
-                                <h3>{activity.name}</h3>
-                                <p>{activity.description}</p>
-                            </li>
-                        )
-                    })
-                :
-                    <p>No hay actividades</p>
-                }
-            </ul>
-        </div>
-    );
+        <Container maxW='container.lg'>
+            <Title>Actividades</Title>
+
+            {activitiesReducer.status !== 'success' && <Spinner size='xl' />}
+
+            <Grid templateColumns='repeat(3, 1fr)' gap={6}>
+                {data?.length > 0 &&
+                    data.map((activity) => (
+                        <Box key={activity.id}>
+                            <Heading as='h3'>
+                                {activity.name}
+                            </Heading>
+                            <Text>
+                                {activity.description}
+                            </Text>
+                            <Box>
+                                <Image boxSize='100px' src={activity.image} />
+                            </Box>
+                            <Button variant='solid' size='xs' onClick={() => handleActivity(activity.id)}>Ver Detalle</Button>
+                        </Box>
+                    ))}
+            </Grid>
+        </Container>
+    )
 }
- 
 export default ActivitiesList;

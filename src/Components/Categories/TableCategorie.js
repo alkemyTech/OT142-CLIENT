@@ -13,7 +13,7 @@ import { Stack, Heading } from "@chakra-ui/react";
 import styleCS from "../Categories/styleCS.css";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
- import { getAllCategories } from "../Reducer/ReducerCategories";
+ import { getAllCategories } from "../../app/features/ReducerCategories";
 import { useDispatch, useSelector } from "react-redux";
 
  const TableCategorie = () => {
