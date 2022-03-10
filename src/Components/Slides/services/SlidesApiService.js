@@ -1,23 +1,23 @@
 import axios from "axios";
+import { get } from "../../../Services/publicApiService";
+import { post, put, remove } from "../../../Services/privateApiService";
 
-const BASE_URL = `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_SLIDES}`;
+const path = process.env.REACT_APP_SLIDES;
 
-const apiInstance = axios.create({
-  baseURL: BASE_URL,
-});
-
-export const getSlideRequest = () => {
-  return apiInstance.get();
+export const getSlideRequest = (id) => {
+  const fullPath = id ? `${path}/${id}` : path;
+  return get(path);
 };
 
 export const postSlideRequest = (values) => {
-  return apiInstance.post("", values);
+  return post(path, values);
 };
 
 export const putSlideRequest = (id, values) => {
-  return apiInstance.put(id, values);
+  return put(id, values);
 };
 
 export const deleteSlideRequest = (id) => {
-  return apiInstance.delete(id);
+  const fullPath = `${path}/${id}`;
+  return remove(fullPath);
 };
