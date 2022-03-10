@@ -30,10 +30,11 @@ import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
 import { ChakraProvider } from '@chakra-ui/react'
+import AlertServicie from "./Services/AlertServicie/AlertServicie";
+import { AlertRoute } from "./Services/AlertServicie/AlertRoute";
 import ContactOngDate from './Components/Contact/ContactOngDate'
 import NewsList from "./Components/News/NewsList";
 import TableCategorie from "./Components/Categories/TableCategorie";
-import NewsList from "./Components/News/NewsList";
 
 //import ContactForm from "./Components/Contact";
 import { News } from "./Components/News";
