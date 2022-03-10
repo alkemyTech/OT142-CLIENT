@@ -14,6 +14,7 @@
         "@testing-library/react": "^12.0.0",
         "@testing-library/user-event": "^13.2.1",
         "axios": "^0.21.1",
+        "dotenv": "^16.0.0",
         "formik": "^2.2.9",
         "framer-motion": "4.1.17",
         "react": "^17.0.2",
@@ -23,8 +24,8 @@
         "react-redux": "^7.2.4",
         "react-router-dom": "^5.2.0",
         "react-scripts": "^4.0.3",
-        "react-spinners": "^0.11.0",
         "react-slick": "^0.28.1",
+        "react-spinners": "^0.11.0",
         "sweetalert2": "^11.4.0",
         "yup": "^0.32.11"
     },

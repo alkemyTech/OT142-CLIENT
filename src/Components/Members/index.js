@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Table,
   Thead,
@@ -40,6 +40,7 @@ const Members = ({ members }) => {
       id: 3,
     },
   ];
+
 
   const tableHeads = ["Foto de Perfil", "Nombre", "Administrar"];
 
