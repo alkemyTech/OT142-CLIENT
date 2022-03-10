@@ -6,19 +6,7 @@ export const getComment = (id) => {
     .catch((error) => console.log(error));
 };
 
-export const postComment = (id, new_id, user_id, image, text, visible, deleted_at, created_at, updated_at, group_id) => { 
-  const payload = {
-      id: id,
-      new_id: new_id,
-      user_id: user_id,
-      image: image,
-      text: text,
-      visible: visible,
-      deleted_at: deleted_at,
-      created_at: created_at,
-      updated_at: updated_at,
-      group_id: group_id
-  };
+export const postComment = (payload) => { 
   return post(process.env.REACT_APP_COMMENTS, payload)
     .then((res) => res.data)
     .catch((error) => console.log(error));
