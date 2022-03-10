@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from "react";
 import {
   Box,
   IconButton,
@@ -7,10 +7,11 @@ import {
   Heading,
   Text,
   Container,
-} from '@chakra-ui/react';
-import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
-import Slider from 'react-slick';
-import { useState } from 'react';
+} from "@chakra-ui/react";
+import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
+import Slider from "react-slick";
+import { useState } from "react";
+import { get } from "../../Services/publicApiService";
 
 const settings = {
   dots: true,
@@ -24,42 +25,34 @@ const settings = {
   slidesToScroll: 1,
 };
 
- const CarouselSlides = () => {
-  const [slider, setSlider] = useState(null);
+const CarouselSlides = () => {
+    const [slider, setSlider] = useState(null);
+    const [slideData, setSlideData] = useState();
 
-  const top = useBreakpointValue({ base: '90%', md: '50%' });
-  const side = useBreakpointValue({ base: '30%', md: '40px' });
+    const getDataSlide = useCallback(async () => {
+      try {
+        const { data } = await get("/slides");
+        setSlideData(data.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }, []);
 
-  const cards = [
-    {
-      title: 'Nosotros',
-      description:
-        "Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y papás, abuelos y vecinos del barrio La Cava generando procesos de crecimiento y de inserción social.",
-      image:
-        "http://ongapi.alkemy.org/storage/GJrhlhckaO.jpeg",
-    },
-    {
-      title: 'Visión',
-      description:
-        "Mejorar la calidad de vida de niños y familias en situación de vulnerabilidad en el barrio La Cava, otorgando un cambio de rumbo en cada individuo a través de la educación, salud, trabajo, deporte, responsabilidad y compromiso.",
-      image:
-        "http://ongapi.alkemy.org/storage/dXgLO3GLPh.jpeg"
-    },
-    {
-      title: 'Misión',
-      description:
-        "Trabajar articuladamente con los distintos aspectos de la vida de las familias,generando espacios de desarrollo personal y familiar, brindando herramientas que logren mejorar la calidad de vida a través de su propio esfuerzo.",
-      image:
-        "http://ongapi.alkemy.org/storage/NxKEkpx1Kr.png",
-    },
-  ];
+    useEffect(() => {
+      getDataSlide();
+    }, []);
+
+
+    const top = useBreakpointValue({ base: "90%", md: "50%" });
+    const side = useBreakpointValue({ base: "30%", md: "40px" });
 
   return (
     <Box
-      position={'relative'}
-      height={'600px'}
-      width={'full'}
-      overflow={'hidden'}>
+      position={"relative"}
+      height={"600px"}
+      width={"full"}
+      overflow={"hidden"}
+    >
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
@@ -78,9 +71,10 @@ const settings = {
         position="absolute"
         left={side}
         top={top}
-        transform={'translate(0%, -50%)'}
+        transform={"translate(0%, -50%)"}
         zIndex={2}
-        onClick={() => slider?.slickPrev()}>
+        onClick={() => slider?.slickPrev()}
+      >
         <BiLeftArrowAlt size="40px" />
       </IconButton>
       <IconButton
@@ -89,41 +83,56 @@ const settings = {
         position="absolute"
         right={side}
         top={top}
-        transform={'translate(0%, -50%)'}
+        transform={"translate(0%, -50%)"}
         zIndex={2}
-        onClick={() => slider?.slickNext()}>
+        onClick={() => slider?.slickNext()}
+      >
         <BiRightArrowAlt size="40px" />
       </IconButton>
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
-        {cards.map((card, index) => (
+        {slideData?.length > 0 &&
+          slideData.map((card) => (
           <Box
-            key={index}
-            height={'lg'}
+            key={card.id}
+            height={"lg"}
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
-            backgroundImage={`url(${card.image})`}>
+            backgroundImage={card.image}
+          >
             {/* This is the block you need to change, to customize the caption */}
-            <Container size="container.md" height="600px" w={{base:'250px', sm:'400px'}} centerContent position="relative">
+            <Container
+              size="container.md"
+              height="600px"
+              w={{ base: "250px", sm: "400px" }}
+              centerContent
+              position="relative"
+            >
               <Stack
                 spacing={6}
-                w={'full'}
-                maxW={{base:'lg'}}
+                w={"full"}
+                maxW={{ base: "lg" }}
                 position="absolute"
-                top={{base:"22%", sm: 110, lg:150}}
-                left={{base:'-2%',sm:-5, md:-155, lg:-250}}
-                border='1px solid'
-                borderRadius='5px'
-                padding='0.5rem'
-                backgroundColor='rgba(0,0,0,0.5)'
-                transform="translate(0, -50%)">
-                <Heading fontSize={{ base: 'md', md: '4xl', lg: '5xl' }}
-                  color='yellow'
+                top={{ base: "22%", sm: 110, lg: 150 }}
+                left={{ base: "-2%", sm: -5, md: -155, lg: -250 }}
+                border="1px solid"
+                borderRadius="5px"
+                padding="0.5rem"
+                backgroundColor="rgba(0,0,0,0.5)"
+                transform="translate(0, -50%)"
+              >
+                <Heading
+                  fontSize={{ base: "md", md: "4xl", lg: "5xl" }}
+                  color="yellow"
                 >
-                  {card.title}
+                  {card.name}
                 </Heading>
-                <Text fontSize={{ base: 'sm', lg: 'lg' }} color="white" fontWeight='bold'>
+                <Text
+                  fontSize={{ base: "sm", lg: "lg" }}
+                  color="white"
+                  fontWeight="bold"
+                >
                   {card.description}
                 </Text>
               </Stack>
@@ -133,6 +142,6 @@ const settings = {
       </Slider>
     </Box>
   );
-}
+};
 
 export default CarouselSlides;
