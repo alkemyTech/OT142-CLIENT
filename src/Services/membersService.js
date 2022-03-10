@@ -1,10 +1,14 @@
 import { remove, get, post, put } from "./privateApiService";
+import { showAlertErr } from './AlertServicie/AlertServicie';
 
 export const getMembers = (id) => {
   const route = id ? `members/${id}` : "members";
   return get(route)
     .then((res) => res.data)
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error)
+      showAlertErr();
+    });
 };
 
 export const postMember = (
@@ -32,17 +36,26 @@ export const postMember = (
 
   return post("members", payload)
     .then((res) => res.data)
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error)
+      showAlertErr();
+    });
 };
 
 export const deleteMember = (id) => {
   return remove("members", id)
     .then((res) => res.data)
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error)
+      showAlertErr();
+    });
 };
 
 export const editMember = (id, payload) => {
   return put("members", id, payload)
     .then((res) => res.data)
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error)
+      showAlertErr();
+    });
 };
