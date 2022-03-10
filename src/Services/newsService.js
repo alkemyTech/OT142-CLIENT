@@ -1,12 +1,16 @@
 import { remove, get, post, put } from "./privateApiService";
+import { showAlertErr } from './AlertServicie/AlertServicie';
 
 export const getNews = (id) => {
-  return get("news", id)
-    .then((res) => res.data)
-    .catch((error) => console.log(error));
+    return get("news", id)
+        .then((res) => res.data)
+        .catch((error) => {
+            showAlertErr();
+            console.log(error)
+        });
 };
 
-export const postNews = ( id, name, slug, content, image, user_id, category_id, created_at, updated_at, deleted_at, group_id) => {
+export const postNews = (id, name, slug, content, image, user_id, category_id, created_at, updated_at, deleted_at, group_id) => {
     const payload = {
         id: id,
         name: name,
@@ -21,22 +25,31 @@ export const postNews = ( id, name, slug, content, image, user_id, category_id, 
         group_id: group_id
     };
     return post("news", payload)
-      .then((res) => res.data)
-      .catch((error) => console.log(error));
-      
+        .then((res) => res.data)
+        .catch((error) => {
+            showAlertErr();
+            console.log(error)
+        });
+
 };
 
-export const deleteNews = ( id) => {
+export const deleteNews = (id) => {
     return remove("news", id)
         .then(res => res.data)
-        .catch(error => console.log(error))
+        .catch((error) => {
+            showAlertErr();
+            console.log(error)
+        });
 }
 
-export const editNews = ( id, payload) => {
+export const editNews = (id, payload) => {
     return put("news", id, payload)
         .then(res => res.data)
-        .catch(error => console.log(error))
-        
+        .catch((error) => {
+            showAlertErr();
+            console.log(error)
+        });
+
 }
 
 
