@@ -22,38 +22,42 @@ import {
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import styleCS from '../Categories/styleCS.css'
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { postSlideRequest } from "./services/SlidesApiService";
+import {getSlidesSlice, newSlideSlice,putSlideSlice} from "../../app/slides/slidesSlice"
+import { toBase64 } from "../../utils/toBase64";
 
-
-const SlidesForm = ({ state }) => {
-
-  const [initialValues, setInitialValues] = useState({
-    name: state?.name || "",
-    description: state?.description || "",
-    image: state?.image || "",
-  });
-
-
+const SlidesForm = ({ state }) => {    
+       
+      const dispatch = useDispatch();  
+      
+      const [initialValues, setInitialValues] = useState({
+          name: state?.name || "prueba",
+          description: state?.description || "prueba",
+          order: state?.order || 0,
+          image: state?.image || "",
+        });
+        
+        
   const handleChange = (e) => {
     if (e.target.name === "name") {
-      setInitialValues({ ...initialValues, name: e.target.value });
+        setInitialValues({ ...initialValues, name: e.target.value });
     }
     if (e.target.name === "description") {
-      setInitialValues({ ...initialValues, description: e.target.value });
+        setInitialValues({ ...initialValues, description: e.target.value });
     }
     if (e.target.name === "order") {
-      setInitialValues({ ...initialValues, order: e.target.value });
+        setInitialValues({ ...initialValues, order: e.target.value });
     }
-  };
+};
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("enviado ", initialValues);
-    if (initialValues) {
-      const res = await axios.patch("Slides/:id", initialValues);
-      return res;
+    if (initialValues) {        
+        (dispatch(newSlideSlice(initialValues)))
     } else {
-      const res = await axios.post("Slides/create", initialValues);
-      return res;
+        dispatch(putSlideSlice(initialValues))
     }
   };
 
@@ -67,8 +71,8 @@ const SlidesForm = ({ state }) => {
           <FormLabel htmlFor="first-name">Name</FormLabel>
            <Input
             minLength={4}
-            isInvalid
-            focusBorderColor="red.300"
+            // isInvalid
+            // focusBorderColor="red.300"
             variant="filled"
             type="text"
             name="name"
@@ -82,8 +86,8 @@ const SlidesForm = ({ state }) => {
         <FormControl isRequired>
           <FormLabel htmlFor="first-name">Order</FormLabel>
           <Input
-            isInvalid
-            focusBorderColor="red.300"
+            // isInvalid
+            // focusBorderColor="red.300"
             variant="filled"
             type="text"
             name="order"
@@ -113,15 +117,16 @@ const SlidesForm = ({ state }) => {
         <FormControl isRequired>
           <FormLabel htmlFor="first-name">Image</FormLabel>
           <Input
+           accept="image/x-png,image/jpeg"
             id="image"
             type="file"
             variant="flushed"
-            onChange={(event) => {
-              const files = event.target.files;
-              let myFiles = Array.from(files);
+            onChange={async(e) => {
+                const file = e.currentTarget.files[0];
+                  const imagen =  await(toBase64(file))
               setInitialValues({
                 ...initialValues,
-                image: myFiles[0].name,
+                image: imagen,
               });
             }}
             mb={2}

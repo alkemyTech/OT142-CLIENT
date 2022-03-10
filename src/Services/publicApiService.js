@@ -1,15 +1,28 @@
-import axios from 'axios';
+import axios from "axios";
 
-const config = {
-    headers: {
-        Group: ''               //Aqui va el ID del equipo!!
-    }
-}
-
-
-export const API_SERVICE_POST = axios.create({
-    BASE_URL: 'http://ongapi.alkemy.org/public/api',
-    method: 'post',
-    url: '',
-    responseType: 'json',
+export const axiosInstance = axios.create({
+  baseURL: "https://ongapi.alkemy.org/api",
+  headers: {
+    Group: "142",
+  },
 });
+
+export const get = (path) => {
+  return axiosInstance.get(path);
+};
+
+export const getById = (path, id) => {
+  return axiosInstance.get(`${path}/${id}`);
+};
+
+export const put = (path, id, body) => {
+  return axiosInstance.put(`${path}/${id}`, body);
+};
+
+export const post = (path, body) => {
+  return axiosInstance.post(path, body);
+};
+
+export const remove = (path, id) => {
+  return axiosInstance.delete(`${path}/${id}`);
+}

@@ -16,7 +16,6 @@ export default function ContactDate() {
     facebook: "Somos_Más",
     teléfonoDeContacto: 1160112988,
   };
-  //console.log(props);
   return (
     <>
       <Date {...ongContact} />
