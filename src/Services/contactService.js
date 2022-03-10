@@ -1,6 +1,6 @@
 import { remove, get, post, put } from "./privateApiService";
 
-const ENDPOINT = "contacts"
+const ENDPOINT = process.env.REACT_APP_CONTACTS;
 
 export const getContact = (id) => {
     return get(ENDPOINT, id)

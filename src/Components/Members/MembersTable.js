@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Table,
   Thead,
@@ -13,24 +12,12 @@ import {
   Center,
   Button,
   Text,
+  Image,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-=======
-import React, { useState, useEffect, useCallback } from "react";
-import MembersTable from "./MembersTable";
-import { getMembers } from "../../Services/membersService";
->>>>>>> b6305fcb037f58a8e33fb38971b1566cefb5729a
+import { deleteMember, editMember } from "../../Services/membersService.js";
 
-const Members = () => {
-  const [members, setMembers] = useState([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    getMembers().then((response) => setMembers(response.data));
-  }, []);
-
-<<<<<<< HEAD
-
+const Members = ({ members }) => {
   const tableHeads = ["Foto de Perfil", "Nombre", "Administrar"];
 
   return (
@@ -57,11 +44,18 @@ const Members = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {_members.map((member) => {
+              {members.map((member) => {
                 return (
                   <Tr key={member.id}>
                     <Td>
-                      <img src={member.image} alt={member.name} />
+                      <Center>
+                        <Image
+                          align={"center"}
+                          boxSize="3em"
+                          src={member.image}
+                          alt={member.name}
+                        />
+                      </Center>
                     </Td>
                     <Td>
                       <Center>
@@ -99,9 +93,6 @@ const Members = () => {
       </Center>
     </Box>
   );
-=======
-  return <MembersTable members={members} />;
->>>>>>> b6305fcb037f58a8e33fb38971b1566cefb5729a
 };
 
 export default Members;
