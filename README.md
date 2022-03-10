@@ -59,41 +59,10 @@ Loader component receives the following props:
 
 **size** : Must be one of the followings: ( 'xs','sm','md','lg')
 
-<<<<<<< HEAD
 ### Como implementar Skeleton
 
 Skeleton se utiliza para mostrar un feedback al usuario cuando se esté realizando la carga de contenido.
 
-Para incorporarlo se debe importar el componente reutilizable <SetupSkeleton />. Y se puede hacer uso de las siguientes propiedades, entre otras. Ejemplo:
+Para incorporarlo se debe importar el componente reutilizable <SkeletonGroup />. Y se puede hacer uso de las siguientes propiedades, entre otras. Ejemplo:
 
-<SetupSkeleton height={200} size={50} boxShadow="lg" bg="white" noOfLines={3} spacing={3} />
-=======
-**color** : String. Specify the color of the loader.
-
-**height** (only for Progress type): String. specify the height of the Progress Bar.
-
-Modified by Maximiliano Rama
-
-Otra modificacion por parte de Pablo
-
-# Como utilizar el spinner
-
-El spinner fué hecho para mostrar el estado de carga de la pantalla.
-
-## Acepta las siguientes propiedades:
-
-**isLoading**: recibe un booleano. En truen se mostrará, mientras que en false no.
-
-**color**: acepta un hash de color en el formato de #XXXXXX o #XXX. También acepta los colores básicos que se enumeran a continuación:
-
-```
-granate, rojo, naranja, amarillo, aceituna, verde, morado, blanco, fucsia, lima, verde azulado, agua, azul, armada, negro, gris, plata
-```
-
-**size**:
-La entrada puede ser un número o una string.
-
-Si el valor es un número, el cargador se establecerá de forma predeterminada en px.
-
-Si el valor es una cadena, el cargador verificará la unidad con las unidades css válidas.
->>>>>>> 6daa3b2b22986e2427d14146516cb43f1e6ddcec
+<SkeletonGroup skeletonItems={["block", "text", "circle", "circle"]} />
