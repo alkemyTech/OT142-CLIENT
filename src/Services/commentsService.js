@@ -1,7 +1,7 @@
 import { remove, get, post, put } from "./privateApiService";
 
 export const getComment = (id) => { 
-  return get("comments", id)
+  return get(process.env.REACT_APP_COMMENTS, id)
     .then((res) => res.data)
     .catch((error) => console.log(error));
 };
@@ -19,19 +19,19 @@ export const postComment = (id, new_id, user_id, image, text, visible, deleted_a
       updated_at: updated_at,
       group_id: group_id
   };
-  return post("comments", payload)
+  return post(process.env.REACT_APP_COMMENTS, payload)
     .then((res) => res.data)
     .catch((error) => console.log(error));
 }
 
 export const deleteComment = (id) => { 
-  return remove("comments", id)
+  return remove(process.env.REACT_APP_COMMENTS, id)
     .then(res => res.data)
     .catch(error => console.log(error))
 }
 
 export const editComment = (id, payload) => { 
-  return put("comments", id, payload)
+  return put(process.env.REACT_APP_COMMENTS, id, payload)
     .then(res => res.data)
     .catch(error => console.log(error))
 }

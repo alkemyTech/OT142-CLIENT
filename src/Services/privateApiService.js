@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://ongapi.alkemy.org/api";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const getAuthorizationToken = () => {
   const auth = {
@@ -20,7 +20,8 @@ export const axiosInstance = axios.create({
 
 
 export const remove = (route, id) => {
-  return axios.delete(`${BASE_URL}/${route}/${id}`,  {
+
+  return axiosInstance.delete(`${route}/${id}`,  {
       headers:  getAuthorizationToken(),
     })
     .then(res => res.data)
@@ -29,7 +30,7 @@ export const remove = (route, id) => {
 
 
 export const get = (route, id) => {
-  const fullRoute = id ? `${BASE_URL}/${route}/${id}` : `${BASE_URL}/${route}`;
+  const fullRoute = id ? `${route}/${id}` : `${route}`;
   return axiosInstance.get(fullRoute,  {
     headers: getAuthorizationToken(),
   })
@@ -41,6 +42,12 @@ export const post = (route, payload) => {
   })
 }
 
-export const remove = (path, id) => {
-  return axiosInstance.delete(`${path}/${id}`);
-};
+export const put = (route, body, id) => {
+
+  return axiosInstance.put(`${route}/${id}`, body, {
+      headers:  getAuthorizationToken(),
+    })
+    .then(res => res.data)
+    .catch(error => console.log(error));
+}
+
