@@ -1,13 +1,12 @@
 import { useEffect, useState, useCallback } from "react";
 import { Container, Text, Image, Spinner } from '@chakra-ui/react';
 import { useParams } from "react-router-dom";
-import { get } from "../../../Services/publicApiService";
+import { get } from "../../Services/publicApiService";
 
 const ActivityDetail = () => {
     const { id } = useParams();
     const [activity, setActivity] = useState();
     const [error, setError] = useState();
-    console.log(id, activity);
 
     const getData = useCallback(async () => {
         try {
@@ -19,7 +18,6 @@ const ActivityDetail = () => {
     }, [])
 
     useEffect(() => {
-        console.log("prueba");
         getData();
     }, [getData]);
 
