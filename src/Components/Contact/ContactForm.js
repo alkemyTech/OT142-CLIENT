@@ -8,6 +8,7 @@ import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import * as Yup from 'yup';
 import FieldControl from './FieldControl';
 import { messageErrors } from '../../utils/messageErrors';
+import { createContact } from '../../Services/contactService';
 
 const {name, email, phone, message} = messageErrors;
 
@@ -42,7 +43,7 @@ const ContactForm = () => {
             }}
             validationSchema={schemaContact}
             onSubmit={values => {
-                alert(JSON.stringify(values, null, 2));
+                createContact(values)
             }}
         >
             {(props) => (

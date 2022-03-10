@@ -14,38 +14,43 @@ import {
   FormLabel,
   Stack,
   Heading,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  Box,
 } from "@chakra-ui/react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import styleCS from "./styleCS.css";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import axios from 'axios'
+
+const state = {
+  name: "",
+  description: "",
+  image: "",
+};
 
 const CategoriesForm = () => {
-  const [initialValues, setInitialValues] = useState({
-    name: "",
-    description: "",
-  });
-
-  const data = useParams();
-  console.log(data.id);
+  const { categorie } = useParams();
+  const [initialValues, setInitialValues] = useState(state == false);
 
   useEffect(() => {
-    if (data.id) {
-      getRequest(`categories/${data.id}`)
+    if (categorie) {
+      var BASE_URL = `http://ongapi.alkemy.org/api/categories/${categorie}`;
+      axios
+        .get(BASE_URL)
+        .then((res) => res.data.data)
         .then((data) => {
-          return data.data;
-        })
-        .then((data) => {
-          console.log(data.data);
           setInitialValues({
-            name: data.data.name,
-            description: data.data.description,
-            image: data.data.image,
+            name: data.name,
+            description: data.description,
+            image: data.image,
           });
         });
     }
-  }, []);
-
+  }, [categorie]);
   const handleChange = (e) => {
     if (e.target.name === "name") {
       setInitialValues({ ...initialValues, name: e.target.value });
@@ -55,8 +60,8 @@ const CategoriesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("enviado ", initialValues);
-    if (data.id) {
-      patchRequest(`categories/${data.id}`, initialValues).then((data) => {
+    if (categorie.id) {
+      patchRequest(`categories/${categorie.id}`, initialValues).then((data) => {
         console.log(data);
       });
     } else {
@@ -72,70 +77,66 @@ const CategoriesForm = () => {
         <Stack>
           <Heading>Edit/Categorie</Heading>
         </Stack>
-
         <Stack>
-          <Stack>
-            <FormControl isRequired>
-              <FormLabel htmlFor="first-name">Name</FormLabel>
-              <Input
-                isInvalid
-                focusBorderColor="red.300"
-                variant="filled"
-                type="text"
-                minLength={4}
-                name="name"
-                value={initialValues.name}
-                onChange={handleChange}
-                placeholder="Name"
-              ></Input>
-            </FormControl>
-          </Stack>
-          <Stack spacing={4}>
-            <FormControl isRequired>
-              <FormLabel htmlFor="first-name">Description</FormLabel>
+          <FormControl isRequired>
+            <FormLabel htmlFor="first-name">Name</FormLabel>
+            <Input
+              isInvalid
+              focusBorderColor="red.300"
+              variant="filled"
+              type="text"
+              minLength={4}
+              name="name"
+              value={initialValues.name}
+              onChange={handleChange}
+              placeholder="Name"
+            ></Input>
+          </FormControl>
+        </Stack>
+        <Stack spacing={4}>
+          <FormControl isRequired>
+            <FormLabel htmlFor="first-name">Description</FormLabel>
+            <CKEditor
+              config={{ placeholder: "...Description" }}
+              editor={ClassicEditor}
+              data={initialValues.description}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                console.log(data);
+                setInitialValues({ ...initialValues, description: data });
+              }}
+            />
+          </FormControl>
+        </Stack>
 
-              <CKEditor
-                config={{ placeholder: "...Description" }}
-                editor={ClassicEditor}
-                data={initialValues.description}
-                onChange={(event, editor) => {
-                  const data = editor.getData();
-                  console.log(data);
-                  setInitialValues({
-                    ...initialValues,
-                    description: data,
-                  });
-                }}
-              />
-            </FormControl>
-          </Stack>
+        <Stack spacing={4}>
+          <FormControl isRequired>
+            <FormLabel htmlFor="first-name">Image</FormLabel>
 
-          <Stack spacing={4}>
-            <FormControl isRequired>
-              <FormLabel htmlFor="first-name">Image</FormLabel>
-              <Input
-                id="image"
-                type="file"
-                variant="flushed"
-                onChange={(event) => {
-                  const files = event.target.files;
-                  let myFiles = Array.from(files);
-                  // setInitialValues({
-                  //   ...initialValues,
-                  //   image: myFiles[0].name,
-                  // });
-                }}
-                mb={2}
-              />
-              <Image src={initialValues.image} id="img-preview"></Image>
-            </FormControl>
-          </Stack>
+            <Input
+              accept="image/x-png,image/jpeg"
+              id="image"
+              type="file"
+              variant="flushed"
+              onChange={(event) => {
+                const files = event.target.files;
+                let myFiles = Array.from(files);
+                setInitialValues({
+                  ...initialValues,
+                  image: myFiles[0].name,
+                });
+              }}
+              mb={2}
+            />
 
-          <Stack spacing={4}>
-            <Button mt={4} colorScheme="teal" type="submit">
-              Send
-            </Button>
-          </Stack>
+            <Image id="img-preview"></Image>
+          </FormControl>
+        </Stack>
+
+        <Stack spacing={4}>
+          <Button mt={4} colorScheme="teal" type="submit">
+            Send
+          </Button>
         </Stack>
       </form>
     </>

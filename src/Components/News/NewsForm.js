@@ -16,12 +16,53 @@ import {
     FormLabel,
     VStack
 } from '@chakra-ui/react'
+import { postNews, editNews } from "../../Services/newsService";
 
 // Custom
 import '../FormStyles.css';
-//import { getCategories, getNew, postNew, patchNew } from '../../Services/publicApiService';
 import useForm from '../../hooks/useForm';
 import { messageErrors } from '../../utils/messageErrors';
+import axios from 'axios';
+
+
+const BASE_URL = 'http://ongapi.alkemy.org/api/';
+
+const getNew = async(id) => {
+
+    let getData = {
+        data: {},
+        err: null
+    };
+
+    try{
+
+        const res = await axios.get(`${BASE_URL}/news/${id}`);
+        const { data } = await res.data;
+        const { name, image, content, category_id } = data;
+
+        getData = {
+            ...getData,
+            data: {
+                title: name,
+                content,
+                category: category_id || '',
+                image
+            }
+        }
+
+    }catch(error){
+        getData = {
+            data: {},
+            err: {
+                message: 'Id no encontrado',
+                status: true,
+                error
+            }
+        }
+    }
+
+    return getData
+}
 
 
 const {title, shortDescription, category, logo} = messageErrors
@@ -57,8 +98,17 @@ const formNewsSchema = Yup.object().shape({
 
 
 const NewsForm = () => {
-
     const { id } = useParams();
+    const handleCreateEditNews = (values, id) => {
+        // console.log(values, id)
+        if (id) {
+            editNews("news", id, values); 
+        } else {
+            postNews("news", id, values.title, null, values.content, values.image, null, values.category, null, null, null, null)
+        }
+    }
+
+    
     const {
         form,
         setForm
@@ -75,8 +125,7 @@ const NewsForm = () => {
     // }, [id, setForm])
 
     // useEffect(() => {
-    //     getCategories()
-    //         .then(res => setCategories(res))
+    //     console.log(categories)
     // }, [])
 
     return (
@@ -204,6 +253,7 @@ const NewsForm = () => {
                                 </FormControl>               
                                     
                                 <Button 
+                                    onClick={() => handleCreateEditNews(formik.values, id)}
                                     type="submit" 
                                     size='md'  
                                     variant="solid" 
