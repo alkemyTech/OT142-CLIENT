@@ -37,6 +37,11 @@ El spinner fue hecho para el estado de carga de la pantalla.
 
 # `Loaders`
 
+
+AlertServicie
+The path is accessed via the (http://localhost:3000/alert) path.
+A service was created in this file where three alert functions are exported (confirmation, error, information). They receive props, in case they are null they have default values.
+
 Loader component uses two Loaders from the Chakra-UI Library, these are following links:
 
 - Spinner: https://chakra-ui.com/docs/components/feedback/spinner
