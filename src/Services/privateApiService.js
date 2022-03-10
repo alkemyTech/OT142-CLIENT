@@ -4,12 +4,11 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const getAuthorizationToken = () => {
   const auth = {
-    Authorization: localStorage.getItem("token")
-      ? `Bearer ${localStorage.getItem("token")}`
-      : null,
-  };
+    Authorization: localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null
+  }
   return auth;
-};
+}
+
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,

@@ -32,7 +32,6 @@ import { ChakraProvider } from '@chakra-ui/react'
 import ContactOngDate from './Components/Contact/ContactOngDate'
 import NewsList from "./Components/News/NewsList";
 import TableCategorie from "./Components/Categories/TableCategorie";
-import NewsList from "./Components/News/NewsList";
 
 //import ContactForm from "./Components/Contact";
 import { News } from "./Components/News";
