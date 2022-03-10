@@ -8,11 +8,14 @@ import '../CardListStyles.css';
 const NewsList = () => {
 
     const [newsList, setNewsList] = useState([]);
-    useEffect(() => {
-        const result = getNews();
+
+    useEffect(async () => {
+        const result = await getNews();
         setNewsList([...result.data]);
 
     }, [])
+
+
 
     // const list = [
     //     {id: 1, name: 'Titulo '},

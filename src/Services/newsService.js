@@ -1,7 +1,7 @@
 import { remove, get, post, put } from "./privateApiService";
 
 export const getNews = (id) => {
-    return get(process.env.REACT_APP_ROUTE_NEWS, id)
+    return get(process.env.REACT_APP_NEWS, id)
         .then((res) => res.data)
         .catch((error) => console.log(error));
 };
@@ -20,20 +20,20 @@ export const postNews = (id, name, slug, content, image, user_id, category_id, c
         deleted_at: deleted_at,
         group_id: group_id
     };
-    return post(process.env.REACT_APP_ROUTE_NEWS, payload)
+    return post(process.env.REACT_APP_NEWS, payload)
         .then((res) => res.data)
         .catch((error) => console.log(error));
 
 };
 
 export const deleteNews = (id) => {
-    return remove(process.env.REACT_APP_ROUTE_NEWS, id)
+    return remove(process.env.REACT_APP_NEWS, id)
         .then(res => res.data)
         .catch(error => console.log(error))
 }
 
 export const editNews = (id, payload) => {
-    return put(process.env.REACT_APP_ROUTE_NEWS, id, payload)
+    return put(process.env.REACT_APP_NEWS, id, payload)
         .then(res => res.data)
         .catch(error => console.log(error))
 
