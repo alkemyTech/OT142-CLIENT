@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiInstance = axios.create({
-  baseURL: process.env.REACT_APP_SLIDES_BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 export const getSlideRequest = () => {
@@ -13,9 +13,9 @@ export const postSlideRequest = (values) => {
 };
 
 export const putSlideRequest = (id, values) => {
-  return apiInstance.put(`/${id}`, values);
+  return apiInstance.put(id, values);
 };
 
 export const deleteSlideRequest = (id) => {
-  return apiInstance.delete(`/${id}`);
+  return apiInstance.delete(id);
 };
