@@ -32,7 +32,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import AlertServicie from "./Services/AlertServicie/AlertServicie";
 import { AlertRoute } from "./Services/AlertServicie/AlertRoute";
 import ContactOngDate from './Components/Contact/ContactOngDate'
-// import NewsList from "./Components/News/NewsList";
+import NewsList from "./Components/News/NewsList";
 import TableCategorie from "./Components/Categories/TableCategorie";
 
 //import ContactForm from "./Components/Contact";
@@ -57,7 +57,7 @@ function App() {
           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
           <Route exact path="/backoffice/organization" component={OrganizationBoard} />
 
-          <Route exact path="/backoffice/slides" component={SlidesTable} />
+          {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
           <Route exact path="/backoffice/news/create" component={NewsForm} />
           <Route exact path="/backoffice/news/:id" component={NewsForm} />
           <Route path="/backoffice/news" component={NewsList} />
@@ -85,6 +85,7 @@ function App() {
           <Route path="/backoffice-categories" component={TableCategorie} />
         </Switch>
       </BrowserRouter>
+      </ChakraProvider>
       <div className="App">
         <header className="App-header"></header>
       </div>
