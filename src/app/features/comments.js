@@ -63,7 +63,46 @@ export const commentsSlice = createSlice({
         [getCommentReducer.rejected]: (state, action) => {
             state.status = 'failed'
             state.error = action.error
-        }
+        },
+
+
+        [postCommentReducer.pending]: (state) => {
+            state.status = 'loading'                       
+        },
+        [postCommentReducer.fulfilled]: (state,action) => {
+                    state.status = 'success'
+                    state.comments = state.comments.concat(action.payload)  
+        },
+        [postCommentReducer.rejected]: (state,action) => {
+                state.status = 'failed'
+                state.error = action.error
+        },
+
+
+        [editCommentReducer.pending]: (state) => {
+            state.status = 'loading'                       
+        },
+        [editCommentReducer.fulfilled]: (state,action) => {
+                    state.status = 'success'
+                    state.comments = {}  
+        },
+        [editCommentReducer.rejected]: (state,action) => {
+                state.status = 'failed'
+                state.error = action.error
+        },
+
+
+        [deleteCommentReducer.pending]: (state) => {
+            state.status = 'loading'                       
+        },
+        [deleteCommentReducer.fulfilled]: (state,{payload}) => {
+                    state.status = 'success'
+                    state.comments = state.comments.filter(({ id }) => id !== payload); 
+        },
+        [deleteCommentReducer.rejected]: (state,action) => {
+                state.status = 'failed'
+                state.error = action.error
+   },     
     }
 })
 
