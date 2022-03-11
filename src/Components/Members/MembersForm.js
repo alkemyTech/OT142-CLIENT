@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "../FormStyles.css";
 import { postMember } from "../../Services/membersService.js";
+import { useSelector } from "react-redux";
 
 const MembersForm = () => {
+  const state = useSelector((state) => state);
+
   const [initialValues, setInitialValues] = useState({
     name: "",
     description: "",
