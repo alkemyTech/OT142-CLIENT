@@ -48,11 +48,3 @@ export const showAlertErr = (props = {}) => {
   });
 };
 
-const allFuntionAlert = {
-  showAlertOkey,
-  showAlertInfo,
-  showAlertErr,
-};
-
-export default allFuntionAlert;
-
