@@ -35,9 +35,11 @@ import TableCategorie from "./Components/Categories/TableCategorie";
 
 //import ContactForm from "./Components/Contact";
 import { News } from "./Components/News";
+import SlidesTable from "./Components/Slides/SlidesTable";
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
 
 import ContactForm from "./Components/Contact/ContactForm"
+
 
 function App() {
   return (
@@ -72,6 +74,10 @@ function App() {
           <Route exact path="/actividades/:id" component={ActivityDetail} />
           <Route exact path="/actividades" component={Activities} />
           <Route exact path="/register" component={RegisterForm} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/contact-form" component={ContactForm} />
+          <Route exact path="/nosotros" component={About} />
+          <Route exact path="/about-us/members" component={MembersList} />
           <Route exact path='/contacto' component={ContactOngDate} />
           <Route exact path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
