@@ -13,7 +13,7 @@ import {
 import TrTable from './TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllActivities } from '../../../Reducers/activitiesSlice';
+import { getAllActivities } from '../../../app/features/activitiesSlice';
 
 const BackOfficeActivities = () => {
 
