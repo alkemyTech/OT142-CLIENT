@@ -37,6 +37,7 @@ export const showAlertInfo = (props = {}) => {
 };
 
 export const showAlertErr = (props = {}) => {
+    console.log()
   swal.fire({
     icon: "error",
     title: "Error",

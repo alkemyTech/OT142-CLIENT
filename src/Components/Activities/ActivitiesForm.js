@@ -6,13 +6,13 @@ import * as Yup from 'yup';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { post } from "../../Services/publicApiService";
 import { toBase64 } from "../../utils/toBase64";
+import { createActivity, editActivity, getActivity } from "../../Services/activities.service";
 
-//<ActivitiesForm { ...responseAPI} />
-const ActivitiesForm = (activitiesData) => {
-   
+const ActivitiesForm = (activitiesData) => {   
+
     const location = useLocation().pathname.toLocaleLowerCase();
 
     const SUPPORTED_FORMATS = [
@@ -20,7 +20,7 @@ const ActivitiesForm = (activitiesData) => {
         "image/jpeg",
         "image/png"
     ];
-
+    
     const initialValues = {
         name: activitiesData?.name || '',
         description: activitiesData?.description || '',
@@ -45,13 +45,10 @@ const ActivitiesForm = (activitiesData) => {
             onSubmit={async(values, { resetForm }) => {
                 let imagen = await toBase64(values.image)
                 values.image = imagen
-                console.log(values.image)
                 if (location.includes('create')) {
-                    post('/activities', values)
-                    console.log(values)
-
+                    createActivity(values)
                 } else if (location.includes('edit')) {
-                    console.log(values)
+                    editActivity(values)
                 }
                 resetForm()
             }}
