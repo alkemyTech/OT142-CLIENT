@@ -3,37 +3,43 @@ import { useParams } from 'react-router-dom'
 import { Box, Skeleton, Heading, Center, Text } from '@chakra-ui/react'
 import { getNews } from '../../../Services/newsService'
 import Spinner from '../../Spinner'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCommentReducer } from '../../../app/features/comments'
 
 export const NewsDetail = ({ tittle, news }) => {
   const targetRef = useRef(null)
   const [newsDetail, setNewsDetail] = useState({});
-  const [newsDetailComments, setNewsDetailComments] = useState([]);
+  const [newsDetailCommentsReducer, setNewsDetailCommentsReducer] = useState([]);
   const [loading, setLoading] = useState(true)
 
+  const dispatch = useDispatch();
+  const {comments} = useSelector(state => state);
   const { id } = useParams();
 
-
   useEffect(() => {
+    let dataComments = comments.comments
+    setNewsDetailCommentsReducer(dataComments);
+    console.log('esta es la data', dataComments)
+  }, [comments])
+  
+  useEffect(() => {
+    
     let callFetchApi = 0
     getNews(id)
       .then(newsDetailDataAPI => {
+        console.log('newsDetailDataAPI', newsDetailDataAPI)
         let dataApi = newsDetailDataAPI.data
         console.log('dataApi', dataApi)
         setNewsDetail(dataApi);
       });
 
-    const showComments = () => {
-      callFetchApi++;
-      if (callFetchApi === 2) {
-        fetch(`https://ongapi.alkemy.org/api/comments?news_id=${newsDetail.id}`)
-          .then((res) => res.json())
-          .then((newsDetailCommentsDataAPI) => {
-            let commentsDataApi = newsDetailCommentsDataAPI.data;
-            setNewsDetailComments(commentsDataApi);
-            setLoading(false);
-          })
+      const showComments = () => {
+        callFetchApi++;
+        if(callFetchApi === 2) {
+          dispatch(getCommentReducer());
+          setLoading(false);
+        }
       }
-    }
 
     const options = {
       root: null,
@@ -46,8 +52,8 @@ export const NewsDetail = ({ tittle, news }) => {
 
     observer.observe(currentTarget);
 
-  }, [])
-
+  }, [dispatch])
+  
   return (
     <>
       <Box m='5' maxW='lg' borderWidth='1px' borderRadius='lg' overflow='hidden'>
@@ -86,7 +92,7 @@ export const NewsDetail = ({ tittle, news }) => {
               <li><Skeleton mt='2' mr='10' mb='2' ml='10' height='20px' /></li>
             </ul></> :
           <ul>
-            {newsDetailComments.map((comments) => {
+            {newsDetailCommentsReducer.map((comments) => {
               return (
                 <Box m='3' borderWidth='1px' p='2' key={comments.id}>{comments.text}</Box>
               )
