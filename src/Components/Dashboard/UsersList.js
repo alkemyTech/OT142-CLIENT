@@ -14,7 +14,7 @@ import {
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers, getUsersList, renderUserList, deletetUsersApi } from './UsersSlice';
+import { getAllUsers, getUsersList, renderUserList, deletetUsersApi } from '../../app/features/UsersSlice';
 
 const UserList = () => {
 
