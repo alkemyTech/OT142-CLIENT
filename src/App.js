@@ -38,7 +38,7 @@ import TableCategorie from "./Components/Categories/TableCategorie";
 import { News } from "./Components/News";
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
 
-import ContactForm from "./Components/Contact/ContactForm"
+import ContactForm from "./Components/Contact/ContactForm";
 
 function App() {
   return (
