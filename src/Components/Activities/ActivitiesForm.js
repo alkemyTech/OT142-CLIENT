@@ -8,14 +8,11 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import React, { useState } from 'react';
 import { post } from "../../Services/publicApiService";
+import { toBase64 } from "../../utils/toBase64";
 
 //<ActivitiesForm { ...responseAPI} />
 const ActivitiesForm = (activitiesData) => {
-
-    /*     const [values, setValues] = useState([])
-        console.log(`valores ingresados: `, values) */
-
-    //Returns the url string but converted to lowercase
+   
     const location = useLocation().pathname.toLocaleLowerCase();
 
     const SUPPORTED_FORMATS = [
@@ -45,7 +42,10 @@ const ActivitiesForm = (activitiesData) => {
         <Formik
             initialValues={initialValues}
             validationSchema={formSchema}
-            onSubmit={(values, { resetForm }) => {
+            onSubmit={async(values, { resetForm }) => {
+                let imagen = await toBase64(values.image)
+                values.image = imagen
+                console.log(values.image)
                 if (location.includes('create')) {
                     post('/activities', values)
                     console.log(values)
