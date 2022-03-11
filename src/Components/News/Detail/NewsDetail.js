@@ -2,20 +2,32 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Box, Skeleton, Heading, Center, Text } from '@chakra-ui/react'
 import { getNews } from '../../../Services/newsService'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCommentReducer } from '../../../app/features/comments'
 
 export const NewsDetail = ({ tittle, news }) => {
   const targetRef = useRef(null)
   const [newsDetail, setNewsDetail] = useState({});
-  const [newsDetailComments, setNewsDetailComments] = useState([]);
+  const [newsDetailCommentsReducer, setNewsDetailCommentsReducer] = useState([]);
   const [loading, setLoading] = useState(true)
 
+  const dispatch = useDispatch();
+  const {comments} = useSelector(state => state);
   const { id } = useParams();
 
+  useEffect(() => {
+    let dataComments = comments.comments
+    setNewsDetailCommentsReducer(dataComments);
+    console.log('esta es la data', dataComments)
+  }, [comments])
+  
   
   useEffect(() => {
+    
     let callFetchApi = 0
     getNews(id)
       .then(newsDetailDataAPI => {
+        console.log('newsDetailDataAPI', newsDetailDataAPI)
         let dataApi = newsDetailDataAPI.data
         console.log('dataApi', dataApi)
         setNewsDetail(dataApi);
@@ -24,13 +36,8 @@ export const NewsDetail = ({ tittle, news }) => {
       const showComments = () => {
         callFetchApi++;
         if(callFetchApi === 2) {
-          fetch(`https://ongapi.alkemy.org/api/comments?news_id=${newsDetail.id}`)
-            .then((res) => res.json())
-            .then((newsDetailCommentsDataAPI) => {
-              let commentsDataApi = newsDetailCommentsDataAPI.data;
-              setNewsDetailComments(commentsDataApi);
-              setLoading(false);
-          })
+          dispatch(getCommentReducer());
+          setLoading(false);
         }
       }
     
@@ -45,7 +52,7 @@ export const NewsDetail = ({ tittle, news }) => {
 
     observer.observe(currentTarget);
 
-  }, [])
+  }, [dispatch])
   
   return (
     <>
@@ -83,7 +90,7 @@ export const NewsDetail = ({ tittle, news }) => {
           <li><Skeleton mt='2' mr='10' mb='2' ml='10'  height='20px'/></li>
         </ul> :
         <ul>
-          {newsDetailComments.map((comments) => {
+          {newsDetailCommentsReducer.map((comments) => {
             return (
               <Box m='3' borderWidth='1px' p='2' key={comments.id}>{comments.text}</Box>
             )
