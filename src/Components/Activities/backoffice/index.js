@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {
     Table,
     Thead,
@@ -12,18 +12,27 @@ import {
 } from '@chakra-ui/react'
 import TrTable from './TrTable';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllActivities } from '../../../app/features/activitiesSlice';
 
 const BackOfficeActivities = () => {
 
-    const [activities, setactivities] = useState([
-        { key: 1, name:'actividad 1', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
-        { key: 2, name:'actividad 2', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
-        { key: 3, name:'actividad 3', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
-        { key: 4, name:'actividad 4', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
-        { key: 5, name:'actividad 5', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
-        { key: 6, name:'actividad 6', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
-        { key: 7, name:'actividad 7', image: 'https://agorasocial.com/wp-content/uploads/2019/10/49.-marca-cuestion-de-ideas.jpg', created_at: new Date()},
-    ])
+    const [activities, setActivities] = useState([]);
+    const dispatch = useDispatch();
+    const { activitiesReducer } = useSelector(state => state);
+
+    useEffect(() => {
+        dispatch(getAllActivities());
+    }, [dispatch])
+
+    useEffect(() => {
+
+        if(activitiesReducer.status === 'success'){
+            setActivities(activitiesReducer.activities)
+        }
+
+    }, [activitiesReducer])
+    
     
     return (
         <Container maxW='90%'>
