@@ -25,7 +25,7 @@ import styleCS from '../Categories/styleCS.css'
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { postSlideRequest } from "./services/SlidesApiService";
-import {getSlidesSlice, newSlideSlice,putSlideSlice} from "../../app/slides/slidesSlice"
+import {getSlidesSlice, newSlideSlice,putSlideSlice} from "../../app/features/slidesSlice"
 import { toBase64 } from "../../utils/toBase64";
 
 const SlidesForm = ({ state }) => {    

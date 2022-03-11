@@ -31,8 +31,8 @@ export const remove = (route, id) => {
 export const get = (route) => {
   return axiosInstance.get( `${route}`,  {
     headers: getAuthorizationToken(),
-  })
-}
+  });
+};
 
 
 export const post = (route, payload) => {

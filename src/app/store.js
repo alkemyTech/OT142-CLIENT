@@ -1,17 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import  categories  from '../Components/Reducer/ReducerCategories';
-
-import activitiesReducer from '../Reducers/activitiesSlice';
-import usersReducer from '../Components/Dashboard/UsersSlice';
-import slidesSlice from './slides/slidesSlice';
+import categories from './features/ReducerCategories'
+import activitiesReducer from './features/activitiesSlice'
+import usersReducer from './features/UsersSlice'
+import slidesSlice from './features/slidesSlice'
+import commentsSlice from './features/comments'
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
     categories,
     activitiesReducer,
     users: usersReducer,
-    slides: slidesSlice
+    slides: slidesSlice,
+    comments: commentsSlice
   },
 });
