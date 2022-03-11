@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { Box, Skeleton, Heading, Center, Text } from '@chakra-ui/react'
 import { getNews } from '../../../Services/newsService'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCommentReducer } from '../../../app/slides/comments'
+import { getCommentReducer } from '../../../app/features/comments'
 
 export const NewsDetail = ({ tittle, news }) => {
   const targetRef = useRef(null)
