@@ -86,6 +86,8 @@ function App() {
           {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
           <Route path="/create-member" component={MembersForm} />
           <Route path="/backoffice-categories" component={TableCategorie} />
+          <Route path="/categories" component={CategoriesForm} />
+
         </Switch>
       </BrowserRouter>
       {/*    </ChakraProvider> */}
