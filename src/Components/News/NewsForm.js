@@ -115,14 +115,14 @@ const NewsForm = () => {
     } = useForm(initialState);
     const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if(id){
-            getNew(id)
-                .then(res => setForm({...res}))
-        }
+    //     if(id){
+    //         getNew(id)
+    //             .then(res => setForm({...res}))
+    //     }
 
-    }, [id, setForm])
+    // }, [id, setForm])
 
     // useEffect(() => {
     //     console.log(categories)

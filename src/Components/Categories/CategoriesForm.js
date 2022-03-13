@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import "../FormStyles.css";
-import axios from "axios";
+import {
+  postRequest,
+  patchRequest,
+  getRequest,
+  GetCategie,
+} from "../../Services/ServiceCategories";
 import {
   Image,
   Input,
   Button,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Stack,
-  Textarea,
   Heading,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-  Box,
+  
 } from "@chakra-ui/react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import styleCS from "./styleCS.css";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import axios from 'axios'
 
 const state = {
   name: "",
@@ -57,12 +56,14 @@ const CategoriesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("enviado ", initialValues);
-    if (categorie) {
-      const res = await axios.patch("/categories", initialValues);
-      return res;
+    if (categorie.id) {
+      patchRequest(`categories/${categorie.id}`, initialValues).then((data) => {
+        console.log(data);
+      });
     } else {
-      const res = await axios.post("/categories", initialValues);
-      return res;
+      postRequest("/categories", initialValues).then((data) => {
+        console.log(data);
+      });
     }
   };
 
@@ -139,3 +140,4 @@ const CategoriesForm = () => {
 };
 
 export default CategoriesForm;
+
