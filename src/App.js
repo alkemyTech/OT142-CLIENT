@@ -49,7 +49,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route exact path="/create-activity" component={ActivitiesForm} />
-          {/*           <Route exact path="/Novedades/" component={News} /> */}
+          <Route exact path="/Novedades/" component={News} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />

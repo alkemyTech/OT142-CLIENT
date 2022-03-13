@@ -4,6 +4,7 @@ import activitiesReducer from './features/activitiesSlice'
 import usersReducer from './features/UsersSlice'
 import slidesSlice from './features/slidesSlice'
 import commentsSlice from './features/comments'
+import newsSlice from './features/newsSlice'
 
 export default configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
     activitiesReducer,
     users: usersReducer,
     slides: slidesSlice,
-    comments: commentsSlice
+    comments: commentsSlice,
+    news: newsSlice
   },
 });
