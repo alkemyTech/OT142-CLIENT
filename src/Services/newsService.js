@@ -1,7 +1,6 @@
 import { remove, get, post, put } from "./privateApiService";
 
 export const getNews = (id) => {
-    console.log(process.env.REACT_APP_NEWS)
     return get(process.env.REACT_APP_NEWS, id)
         .then((res) => res.data)
         .catch((error) => console.log(error));
