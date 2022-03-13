@@ -39,57 +39,80 @@ import SlidesTable from "./Components/Slides/SlidesTable";
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
 
 import ContactForm from "./Components/Contact/ContactForm"
+import { AnimatedSwitch, spring } from 'react-router-transition';
+
+
+function mapStyles(styles) {
+  return {
+    opacity: styles.opacity,
+    transform: `translateX(${styles.translateX}%)`
+  };
+}
+
+function bounce(val) {
+  return spring(val, {
+    stiffness: 300,
+    damping: 40
+  });
+}
 
 
 function App() {
   return (
     <>
       <ChakraProvider>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route exact path="/create-activity" component={ActivitiesForm} />
-          <Route exact path="/Novedades/" component={News} />
-          <Route exact path="/Novedades/:id" component={NewsDetail} />
-          <Route exact path="/backoffice" component={Dashboard} />
-          <Route exact path="/backoffice/create-slide" component={SlidesForm} />
-          <Route exact path="/backoffice/organization/edit" component={EditForm} />
-          <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
-          <Route exact path="/backoffice/organization" component={OrganizationBoard} />
+        <BrowserRouter>
+       
+          <AnimatedSwitch
+            atEnter={{ opacity: 0, translateX: -100 }}
+            atActive={{ opacity: bounce(1), translateX: bounce(0) }}
+            atLeave={{ opacity: bounce(1), translateX: bounce(100) }}
+            mapStyles={mapStyles}
+            className="route-wrapper"
+          >
+            <Route path="/" exact component={Home} />
+            <Route exact path="/create-activity" component={ActivitiesForm} />
+            <Route exact path="/Novedades/" component={News} />
+            <Route exact path="/Novedades/:id" component={NewsDetail} />
+            <Route exact path="/backoffice" component={Dashboard} />
+            <Route exact path="/backoffice/create-slide" component={SlidesForm} />
+            <Route exact path="/backoffice/organization/edit" component={EditForm} />
+            <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
+            <Route exact path="/backoffice/organization" component={OrganizationBoard} />
 
-          {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
-          <Route exact path="/backoffice/news/create" component={NewsForm} />
-          <Route exact path="/backoffice/news/:id" component={NewsForm} />
-          <Route path="/backoffice/news" component={NewsList} />
-          <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
-          <Route exact path="/backoffice/users" component={UserList} />
-          <Route exact path="/create-testimonials" component={TestimonialForm} />
-          <Route exact path="/create-news" component={NewsForm} />
-          <Route exact path="/create-user" component={UserForm} />
-          <Route exact path="/backoffice/members/create" component={MembersForm} />
-          <Route exact path="/create-project" component={ProjectsForm} />
-          <Route exact path="/update-project/:id" component={ProjectsForm} />
-          <Route exact path="/school-campaign" component={SchoolCampaign} />
-          <Route exact path="/toys-campaign" component={ToysCampaign} />
-          <Route exact path="/actividades/:id" component={ActivityDetail} />
-          <Route exact path="/actividades" component={Activities} />
-          <Route exact path="/register" component={RegisterForm} />
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/contact-form" component={ContactForm} />
-          <Route exact path="/nosotros" component={About} />
-          <Route exact path="/about-us/members" component={MembersList} />
-          <Route exact path='/contacto' component={ContactOngDate} />
-          <Route exact path='/contact-form' component={ContactForm} />
-          <Route exact path='/nosotros' component={About} />
-          <Route exact path='/about-us/members' component={MembersList} />
-          {/* <Route exact path='/alert' component={AlertServicie} /> */}
-          <Route exact path='/alert' component={AlertRoute} />
-          {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
-          <Route path="/create-member" component={MembersForm} />
-          <Route path="/backoffice-categories" component={TableCategorie} />
-          <Route path="/categories" component={CategoriesForm} />
-
-        </Switch>
+            {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
+            <Route exact path="/backoffice/news/create" component={NewsForm} />
+            <Route exact path="/backoffice/news/:id" component={NewsForm} />
+            <Route path="/backoffice/news" component={NewsList} />
+            <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
+            <Route exact path="/backoffice/users" component={UserList} />
+            <Route exact path="/create-testimonials" component={TestimonialForm} />
+            <Route exact path="/create-news" component={NewsForm} />
+            <Route exact path="/create-user" component={UserForm} />
+            <Route exact path="/backoffice/members/create" component={MembersForm} />
+            <Route exact path="/create-project" component={ProjectsForm} />
+            <Route exact path="/update-project/:id" component={ProjectsForm} />
+            <Route exact path="/school-campaign" component={SchoolCampaign} />
+            <Route exact path="/toys-campaign" component={ToysCampaign} />
+            <Route exact path="/actividades/:id" component={ActivityDetail} />
+            <Route exact path="/actividades" component={Activities} />
+            <Route exact path="/register" component={RegisterForm} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/contact-form" component={ContactForm} />
+            <Route exact path="/nosotros" component={About} />
+            <Route exact path="/about-us/members" component={MembersList} />
+            <Route exact path='/contacto' component={ContactOngDate} />
+            <Route exact path='/contact-form' component={ContactForm} />
+            <Route exact path='/nosotros' component={About} />
+            <Route exact path='/about-us/members' component={MembersList} />
+            {/* <Route exact path='/alert' component={AlertServicie} /> */}
+            <Route exact path='/alert' component={AlertRoute} />
+            {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
+            <Route path="/create-member" component={MembersForm} />
+            <Route path="/backoffice-categories" component={TableCategorie} />
+            <Route path="/categories" component={CategoriesForm} />
+          </AnimatedSwitch>
+        
       </BrowserRouter>
       </ChakraProvider>
       <div className="App">
