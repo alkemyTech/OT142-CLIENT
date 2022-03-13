@@ -32,7 +32,7 @@ import { AlertRoute } from "./Services/AlertServicie/AlertRoute";
 import ContactOngDate from './Components/Contact/ContactOngDate'
 import NewsList from "./Components/News/NewsList";
 import TableCategorie from "./Components/Categories/TableCategorie";
-
+import Error404 from "./Components/Errors/Error404";
 //import ContactForm from "./Components/Contact";
 import { News } from "./Components/News";
 import SlidesTable from "./Components/Slides/SlidesTable";
@@ -88,7 +88,7 @@ function App() {
           <Route path="/create-member" component={MembersForm} />
           <Route path="/backoffice-categories" component={TableCategorie} />
           <Route path="/categories" component={CategoriesForm} />
-
+          <Route path='*' component={Error404} />
         </Switch>
       </BrowserRouter>
       </ChakraProvider>
