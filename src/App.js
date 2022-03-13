@@ -20,7 +20,7 @@ import { NewsDetail } from "./Components/News/Detail/NewsDetail";
 import EditForm from "./Components/Dashboard/EditForm";
 import RegisterForm from "./Components/Auth/RegisterForm";
 import Contact from "./Components/Contact";
-import Footer from "./Components/Footer";
+/* import Footer from "./Components/Footer"; */
 import About from "./Components/About";
 import BackOfficeActivities from "./Components/Activities/backoffice";
 import Home from "./Components/Home";
@@ -35,7 +35,7 @@ import TableCategorie from "./Components/Categories/TableCategorie";
 
 //import ContactForm from "./Components/Contact";
 import { News } from "./Components/News";
-import SlidesTable from "./Components/Slides/SlidesTable";
+/* import SlidesTable from "./Components/Slides/SlidesTable"; */
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
 
 import ContactForm from "./Components/Contact/ContactForm"
@@ -86,6 +86,8 @@ function App() {
             {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
             <Route path="/create-member" component={MembersForm} />
             <Route path="/backoffice-categories" component={TableCategorie} />
+            {/*             <Route path="/categories" component={CategoriesForm} /> */}
+
           </Switch>
         </BrowserRouter>
       </ChakraProvider>
