@@ -15,6 +15,7 @@ import CarouselSlides from "../Slides/HomeSlide";
 import { get } from "../../Services/publicApiService";
 import  Spinner from "../Spinner/index"
 import { showAlertErr } from "../../Services/AlertServicie/AlertServicie";
+import FooterPublic from "../Footer/FooterPublic";
 
 const Home = () => {
   const [loading, setLoading] = useState();
@@ -64,6 +65,7 @@ const Home = () => {
         <Grid
           templateRows="80px 2fr .5fr .5fr 2fr .5fr .5fr 1.5fr 1fr"
           templateColumns="1fr"
+          gap={6}
         >
           <GridItem>
             <Text align={"center"} fontSize="4xl">
@@ -150,9 +152,7 @@ const Home = () => {
           </GridItem>
 
           <GridItem>
-            <Text align={"center"} fontSize="4xl">
-              Footer
-            </Text>
+            <FooterPublic organization={organizationData} />
           </GridItem>
         </Grid>
       ) : (
