@@ -8,20 +8,20 @@ import {
   Flex,
   Center,
   Button,
-  Spinner,
+  
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import CarouselSlides from "../Slides/HomeSlide";
 import { get } from "../../Services/publicApiService";
-
+import  Spinner from "../Spinner/index"
+import { showAlertErr } from "../../Services/AlertServicie/AlertServicie";
 
 const Home = () => {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const [organizationData, setOrganizationdata] = useState();
   const [newsData, setNewsData] = useState();
-  const [testimonialsData, setTestimonialsData] = useState();
-  
+  const [testimonialsData, setTestimonialsData] = useState();  
 
   const getDataOrganization = useCallback(async () => {
     try {
@@ -30,6 +30,7 @@ const Home = () => {
       setLoading(true);
     } catch (e) {
       setError(e);
+      showAlertErr({text: "Upssss...!! sucedió un error"})
     }
   }, []);
   const getDataNews = useCallback(async () => {
@@ -38,6 +39,7 @@ const Home = () => {
       setNewsData(data.data);
     } catch (e) {
       console.log(e);
+      showAlertErr({text: "Upssss...!! sucedió un error"})
     }
   }, []);
   const getDataTestimonials = useCallback(async () => {
@@ -46,6 +48,7 @@ const Home = () => {
       setTestimonialsData(data.data);
     } catch (e) {
       console.log(e);
+      showAlertErr({text: "Upssss...!! sucedió un error"})
     }
   }, []);
 
@@ -90,7 +93,7 @@ const Home = () => {
             </Text>
           
             <Flex justify={"space-around"}>
-              {newsData?.length > 0 &&
+              {newsData?.length > 0 ?
                 newsData.slice(0, 6).map((novedad) => {
                   return (
                     <Image
@@ -101,7 +104,7 @@ const Home = () => {
                       alt={novedad.name}
                     />
                   );
-                })}
+                }): <Text>No hay datos que mostrar</Text>}
             </Flex>
           
             <Link to="#">
@@ -130,7 +133,7 @@ const Home = () => {
               Testimonios
             </Text>
             <Flex justify={"space-around"}>
-              {testimonialsData?.length > 0 &&
+              {testimonialsData?.length > 0 ?
                 testimonialsData.slice(0, 6).map((testimonial) => {
                   return (                
                       <Image
@@ -142,7 +145,7 @@ const Home = () => {
                         alt={testimonial.name}
                       />                   
                   );
-                })}
+                }): <Text>No hay datos que mostrar</Text>}
             </Flex>
           </GridItem>
 

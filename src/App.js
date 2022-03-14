@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
@@ -37,8 +36,9 @@ import TableCategorie from "./Components/Categories/TableCategorie";
 import { News } from "./Components/News";
 import SlidesTable from "./Components/Slides/SlidesTable";
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
-
 import ContactForm from "./Components/Contact/ContactForm"
+import HeaderAdapted from "./Components/HeaderAdapted/HeaderAdapted";
+
 
 
 function App() {
@@ -87,6 +87,10 @@ function App() {
           {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
           <Route path="/create-member" component={MembersForm} />
           <Route path="/backoffice-categories" component={TableCategorie} />
+          <Route path="/categories" component={CategoriesForm} />
+          <Route path="/header" component={HeaderAdapted} />
+
+
         </Switch>
       </BrowserRouter>
       </ChakraProvider>
