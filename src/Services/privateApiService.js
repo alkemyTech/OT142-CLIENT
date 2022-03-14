@@ -26,29 +26,24 @@ export const remove = (route, id) => {
     .catch((error) => console.log(error));
 };
 
-
-
-export const get = (route) => {
-  return axiosInstance.get( `${route}`,  {
+export const get = (route, id) => {
+  const fullRoute = id ? `${route}/${id}` : `${route}`;
+  return axiosInstance.get(fullRoute,  {
     headers: getAuthorizationToken(),
   });
 };
 
-
 export const post = (route, payload) => {
-  return axiosInstance.post(route, payload,  {
+  return axiosInstance.post(route, payload, {
     headers: getAuthorizationToken(),
   })
 }
 
-export const put = (route, id, payload) => {
-  return axiosInstance.put(`${route}/${id}`, payload,  {
-    headers: getAuthorizationToken(),
-  })
+export const put = (route, body, id) => {
+
+  return axiosInstance.put(`${route}/${id}`, body, {
+      headers:  getAuthorizationToken(),
+    })
+    .then(res => res.data)
+    .catch(error => console.log(error));
 }
-
-
-export const getById = (path, id) => {
-  return axiosInstance.get(`${path}${id}`);
-};
-
