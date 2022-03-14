@@ -14,7 +14,7 @@ import MembersForm from "./Components/Members/MembersForm";
 import ProjectsForm from "./Components/Projects/ProjectsForm";
 import ActivityDetail from "./Components/Activities/ActivityDetail";
 import Activities from "./Components/Activities/Activities";
-import Dashboard from "./Components/Dashboard/index.js";
+// import Dashboard from "./Components/Dashboard/index.js";
 import OrganizationBoard from "./Components/Dashboard/OrganizationBoard.js";
 import { NewsDetail } from "./Components/News/Detail/NewsDetail";
 import EditForm from "./Components/Dashboard/EditForm";
@@ -39,7 +39,7 @@ import SlidesTable from "./Components/Slides/SlidesTable";
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
 
 import ContactForm from "./Components/Contact/ContactForm"
-import Layout from "./Backoffice/Layout";
+import { Backoffice } from "./Backoffice/";
 
 
 function App() {
@@ -52,7 +52,7 @@ function App() {
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/Novedades/" component={News} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
-          <Route exact path="/backoffice" component={Layout} />
+          <Route exact path="/backoffice" component={Backoffice} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />

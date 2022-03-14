@@ -7,8 +7,7 @@ import {
   Heading, 
   useColorModeValue,
   Circle,
-  Button,
-  
+  Button,  
 } from '@chakra-ui/react';
 
 export const Card = ({data}) => {

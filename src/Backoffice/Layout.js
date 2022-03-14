@@ -24,12 +24,12 @@ import { cardsInfo } from './cardsInfo';
 
 const Layout = () => {
     return (
-        <Box>
+        <Box bg={'gray.100'} >
             <SimpleGrid columns={[1, 2, 4]} spacing='30px' m={20}>
                 {
                     cardsInfo.map((info,i)=>{
                         return (
-                            <Card key={i} data={info}/>                           
+                            <Card key={i} data={info}/>  
                         )
                     })
                 }               
