@@ -1,6 +1,6 @@
-import React from 'react'
-import Title from '../Titles'
-import AboutOng from './AboutOng'
+import React from 'react';
+import Title from '../Titles';
+import AboutOng from './AboutOng';
 
 const About = () => {
   return (
@@ -10,7 +10,7 @@ const About = () => {
         </Title>
         <AboutOng />
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;

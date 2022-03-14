@@ -1,20 +1,20 @@
-import React from "react";
-import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import React from 'react';
+import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const categoriesSlice = createSlice({
-  name: "categories",
+  name: 'categories',
   initialState: {
-    list: [],
+    list: []
   },
   reducers: {
     setCategoriesList: (state, accion) => {
       state.list = accion.payload;
-    },
-  },
+    }
+  }
 });
 
-export const {setCategoriesList} = categoriesSlice.actions
+export const { setCategoriesList } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;
 
@@ -26,13 +26,13 @@ export default categoriesSlice.reducer;
 //   .catch((err)=>{console.log(err)})
 // };
 
-export const getAllCategories = () => (dispatch)=>{
-    var BASE_URL = `https://ongapi.alkemy.org/api/categories?limit=3`;
-    axios.get(BASE_URL).then((res) => {
-      dispatch( setCategoriesList(res.data.data))
-    })
-    .catch((err)=>{console.log(err)})
-  };
-//?limit=5
+export const getAllCategories = () => (dispatch) => {
+  const BASE_URL = 'https://ongapi.alkemy.org/api/categories?limit=3';
+  axios.get(BASE_URL).then((res) => {
+    dispatch(setCategoriesList(res.data.data));
+  })
+    .catch((err) => { console.log(err); });
+};
+// ?limit=5
 
-getAllCategories()
+getAllCategories();

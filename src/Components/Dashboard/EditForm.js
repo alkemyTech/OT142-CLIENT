@@ -1,6 +1,6 @@
-import "../FormStyles.css";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import '../FormStyles.css';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import {
   Button,
   Input,
@@ -11,53 +11,53 @@ import {
   Heading,
   Stack,
   Textarea,
-  Flex,
-} from "@chakra-ui/react";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+  Flex
+} from '@chakra-ui/react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const initialValues = {
-  name: "",
-  logo: "",
-  shortDescription: "",
-  longDescription: "",
-  socialLinks: "",
+  name: '',
+  logo: '',
+  shortDescription: '',
+  longDescription: '',
+  socialLinks: ''
 };
 
 const onSubmit = (values) => {};
 
-const FORMATS = ["application/png", "application/jpg"];
+const FORMATS = ['application/png', 'application/jpg'];
 
 const validationSchema = Yup.object({
   name: Yup.string()
-    .required("Por favor ingrese su nombre")
-    .min(6, "Debe contener al menos 6 caracteres"),
+    .required('Por favor ingrese su nombre')
+    .min(6, 'Debe contener al menos 6 caracteres'),
 
   logo: Yup.mixed()
-    .required("Por favor cargue un logo")
-    .test("fileFormat", "sòlo se permiten formatos .png o .jpg", (value) => {
-      console.log("value dfile yup ", value);
+    .required('Por favor cargue un logo')
+    .test('fileFormat', 'sòlo se permiten formatos .png o .jpg', (value) => {
+      console.log('value dfile yup ', value);
       return value && FORMATS.includes(value.type);
     }),
   shortDescription: Yup.string()
-    .required("Por favor ingrese una descripción corta")
-    .min(6, "Debe contener al menos 6 caracteres"),
+    .required('Por favor ingrese una descripción corta')
+    .min(6, 'Debe contener al menos 6 caracteres'),
   longDescription: Yup.string()
-    .required("Por favor ingrese una descripción larga")
-    .min(6, "Debe contener al menos 6 caracteres"),
+    .required('Por favor ingrese una descripción larga')
+    .min(6, 'Debe contener al menos 6 caracteres'),
   socialLinks: Yup.string()
-    .min(6, "Debe contener al menos 6 caracteres")
+    .min(6, 'Debe contener al menos 6 caracteres')
     .matches(
       /^(ftp|https?):\/\/+(www\.)?[a-z0-9\-\.]{3,}\.[a-z]{3}$/,
-      "Por favor ingrese una URL válida"
-    ),
+      'Por favor ingrese una URL válida'
+    )
 });
 
 const EditForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validationSchema,
+    validationSchema
   });
 
   return (
@@ -70,7 +70,7 @@ const EditForm = () => {
       flexDirection="column"
     >
       <Box
-        width={{ base: "90%", md: "400px" }}
+        width={{ base: '90%', md: '400px' }}
         bg="secondary.card"
         rounded="lg"
         p={5}
@@ -96,7 +96,7 @@ const EditForm = () => {
               <Stack justifyContent="space-between" isInline>
                 <FormLabel htmlFor="logo">Logo</FormLabel>
               </Stack>
-              
+
               <Input
                 // variant="outline"
                 type="file"
@@ -104,7 +104,7 @@ const EditForm = () => {
                 // value={formik.values.logo}
                 onChange={(event, editor) => {
                   const file = event.target.files;
-                  formik.setFieldValue("logo", file);
+                  formik.setFieldValue('logo', file);
                   // console.log({ event, editor });
                 }}
               ></Input>
@@ -122,22 +122,22 @@ const EditForm = () => {
                   Descripción corta
                 </FormLabel>
               </Stack>
-             
+
               <CKEditor
                 className="ck-editor__editable"
-                config={{ name: "shortDescription", placeholder: "Ingrese nueva descripción corta" }}
+                config={{ name: 'shortDescription', placeholder: 'Ingrese nueva descripción corta' }}
                 editor={ClassicEditor}
                 data={formik.values.shortDescription}
                 name="shortDescription"
                 onChange={(event, editor) => {
                   const data = editor.getData();
-                  formik.setFieldValue("shortDescription", data);
+                  formik.setFieldValue('shortDescription', data);
                   console.log({ event, editor, data });
                 }}
                 onBlur={(event, editor) => {
                   const data = editor.getData();
-                  formik.setFieldValue("shortDescription", data);
-                  console.log("Blur.", editor);
+                  formik.setFieldValue('shortDescription', data);
+                  console.log('Blur.', editor);
                 }}
               />
 
@@ -153,7 +153,7 @@ const EditForm = () => {
               <Stack justifyContent="space-between" isInline>
                 <FormLabel htmlFor="longDescription">Descripción larga</FormLabel>
               </Stack>
-              
+
               <Textarea
                 variant="outline"
                 type="text"
@@ -176,7 +176,7 @@ const EditForm = () => {
               <Stack justifyContent="space-between" isInline>
                 <FormLabel htmlFor="longDescription">Redes sociales</FormLabel>
               </Stack>
-              
+
               <Input
                 variant="outline"
                 type="text"

@@ -1,52 +1,50 @@
-import React, { useState } from "react";
-import { Button } from "@chakra-ui/button";
-import { FormControl, FormErrorMessage } from "@chakra-ui/form-control";
-import { Input, InputLeftAddon, InputGroup } from "@chakra-ui/input";
-import { VStack } from "@chakra-ui/layout";
-import { Formik, Form, useFormik } from "formik";
-import { Checkbox, Center } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-import { SlideFade } from "@chakra-ui/react";
+import React, { useState } from 'react';
+import { Button } from '@chakra-ui/button';
+import { FormControl, FormErrorMessage } from '@chakra-ui/form-control';
+import { Input, InputLeftAddon, InputGroup } from '@chakra-ui/input';
+import { VStack } from '@chakra-ui/layout';
+import { Formik, Form, useFormik } from 'formik';
 import {
+  Checkbox, Center, Box, SlideFade,
   AlertTitle,
   Alert,
   AlertDescription,
-  AlertIcon,
-} from "@chakra-ui/react";
+  AlertIcon
+} from '@chakra-ui/react';
 
-import * as Yup from "yup";
+import * as Yup from 'yup';
 
 const Footer = () => {
   const [isSubscribed, setIsSubscribed] = useState(
-    localStorage.getItem("isSuscribed")
+    localStorage.getItem('isSuscribed')
   );
 
   const [subscriberList, setSubscriberList] = useState([]);
 
   const SubscriptionSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Por favor, introduzca un email válido.")
-      .required("Por favor, introduzca un email"),
+      .email('Por favor, introduzca un email válido.')
+      .required('Por favor, introduzca un email'),
     acceptSuscribe: Yup.bool().oneOf(
       [true],
-      "Debes tildar el casillero para recibir novedades."
-    ),
+      'Debes tildar el casillero para recibir novedades.'
+    )
   });
 
   const InitialValues = {
-    email: "",
+    email: ''
   };
 
   const formik = useFormik({
     initialValues: InitialValues,
     onSubmit: (values) => {
-      localStorage.setItem("isSuscribed", true);
+      localStorage.setItem('isSuscribed', true);
       setIsSubscribed(true);
       // Here we will introduce the Axios POST logic in the future
       setSubscriberList((prev) => [...prev, values.email]);
       console.log(values.email);
     },
-    validationSchema: SubscriptionSchema,
+    validationSchema: SubscriptionSchema
   });
 
   const NewsletterForm = (
@@ -82,14 +80,16 @@ const Footer = () => {
           </Box>
           <Box mt="1em">
             <SlideFade in={formik.errors.email && formik.touched.email}>
-              {formik.errors.email && formik.touched.email ? (
+              {formik.errors.email && formik.touched.email
+                ? (
                 <Alert borderRadius="0.5em" status="error" tm="1em">
                   <AlertIcon />
                   <AlertTitle>{formik.errors.email}</AlertTitle>
                 </Alert>
-              ) : (
+                  )
+                : (
                 <></>
-              )}
+                  )}
             </SlideFade>
           </Box>
         </FormControl>

@@ -19,6 +19,8 @@ module.exports = {
   ],
   rules: {
     semi: ['error', 'always'],
-    quotes: ['error', 'single']
+    quotes: ['error', 'single'],
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off'
   }
 };

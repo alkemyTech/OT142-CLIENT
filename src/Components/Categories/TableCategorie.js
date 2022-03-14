@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from 'react';
 import {
   Table,
   Thead,
@@ -7,35 +7,29 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
-} from "@chakra-ui/react";
-import { Stack, Heading } from "@chakra-ui/react";
+  TableCaption
+ Stack, Heading , Button, ButtonGroup } from "@chakra-ui/react";
+
 import styleCS from "../Categories/styleCS.css";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
- import { getAllCategories } from "../../app/features/ReducerCategories";
-import { useDispatch, useSelector } from "react-redux";
 
- const TableCategorie = () => {
+import { Link } from 'react-router-dom';
+import { getAllCategories } from '../../app/features/ReducerCategories';
+import { useDispatch, useSelector } from 'react-redux';
 
-
+const TableCategorie = () => {
    const { list: categories } = useSelector((state) => state.categories);
-   console.log(categories);
+  console.log(categories);
 
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
- useEffect(() => {
-
+  useEffect(() => {
    dispatch(getAllCategories());
-
  }, [dispatch]);
-
-
 
   return (
     <>
       <Stack>
-        <Stack style={{ display: " flex", alignItems: " center" }}>
+        <Stack style={{ display: ' flex', alignItems: ' center' }}>
           <Heading as="h4" size="md">
             Listado de Categorías
           </Heading>
@@ -58,9 +52,9 @@ import { useDispatch, useSelector } from "react-redux";
           </Thead>
 
           {!categories
-            ? "cargando..."
+            ? 'cargando...'
             : categories.map((categorie) => {
-                return (
+              return (
                   <Tr>
                     {categories.key}
                     <Td>{categorie.name}</Td>
@@ -75,19 +69,15 @@ import { useDispatch, useSelector } from "react-redux";
                       </Button>
                     </Td>
                   </Tr>
-                );
-              })}
+              );
+            })}
         </Table>
       </Stack>
     </>
   );
 };
 
-
 export default TableCategorie;
-
-
-
 
 // import React from "react";
 // import {
