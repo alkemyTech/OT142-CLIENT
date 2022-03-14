@@ -39,6 +39,7 @@ import SlidesTable from "./Components/Slides/SlidesTable";
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
 
 import ContactForm from "./Components/Contact/ContactForm"
+import Layout from "./Backoffice/Layout";
 
 
 function App() {
@@ -51,7 +52,7 @@ function App() {
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/Novedades/" component={News} />
           <Route exact path="/Novedades/:id" component={NewsDetail} />
-          <Route exact path="/backoffice" component={Dashboard} />
+          <Route exact path="/backoffice" component={Layout} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />

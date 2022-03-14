@@ -2,6 +2,11 @@ import React from 'react'
 
 export const Backoffice = () => {
   return (
-    <div>Backoffice</div>
+    <>
+        <h1>Header</h1>
+        <h2>Sidebar</h2>
+        <h3>Layout</h3>
+    
+    </>
   )
 }
