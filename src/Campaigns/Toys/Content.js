@@ -1,96 +1,112 @@
 import React from 'react';
 import {
-
   Heading,
   Stack,
   Text,
     Box,
   Center,
-  useColorModeValue,
   Image,
-  WrapItem,
-  Wrap,
+  Flex,
+  Spacer,  
 } from '@chakra-ui/react';
-
 import "./Content.css"
-
+import foto1 from "./assets/toy1.jpg"
+import foto3 from "./assets/toy3.webp"
+import foto6 from "./assets/toy7.jpg"
 
 const Content = () => {
 
     const future = Date.parse("Mar 31, 2022 12:00:00");
-    let now = new Date();
-    let diff = future - now;
-
-    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    let hours = Math.floor(diff / (1000 * 60 * 60));
-    let mins = Math.floor(diff / (1000 * 60));
-    let h = hours - days * 24;
-    let m = mins - hours * 60;
+    const now = new Date();
+    const diff = future - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const mins = Math.floor(diff / (1000 * 60));
+    const h = hours - days * 24;
+    const m = mins - hours * 60;
 
    return (
-         <Box  className='fondo'>
+         <Box  className='fondo'>             
             <Stack
                 textAlign={'center'}
-                align={'center'}
                 py={{ base: 5, md: 8 }}
                 >
+
                 <Heading
-                fontWeight={600}
-                fontSize={{ base: '5xl', sm: '4xl', md: '6xl' }}
+                    fontWeight={600}
+                    fontSize={{ base: '5xl', sm: '4xl', md: '6xl' }}
                 >
                     31 de Marzo{' '}
-                <Text as={'span'} color={'#9AC9FB'}>
-                    12:00 hs
-                </Text>
+                    <Text as={'span'} color={'#9AC9FB'}>
+                        12:00 hs
+                    </Text>
                 </Heading>
+                
 
-                    <Center py={6}>
-                    <Box
-                        display={["none","grid","grid","grid","grid"]}
-                        bg={useColorModeValue('#9AC9FB', 'gray.800')}
-                        boxShadow={'3xl'}
-                        rounded={'md'}
-                        overflow={'hidden'}
-                        >                        
-                        <Stack
-                            textAlign={'center'}
-                            color={useColorModeValue('gray.800', 'white')}
-                            align={'center'}>                                     
-                                <Text fontSize={'6xl'} fontWeight={800}>Faltan solo {days}d {h}h {m}m</Text>                                
-                        </Stack>                       
-                    </Box>
+                  <Center>
+                    <Text  align={'center'} color={'gray.800'} maxW={'xl'} padding={'10px'} fontSize={'xl'}>
+                    En el Predio Vicente, Localidad, Provincia
+                    </Text>
+                 </Center>   
+               
+                <Center>
+
+                    <Flex  >
+                        <Box w='40%' display={["none","none","grid","grid","grid"]}>
+                            <Center  maxW='220px'   className='rotRi'   >
+                                <Image className='im' src={foto1} alt='toys' />
+                            
+                            </Center>
+                        </Box>
+
+                        <Center w='120%' m={4} >
+                                        <Box
+                                            display={["none","flex","flex","flex","flex"]}
+                                            boxShadow={'3xl'}
+                                            rounded={'md'}                                    
+                                            >                        
+                                                <Text   fontSize={['xl','2xl','3xl','4xl']} fontWeight={900}>
+                                                        Te quedan {days}d {h}h {m}m para participar
+                                                </Text>                                
+                                        </Box>
+                        </Center>
+
+
+                        <Box w='40%' display={["none","none","flex"]} >
+                            <Center  maxW='220px'  className='rotLe'>                        
+                                <Image src={foto3} alt='' />                            
+                            </Center>
+                        </Box>             
+                    </Flex>
                 </Center>
 
-                <Text color={'gray.800'} maxW={'xl'} padding={'10px'} fontSize={'xl'}>
-                   En el Predio Vicente, Localidad, Provincia
-                </Text>
+                <Center>
+                    <Text color={'gray.500'} maxW={'xl'} padding={'10px'}>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil tenetur, quas maiores modi ut quaerat, repudiandae voluptatum doloremque non fuga asperiores blanditiis? Nobis pariatur amet a vel voluptate incidunt. Animi?
+                    </Text> 
+                </Center>
 
-                <Text color={'gray.500'} maxW={'xl'} padding={'10px'}>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil tenetur, quas maiores modi ut quaerat, repudiandae voluptatum doloremque non fuga asperiores blanditiis? Nobis pariatur amet a vel voluptate incidunt. Animi?
-                </Text>            
+              
+              
+                <Center >
+                    <Flex   display={["none","none","flex"]}>
 
-                <Wrap  justify='center' display={["none","none","flex","flex"]} >
-                    {/* <WrapItem>
-                        <Center w='250px'  bg='red.200'>
-                        <Image src='https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/bi_1752/public/media/image/2021/08/nino-jugando-solo-2440005.jpg?itok=1KSKLUcn' alt='Dan Abramov' />
+                        <Center  maxW='220px' m='10'  className='rotRi'>
+                            <Image src={foto3} alt='toys' />                        
                         </Center>
-                    </WrapItem>
-                    <WrapItem>
-                        <Center w='250px' bg='green.200'>
-                        <Image src='https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/bi_1752/public/media/image/2021/08/nino-jugando-solo-2440005.jpg?itok=1KSKLUcn' alt='Dan Abramov' />
+
+                        <Center  maxW='220px' m='10'>
+                            <Image src={foto1} alt='toys' />                        
                         </Center>
-                    </WrapItem>
-                    <WrapItem>
-                        <Center w='250px'  bg='tomato'>
-                        <Image src='https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/bi_1752/public/media/image/2021/08/nino-jugando-solo-2440005.jpg?itok=1KSKLUcn' alt='Dan Abramov' />
+
+                        <Center maxW='220px' m='10'  className='rotLe'>
+                            <Image src={foto6} alt='toys ' />                        
                         </Center>
-                    </WrapItem>
-                    <WrapItem>
-                        <Center w='250px'  bg='blue.200'>
-                       <Image src='https://cdn.businessinsider.es/sites/navi.axelspringer.es/public/styles/bi_1752/public/media/image/2021/08/nino-jugando-solo-2440005.jpg?itok=1KSKLUcn' alt='Dan Abramov' />
-                        </Center>
-                    </WrapItem>                   */}
-                </Wrap>  
+                    
+                    </Flex>
+                </Center>
+                    
+
             </Stack>
     </Box>
 

@@ -1,6 +1,14 @@
 
-@media (min-width: 1980px) {
+@media (min-width: 1720px) {
     .fondo {
         background-color: rgba(233, 219, 175, 0.5);
     }
+}
+
+.rotRi {
+    transform: rotate(15deg);
+}
+
+.rotLe {
+    transform: rotate(-15deg);
 }
