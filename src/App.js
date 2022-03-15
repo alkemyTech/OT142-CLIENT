@@ -41,6 +41,7 @@ import EditHomeForm from "./Components/Dashboard/editHomeForm";
 import ContactForm from "./Components/Contact/ContactForm"
 
 
+
 function App() {
   return (
     <>
@@ -88,7 +89,6 @@ function App() {
           <Route path="/create-member" component={MembersForm} />
           <Route path="/backoffice-categories" component={TableCategorie} />
           <Route path="/categories" component={CategoriesForm} />
-
         </Switch>
       </BrowserRouter>
       </ChakraProvider>
