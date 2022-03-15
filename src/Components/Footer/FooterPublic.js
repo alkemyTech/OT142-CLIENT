@@ -1,19 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
     Container,
     Image,
     Box,
     Text,
     Stack,
-    StackDivider,
     Show,
-    Hide
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
 import { AiOutlineTwitter, AiFillFacebook, AiFillLinkedin, AiFillInstagram } from 'react-icons/ai';
 import './footer.css';
+import { get } from '../../Services/publicApiService';
 
-const FooterPublic = ({organization}) => {
+const FooterPublic = () => {
+
+    const [organization, setOrganization] = useState({});
+
+    useEffect(() => {
+
+        const getData = async() => {
+            const { data } = await get('/organization');
+            setOrganization(data.data);
+        }
+
+        getData();
+        
+    }, [])
 
     return (
         <>

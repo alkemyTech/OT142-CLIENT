@@ -15,7 +15,6 @@ import CarouselSlides from "../Slides/HomeSlide";
 import { get } from "../../Services/publicApiService";
 import  Spinner from "../Spinner/index"
 import { showAlertErr } from "../../Services/AlertServicie/AlertServicie";
-import FooterPublic from "../Footer/FooterPublic";
 
 const Home = () => {
   const [loading, setLoading] = useState();
@@ -149,10 +148,6 @@ const Home = () => {
                   );
                 }): <Text>No hay datos que mostrar</Text>}
             </Flex>
-          </GridItem>
-
-          <GridItem>
-            <FooterPublic organization={organizationData} />
           </GridItem>
         </Grid>
       ) : (

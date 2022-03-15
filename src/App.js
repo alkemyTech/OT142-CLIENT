@@ -39,6 +39,7 @@ import SlidesTable from "./Components/Slides/SlidesTable";
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
 
 import ContactForm from "./Components/Contact/ContactForm"
+import FooterPublic from "./Components/Footer/FooterPublic";
 
 
 function App() {
@@ -90,6 +91,7 @@ function App() {
           <Route path="/categories" component={CategoriesForm} />
 
         </Switch>
+        <FooterPublic />
       </BrowserRouter>
       </ChakraProvider>
       <div className="App">
