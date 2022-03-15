@@ -1,6 +1,6 @@
 import { Button, Image, Box, Container, Text, Heading, Spinner, Grid } from '@chakra-ui/react';
 import Title from '../Titles'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities } from '../../app/features/activitiesSlice';
@@ -19,7 +19,7 @@ const ActivitiesList = () => {
         setData(activitiesReducer.activities)
     }, [activitiesReducer])
 
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleActivity = (id) => {
         history.push(`/actividades/${id}`);

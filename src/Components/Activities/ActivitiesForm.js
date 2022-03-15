@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import * as Yup from 'yup';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom";
 import React, { useState } from 'react';
 import { post } from "../../Services/publicApiService";
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ActivitiesForm from "./Components/Activities/ActivitiesForm";
 import CategoriesForm from "./Components/Categories/CategoriesForm";
 import NewsForm from "./Components/News/NewsForm";
@@ -46,7 +46,7 @@ function App() {
     <>
       <ChakraProvider>
       <BrowserRouter>
-        <Switch>
+        <Routes>
           <Route path="/" exact component={Home} />
           <Route exact path="/create-activity" component={ActivitiesForm} />
           <Route exact path="/Novedades/" component={News} />
@@ -89,7 +89,7 @@ function App() {
           <Route path="/backoffice-categories" component={TableCategorie} />
           <Route path="/categories" component={CategoriesForm} />
 
-        </Switch>
+        </Routes>
       </BrowserRouter>
       </ChakraProvider>
       <div className="App">
