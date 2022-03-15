@@ -25,7 +25,7 @@ import About from "./Components/About";
 import BackOfficeActivities from "./Components/Activities/backoffice";
 import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
-import UserList from './Components/Dashboard/UsersList'; 
+import UserList from './Components/Dashboard/UsersList';
 import { ChakraProvider } from '@chakra-ui/react'
 import AlertServicie from "./Services/AlertServicie/AlertServicie";
 import { AlertRoute } from "./Services/AlertServicie/AlertRoute";
@@ -45,7 +45,7 @@ import { PageNotFound } from "./Components/PageNotFound/PageNotFound";
 function App() {
   return (
     <>
-      <ChakraProvider>
+      {/*    <ChakraProvider> */}
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -55,8 +55,7 @@ function App() {
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
-          <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
-          <Route exact path="/backoffice/organization" component={OrganizationBoard} />
+          {/*           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} /> */}
 
           {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
           <Route exact path="/backoffice/news/create" component={NewsForm} />
@@ -93,12 +92,12 @@ function App() {
 
         </Switch>
       </BrowserRouter>
-      </ChakraProvider>
+      {/*    </ChakraProvider> */}
       <div className="App">
         <header className="App-header"></header>
       </div>
     </>
-  );
+  )
 }
 
 export default App;
