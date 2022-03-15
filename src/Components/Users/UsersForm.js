@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+<<<<<<< HEAD
 import { Button } from '@chakra-ui/react';
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
+=======
+import { Button } from '@chakra-ui/react'
+/* import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai'; */
+>>>>>>> aa2bbad93c2d78f97f78aae5302f0ae1640ee5ae
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import * as Yup from 'yup';
