@@ -1,12 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-<<<<<<< HEAD
 import { Button } from '@chakra-ui/react';
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
-=======
-import { Button } from '@chakra-ui/react'
-/* import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai'; */
->>>>>>> aa2bbad93c2d78f97f78aae5302f0ae1640ee5ae
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import * as Yup from 'yup';
@@ -16,11 +11,21 @@ import './UsersForm.css';
 const SUPPORTED_FORMATS = ['image/jpeg', 'image/png'];
 
 const SignupSchema = Yup.object().shape({
-  file: Yup.mixed().test('fileFormat', 'Solo se permite formato .jpg o .png', value => SUPPORTED_FORMATS.includes(value?.type)),
-  name: Yup.string().required('El campo Name no puede estar vacío').min(4, 'El campo name debe tener al menos 4 caracteres').max(10, 'El campo name puede tener máximo 10 caracteres'),
+  file: Yup.mixed().test('fileFormat', 'Solo se permite formato .jpg o .png', (value) =>
+    SUPPORTED_FORMATS.includes(value?.type)
+  ),
+  name: Yup.string()
+    .required('El campo Name no puede estar vacío')
+    .min(4, 'El campo name debe tener al menos 4 caracteres')
+    .max(10, 'El campo name puede tener máximo 10 caracteres'),
   email: Yup.string().email('Email inválido').required('El campo Email no puede estar vacío'),
-  password: Yup.string().required('El campo Password no puede estar vacío').min(8, 'El campo password debe tener al menos 8 caracteres').max(10, 'El campo password puede tener máximo 15 caracteres'),
-  userRole: Yup.string().oneOf(['Admin', 'User'], 'Role inválido').required('Debe seleccionar un role')
+  password: Yup.string()
+    .required('El campo Password no puede estar vacío')
+    .min(8, 'El campo password debe tener al menos 8 caracteres')
+    .max(10, 'El campo password puede tener máximo 15 caracteres'),
+  userRole: Yup.string()
+    .oneOf(['Admin', 'User'], 'Role inválido')
+    .required('Debe seleccionar un role'),
 });
 
 /*
@@ -44,7 +49,7 @@ const UserForm = (userData) => {
     name: '',
     email: '',
     password: '',
-    userRole: ''
+    userRole: '',
   });
 
   useEffect(() => {
@@ -77,69 +82,78 @@ const UserForm = (userData) => {
   const initialValues = data;
 
   return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={SignupSchema}
-            onSubmit={(values, { resetForm }) => {
-              resetForm();
-              reset();
-            }}
-        >
-            {({ values, handleSubmit, handleChange, handleBlur, setFieldValue }) => (
-                <Form className="form-container" onSubmit={handleSubmit}>
-                <input
-                className="input-field"
-                ref={ref}
-                name='file'
-                type='file'
-                onChange={(event) => setFieldValue('file', event.target.files[0])}/>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={SignupSchema}
+      onSubmit={(values, { resetForm }) => {
+        resetForm();
+        reset();
+      }}>
+      {({ values, handleSubmit, handleChange, handleBlur, setFieldValue }) => (
+        <Form className="form-container" onSubmit={handleSubmit}>
+          <input
+            className="input-field"
+            ref={ref}
+            name="file"
+            type="file"
+            onChange={(event) => setFieldValue('file', event.target.files[0])}
+          />
 
-                <ErrorMessage name='file' render={msg => <div className="error">{msg}</div>}/>
+          <ErrorMessage name="file" render={(msg) => <div className="error">{msg}</div>} />
 
-                <Field
-                    className="input-field"
-                    autoComplete="off"
-                    type="text"
-                    name="name"
-                    value={userData ? values.name : initialValues.name}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    placeholder="Nombre">
-                </Field>
-                <ErrorMessage name='name' component="div" render={msg => <div className="error">{msg}</div>}/>
+          <Field
+            className="input-field"
+            autoComplete="off"
+            type="text"
+            name="name"
+            value={userData ? values.name : initialValues.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            placeholder="Nombre"></Field>
+          <ErrorMessage
+            name="name"
+            component="div"
+            render={(msg) => <div className="error">{msg}</div>}
+          />
 
-                <Field
-                    className="input-field"
-                    autoComplete="off"
-                    type="text"
-                    name="email"
-                    value={userData ? values.email : initialValues.email}
-                    onChange={handleChange}
-                    placeholder="Correo electrónico">
-                </Field>
-                <ErrorMessage name='email' render={msg => <div className="error">{msg}</div>}/>
+          <Field
+            className="input-field"
+            autoComplete="off"
+            type="text"
+            name="email"
+            value={userData ? values.email : initialValues.email}
+            onChange={handleChange}
+            placeholder="Correo electrónico"></Field>
+          <ErrorMessage name="email" render={(msg) => <div className="error">{msg}</div>} />
 
-                <Field
-                    className="input-field"
-                    type="password"
-                    autoComplete="off"
-                    name="password"
-                    value={userData ? values.password : initialValues.password}
-                    onChange={handleChange}
-                    placeholder="Contraseña">
-                </Field>
-                <ErrorMessage name='password' render={msg => <div className="error">{msg}</div>}/>
+          <Field
+            className="input-field"
+            type="password"
+            autoComplete="off"
+            name="password"
+            value={userData ? values.password : initialValues.password}
+            onChange={handleChange}
+            placeholder="Contraseña"></Field>
+          <ErrorMessage name="password" render={(msg) => <div className="error">{msg}</div>} />
 
-                <Field className="input-field" component='select' name='userRole' onChange={handleChange('userRole')}>
-                    <option value="" disabled >{initialValues.userRole === '' ? 'Role del usuario' : initialValues.userRole}</option>
-                    <option value="Admin">Administrador</option>
-                    <option value="User">Usuario</option>
-                </Field>
-                <ErrorMessage name='userRole' render={msg => <div className="error">{msg}</div>}/>
-                <Button className="submit-btn" type="submit">Enviar</Button>
-            </Form>
-            )}
-        </Formik>
+          <Field
+            className="input-field"
+            component="select"
+            name="userRole"
+            onChange={handleChange('userRole')}>
+            <option value="" disabled>
+              {initialValues.userRole === '' ? 'Role del usuario' : initialValues.userRole}
+            </option>
+            <option value="Admin">Administrador</option>
+            <option value="User">Usuario</option>
+          </Field>
+          <ErrorMessage name="userRole" render={(msg) => <div className="error">{msg}</div>} />
+          <Button className="submit-btn" type="submit">
+            Enviar
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
