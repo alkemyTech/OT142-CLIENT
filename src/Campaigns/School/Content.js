@@ -35,10 +35,10 @@ const Content = () => {
 
         <Box>
           <Center mb={5}>
-            <Text fontSize='x2'>Todos los años Somos Más lanza una campaña solidaria en el mes de enero, con el objetivo de recolectar materiales escolares para ayudar a los chicos y chicas de la comunidad en el inicio del nuevo ciclo lectivo.</Text>
+            <Text fontSize='x2' textAlign='center'>Todos los años Somos Más lanza una campaña solidaria en el mes de enero, con el objetivo de recolectar materiales escolares para ayudar a los chicos y chicas de la comunidad en el inicio del nuevo ciclo lectivo.</Text>
           </Center>
           <Center>
-            <Text fontSize='x2'>Para colaborar se pueden donar: lápiz negro, cajita de lápices de colores, témpera, pincel, fibras, goma, hojas rayadas, carpetas, hojas de dibujo, regla, compás, tijera, cartuchera, plásticola, cuadernos, mochilas, útiles usados que estén en buen estado.</Text>
+            <Text fontSize='x2' textAlign='center'>Para colaborar se pueden donar: lápiz negro, cajita de lápices de colores, témpera, pincel, fibras, goma, hojas rayadas, carpetas, hojas de dibujo, regla, compás, tijera, cartuchera, plásticola, cuadernos, mochilas, útiles usados que estén en buen estado.</Text>
           </Center>
         </Box>
 
