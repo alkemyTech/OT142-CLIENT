@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button } from '@chakra-ui/react';
-import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
-import axios from 'axios';
-import Swal from 'sweetalert2';
 import * as Yup from 'yup';
 import '../FormStyles.css';
 import './UsersForm.css';

@@ -2,29 +2,25 @@ import React, { useEffect } from 'react';
 import {
   Table,
   Thead,
-  Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption
- Stack, Heading , Button, ButtonGroup } from "@chakra-ui/react";
-
-import styleCS from "../Categories/styleCS.css";
+  TableCaption, Stack, Heading, Button
+} from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
 import { getAllCategories } from '../../app/features/ReducerCategories';
 import { useDispatch, useSelector } from 'react-redux';
 
 const TableCategorie = () => {
-   const { list: categories } = useSelector((state) => state.categories);
+  const { list: categories } = useSelector((state) => state.categories);
   console.log(categories);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-   dispatch(getAllCategories());
- }, [dispatch]);
+    dispatch(getAllCategories());
+  }, [dispatch]);
 
   return (
     <>
@@ -55,8 +51,7 @@ const TableCategorie = () => {
             ? 'cargando...'
             : categories.map((categorie) => {
               return (
-                  <Tr>
-                    {categories.key}
+                  <Tr key={categories.key}>
                     <Td>{categorie.name}</Td>
                     <Td>{categorie.createdAt}</Td>
                     <Td isNumeric>{categorie.id}</Td>

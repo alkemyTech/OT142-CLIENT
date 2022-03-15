@@ -1,10 +1,7 @@
 import React from 'react';
 import {
-  showAlertOkey,
-  showAlertInfo,
-  showAlertErr
+  showAlertOkey
 } from './AlertServicie';
-import { Button, Box } from '@chakra-ui/react';
 
 export const AlertRoute = () => {
   return (

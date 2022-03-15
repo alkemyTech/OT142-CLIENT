@@ -3,11 +3,9 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   Box,
   Center,
   Button,
@@ -15,7 +13,6 @@ import {
   Image
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { deleteMember, editMember } from '../../Services/membersService.js';
 
 const Members = ({ members }) => {
   const tableHeads = ['Foto de Perfil', 'Nombre', 'Administrar'];

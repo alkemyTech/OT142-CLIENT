@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../FormStyles.css';
 import {
   postRequest,
-  patchRequest,
-  getRequest,
-  GetCategie
+  patchRequest
 } from '../../Services/ServiceCategories';
 import {
   Image,
@@ -18,7 +16,6 @@ import {
 } from '@chakra-ui/react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import styleCS from './styleCS.css';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from 'axios';
 
@@ -30,7 +27,7 @@ const state = {
 
 const CategoriesForm = () => {
   const { categorie } = useParams();
-  const [initialValues, setInitialValues] = useState(state == false);
+  const [initialValues, setInitialValues] = useState(state === false);
 
   useEffect(() => {
     if (categorie) {
