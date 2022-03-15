@@ -11,11 +11,11 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/*     <ChakraProvider> */}
-    <Provider store={store}>
-      <App />
-    </Provider>
-    {/*     </ChakraProvider> */}
+    <ChakraProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
