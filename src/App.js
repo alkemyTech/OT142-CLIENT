@@ -25,7 +25,7 @@ import About from "./Components/About";
 import BackOfficeActivities from "./Components/Activities/backoffice";
 import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
-import UserList from './Components/Dashboard/UsersList'; 
+import UserList from './Components/Dashboard/UsersList';
 import { ChakraProvider } from '@chakra-ui/react'
 import AlertServicie from "./Services/AlertServicie/AlertServicie";
 import { AlertRoute } from "./Services/AlertServicie/AlertRoute";
@@ -40,6 +40,8 @@ import EditHomeForm from "./Components/Dashboard/editHomeForm";
 
 import ContactForm from "./Components/Contact/ContactForm"
 import { AnimatedSwitch, spring } from 'react-router-transition';
+
+import { PageNotFound } from "./Components/PageNotFound/PageNotFound";
 
 
 function mapStyles(styles) {
@@ -57,10 +59,10 @@ function bounce(val) {
 }
 
 
+
 function App() {
   return (
     <>
-      <ChakraProvider>
         <BrowserRouter>
        
           <AnimatedSwitch
@@ -111,15 +113,16 @@ function App() {
             <Route path="/create-member" component={MembersForm} />
             <Route path="/backoffice-categories" component={TableCategorie} />
             <Route path="/categories" component={CategoriesForm} />
+            <Route path="/*" component={PageNotFound} />
           </AnimatedSwitch>
         
       </BrowserRouter>
-      </ChakraProvider>
+      
       <div className="App">
         <header className="App-header"></header>
       </div>
     </>
-  );
+  )
 }
 
 export default App;
