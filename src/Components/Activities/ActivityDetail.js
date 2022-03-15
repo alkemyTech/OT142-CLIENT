@@ -3,8 +3,7 @@ import {
   Container, Text, Image, Spinner, Center,
   Alert,
   AlertIcon,
-  AlertTitle,
-  AlertDescription
+  AlertTitle
 } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { get } from '../../Services/publicApiService';

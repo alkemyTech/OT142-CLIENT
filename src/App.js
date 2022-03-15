@@ -20,14 +20,12 @@ import { NewsDetail } from './Components/News/Detail/NewsDetail';
 import EditForm from './Components/Dashboard/EditForm';
 import RegisterForm from './Components/Auth/RegisterForm';
 import Contact from './Components/Contact';
-import Footer from './Components/Footer';
 import About from './Components/About';
 import BackOfficeActivities from './Components/Activities/backoffice';
 import Home from './Components/Home';
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
 import { ChakraProvider } from '@chakra-ui/react';
-import AlertServicie from './Services/AlertServicie/AlertServicie';
 import { AlertRoute } from './Services/AlertServicie/AlertRoute';
 import ContactOngDate from './Components/Contact/ContactOngDate';
 import NewsList from './Components/News/NewsList';
@@ -35,7 +33,6 @@ import TableCategorie from './Components/Categories/TableCategorie';
 
 // import ContactForm from "./Components/Contact";
 import { News } from './Components/News';
-import SlidesTable from './Components/Slides/SlidesTable';
 import EditHomeForm from './Components/Dashboard/editHomeForm';
 
 import ContactForm from "./Components/Contact/ContactForm"

@@ -48,6 +48,7 @@ const validationSchema = Yup.object({
   socialLinks: Yup.string()
     .min(6, 'Debe contener al menos 6 caracteres')
     .matches(
+      // eslint-disable-next-line no-useless-escape
       /^(ftp|https?):\/\/+(www\.)?[a-z0-9\-\.]{3,}\.[a-z]{3}$/,
       'Por favor ingrese una URL válida'
     )

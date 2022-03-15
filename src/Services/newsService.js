@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { remove, get, post, put } from './privateApiService';
 
 export const getNews = (id) => {

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../FormStyles.css';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
 
 import {
   Image,
@@ -9,26 +7,16 @@ import {
   Button,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Stack,
-  Textarea,
-  Heading,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription
+  Heading
 } from '@chakra-ui/react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import styleCS from '../Categories/styleCS.css';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { postSlideRequest } from './services/SlidesApiService';
-import { getSlidesSlice, newSlideSlice, putSlideSlice } from '../../app/features/slidesSlice';
+import { newSlideSlice, putSlideSlice } from '../../app/features/slidesSlice';
 import { toBase64 } from '../../utils/toBase64';
 
 const SlidesForm = ({ state }) => {
+  // eslint-disable-next-line no-undef
   const dispatch = useDispatch();
 
   const [initialValues, setInitialValues] = useState({

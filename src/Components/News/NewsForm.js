@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable camelcase */
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import { Formik } from 'formik';
@@ -26,6 +27,7 @@ import axios from 'axios';
 
 const BASE_URL = 'http://ongapi.alkemy.org/api/';
 
+// eslint-disable-next-line no-unused-vars
 const getNew = async (id) => {
   let getData = {
     data: {},
@@ -106,6 +108,7 @@ const NewsForm = () => {
     form,
     setForm
   } = useForm(initialState);
+  // eslint-disable-next-line no-unused-vars
   const [categories, setCategories] = useState([]);
 
   // useEffect(() => {

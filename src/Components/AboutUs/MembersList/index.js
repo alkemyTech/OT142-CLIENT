@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { API_MEMBERS } from '../hooks/API';
 
 import {
   Table,
@@ -8,8 +7,7 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
-  Center
+  TableCaption
 
 } from '@chakra-ui/react';
 import { getMembers } from '../../../Services/membersService';
@@ -18,6 +16,7 @@ import { showAlertErr } from '../../../Services/AlertServicie/AlertServicie';
 
 const MembersList = () => {
   const [data, setData] = useState();
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -56,8 +55,8 @@ const MembersList = () => {
                     (loading)
                       ? <Spinner/>
                       : (data > 0)
-                          ? data.map((member) => (
-                    <Tr>
+                          ? data.map((member, i) => (
+                    <Tr key={i} >
                         <Td>{member.name}</Td>
                         <Td>{member.image}</Td>
                         <Td>{member.description}</Td>

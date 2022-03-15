@@ -1,14 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Button } from '@chakra-ui/button';
-import { FormControl, FormErrorMessage } from '@chakra-ui/form-control';
+import { FormControl } from '@chakra-ui/form-control';
 import { Input, InputLeftAddon, InputGroup } from '@chakra-ui/input';
 import { VStack } from '@chakra-ui/layout';
-import { Formik, Form, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import {
   Checkbox, Center, Box, SlideFade,
   AlertTitle,
   Alert,
-  AlertDescription,
   AlertIcon
 } from '@chakra-ui/react';
 

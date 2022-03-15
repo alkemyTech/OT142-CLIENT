@@ -30,6 +30,7 @@ import { FooterLandingPage } from "../Footer/FooterLandingPage";
 
 const Home = () => {
   const [loading, setLoading] = useState();
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState();
   const [organizationData, setOrganizationdata] = useState();
   const [newsData, setNewsData] = useState();

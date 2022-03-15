@@ -10,8 +10,7 @@ import {
   Box,
   Flex,
   Heading,
-  Stack,
-  InputGroup
+  Stack
 } from '@chakra-ui/react';
 
 const initialValues = {
@@ -23,8 +22,6 @@ const initialValues = {
 };
 
 const onSubmit = (values) => {
-  const user = { ...values };
-
   localStorage.setItem('token', 'tokenValueExample');
 };
 
@@ -39,6 +36,7 @@ const validationSchema = Yup.object({
     .trim()
     .min(6, 'Debe contener al menos 6 carácteres')
     .matches(
+      // eslint-disable-next-line no-useless-escape
       /^[0-9A-Za-z]*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?][0-9a-zA-Z]*$/,
       'Es necesario un carácter especial o número'
     ),

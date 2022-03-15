@@ -10,8 +10,7 @@ import {
   Button,
   FormErrorMessage,
   InputGroup,
-  InputLeftElement,
-  Icon
+  InputLeftElement
 } from '@chakra-ui/react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
