@@ -2,14 +2,13 @@ import React from 'react';
 import ImagenEscolar1 from '../School/Assets/ImagenEscolar1.jpg';
 import Logotipo2 from '../School/Assets/Logotipo2.png';
 import ImagenEscolar3 from '../School/Assets/ImagenEscolar3.jpg';
-import Logotipo from '../School/Assets/Logotipo.png';
+import ImagenLapiz from '../School/Assets/ImagenLapiz.png';
 import 'animate.css';
 import { useMediaQuery } from '@chakra-ui/media-query';
 import {
   Container,
   Center,
   Text,
-  Flex,
   Box,
   Image,
   Show
@@ -23,31 +22,29 @@ const Content = () => {
   var diff = fechaFin - fechaInicio;
   var totalDias = Math.trunc(diff / (1000 * 60 * 60 * 24))
 
-  const [isSmallerScreen] = useMediaQuery('(max-width:992px)');
   const [isNotSmallerScreen] = useMediaQuery('(min-width:1200px)');
   const [margin] = useMediaQuery('(min-width:992px)');
 
   return (
     <>
-      <Container maxW='container.xl' mt={20} p={2} bg={isNotSmallerScreen ? 'gray.100' : null}>
+      <Container maxW='container.xxl' mt={20} p={2} bg={isNotSmallerScreen ? 'gray.100' : null}>
 
-        <Flex direction={isSmallerScreen ? 'column' : 'row'}>
-          <Center mb={5} >
-            <Image boxSize='200px' src={Logotipo} mr={margin ? "10" : null} alt='Logotipo' />
+        <Center mb={5}>
+          <Text fontSize='xl' fontWeight='semibold'>Campaña solidaria: DONACIÓN DE ÚTILES ESCOLARES.</Text>
+        </Center>
+
+        <Box>
+          <Center mb={5}>
+            <Text fontSize='x2'>Todos los años Somos Más lanza una campaña solidaria en el mes de enero, con el objetivo de recolectar materiales escolares para ayudar a los chicos y chicas de la comunidad en el inicio del nuevo ciclo lectivo.</Text>
           </Center>
+          <Center>
+            <Text fontSize='x2'>Para colaborar se pueden donar: lápiz negro, cajita de lápices de colores, témpera, pincel, fibras, goma, hojas rayadas, carpetas, hojas de dibujo, regla, compás, tijera, cartuchera, plásticola, cuadernos, mochilas, útiles usados que estén en buen estado.</Text>
+          </Center>
+        </Box>
 
-          <Box>
-            <Center mb={5}>
-              <Text fontSize='xl' fontWeight='semibold'>Campaña solidaria: DONACIÓN DE ÚTILES ESCOLARES.</Text>
-            </Center>
-            <Center mb={5}>
-              <Text fontSize='x2'>Todos los años Somos Más lanza una campaña solidaria en el mes de enero, con el objetivo de recolectar materiales escolares para ayudar a los chicos y chicas de la comunidad en el inicio del nuevo ciclo lectivo.</Text>
-            </Center>
-            <Center>
-              <Text fontSize='x2'>Para colaborar se pueden donar: lápiz negro, cajita de lápices de colores, témpera, pincel, fibras, goma, hojas rayadas, carpetas, hojas de dibujo, regla, compás, tijera, cartuchera, plásticola, cuadernos, mochilas, útiles usados que estén en buen estado.</Text>
-            </Center>
-          </Box>
-        </Flex>
+        <Center mt={5} mb={5} >
+          <Image boxSize='200px' src={ImagenLapiz} mr={margin ? "10" : null} alt='Logotipo' />
+        </Center>
 
         <Center mt={5}>
           <Text fontSize='xl'>Fecha: 31 de Enero, 12:30 hs.</Text>
@@ -56,7 +53,6 @@ const Content = () => {
         <Center>
           <Text fontSize='xl'>Lugar: Calle 123, Capital, Córdoba.</Text>
         </Center>
-
 
         <Show above='md'>
           <Center mt={5} mb={5} bg='gray.300'>
