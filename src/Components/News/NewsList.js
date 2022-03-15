@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Box, SimpleGrid, GridItem } from '@chakra-ui/react'
-import { getNews } from "../../Services/newsService";
+/* import { getNews } from "../../Services/newsService"; */
 import Card from "../Card";
 import '../CardListStyles.css';
 import Spinner from '../Spinner/index'
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllNews } from '../../app/features/newsSlice';
 
 const NewsList = () => {
 
@@ -12,17 +14,24 @@ const NewsList = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
+    const dispatch = useDispatch();
+    const { news } = useSelector(state => state);
+
     useEffect(async () => {
         try {
             setLoading(true);
-            const result = await getNews();
-            setNewsList([...result.data]);
+            await dispatch(getAllNews());
         } catch (error) {
             console.log(error);
             setError(true);
         }
         setLoading(false)
-    }, [])
+    }, [dispatch])
+
+
+    useEffect(() => {
+        setNewsList(news.news)
+    }, [news])
 
 
     /*     axios.get('https://ongapi.alkemy.org/api/news')

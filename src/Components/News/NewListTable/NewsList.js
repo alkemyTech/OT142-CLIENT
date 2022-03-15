@@ -10,8 +10,8 @@ const NewsList = () => {
   // ];
 
   const [data, setData] = useState([]);
-  useEffect(() => {
-    const news = getNews();
+  useEffect(async () => {
+    const news = await getNews();
     setData([...news.data]);
   }, []);
 

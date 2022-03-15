@@ -15,6 +15,7 @@ import CarouselSlides from "../Slides/HomeSlide";
 import { get } from "../../Services/publicApiService";
 import  Spinner from "../Spinner/index"
 import { showAlertErr } from "../../Services/AlertServicie/AlertServicie";
+import { FooterLandingPage } from "../Footer/FooterLandingPage";
 
 const Home = () => {
   const [loading, setLoading] = useState();
@@ -62,7 +63,7 @@ const Home = () => {
     <>
       {loading ? (
         <Grid
-          templateRows="80px 2fr .5fr .5fr 2fr .5fr .5fr 1.5fr 1fr"
+          templateRows="80px 2fr .5fr .5fr .5fr .5fr .5fr"
           templateColumns="1fr"
         >
           <GridItem>
@@ -148,16 +149,12 @@ const Home = () => {
                 }): <Text>No hay datos que mostrar</Text>}
             </Flex>
           </GridItem>
-
-          <GridItem>
-            <Text align={"center"} fontSize="4xl">
-              Footer
-            </Text>
-          </GridItem>
+          
         </Grid>
       ) : (
         <Spinner />
       )}
+      <FooterLandingPage/>
     </>
   );
 };
