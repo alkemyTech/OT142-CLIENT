@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -39,7 +39,17 @@ import { News } from './Components/News';
 import ContactForm from './Components/Contact/ContactForm';
 import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 
+const ProtectedRoute = ({ user, redirectPath = '/register' }) => {
+  if (!user) {
+    return <Navigate to={redirectPath} replace />;
+  };
+
+  return <Outlet />;
+};
+
 function App () {
+  // aca iria el useSelector con el usuario para utilizar el token de autenticacion
+  const user = false;
   return (
     <>
 
@@ -49,21 +59,26 @@ function App () {
           <Route exact path="/create-activity" element={<ActivitiesForm/>} />
           <Route exact path="/Novedades/" element={<News/>} />
           <Route exact path="/Novedades/:id" element={<NewsDetail/>} />
-          <Route exact path="/backoffice" element={<Dashboard/>} />
-          <Route exact path="/backoffice/create-slide" element={<SlidesForm/>} />
-          <Route exact path="/backoffice/organization/edit" element={<EditForm/>} />
-          {/*           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} /> */}
+          <Route element={<ProtectedRoute user={user} />}>
+              <Route exact path="/backoffice" element={<Dashboard/>} />
+              <Route exact path="/backoffice/create-slide" element={<SlidesForm/>} />
+              <Route exact path="/backoffice/organization/edit" element={<EditForm/>} />
+              {/*           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} /> */}
 
-          {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
-          <Route exact path="/backoffice/news/create" element={<NewsForm/>} />
-          <Route exact path="/backoffice/news/:id" element={<NewsForm/>} />
-          <Route path="/backoffice/news" element={<NewsList/>} />
-          <Route exact path="/backoffice/activities" element={<BackOfficeActivities/>} />
-          <Route exact path="/backoffice/users" element={<UserList/>} />
+              {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
+              <Route exact path="/backoffice/news/create" element={<NewsForm/>} />
+              <Route exact path="/backoffice/news/:id" element={<NewsForm/>} />
+              <Route path="/backoffice/news" element={<NewsList/>} />
+              <Route exact path="/backoffice/activities" element={<BackOfficeActivities/>} />
+              <Route exact path="/backoffice/users" element={<UserList/>} />
+              <Route exact path="/backoffice/members/create" element={<MembersForm/>} />
+              {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
+          </Route>
+
           <Route exact path="/create-testimonials" element={<TestimonialForm/>} />
           <Route exact path="/create-news" element={<NewsForm/>} />
           <Route exact path="/create-user" element={<UserForm/>} />
-          <Route exact path="/backoffice/members/create" element={<MembersForm/>} />
+
           <Route exact path="/create-project" element={<ProjectsForm/>} />
           <Route exact path="/update-project/:id" element={<ProjectsForm/>} />
           <Route exact path="/school-campaign" element={<SchoolCampaign/>} />
@@ -81,7 +96,7 @@ function App () {
           <Route exact path='/about-us/members' element={<MembersList/>} />
           {/* <Route exact path='/alert' component={AlertServicie} /> */}
           <Route exact path='/alert' element={<AlertRoute/>} />
-          {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
+
           <Route path="/create-member" element={<MembersForm/>} />
           <Route path="/backoffice-categories" element={<TableCategorie/>} />
           <Route path="/categories" element={<CategoriesForm/>} />
