@@ -15,7 +15,7 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import ActivityDetail from './Components/Activities/ActivityDetail';
 import Activities from './Components/Activities/Activities';
 import Dashboard from './Components/Dashboard/index.js';
-import OrganizationBoard from './Components/Dashboard/OrganizationBoard.js';
+/* import OrganizationBoard from './Components/Dashboard/OrganizationBoard.js'; */
 import { NewsDetail } from './Components/News/Detail/NewsDetail';
 import EditForm from './Components/Dashboard/EditForm';
 import RegisterForm from './Components/Auth/RegisterForm';
@@ -33,11 +33,12 @@ import TableCategorie from './Components/Categories/TableCategorie';
 
 // import ContactForm from "./Components/Contact";
 import { News } from './Components/News';
-import EditHomeForm from './Components/Dashboard/editHomeForm';
+/* import EditHomeForm from './Components/Dashboard/editHomeForm'; */
 
-import ContactForm from "./Components/Contact/ContactForm"
-import { PageNotFound } from "./Components/PageNotFound/PageNotFound";
+/* import ContactForm from "./Components/Contact/ContactForm"
+import { PageNotFound } from "./Components/PageNotFound/PageNotFound"; */
 
+// eslint-disable-next-line space-before-function-paren
 function App() {
   return (
     <>
@@ -71,11 +72,11 @@ function App() {
             <Route exact path="/actividades" component={Activities} />
             <Route exact path="/register" component={RegisterForm} />
             <Route exact path="/contact" component={Contact} />
-            <Route exact path="/contact-form" component={ContactForm} />
+            {/*             <Route exact path="/contact-form" component={ContactForm} /> */}
             <Route exact path="/nosotros" component={About} />
             <Route exact path="/about-us/members" component={MembersList} />
             <Route exact path='/contacto' component={ContactOngDate} />
-            <Route exact path='/contact-form' component={ContactForm} />
+            {/*             <Route exact path='/contact-form' component={ContactForm} /> */}
             <Route exact path='/nosotros' component={About} />
             <Route exact path='/about-us/members' component={MembersList} />
             {/* <Route exact path='/alert' component={AlertServicie} /> */}
@@ -84,8 +85,8 @@ function App() {
             <Route path="/create-member" component={MembersForm} />
             <Route path="/backoffice-categories" component={TableCategorie} />
             <Route path="/categories" component={CategoriesForm} />
-            <Route path="/*" component={PageNotFound} />
-
+            {/*             <Route path="/*" component={PageNotFound} />
+ */}
           </Switch>
         </BrowserRouter>
       </ChakraProvider>
@@ -93,7 +94,7 @@ function App() {
         <header className="App-header"></header>
       </div>
     </>
-  )
+  );
 }
 
 export default App;
