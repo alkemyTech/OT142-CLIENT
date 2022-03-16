@@ -1,52 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import { 
-    Container,
-    Image,
-    Box,
-    Text,
-    Stack
-} from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react';
+import {
+  Image,
+  Box,
+  Text,
+  Stack
+} from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { AiOutlineTwitter, AiFillFacebook, AiFillLinkedin, AiFillInstagram } from 'react-icons/ai';
 import './footer.css';
 import { get } from '../../Services/publicApiService';
-import logo from '../../Assets/logoSomosMas.png'
+import logo from '../../Assets/logoSomosMas.png';
 
 const FooterPublic = () => {
+  const [organization, setOrganization] = useState({});
 
-    const [organization, setOrganization] = useState({});
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await get('/organization');
+      setOrganization(data.data);
+    };
 
-    useEffect(() => {
+    getData();
+    console.log(organization);
+  }, []);
 
-        const getData = async() => {
-            const { data } = await get('/organization');
-            setOrganization(data.data);
-        }
-
-        getData();
-        console.log(organization)
-        
-    }, [])
-
-    return (
+  return (
         <>
             <div style={{
-                clipPath: 'polygon(0 0%, 0% 100%, 100% 100%)',
-                background: '#CBD5E0',
-                width: '100%',
-                height: '40px',
-                margin: '-1px',
-                marginTop: '50px'
+              clipPath: 'polygon(0 0%, 0% 100%, 100% 100%)',
+              background: '#CBD5E0',
+              width: '100%',
+              height: '40px',
+              margin: '-1px',
+              marginTop: '50px'
             }}></div>
             <Box bg='gray.300' padding='4' maxW='100%'>
                 <footer>
-                    <Stack 
+                    <Stack
                         spacing='24px'
                         alignItems="center"
                         direction={['column', 'column', 'row']}
                     >
                         <Box flex={1} p={4} display="flex" flexDirection="column" alignItems="center">
-                                <Text fontSize={{ base: '18px', sm:'1.4em', lg: '2em' }} textAlign="center">
+                                <Text fontSize={{ base: '18px', sm: '1.4em', lg: '2em' }} textAlign="center">
                                     <a href='#'>
                                         {organization.name || 'Bienvenido a Somos Más'}
                                     </a>
@@ -96,7 +92,7 @@ const FooterPublic = () => {
                 </footer>
             </Box>
         </>
-    )
-}
+  );
+};
 
-export default FooterPublic
+export default FooterPublic;

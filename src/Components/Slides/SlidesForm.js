@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import "../FormStyles.css";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import React, { useState } from 'react';
+import '../FormStyles.css';
 
 import {
   Image,
@@ -9,55 +7,43 @@ import {
   Button,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Stack,
-  Textarea,
-  Heading,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-} from "@chakra-ui/react";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import styleCS from '../Categories/styleCS.css'
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { postSlideRequest } from "./services/SlidesApiService";
-import {getSlidesSlice, newSlideSlice,putSlideSlice} from "../../app/features/slidesSlice"
-import { toBase64 } from "../../utils/toBase64";
+  Heading
+} from '@chakra-ui/react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { newSlideSlice, putSlideSlice } from '../../app/features/slidesSlice';
+import { toBase64 } from '../../utils/toBase64';
 
-const SlidesForm = ({ state }) => {    
-       
-      const dispatch = useDispatch();  
-      
-      const [initialValues, setInitialValues] = useState({
-          name: state?.name || "prueba",
-          description: state?.description || "prueba",
-          order: state?.order || 0,
-          image: state?.image || "",
-        });
-        
-        
+const SlidesForm = ({ state }) => {
+  // eslint-disable-next-line no-undef
+  const dispatch = useDispatch();
+
+  const [initialValues, setInitialValues] = useState({
+    name: state?.name || 'prueba',
+    description: state?.description || 'prueba',
+    order: state?.order || 0,
+    image: state?.image || ''
+  });
+
   const handleChange = (e) => {
-    if (e.target.name === "name") {
-        setInitialValues({ ...initialValues, name: e.target.value });
+    if (e.target.name === 'name') {
+      setInitialValues({ ...initialValues, name: e.target.value });
     }
-    if (e.target.name === "description") {
-        setInitialValues({ ...initialValues, description: e.target.value });
+    if (e.target.name === 'description') {
+      setInitialValues({ ...initialValues, description: e.target.value });
     }
-    if (e.target.name === "order") {
-        setInitialValues({ ...initialValues, order: e.target.value });
+    if (e.target.name === 'order') {
+      setInitialValues({ ...initialValues, order: e.target.value });
     }
-};
+  };
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (initialValues) {        
-        (dispatch(newSlideSlice(initialValues)))
+    if (initialValues) {
+      (dispatch(newSlideSlice(initialValues)));
     } else {
-        dispatch(putSlideSlice(initialValues))
+      dispatch(putSlideSlice(initialValues));
     }
   };
 
@@ -101,7 +87,7 @@ const handleSubmit = async (e) => {
         <FormControl isRequired>
           <FormLabel htmlFor="first-name">Description</FormLabel>
           <CKEditor
-                config={{ placeholder: "...Description" }}
+                config={{ placeholder: '...Description' }}
                 editor={ClassicEditor}
                 data={initialValues.description}
                 onChange={(event, editor) => {
@@ -121,12 +107,12 @@ const handleSubmit = async (e) => {
             id="image"
             type="file"
             variant="flushed"
-            onChange={async(e) => {
-                const file = e.currentTarget.files[0];
-                  const imagen =  await(toBase64(file))
+            onChange={async (e) => {
+              const file = e.currentTarget.files[0];
+              const imagen = await (toBase64(file));
               setInitialValues({
                 ...initialValues,
-                image: imagen,
+                image: imagen
               });
             }}
             mb={2}
@@ -144,8 +130,3 @@ const handleSubmit = async (e) => {
 };
 
 export default SlidesForm;
-
-
-
-
-

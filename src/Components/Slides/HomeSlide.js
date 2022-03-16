@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Box,
   IconButton,
@@ -6,12 +6,12 @@ import {
   Stack,
   Heading,
   Text,
-  Container,
-} from "@chakra-ui/react";
-import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
-import Slider from "react-slick";
-import { useState } from "react";
-import { get } from "../../Services/publicApiService";
+  Container
+} from '@chakra-ui/react';
+import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
+import Slider from 'react-slick';
+
+import { get } from '../../Services/publicApiService';
 
 const settings = {
   dots: true,
@@ -22,36 +22,35 @@ const settings = {
   speed: 500,
   autoplaySpeed: 5000,
   slidesToShow: 1,
-  slidesToScroll: 1,
+  slidesToScroll: 1
 };
 
 const CarouselSlides = () => {
-    const [slider, setSlider] = useState(null);
-    const [slideData, setSlideData] = useState();
+  const [slider, setSlider] = useState(null);
+  const [slideData, setSlideData] = useState();
 
-    const getDataSlide = useCallback(async () => {
-      try {
-        const { data } = await get("/slides");
-        setSlideData(data.data);
-      } catch (e) {
-        console.log(e);
-      }
-    }, []);
+  const getDataSlide = useCallback(async () => {
+    try {
+      const { data } = await get('/slides');
+      setSlideData(data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
-    useEffect(() => {
-      getDataSlide();
-    }, []);
+  useEffect(() => {
+    getDataSlide();
+  }, []);
 
-
-    const top = useBreakpointValue({ base: "90%", md: "50%" });
-    const side = useBreakpointValue({ base: "30%", md: "40px" });
+  const top = useBreakpointValue({ base: '90%', md: '50%' });
+  const side = useBreakpointValue({ base: '30%', md: '40px' });
 
   return (
     <Box
-      position={"relative"}
-      height={"600px"}
-      width={"full"}
-      overflow={"hidden"}
+      position={'relative'}
+      height={'600px'}
+      width={'full'}
+      overflow={'hidden'}
     >
       {/* CSS files for react-slick */}
       <link
@@ -71,7 +70,7 @@ const CarouselSlides = () => {
         position="absolute"
         left={side}
         top={top}
-        transform={"translate(0%, -50%)"}
+        transform={'translate(0%, -50%)'}
         zIndex={2}
         onClick={() => slider?.slickPrev()}
       >
@@ -83,7 +82,7 @@ const CarouselSlides = () => {
         position="absolute"
         right={side}
         top={top}
-        transform={"translate(0%, -50%)"}
+        transform={'translate(0%, -50%)'}
         zIndex={2}
         onClick={() => slider?.slickNext()}
       >
@@ -94,7 +93,7 @@ const CarouselSlides = () => {
           slideData.map((card) => (
           <Box
             key={card.id}
-            height={"lg"}
+            height={'lg'}
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
@@ -105,17 +104,17 @@ const CarouselSlides = () => {
             <Container
               size="container.md"
               height="600px"
-              w={{ base: "250px", sm: "400px" }}
+              w={{ base: '250px', sm: '400px' }}
               centerContent
               position="relative"
             >
               <Stack
                 spacing={6}
-                w={"full"}
-                maxW={{ base: "lg" }}
+                w={'full'}
+                maxW={{ base: 'lg' }}
                 position="absolute"
-                top={{ base: "22%", sm: 110, lg: 150 }}
-                left={{ base: "-2%", sm: -5, md: -155, lg: -250 }}
+                top={{ base: '22%', sm: 110, lg: 150 }}
+                left={{ base: '-2%', sm: -5, md: -155, lg: -250 }}
                 border="1px solid"
                 borderRadius="5px"
                 padding="0.5rem"
@@ -123,13 +122,13 @@ const CarouselSlides = () => {
                 transform="translate(0, -50%)"
               >
                 <Heading
-                  fontSize={{ base: "md", md: "4xl", lg: "5xl" }}
+                  fontSize={{ base: 'md', md: '4xl', lg: '5xl' }}
                   color="yellow"
                 >
                   {card.name}
                 </Heading>
                 <Text
-                  fontSize={{ base: "sm", lg: "lg" }}
+                  fontSize={{ base: 'sm', lg: 'lg' }}
                   color="white"
                   fontWeight="bold"
                 >
@@ -138,7 +137,7 @@ const CarouselSlides = () => {
               </Stack>
             </Container>
           </Box>
-        ))}
+          ))}
       </Slider>
     </Box>
   );
