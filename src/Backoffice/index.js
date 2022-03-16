@@ -1,14 +1,12 @@
-import { Center, Heading } from '@chakra-ui/react'
 import React from 'react'
-import Layout from './Layout'
+import Navbar from '../Components/Navbar/Backoffice/Navbar'
+import { BackofficeSwitch } from './BackofficeSwitch'
 
-export const Backoffice = () => {
+export const Layout = () => {
   return (
-    <>
-        {/* <h1>Incorporar Header</h1>
-        <h2>Incorporar Sidebar</h2>         */}
-        <Layout/>
-    
+    <>       
+        <Navbar/>
+        <BackofficeSwitch/>
     </>
   )
 }

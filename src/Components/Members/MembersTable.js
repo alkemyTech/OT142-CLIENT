@@ -24,7 +24,7 @@ const Members = ({ members }) => {
     <Box p="1em">
       <Box>
         <Center>
-          <Link to="/backoffice/members/create">
+          <Link to="/backoffice/members/form">
             <Button>Añadir Miembros</Button>
           </Link>
         </Center>
