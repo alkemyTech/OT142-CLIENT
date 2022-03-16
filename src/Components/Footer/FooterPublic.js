@@ -1,55 +1,51 @@
-import React, { useEffect, useState } from 'react'
-import { 
-    Container,
-    Image,
-    Box,
-    Text,
-    Stack,
-    Show,
-    Heading,
-    VStack
-} from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react';
+import {
+  Container,
+  Image,
+  Box,
+  Stack,
+  Show,
+  Heading,
+  VStack
+} from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { AiOutlineTwitter, AiFillFacebook, AiFillLinkedin, AiFillInstagram } from 'react-icons/ai';
 import './footer.css';
 import { get } from '../../Services/publicApiService';
-import logo from '../../Assets/logoSomosMas.png'
+import logo from '../../Assets/logoSomosMas.png';
 
 const FooterPublic = () => {
+  const [organization, setOrganization] = useState({});
 
-    const [organization, setOrganization] = useState({});
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await get('/organization');
+      setOrganization(data.data);
+    };
 
-    useEffect(() => {
+    getData();
+  }, []);
 
-        const getData = async() => {
-            const { data } = await get('/organization');
-            setOrganization(data.data);
-        }
-
-        getData();
-        
-    }, [])
-
-    return (
+  return (
         <>
             <div style={{
-                clipPath: 'polygon(0 0%, 0% 100%, 100% 100%)',
-                background: '#CBD5E0',
-                width: '100%',
-                height: '40px',
-                margin: '-1px',
-                marginTop: '150px'
+              clipPath: 'polygon(0 0%, 0% 100%, 100% 100%)',
+              background: '#CBD5E0',
+              width: '100%',
+              height: '40px',
+              margin: '-1px',
+              marginTop: '150px'
             }}></div>
             <Container bg='gray.300' padding='4' maxW='100%'>
                 <footer>
-                    <Stack 
+                    <Stack
                         spacing='24px'
                         alignItems="center"
                         direction={['column', 'column', 'row']}
                     >
                         <Box flex={1} p={4} display="flex" flexDirection="column" alignItems="center">
                             <Show above='md'>
-                                <Heading fontSize={{ base: '18px', sm:'1.4em', lg: '2em' }} textAlign="center">
+                                <Heading fontSize={{ base: '18px', sm: '1.4em', lg: '2em' }} textAlign="center">
                                     <a href='#'>
                                         {organization.name || 'Bienvenido a Somos Más!!'}
                                     </a>
@@ -81,7 +77,7 @@ const FooterPublic = () => {
                                     </nav>
                                     <Show above='2xl'>
                                         <VStack>
-                                            <Heading as='h2' fontSize={{ base: '18px', sm:'1.4em', lg: '1.8em' }}>Campañas</Heading>
+                                            <Heading as='h2' fontSize={{ base: '18px', sm: '1.4em', lg: '1.8em' }}>Campañas</Heading>
                                             <nav className='nav-footer'>
                                                 <ul>
                                                     <li>
@@ -133,7 +129,7 @@ const FooterPublic = () => {
                 </footer>
             </Container>
         </>
-    )
-}
+  );
+};
 
-export default FooterPublic
+export default FooterPublic;
