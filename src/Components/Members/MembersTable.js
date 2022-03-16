@@ -1,24 +1,21 @@
-import React from "react";
+import React from 'react';
 import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   Box,
   Center,
   Button,
   Text,
-  Image,
-} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import { deleteMember, editMember } from "../../Services/membersService.js";
+  Image
+} from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 const Members = ({ members }) => {
-  const tableHeads = ["Foto de Perfil", "Nombre", "Administrar"];
+  const tableHeads = ['Foto de Perfil', 'Nombre', 'Administrar'];
 
   return (
     <Box p="1em">
@@ -50,7 +47,7 @@ const Members = ({ members }) => {
                     <Td>
                       <Center>
                         <Image
-                          align={"center"}
+                          align={'center'}
                           boxSize="3em"
                           src={member.image}
                           alt={member.name}

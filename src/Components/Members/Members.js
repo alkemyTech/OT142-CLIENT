@@ -1,65 +1,63 @@
-<<<<<<< HEAD
-import "./MembersEdit.css";
-import { Box, FormControl, FormErrorMessage, FormLabel, Heading, VStack } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/button";
-import { Input } from "@chakra-ui/input";
-import { Formik } from "formik";
+import './MembersEdit.css';
+import { Box, FormControl, FormErrorMessage, FormLabel, Heading, VStack } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/button';
+import { Input } from '@chakra-ui/input';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
-const MembersForm = (membersData) => {
-    const location = useLocation().pathname.toLocaleLowerCase();
+const Members = (membersData) => {
+  const location = useLocation().pathname.toLocaleLowerCase();
 
-    console.log(location)
+  console.log(location);
 
-    const FORMATS = [
-        "image/png",
-        "image/jpg"
-    ];
+  const FORMATS = [
+    'image/png',
+    'image/jpg'
+  ];
 
-    const initialValues = {
-        name: membersData?.name || '',
-        image: membersData?.image || '',
-        description: membersData?.description || '',
-        socialMedia: membersData?.socialMedia || '',
-    };
+  const initialValues = {
+    name: membersData?.name || '',
+    image: membersData?.image || '',
+    description: membersData?.description || '',
+    socialMedia: membersData?.socialMedia || ''
+  };
 
-    const formSchema = Yup.object().shape({
-        name: Yup.string()
-            .required("Por favor, ingrese su nombre.")
-            .min(4, "Debe contener una longitud mínima de 4 caracteres."),
+  const formSchema = Yup.object().shape({
+    name: Yup.string()
+      .required('Por favor, ingrese su nombre.')
+      .min(4, 'Debe contener una longitud mínima de 4 caracteres.'),
 
-        image: Yup.mixed()
-            .required("Por favor, seleccione una imagen.")
-            .test('fileFormat', 'Solo es válido formato .png o .jpg', (value) => {
-                return value && FORMATS.includes(value.type);
-            }),
+    image: Yup.mixed()
+      .required('Por favor, seleccione una imagen.')
+      .test('fileFormat', 'Solo es válido formato .png o .jpg', (value) => {
+        return value && FORMATS.includes(value.type);
+      }),
 
-        description: Yup.string()
-            .required("Por favor, ingrese una descripción."),
+    description: Yup.string()
+      .required('Por favor, ingrese una descripción.'),
 
-        socialMedia: Yup.string()
-            .required("Por favor, ingrese una URL.")
-            .matches(
-                /^(ftp|https?):\/\/+(www\.)?[a-z0-9\-.]{3,}\.[a-z]{3}$/,
-                "Por favor, ingresá una URL válida."
-            ),
-    })
+    socialMedia: Yup.string()
+      .required('Por favor, ingrese una URL.')
+      .matches(
+        /^(ftp|https?):\/\/+(www\.)?[a-z0-9\-.]{3,}\.[a-z]{3}$/,
+        'Por favor, ingresá una URL válida.'
+      )
+  });
 
-    return (
+  return (
         <Formik
             initialValues={initialValues}
             validationSchema={formSchema}
             onSubmit={(values, { resetForm }) => {
-                if (location.includes('create')) {
-                    console.log(values)
-
-                } else if (location.includes('edit')) {
-                    console.log(values)
-                }
-                resetForm()
+              if (location.includes('create')) {
+                console.log(values);
+              } else if (location.includes('edit')) {
+                console.log(values);
+              }
+              resetForm();
             }}
 
         >
@@ -67,7 +65,7 @@ const MembersForm = (membersData) => {
                 <VStack
                     as="form"
                     mx="auto"
-                    w={{ base: "90%", md: 500 }}
+                    w={{ base: '90%', md: 500 }}
                     h="100vh"
                     justifyContent="center"
                     onSubmit={formik.handleSubmit}>
@@ -99,8 +97,8 @@ const MembersForm = (membersData) => {
                             type="file"
                             name="image"
                             onChange={(event, editor) => {
-                                const file = event.target.files;
-                                formik.setFieldValue('image', file[0]);
+                              const file = event.target.files;
+                              formik.setFieldValue('image', file[0]);
                             }}
                         />
                         <FormErrorMessage>{formik.errors.image}</FormErrorMessage>
@@ -112,17 +110,17 @@ const MembersForm = (membersData) => {
                     >
                         <FormLabel htmlFor="description">Descripción</FormLabel>
                         <CKEditor
-                            config={{ name: "description" }}
+                            config={{ name: 'description' }}
                             editor={ClassicEditor}
                             data={formik.values.description}
                             name="description"
                             onChange={(event, editor) => {
-                                const data = editor.getData();
-                                formik.setFieldValue("description", data);
+                              const data = editor.getData();
+                              formik.setFieldValue('description', data);
                             }}
                             onBlur={(event, editor) => {
-                                const data = editor.getData();
-                                formik.setFieldValue("description", data);
+                              const data = editor.getData();
+                              formik.setFieldValue('description', data);
                             }}
                         />
                         <FormErrorMessage>{formik.errors.description}</FormErrorMessage>
@@ -154,59 +152,6 @@ const MembersForm = (membersData) => {
                 </VStack>
             )}
         </Formik>
-    );
-}
-export default MembersForm;
-=======
-import React, { useState } from 'react';
-import '../FormStyles.css';
-import { postMember } from '../../Services/membersService.js';
-
-const MembersForm = () => {
-  const [initialValues, setInitialValues] = useState({
-    name: '',
-    description: ''
-  });
-
-  const handleChange = (e) => {
-    if (e.target.name === 'name') {
-      setInitialValues({ ...initialValues, name: e.target.value });
-    }
-    if (e.target.name === 'description') {
-      setInitialValues({ ...initialValues, description: e.target.value });
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    postMember(initialValues);
-    console.log(initialValues);
-  };
-
-  return (
-    <form className="form-container" onSubmit={handleSubmit}>
-      <input
-        className="input-field"
-        type="text"
-        name="name"
-        value={initialValues.name}
-        onChange={handleChange}
-        placeholder="Name"
-      ></input>
-      <input
-        className="input-field"
-        type="text"
-        name="description"
-        value={initialValues.description}
-        onChange={handleChange}
-        placeholder="Write some description"
-      ></input>
-      <button className="submit-btn" type="submit">
-        Send
-      </button>
-    </form>
   );
 };
-
-export default MembersForm;
->>>>>>> main
+export default Members;
