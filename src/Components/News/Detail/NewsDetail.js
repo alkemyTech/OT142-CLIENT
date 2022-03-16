@@ -1,59 +1,57 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Box, Skeleton, Heading, Center, Text } from '@chakra-ui/react'
-import { getNews } from '../../../Services/newsService'
-import Spinner from '../../Spinner'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCommentReducer } from '../../../app/features/comments'
+import React, { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Box, Skeleton, Heading, Center, Text } from '@chakra-ui/react';
+import { getNews } from '../../../Services/newsService';
+import Spinner from '../../Spinner';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCommentReducer } from '../../../app/features/comments';
 
 export const NewsDetail = ({ tittle, news }) => {
-  const targetRef = useRef(null)
+  const targetRef = useRef(null);
   const [newsDetail, setNewsDetail] = useState({});
   const [newsDetailCommentsReducer, setNewsDetailCommentsReducer] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
-  const {comments} = useSelector(state => state);
+  const { comments } = useSelector(state => state);
   const { id } = useParams();
 
   useEffect(() => {
-    let dataComments = comments.comments
+    const dataComments = comments.comments;
     setNewsDetailCommentsReducer(dataComments);
-    console.log('esta es la data', dataComments)
-  }, [comments])
-  
+    console.log('esta es la data', dataComments);
+  }, [comments]);
+
   useEffect(() => {
-    
-    let callFetchApi = 0
+    let callFetchApi = 0;
     getNews(id)
       .then(newsDetailDataAPI => {
-        console.log('newsDetailDataAPI', newsDetailDataAPI)
-        let dataApi = newsDetailDataAPI.data
-        console.log('dataApi', dataApi)
+        console.log('newsDetailDataAPI', newsDetailDataAPI);
+        const dataApi = newsDetailDataAPI.data;
+        console.log('dataApi', dataApi);
         setNewsDetail(dataApi);
       });
 
-      const showComments = () => {
-        callFetchApi++;
-        if(callFetchApi === 2) {
-          dispatch(getCommentReducer());
-          setLoading(false);
-        }
+    const showComments = () => {
+      callFetchApi++;
+      if (callFetchApi === 2) {
+        dispatch(getCommentReducer());
+        setLoading(false);
       }
+    };
 
     const options = {
       root: null,
       rootMargin: '0px',
       threshold: 1
-    }
+    };
 
     const observer = new IntersectionObserver(showComments, options);
     const currentTarget = targetRef.current;
 
     observer.observe(currentTarget);
+  }, [dispatch]);
 
-  }, [dispatch])
-  
   return (
     <>
       <Box m='5' maxW='lg' borderWidth='1px' borderRadius='lg' overflow='hidden'>
@@ -80,8 +78,8 @@ export const NewsDetail = ({ tittle, news }) => {
           </h1>
         </Center>
 
-        {loading ?
-          <>
+        {loading
+          ? <>
             <Spinner isLoading color="blue" size={40} />
             <ul>
               <li><Skeleton mt='2' mr='10' mb='2' ml='10' height='20px' /></li>
@@ -90,17 +88,17 @@ export const NewsDetail = ({ tittle, news }) => {
               <li><Skeleton mt='2' mr='10' mb='2' ml='10' height='20px' /></li>
               <li><Skeleton mt='2' mr='10' mb='2' ml='10' height='20px' /></li>
               <li><Skeleton mt='2' mr='10' mb='2' ml='10' height='20px' /></li>
-            </ul></> :
-          <ul>
+            </ul></>
+          : <ul>
             {newsDetailCommentsReducer.map((comments) => {
               return (
                 <Box m='3' borderWidth='1px' p='2' key={comments.id}>{comments.text}</Box>
-              )
+              );
             })
             }
           </ul>
         }
       </Box>
     </>
-  )
-}
+  );
+};
