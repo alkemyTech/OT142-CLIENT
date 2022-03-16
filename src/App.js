@@ -71,7 +71,7 @@ function App() {
           <Route exact path='/contact-form' component={ContactForm} />
           <Route exact path='/nosotros' component={About} />
           <Route exact path='/about-us/members' component={MembersList} />
-          {/* <Route exact path='/alert' component={AlertServicie} /> */}
+          <Route exact path='/alert' component={AlertServicie} />
           <Route exact path='/alert' component={AlertRoute} />          
           <Route path="/*" component={PageNotFound} />
 
