@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { MdBuild } from "react-icons/md";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { MdBuild } from 'react-icons/md';
 import {
   Container,
   Stack,
@@ -10,16 +10,14 @@ import {
   Text,
   Box,
   Image,
-  Button,
-} from "@chakra-ui/react";
-
-
+  Button
+} from '@chakra-ui/react';
 
 const OrganizationBoard = ({ data }) => {
   return (
-    <Container  maxW="container.sm">
+    <Container maxW="container.sm">
       <Stack
-        
+
         justifyContent="left"
         p={2}
         spacing={6}
@@ -56,7 +54,7 @@ const OrganizationBoard = ({ data }) => {
             odio quaerat porro doloribus at sapiente labore.
           </Text>
         </Stat>
-        
+
           <Link to="/backoffice/organization/edit">
             <Button
               mt="8"
@@ -72,7 +70,7 @@ const OrganizationBoard = ({ data }) => {
               Editar
             </Button>
           </Link>
-        
+
       </Stack>
     </Container>
   );

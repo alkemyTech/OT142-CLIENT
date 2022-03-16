@@ -1,6 +1,6 @@
-import React from 'react'
-import { Text, Heading, Center } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Text, Heading, Center } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 export const PageNotFound = () => {
   return (
@@ -12,5 +12,5 @@ export const PageNotFound = () => {
           <Link to='/'><Text as='u' color='#3366BB'>Haga click aquí</Text></Link><Text> para volver a Home</Text>
       </Center>
     </>
-  )
-}
+  );
+};

@@ -1,42 +1,39 @@
-import React, { useRef, useEffect, useState } from 'react'
-import useDeepCompareEffectForMaps from 'use-deep-compare-effect'
+import React, { useRef, useEffect, useState } from 'react';
+import useDeepCompareEffectForMaps from 'use-deep-compare-effect';
 
-const Map = ({onClick, onIdle, children, style, ...options}) => {
+const Map = ({ onClick, onIdle, children, style, ...options }) => {
+  const ref = useRef(null);
+  const [map, setMap] = useState();
 
-    const ref = useRef(null);
-    const [map, setMap] = useState();
+  useEffect(() => {
+    if (ref.current && !map) {
+      setMap(new window.google.maps.Map(ref.current, {}));
+    }
+  }, [ref, map]);
 
-    useEffect(() => {
-        
-        if(ref.current && !map){
-            setMap(new window.google.maps.Map(ref.current, {}))
-        }
+  useDeepCompareEffectForMaps(() => {
+    if (map) {
+      map.setOptions(options);
+    }
+  }, [map, options]);
 
-    }, [ref, map])
+  useEffect(() => {
+    if (map) {
+      ['click', 'idle'].forEach((eventName) =>
+        window.google.maps.event.clearListeners(map, eventName)
+      );
 
-    useDeepCompareEffectForMaps(() => {
-      if (map) {
-        map.setOptions(options);
+      if (onClick) {
+        map.addListener('click', onClick);
       }
-    }, [map, options]);
 
-    useEffect(() => {
-        if (map) {
-          ["click", "idle"].forEach((eventName) =>
-            window.google.maps.event.clearListeners(map, eventName)
-          );
-      
-          if (onClick) {
-            map.addListener("click", onClick);
-          }
-      
-          if (onIdle) {
-            map.addListener("idle", () => onIdle(map));
-          }
-        }
-      }, [map, onClick, onIdle]);
+      if (onIdle) {
+        map.addListener('idle', () => onIdle(map));
+      }
+    }
+  }, [map, onClick, onIdle]);
 
-    return <div ref={ref} style={style}>
+  return <div ref={ref} style={style}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           // set the map prop on the child component
@@ -44,6 +41,6 @@ const Map = ({onClick, onIdle, children, style, ...options}) => {
         }
       })}
     </div>;
-}
+};
 
-export default Map
+export default Map;
