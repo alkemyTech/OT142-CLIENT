@@ -39,7 +39,7 @@ import SlidesTable from "./Components/Slides/SlidesTable";
 import EditHomeForm from "./Components/Dashboard/editHomeForm";
 
 import ContactForm from "./Components/Contact/ContactForm"
-
+import Sidebar from "./Components/Sidebar/Sidebar";
 
 function App() {
   return (
@@ -59,6 +59,7 @@ function App() {
 
           {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
           <Route exact path="/backoffice/news/create" component={NewsForm} />
+
           <Route exact path="/backoffice/news/:id" component={NewsForm} />
           <Route path="/backoffice/news" component={NewsList} />
           <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
@@ -87,6 +88,10 @@ function App() {
           {/* <Route path="/backoffice/members/edit" component={MembersEdit} /> */}
           <Route path="/create-member" component={MembersForm} />
           <Route path="/backoffice-categories" component={TableCategorie} />
+          <Route path="/categories" component={CategoriesForm} />
+          <Route path="/sidebar" component={Sidebar} />
+
+
         </Switch>
       </BrowserRouter>
       </ChakraProvider>

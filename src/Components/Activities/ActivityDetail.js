@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Container, Text, Image, Spinner, Center } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-//import { get } from "../../../Services/publicApiService";
 import {get} from "../../Services/privateApiService"
 import {
   Alert,
