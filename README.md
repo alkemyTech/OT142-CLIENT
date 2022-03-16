@@ -71,3 +71,6 @@ Skeleton se utiliza para mostrar un feedback al usuario cuando se esté realizan
 Para incorporarlo se debe importar el componente reutilizable <SkeletonGroup />. Y se puede hacer uso de las siguientes propiedades, entre otras. Ejemplo:
 
 <SkeletonGroup skeletonItems={["block", "text", "circle", "circle"]} />
+
+
+test cambio de readme
