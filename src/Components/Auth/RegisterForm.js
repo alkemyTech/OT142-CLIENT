@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import "../FormStyles.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+=======
+import '../FormStyles.css';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+>>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
 import {
   Button,
   Input,
@@ -11,42 +17,46 @@ import {
   Box,
   Flex,
   Heading,
+<<<<<<< HEAD
   Stack,
   InputGroup,
 } from "@chakra-ui/react";
 import TermsAndConditions from "../Modal/TermsAndCond";
+=======
+  Stack
+} from '@chakra-ui/react';
+>>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
 
 const initialValues = {
-  name: "",
-  lastName: "",
-  email: "",
-  password: "",
-  passwordRepeat: "",
+  name: '',
+  lastName: '',
+  email: '',
+  password: '',
+  passwordRepeat: ''
 };
 
 const onSubmit = (values) => {
-  const user = { ...values };
-
-  localStorage.setItem("token", "tokenValueExample");
+  localStorage.setItem('token', 'tokenValueExample');
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("Por favor ingrese un nombre"),
-  lastName: Yup.string().required("Por favor ingrese un apellido"),
+  name: Yup.string().required('Por favor ingrese un nombre'),
+  lastName: Yup.string().required('Por favor ingrese un apellido'),
   email: Yup.string()
-    .email("Formato de email inválido")
-    .required("Por favor ingrese un email"),
+    .email('Formato de email inválido')
+    .required('Por favor ingrese un email'),
   password: Yup.string()
-    .required("Por favor ingrese una contraseña")
+    .required('Por favor ingrese una contraseña')
     .trim()
-    .min(6, "Debe contener al menos 6 carácteres")
+    .min(6, 'Debe contener al menos 6 carácteres')
     .matches(
+      // eslint-disable-next-line no-useless-escape
       /^[0-9A-Za-z]*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?][0-9a-zA-Z]*$/,
-      "Es necesario un carácter especial o número"
+      'Es necesario un carácter especial o número'
     ),
   passwordRepeat: Yup.string()
-    .required("Por favor repita su contraseña")
-    .oneOf([Yup.ref("password"), null], "La contraseña debe coincidir"),
+    .required('Por favor repita su contraseña')
+    .oneOf([Yup.ref('password'), null], 'La contraseña debe coincidir')
 });
 
 const RegisterForm = () => {
@@ -59,7 +69,7 @@ const RegisterForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validationSchema,
+    validationSchema
   });
 
   return (
@@ -72,7 +82,7 @@ const RegisterForm = () => {
       flexDirection="column"
     >
       <Box
-        width={{ base: "90%", md: "400px" }}
+        width={{ base: '90%', md: '400px' }}
         bg="secondary.card"
         rounded="lg"
         p={5}
@@ -80,6 +90,7 @@ const RegisterForm = () => {
         <Heading marginBottom="1.5rem">Registro</Heading>
         <form className="form-container" onSubmit={formik.handleSubmit}>
           <Stack spacing={4} marginBottom="1rem">
+<<<<<<< HEAD
             <FormControl isInvalid={formik.errors.name && formik.touched.name}>
               <FormLabel htmlFor="name">Nombre</FormLabel>
 
@@ -96,6 +107,29 @@ const RegisterForm = () => {
               <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
             </FormControl>
             <FormControl
+=======
+            <FormControl
+
+              isInvalid={formik.errors.name && formik.touched.name}
+            >
+              <FormLabel htmlFor="name">Nombre</FormLabel>
+
+                <Input
+                  variant="outline"
+                  type="text"
+                  name="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  placeholder="Ingrese su nombre"
+                ></Input>
+
+                <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
+
+            </FormControl>
+            <FormControl
+
+>>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
               isInvalid={formik.errors.lastName && formik.touched.lastName}
             >
               <Stack justifyContent="space-between" isInline>
@@ -115,6 +149,10 @@ const RegisterForm = () => {
               <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
             </FormControl>
             <FormControl
+<<<<<<< HEAD
+=======
+
+>>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
               isInvalid={formik.errors.email && formik.touched.email}
             >
               <Stack justifyContent="space-between" isInline>
@@ -134,6 +172,10 @@ const RegisterForm = () => {
               <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
             </FormControl>
             <FormControl
+<<<<<<< HEAD
+=======
+
+>>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
               isInvalid={formik.errors.password && formik.touched.password}
             >
               <Stack justifyContent="space-between" isInline>
@@ -153,6 +195,10 @@ const RegisterForm = () => {
               <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
             </FormControl>
             <FormControl
+<<<<<<< HEAD
+=======
+
+>>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
               isInvalid={
                 formik.errors.passwordRepeat && formik.touched.passwordRepeat
               }
