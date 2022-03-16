@@ -7,16 +7,6 @@ import {
   Text,
   Flex,
   Center,
-<<<<<<< HEAD
-  Button
-
-} from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import CarouselSlides from '../Slides/HomeSlide';
-import { get } from '../../Services/publicApiService';
-import Spinner from '../Spinner/index';
-import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
-=======
   Button,
   
 } from "@chakra-ui/react";
@@ -26,7 +16,6 @@ import { get } from "../../Services/publicApiService";
 import  Spinner from "../Spinner/index"
 import { showAlertErr } from "../../Services/AlertServicie/AlertServicie";
 import { FooterLandingPage } from "../Footer/FooterLandingPage";
->>>>>>> aa2bbad93c2d78f97f78aae5302f0ae1640ee5ae
 
 const Home = () => {
   const [loading, setLoading] = useState();
@@ -164,26 +153,13 @@ const Home = () => {
                 : <Text>No hay datos que mostrar</Text>}
             </Flex>
           </GridItem>
-<<<<<<< HEAD
-
-          <GridItem>
-            <Text align={'center'} fontSize="4xl">
-              Footer
-            </Text>
-          </GridItem>
-=======
           
->>>>>>> aa2bbad93c2d78f97f78aae5302f0ae1640ee5ae
         </Grid>
           )
         : (
         <Spinner />
-<<<<<<< HEAD
-          )}
-=======
       )}
       <FooterLandingPage/>
->>>>>>> aa2bbad93c2d78f97f78aae5302f0ae1640ee5ae
     </>
   );
 };
