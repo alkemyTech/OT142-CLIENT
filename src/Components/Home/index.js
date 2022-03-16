@@ -7,15 +7,15 @@ import {
   Text,
   Flex,
   Center,
-  Button,
-  
-} from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import CarouselSlides from "../Slides/HomeSlide";
-import { get } from "../../Services/publicApiService";
-import  Spinner from "../Spinner/index"
-import { showAlertErr } from "../../Services/AlertServicie/AlertServicie";
-import { FooterLandingPage } from "../Footer/FooterLandingPage";
+  Button
+
+} from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import CarouselSlides from '../Slides/HomeSlide';
+import { get } from '../../Services/publicApiService';
+import Spinner from '../Spinner/index';
+import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
+import { FooterLandingPage } from '../Footer/FooterLandingPage';
 
 const Home = () => {
   const [loading, setLoading] = useState();
@@ -153,12 +153,12 @@ const Home = () => {
                 : <Text>No hay datos que mostrar</Text>}
             </Flex>
           </GridItem>
-          
+
         </Grid>
           )
         : (
         <Spinner />
-      )}
+          )}
       <FooterLandingPage/>
     </>
   );

@@ -5,14 +5,9 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-<<<<<<< HEAD
-import { useLocation } from "react-router-dom";
-import React, { useState } from 'react';
-import { post } from "../../Services/publicApiService";
-=======
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useLocation } from 'react-router-dom';
+import React from 'react';
 import { post } from '../../Services/publicApiService';
->>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
 
 // <ActivitiesForm { ...responseAPI} />
 const ActivitiesForm = (activitiesData) => {
