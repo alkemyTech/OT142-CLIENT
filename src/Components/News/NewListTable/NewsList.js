@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import NewsListTable from "./NewsListTable";
-import { getNews, deleteNews } from "../../../Services/newsService";
+import React, { useState, useEffect } from 'react';
+import NewsListTable from './NewsListTable';
+import { getNews, deleteNews } from '../../../Services/newsService';
 
 const NewsList = () => {
   // const newsMock = [
@@ -23,13 +23,15 @@ const NewsList = () => {
 
   return (
     <>
-      {data.length > 0 ? (
+      {data.length > 0
+        ? (
         <div>
           <NewsListTable data={data} handleDeleteNews={handleDeleteNews} />
         </div>
-      ) : (
+          )
+        : (
         <p>No hay novedades</p>
-      )}
+          )}
     </>
   );
 };

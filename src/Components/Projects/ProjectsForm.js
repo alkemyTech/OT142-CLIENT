@@ -10,26 +10,24 @@ import {
   Button,
   FormErrorMessage,
   InputGroup,
-  InputLeftElement,
-  Icon
+  InputLeftElement
 } from '@chakra-ui/react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 /* import { MdTitle, MdImage } from 'react-icons/md'; */
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import { API } from './hooks/API';
 
 const ProjectsForm = ({ updatedValues }) => {
-
   const { id } = useParams();
 
   const [initialValues, setIntialValues] = useState(
     { title: '', description: '', image: '', due_date: '' }
-  )
+  );
 
   useEffect(() => {
     if (updatedValues) {
-      setIntialValues(updatedValues); //con esto rellenamos los campos si existe un objeto para actualizar
+      setIntialValues(updatedValues); // con esto rellenamos los campos si existe un objeto para actualizar
     }
   }, [updatedValues]);
 
@@ -37,7 +35,7 @@ const ProjectsForm = ({ updatedValues }) => {
     title: Yup.string()
       .required('Title is required'),
     description: Yup.string()
-      .required(`Description is required`),
+      .required('Description is required'),
     image: Yup.string()
       .required('Image is required')
   });
@@ -145,6 +143,6 @@ const ProjectsForm = ({ updatedValues }) => {
       </Box>
     </Flex>
   );
-}
+};
 
 export default ProjectsForm;

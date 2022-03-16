@@ -1,12 +1,12 @@
 import React from 'react';
 import ImagenAgradecimiento from './ImagenAgradecimiento.png';
 import {
-    Center,
-    Text
+  Center,
+  Text
 } from '@chakra-ui/react';
 
 const Thanks = () => {
-    return (
+  return (
         <>
             <Center marginTop={20}>
                 <img src={ImagenAgradecimiento} alt='Imagen Agradecimiento' />
@@ -15,7 +15,7 @@ const Thanks = () => {
                 <Text fontSize='3xl'>¡Muchas Gracias por su Aporte!</Text>
             </Center>
         </>
-    )
-}
+  );
+};
 
 export default Thanks;
