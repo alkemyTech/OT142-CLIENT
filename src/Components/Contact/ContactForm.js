@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { Form, Formik, Field } from 'formik';
 import {
     Button,
-    Stack,
-} from '@chakra-ui/react'
+    Stack
+} from '@chakra-ui/react';
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import * as Yup from 'yup';
 import FieldControl from './FieldControl';
@@ -12,7 +12,7 @@ import { createContact } from '../../Services/contactService';
 
 const { name, email, phone, message } = messageErrors;
 
-let schemaContact = Yup.object().shape({
+const schemaContact = Yup.object().shape({
     firstName: Yup
         .string()
         .required(name.messageRequired)
@@ -29,10 +29,9 @@ let schemaContact = Yup.object().shape({
     message: Yup
         .string()
         .required(message.messageRequired)
-})
+});
 
 const ContactForm = () => {
-
     return (
         <Formik
             initialValues={{
@@ -43,7 +42,7 @@ const ContactForm = () => {
             }}
             validationSchema={schemaContact}
             onSubmit={values => {
-                createContact(values)
+                createContact(values);
             }}
         >
             {(props) => (
@@ -110,7 +109,7 @@ const ContactForm = () => {
                 </Form>
             )}
         </Formik>
-    )
-}
+    );
+};
 
-export default ContactForm
+export default ContactForm;

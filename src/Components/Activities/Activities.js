@@ -1,9 +1,9 @@
 import ActivitiesList from './ActivitiesList';
 
 const Activities = () => {
-    return (
+  return (
         <ActivitiesList />
-    )
-}
- 
+  );
+};
+
 export default Activities;

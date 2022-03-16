@@ -1,27 +1,26 @@
-import React from "react";
+import React from 'react';
 import {
   List,
   ListItem,
   ListIcon,
-  Box,
-} from "@chakra-ui/react";
-import { AiFillFacebook } from "react-icons/ai";
-import { BsInstagram } from "react-icons/bs";
-import { HiOutlineMail } from "react-icons/hi";
-import { BsTelephoneForward } from "react-icons/bs";
+  Box
+} from '@chakra-ui/react';
+import { AiFillFacebook } from 'react-icons/ai';
+import { BsInstagram, BsTelephoneForward } from 'react-icons/bs';
+import { HiOutlineMail } from 'react-icons/hi';
 
-export default function Date(props) {
+export default function Date (props) {
   console.log(props);
 
   return (
     <>
       <Box
         style={{
-          display: " flex",
-          flexDirection: "column",
-          flexWrap: "nowrap",
-          alignContent: "space-between",
-          alignItems: "center",
+          display: ' flex',
+          flexDirection: 'column',
+          flexWrap: 'nowrap',
+          alignContent: 'space-between',
+          alignItems: 'center'
         }}
       >
         <Box>
