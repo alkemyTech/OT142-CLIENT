@@ -1,13 +1,12 @@
-import { useEffect, useState, useCallback } from "react";
-import { Container, Text, Image, Spinner, Center } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
-import { get } from "../../Services/publicApiService";
+import { useEffect, useState, useCallback } from 'react';
 import {
+  Container, Text, Image, Spinner, Center,
   Alert,
   AlertIcon,
-  AlertTitle,
-  AlertDescription,
-} from "@chakra-ui/react";
+  AlertTitle
+} from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
+import { get } from '../../Services/publicApiService';
 
 const ActivityDetail = () => {
   const { id } = useParams();
@@ -34,12 +33,13 @@ const ActivityDetail = () => {
     <>
       {loading === true && (
         <Center>
-          {" "}
+          {' '}
           <Spinner mt="1em" d="flex" size="xl" />
         </Center>
       )}
 
-      {error === false ? (
+      {error === false
+        ? (
         <Container
           d="flex"
           justifyContent="center"
@@ -52,7 +52,8 @@ const ActivityDetail = () => {
             {activity.description}
           </Text>
         </Container>
-      ) : (
+          )
+        : (
         <Center>
           {loading === false && (
             <Alert mt="1em" p="1em" status="error" width="auto">
@@ -61,7 +62,7 @@ const ActivityDetail = () => {
             </Alert>
           )}
         </Center>
-      )}
+          )}
     </>
   );
 };

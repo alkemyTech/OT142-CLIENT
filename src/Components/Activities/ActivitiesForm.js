@@ -1,59 +1,62 @@
-import { Box, FormControl, FormErrorMessage, FormLabel, Heading, VStack } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/button";
-import { Input } from "@chakra-ui/input";
-import { Formik } from "formik";
+import { Box, FormControl, FormErrorMessage, FormLabel, Heading, VStack } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/button';
+import { Input } from '@chakra-ui/input';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+<<<<<<< HEAD
 import { useLocation } from "react-router-dom";
 import React, { useState } from 'react';
 import { post } from "../../Services/publicApiService";
+=======
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { post } from '../../Services/publicApiService';
+>>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
 
-//<ActivitiesForm { ...responseAPI} />
+// <ActivitiesForm { ...responseAPI} />
 const ActivitiesForm = (activitiesData) => {
-
-    /*     const [values, setValues] = useState([])
+  /*     const [values, setValues] = useState([])
         console.log(`valores ingresados: `, values) */
 
-    //Returns the url string but converted to lowercase
-    const location = useLocation().pathname.toLocaleLowerCase();
+  // Returns the url string but converted to lowercase
+  const location = useLocation().pathname.toLocaleLowerCase();
 
-    const SUPPORTED_FORMATS = [
-        "image/jpg",
-        "image/jpeg",
-        "image/png"
-    ];
+  const SUPPORTED_FORMATS = [
+    'image/jpg',
+    'image/jpeg',
+    'image/png'
+  ];
 
-    const initialValues = {
-        name: activitiesData?.name || '',
-        description: activitiesData?.description || '',
-        image: activitiesData?.image || '',
-    };
+  const initialValues = {
+    name: activitiesData?.name || '',
+    description: activitiesData?.description || '',
+    image: activitiesData?.image || ''
+  };
 
-    const formSchema = Yup.object().shape({
-        name: Yup.string()
-            .required("Nombre requerido"),
-        description: Yup.string(),
-        image: Yup.mixed()
-            .required("Imagen requerida")
-            .test("fileFormat", "Formato no soportado: ingrese extensión .jpg o .png",
-                value => value && SUPPORTED_FORMATS.includes(value.type)
-            )
-    })
+  const formSchema = Yup.object().shape({
+    name: Yup.string()
+      .required('Nombre requerido'),
+    description: Yup.string(),
+    image: Yup.mixed()
+      .required('Imagen requerida')
+      .test('fileFormat', 'Formato no soportado: ingrese extensión .jpg o .png',
+        value => value && SUPPORTED_FORMATS.includes(value.type)
+      )
+  });
 
-    return (
+  return (
         <Formik
             initialValues={initialValues}
             validationSchema={formSchema}
             onSubmit={(values, { resetForm }) => {
-                if (location.includes('create')) {
-                    post('/activities', values)
-                    console.log(values)
-
-                } else if (location.includes('edit')) {
-                    console.log(values)
-                }
-                resetForm()
+              if (location.includes('create')) {
+                post('/activities', values);
+                console.log(values);
+              } else if (location.includes('edit')) {
+                console.log(values);
+              }
+              resetForm();
             }}
 
         >
@@ -61,7 +64,7 @@ const ActivitiesForm = (activitiesData) => {
                 <VStack
                     as="form"
                     mx="auto"
-                    w={{ base: "90%", md: 500 }}
+                    w={{ base: '90%', md: 500 }}
                     h="100vh"
                     justifyContent="center"
                     onSubmit={formik.handleSubmit}>
@@ -92,11 +95,11 @@ const ActivitiesForm = (activitiesData) => {
                         <FormLabel>Descripción de la actividad</FormLabel>
                         <CKEditor
                             editor={ClassicEditor}
-                            config={{ placeholder: "..." }}
+                            config={{ placeholder: '...' }}
                             data={formik.values.description}
                             onChange={(event, editor) => {
-                                const data = editor.getData();
-                                formik.setFieldValue('description', data);
+                              const data = editor.getData();
+                              formik.setFieldValue('description', data);
                             }}
                         />
                         <FormErrorMessage>{formik.errors.description}</FormErrorMessage>
@@ -109,9 +112,9 @@ const ActivitiesForm = (activitiesData) => {
                             type="file"
                             variant="flushed"
                             onChange={event => {
-                                const files = event.target.files;
-                                let myFiles = Array.from(files);
-                                formik.setFieldValue('image', myFiles[0]);
+                              const files = event.target.files;
+                              const myFiles = Array.from(files);
+                              formik.setFieldValue('image', myFiles[0]);
                             }}
                         />
                         <FormErrorMessage>{formik.errors.image}</FormErrorMessage>
@@ -128,6 +131,6 @@ const ActivitiesForm = (activitiesData) => {
                 </VStack>
             )}
         </Formik>
-    );
-}
+  );
+};
 export default ActivitiesForm;

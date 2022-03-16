@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -25,26 +25,24 @@ import About from "./Components/About";
 import BackOfficeActivities from "./Components/Activities/backoffice";
 import Home from "./Components/Home";
 import MembersList from './Components/AboutUs/MembersList';
-import UserList from './Components/Dashboard/UsersList'; 
-import { ChakraProvider } from '@chakra-ui/react'
-import AlertServicie from "./Services/AlertServicie/AlertServicie";
-import { AlertRoute } from "./Services/AlertServicie/AlertRoute";
-import ContactOngDate from './Components/Contact/ContactOngDate'
-import NewsList from "./Components/News/NewsList";
-import TableCategorie from "./Components/Categories/TableCategorie";
+import UserList from './Components/Dashboard/UsersList';
+import { ChakraProvider } from '@chakra-ui/react';
+import { AlertRoute } from './Services/AlertServicie/AlertRoute';
+import ContactOngDate from './Components/Contact/ContactOngDate';
+import NewsList from './Components/News/NewsList';
+import TableCategorie from './Components/Categories/TableCategorie';
 
-//import ContactForm from "./Components/Contact";
-import { News } from "./Components/News";
-import SlidesTable from "./Components/Slides/SlidesTable";
-import EditHomeForm from "./Components/Dashboard/editHomeForm";
+// import ContactForm from "./Components/Contact";
+import { News } from './Components/News';
+import EditHomeForm from './Components/Dashboard/editHomeForm';
 
 import ContactForm from "./Components/Contact/ContactForm"
+import { PageNotFound } from "./Components/PageNotFound/PageNotFound";
 
-
-function App() {
+function App () {
   return (
     <>
-      <ChakraProvider>
+      {/*    <ChakraProvider> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" exact component={Home} />
@@ -54,8 +52,7 @@ function App() {
           <Route exact path="/backoffice" component={Dashboard} />
           <Route exact path="/backoffice/create-slide" component={SlidesForm} />
           <Route exact path="/backoffice/organization/edit" component={EditForm} />
-          <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
-          <Route exact path="/backoffice/organization" component={OrganizationBoard} />
+          {/*           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} /> */}
 
           {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
           <Route exact path="/backoffice/news/create" component={NewsForm} />
@@ -88,15 +85,16 @@ function App() {
           <Route path="/create-member" component={MembersForm} />
           <Route path="/backoffice-categories" component={TableCategorie} />
           <Route path="/categories" component={CategoriesForm} />
+          <Route path="/*" component={PageNotFound} />
 
         </Routes>
       </BrowserRouter>
-      </ChakraProvider>
+      {/*    </ChakraProvider> */}
       <div className="App">
         <header className="App-header"></header>
       </div>
     </>
-  );
+  )
 }
 
 export default App;

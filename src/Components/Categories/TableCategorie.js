@@ -1,41 +1,31 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from 'react';
 import {
   Table,
   Thead,
-  Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
-} from "@chakra-ui/react";
-import { Stack, Heading } from "@chakra-ui/react";
-import styleCS from "../Categories/styleCS.css";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
- import { getAllCategories } from "../../app/features/ReducerCategories";
-import { useDispatch, useSelector } from "react-redux";
+  TableCaption, Stack, Heading, Button
+} from '@chakra-ui/react';
 
- const TableCategorie = () => {
+import { Link } from 'react-router-dom';
+import { getAllCategories } from '../../app/features/ReducerCategories';
+import { useDispatch, useSelector } from 'react-redux';
 
+const TableCategorie = () => {
+  const { list: categories } = useSelector((state) => state.categories);
+  console.log(categories);
 
-   const { list: categories } = useSelector((state) => state.categories);
-   console.log(categories);
+  const dispatch = useDispatch();
 
-   const dispatch = useDispatch();
-
- useEffect(() => {
-
-   dispatch(getAllCategories());
-
- }, [dispatch]);
-
-
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, [dispatch]);
 
   return (
     <>
       <Stack>
-        <Stack style={{ display: " flex", alignItems: " center" }}>
+        <Stack style={{ display: ' flex', alignItems: ' center' }}>
           <Heading as="h4" size="md">
             Listado de Categorías
           </Heading>
@@ -58,11 +48,10 @@ import { useDispatch, useSelector } from "react-redux";
           </Thead>
 
           {!categories
-            ? "cargando..."
+            ? 'cargando...'
             : categories.map((categorie) => {
-                return (
-                  <Tr>
-                    {categories.key}
+              return (
+                  <Tr key={categories.key}>
                     <Td>{categorie.name}</Td>
                     <Td>{categorie.createdAt}</Td>
                     <Td isNumeric>{categorie.id}</Td>
@@ -75,19 +64,15 @@ import { useDispatch, useSelector } from "react-redux";
                       </Button>
                     </Td>
                   </Tr>
-                );
-              })}
+              );
+            })}
         </Table>
       </Stack>
     </>
   );
 };
 
-
 export default TableCategorie;
-
-
-
 
 // import React from "react";
 // import {
