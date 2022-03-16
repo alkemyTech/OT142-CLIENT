@@ -1,7 +1,6 @@
-import React from 'react'
-import { Heading } from '@chakra-ui/react'
-import ContactForm from './ContactForm'
-
+import React from 'react';
+import { Heading } from '@chakra-ui/react';
+import ContactForm from './ContactForm';
 
 const Contact = () => {
   return (
@@ -14,7 +13,7 @@ const Contact = () => {
         <ContactForm />
 
     </>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

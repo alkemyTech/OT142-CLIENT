@@ -1,40 +1,36 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Text,
-    Container,
-    Box,
-    Button
-} from '@chakra-ui/react'
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Text,
+  Container,
+  Box,
+  Button
+} from '@chakra-ui/react';
 import TrTable from './TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities } from '../../../app/features/activitiesSlice';
 
 const BackOfficeActivities = () => {
+  const [activities, setActivities] = useState([]);
+  const dispatch = useDispatch();
+  const { activitiesReducer } = useSelector(state => state);
 
-    const [activities, setActivities] = useState([]);
-    const dispatch = useDispatch();
-    const { activitiesReducer } = useSelector(state => state);
+  useEffect(() => {
+    dispatch(getAllActivities());
+  }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(getAllActivities());
-    }, [dispatch])
+  useEffect(() => {
+    if (activitiesReducer.status === 'success') {
+      setActivities(activitiesReducer.activities);
+    }
+  }, [activitiesReducer]);
 
-    useEffect(() => {
-
-        if(activitiesReducer.status === 'success'){
-            setActivities(activitiesReducer.activities)
-        }
-
-    }, [activitiesReducer])
-    
-    
-    return (
+  return (
         <Container maxW='90%'>
 
             <Box mb={5}>
@@ -58,21 +54,19 @@ const BackOfficeActivities = () => {
                 <Tbody>
                     {
                         activities.map(activitie => {
-
-                            return <TrTable 
-                                key={activitie.id} 
+                          return <TrTable
+                                key={activitie.id}
                                 name={activitie.name}
                                 image={activitie.image}
                                 createdAt={activitie.created_at}
-                            />
-
+                            />;
                         })
                     }
                 </Tbody>
             </Table>
 
         </Container>
-    )
-}
+  );
+};
 
-export default BackOfficeActivities
+export default BackOfficeActivities;
