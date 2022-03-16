@@ -6,13 +6,13 @@ import SocialMediaWidgets from './Widgets'
 const About = () => {
   return (
     <>
-        <Title imageUrl="">
-          Nosotros
-        </Title>
-        <AboutOng />
-        <SocialMediaWidgets/>
+      <Title imageUrl="">
+        Nosotros
+      </Title>
+      <AboutOng />
+      <SocialMediaWidgets />
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;
