@@ -1,21 +1,27 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import "../FormStyles.css";
 import { postMember } from "../../Services/membersService.js";
 import { useSelector } from "react-redux";
+=======
+import React, { useState } from 'react';
+import '../FormStyles.css';
+import { postMember } from '../../Services/membersService.js';
+>>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
 
 const MembersForm = () => {
   const state = useSelector((state) => state);
 
   const [initialValues, setInitialValues] = useState({
-    name: "",
-    description: "",
+    name: '',
+    description: ''
   });
 
   const handleChange = (e) => {
-    if (e.target.name === "name") {
+    if (e.target.name === 'name') {
       setInitialValues({ ...initialValues, name: e.target.value });
     }
-    if (e.target.name === "description") {
+    if (e.target.name === 'description') {
       setInitialValues({ ...initialValues, description: e.target.value });
     }
   };

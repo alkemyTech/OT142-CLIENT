@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { remove, get, post, put } from "./privateApiService";
 
 const path = process.env.REACT_APP_MEMBERS;
@@ -9,21 +10,20 @@ export const getMembers = (id) => {
     .catch((error) => console.log(error));
 };
 
-export const postMember = (member) => {
-  const payload = member;
-  return post(path, payload)
+export const postMember = (payload) => {
+  return post("members", payload)
     .then((res) => res.data)
     .catch((error) => console.log(error));
 };
 
 export const deleteMember = (id) => {
-  return remove(path, id)
+  return remove("members", id)
     .then((res) => res.data)
     .catch((error) => console.log(error));
 };
 
 export const editMember = (id, payload) => {
-  return put(path, id, payload)
+  return put("members", id, payload)
     .then((res) => res.data)
     .catch((error) => console.log(error));
 };

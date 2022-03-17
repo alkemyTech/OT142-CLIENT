@@ -5,17 +5,16 @@ import {
   Heading,
   Text,
   Stack,
-  Avatar,
   useColorModeValue,
   Image
 } from '@chakra-ui/react';
 
-const Card = ({data}) => {
+const Card = ({ data }) => {
   return (
     <Center py={6}>
       <Box
-        maxW={/*'445px'*/"310px"}
-        maxH={"500px"}
+        maxW={/* '445px' */'310px'}
+        maxH={'500px'}
         w={'full'}
         bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'2xl'}
@@ -29,12 +28,12 @@ const Card = ({data}) => {
           mx={-6}
           mb={6}
           pos={'relative'}
-          overflow={"hidden"}>
-              
+          overflow={'hidden'}>
+
           <Image
             src={data.image
-                     ? data.image
-                     : process.env.PUBLIC_URL + '/images/placeholder/270x180.png'
+              ? data.image
+              : process.env.PUBLIC_URL + '/images/placeholder/270x180.png'
             }
             layout={'fill'}
           />
@@ -48,8 +47,8 @@ const Card = ({data}) => {
             letterSpacing={1.1}>
             {
                 data.section
-                    ? data.section
-                    : "Blog"
+                  ? data.section
+                  : 'Blog'
             }
           </Text>
           <Heading
@@ -58,15 +57,15 @@ const Card = ({data}) => {
             fontFamily={'body'}>
             {
                 data.name
-                    ? data.name
-                    : "Título de prueba"
+                  ? data.name
+                  : 'Título de prueba'
             }
           </Heading>
           <Text color={'gray.500'}>
             {
                 data.content
-                    ? data.content
-                    : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum."
+                  ? data.content
+                  : 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
             }
           </Text>
         </Stack>
@@ -84,6 +83,6 @@ const Card = ({data}) => {
       </Box>
     </Center>
   );
-}
+};
 
-export default Card
+export default Card;
