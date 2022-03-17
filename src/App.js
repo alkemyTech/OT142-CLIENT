@@ -35,8 +35,8 @@ import TableCategorie from './Components/Categories/TableCategorie';
 import { News } from './Components/News';
 import EditHomeForm from './Components/Dashboard/editHomeForm';
 
-import ContactForm from "./Components/Contact/ContactForm"
-import { PageNotFound } from "./Components/PageNotFound/PageNotFound";
+import ContactForm from './Components/Contact/ContactForm';
+import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 
 function App () {
   return (
@@ -93,7 +93,7 @@ function App () {
         <header className="App-header"></header>
       </div>
     </>
-  )
+  );
 }
 
 export default App;

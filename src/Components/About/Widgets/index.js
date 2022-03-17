@@ -1,11 +1,12 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import React from 'react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 import {
-    LinkedinFollowCompany,
-    TwitterTweet
+  LinkedinFollowCompany,
+  TwitterTweet
 } from 'react-social-plugins';
 
 const SocialMediaWidgets = () => {
-    return (
+  return (
         <Box m='4'>
             <Heading as='h2' size='md'>Redes sociales</Heading>
             <Flex justifyContent='end' alignItems='end' flexDirection='column' me='4'>
@@ -33,6 +34,6 @@ const SocialMediaWidgets = () => {
                 />
             </Flex>
         </Box>
-    )
-}
+  );
+};
 export default SocialMediaWidgets;
