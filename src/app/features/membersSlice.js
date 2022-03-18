@@ -17,13 +17,13 @@ const membersSlice = createSlice({
     status: null,
     error: null,
   },
-
+  reducers: {},
   extraReducers: {
     [getAllMembers.pending]: (state) => {
       state.status = "loading";
     },
     [getAllMembers.fulfilled]: (state, { payload }) => {
-      state.members = payload.data;
+      state.members = payload;
       state.status = "success";
     },
     [getAllMembers.rejected]: (state, action) => {
