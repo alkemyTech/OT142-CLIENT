@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, SimpleGrid, GridItem } from '@chakra-ui/react';
-import { getNews } from '../../Services/newsService';
+/* import { getNews } from "../../Services/newsService"; */
 import Card from '../Card';
 import '../CardListStyles.css';
 import Spinner from '../Spinner/index';

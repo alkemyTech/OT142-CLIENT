@@ -6,6 +6,7 @@ import usersReducer from './features/UsersSlice';
 import slidesSlice from './features/slidesSlice';
 import commentsSlice from './features/comments';
 import newsSlice from './features/newsSlice';
+import membersReducer from './features/MembersSlice';
 
 export default configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export default configureStore({
     slides: slidesSlice,
     comments: commentsSlice,
     auth: authReducer,
-    news: newsSlice
+    news: newsSlice,
+    members: membersReducer
   }
 });
