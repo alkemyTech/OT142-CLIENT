@@ -32,6 +32,7 @@ export const get = (route, id) => {
   });
 };
 
+
 export const post = (route, payload) => {
   return axiosInstance.post(route, payload, {
     headers: getAuthorizationToken(),

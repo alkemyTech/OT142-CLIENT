@@ -7,7 +7,6 @@ import slidesSlice from './features/slidesSlice'
 import commentsSlice from './features/comments'
 import newsSlice from './features/newsSlice'
 
-
 export default configureStore({
   reducer: {
     categories,
