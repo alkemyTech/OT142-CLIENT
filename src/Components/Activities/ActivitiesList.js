@@ -1,31 +1,30 @@
 import { Button, Image, Box, Container, Text, Heading, Spinner, Grid } from '@chakra-ui/react';
-import Title from '../Titles'
+import Title from '../Titles';
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities } from '../../app/features/activitiesSlice';
 const ActivitiesList = () => {
+  const [data, setData] = useState([]);
 
-    const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const { activitiesReducer } = useSelector(state => state);
 
-    const dispatch = useDispatch();
-    const { activitiesReducer } = useSelector(state => state);
+  useEffect(() => {
+    dispatch(getAllActivities());
+  }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(getAllActivities());
-    }, [dispatch]);
+  useEffect(() => {
+    setData(activitiesReducer.activities);
+  }, [activitiesReducer]);
 
-    useEffect(() => {
-        setData(activitiesReducer.activities)
-    }, [activitiesReducer])
+  const history = useHistory();
 
-    const history = useHistory();
+  const handleActivity = (id) => {
+    history.push(`/actividades/${id}`);
+  };
 
-    const handleActivity = (id) => {
-        history.push(`/actividades/${id}`);
-    }
-
-    return (
+  return (
         <Container maxW='container.lg'>
             <Title>Actividades</Title>
 
@@ -49,6 +48,6 @@ const ActivitiesList = () => {
                     ))}
             </Grid>
         </Container>
-    )
-}
+  );
+};
 export default ActivitiesList;

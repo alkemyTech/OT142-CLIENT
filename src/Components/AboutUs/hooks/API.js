@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
 
-export  const API_MEMBERS = axios.create({
-    baseURL: 'http://ongapi.alkemy.org/public/api/members'
+export const API_MEMBERS = axios.create({
+  baseURL: 'http://ongapi.alkemy.org/public/api/members'
 });
