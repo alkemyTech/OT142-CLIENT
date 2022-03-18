@@ -15,7 +15,7 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import ActivityDetail from './Components/Activities/ActivityDetail';
 import Activities from './Components/Activities/Activities';
 import Dashboard from './Components/Dashboard/index.js';
-import OrganizationBoard from './Components/Dashboard/OrganizationBoard.js';
+// import OrganizationBoard from './Components/Dashboard/OrganizationBoard.js';
 import { NewsDetail } from './Components/News/Detail/NewsDetail';
 import EditForm from './Components/Dashboard/EditForm';
 import RegisterForm from './Components/Auth/RegisterForm';
@@ -25,7 +25,7 @@ import BackOfficeActivities from './Components/Activities/backoffice';
 import Home from './Components/Home';
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
-import { ChakraProvider } from '@chakra-ui/react';
+// import { ChakraProvider } from '@chakra-ui/react';
 import { AlertRoute } from './Services/AlertServicie/AlertRoute';
 import ContactOngDate from './Components/Contact/ContactOngDate';
 import NewsList from './Components/News/NewsList';
@@ -33,10 +33,10 @@ import TableCategorie from './Components/Categories/TableCategorie';
 
 // import ContactForm from "./Components/Contact";
 import { News } from './Components/News';
-import EditHomeForm from './Components/Dashboard/editHomeForm';
+// import EditHomeForm from './Components/Dashboard/editHomeForm';
 
-import ContactForm from "./Components/Contact/ContactForm"
-import { PageNotFound } from "./Components/PageNotFound/PageNotFound";
+import ContactForm from './Components/Contact/ContactForm';
+import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 
 function App () {
   return (
@@ -93,7 +93,7 @@ function App () {
         <header className="App-header"></header>
       </div>
     </>
-  )
+  );
 }
 
 export default App;
