@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import "../FormStyles.css";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-=======
+import React, { useState } from 'react';
 import '../FormStyles.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
->>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
+import TermsAndConditions from '../Modal/TermsAndCond';
 import {
   Button,
   Input,
@@ -17,15 +12,8 @@ import {
   Box,
   Flex,
   Heading,
-<<<<<<< HEAD
-  Stack,
-  InputGroup,
-} from "@chakra-ui/react";
-import TermsAndConditions from "../Modal/TermsAndCond";
-=======
   Stack
 } from '@chakra-ui/react';
->>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
 
 const initialValues = {
   name: '',
@@ -90,7 +78,6 @@ const RegisterForm = () => {
         <Heading marginBottom="1.5rem">Registro</Heading>
         <form className="form-container" onSubmit={formik.handleSubmit}>
           <Stack spacing={4} marginBottom="1rem">
-<<<<<<< HEAD
             <FormControl isInvalid={formik.errors.name && formik.touched.name}>
               <FormLabel htmlFor="name">Nombre</FormLabel>
 
@@ -107,29 +94,6 @@ const RegisterForm = () => {
               <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
             </FormControl>
             <FormControl
-=======
-            <FormControl
-
-              isInvalid={formik.errors.name && formik.touched.name}
-            >
-              <FormLabel htmlFor="name">Nombre</FormLabel>
-
-                <Input
-                  variant="outline"
-                  type="text"
-                  name="name"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  placeholder="Ingrese su nombre"
-                ></Input>
-
-                <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
-
-            </FormControl>
-            <FormControl
-
->>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
               isInvalid={formik.errors.lastName && formik.touched.lastName}
             >
               <Stack justifyContent="space-between" isInline>
@@ -149,10 +113,6 @@ const RegisterForm = () => {
               <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
             </FormControl>
             <FormControl
-<<<<<<< HEAD
-=======
-
->>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
               isInvalid={formik.errors.email && formik.touched.email}
             >
               <Stack justifyContent="space-between" isInline>
@@ -172,10 +132,6 @@ const RegisterForm = () => {
               <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
             </FormControl>
             <FormControl
-<<<<<<< HEAD
-=======
-
->>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
               isInvalid={formik.errors.password && formik.touched.password}
             >
               <Stack justifyContent="space-between" isInline>
@@ -195,10 +151,6 @@ const RegisterForm = () => {
               <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
             </FormControl>
             <FormControl
-<<<<<<< HEAD
-=======
-
->>>>>>> af7ef96cb235e8abd0ad07d5ae31cc3a15d67a12
               isInvalid={
                 formik.errors.passwordRepeat && formik.touched.passwordRepeat
               }
@@ -227,12 +179,13 @@ const RegisterForm = () => {
 
           <Stack marginBottom="1rem">
             <TermsAndConditions handleChange={handleChange} />
+            { //eslint-disable-next-line no-useless-escape }
             {registerValue === "accept" ? 
               <Button
-                type="submit"
-                size="md"
-                variant="solid"
-                colorScheme="teal"
+                type='submit'
+                size='md'
+                variant='solid'
+                colorScheme='teal'
               >
                 Registrar
               </Button>
