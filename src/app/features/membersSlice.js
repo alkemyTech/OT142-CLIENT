@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   deleteMember,
-  editMember,
+  putMember,
   getMembers,
   postMember,
 } from "../../Services/membersService";
@@ -22,9 +22,12 @@ export const addMember = createAsyncThunk(
   }
 );
 
-export const putMember = createAsyncThunk("members/putMember", async (data) => {
-  return await editMember(data.id, data);
-});
+export const editMember = createAsyncThunk(
+  "members/putMember",
+  async (data) => {
+    return await putMember(data.id, data);
+  }
+);
 
 export const removeMember = createAsyncThunk(
   "members/removeMember",
@@ -66,8 +69,20 @@ const membersSlice = createSlice({
       state.error = action.error;
     },
 
+    [editMember.pending]: (state) => {
+      state.status = "loading";
+    },
+    [editMember.fulfilled]: (state, action) => {
+      state.status = "success";
+      state.members = {};
+    },
+    [editMember.rejected]: (state, action) => {
+      state.status = "failed";
+      state.error = action.error;
+    },
+
     [removeMember.pending]: (state) => {
-      state.status = loading;
+      state.status = "loading";
     },
     [removeMember.fulfilled]: (state, { payload }) => {
       state.status = "success";
