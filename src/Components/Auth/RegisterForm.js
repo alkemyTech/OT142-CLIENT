@@ -179,9 +179,9 @@ const RegisterForm = () => {
 
           <Stack marginBottom="1rem">
             <TermsAndConditions handleChange={handleChange} />
-            { //eslint-disable-next-line no-useless-escape }
-            {registerValue === "accept" ? 
-              <Button
+            {registerValue === 'accept'
+              ?
+                (<Button
                 type='submit'
                 size='md'
                 variant='solid'
@@ -189,11 +189,12 @@ const RegisterForm = () => {
               >
                 Registrar
               </Button>
-             : 
+                )
+              : (
               <Button size="md" variant="ghost" colorScheme="teal">
                 Registrar
               </Button>
-            }
+                ) }
           </Stack>
         </form>
       </Box>
