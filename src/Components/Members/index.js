@@ -5,7 +5,7 @@ import { getAllMembers } from "../../app/features/membersSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Members = () => {
-  const [data, setData] = useState(["foo"]);
+  const [data, setData] = useState([]);
 
   const dispatch = useDispatch();
   const { membersSlice } = useSelector((state) => state);
@@ -16,7 +16,6 @@ const Members = () => {
 
   useEffect(() => {
     setData(membersSlice.members);
-    console.log(`members: ${data}`);
   }, [membersSlice]);
 
   return <MembersTable members={data} />;

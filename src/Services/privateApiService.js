@@ -29,7 +29,6 @@ export const remove = (route, id) => {
 
 export const get = (route, id) => {
   const fullRoute = id ? `${route}/${id}` : `${route}`;
-  console.log(axiosInstance.baseURL);
   return axiosInstance.get(fullRoute, {
     headers: getAuthorizationToken(),
   });

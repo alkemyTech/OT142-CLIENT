@@ -22,7 +22,7 @@ export const deleteMember = (id) => {
     .catch((error) => console.log(error));
 };
 
-export const editMember = (id, payload) => {
+export const putMember = (id, payload) => {
   return put("members", id, payload)
     .then((res) => res.data)
     .catch((error) => console.log(error));
