@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import authReducer from './features/authSlice';
 import categories from './features/ReducerCategories';
 import activitiesReducer from './features/activitiesSlice';
 import usersReducer from './features/UsersSlice';
@@ -14,6 +15,7 @@ export default configureStore({
     users: usersReducer,
     slides: slidesSlice,
     comments: commentsSlice,
+    auth: authReducer,
     news: newsSlice,
     members: membersReducer
   }
