@@ -13,17 +13,17 @@ const NewsList = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  useEffect(async () => {
-    try {
-      setLoading(true);
-      const result = await getNews();
-      setNewsList([...result.data]);
-    } catch (error) {
-      console.log(error);
-      setError(true);
-    }
-    setLoading(false);
-  }, []);
+  /*   useEffect(async () => {
+      try {
+        setLoading(true);
+        const result = await getNews();
+        setNewsList([...result.data]);
+      } catch (error) {
+        console.log(error);
+        setError(true);
+      }
+      setLoading(false);
+    }, []); */
 
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
@@ -44,32 +44,32 @@ const NewsList = () => {
   }, [news]);
 
   return (
-        <Box bg='#DB5752' p={4} >
-            {loading &&
-                <Spinner isLoading color="blue" size={40} />
-            }
+    <Box bg='#DB5752' p={4} >
+      {loading &&
+        <Spinner isLoading color="blue" size={40} />
+      }
 
-            {error &&
-                showAlertErr()
-            }
-            <SimpleGrid columns={[2, 4, 5]} spacing='30px' m='50px'>
-                {
-                    newsList.length > 0
-                      ? newsList.map((news) => (
-                            <GridItem
-                                w='100%'
-                                bg='#9AC9FB'
-                                key={news.id}
-                                maxHeight='250px'
-                                textAlign='center'>
-                                <Card data={news} />
-                                {/* {news.name}                                                            */}
-                            </GridItem>
-                      ))
-                      : <p>No hay novedades</p>
-                }
-            </SimpleGrid>
-        </Box>
+      {error &&
+        showAlertErr()
+      }
+      <SimpleGrid columns={[2, 4, 5]} spacing='30px' m='50px'>
+        {
+          newsList.length > 0
+            ? newsList.map((news) => (
+              <GridItem
+                w='100%'
+                bg='#9AC9FB'
+                key={news.id}
+                maxHeight='250px'
+                textAlign='center'>
+                <Card data={news} />
+                {/* {news.name}                                                            */}
+              </GridItem>
+            ))
+            : <p>No hay novedades</p>
+        }
+      </SimpleGrid>
+    </Box>
   );
 };
 
