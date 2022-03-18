@@ -25,7 +25,7 @@ import BackOfficeActivities from './Components/Activities/backoffice';
 import Home from './Components/Home';
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
-import { ChakraProvider } from '@chakra-ui/react';
+/* import { ChakraProvider } from '@chakra-ui/react'; */
 import { AlertRoute } from './Services/AlertServicie/AlertRoute';
 import ContactOngDate from './Components/Contact/ContactOngDate';
 import NewsList from './Components/News/NewsList';
@@ -38,7 +38,6 @@ import { News } from './Components/News';
 /* import ContactForm from "./Components/Contact/ContactForm"
 import { PageNotFound } from "./Components/PageNotFound/PageNotFound"; */
 
-// eslint-disable-next-line space-before-function-paren
 function App() {
   return (
     <>
