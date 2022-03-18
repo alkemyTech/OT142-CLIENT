@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, SimpleGrid, GridItem } from '@chakra-ui/react';
-import { getNews } from '../../Services/newsService';
+/* import { getNews } from "../../Services/newsService"; */
 import Card from '../Card';
 import '../CardListStyles.css';
 import Spinner from '../Spinner/index';
@@ -13,17 +13,17 @@ const NewsList = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  useEffect(async () => {
-    try {
-      setLoading(true);
-      const result = await getNews();
-      setNewsList([...result.data]);
-    } catch (error) {
-      console.log(error);
-      setError(true);
-    }
-    setLoading(false);
-  }, []);
+  /*   useEffect(async () => {
+      try {
+        setLoading(true);
+        const result = await getNews();
+        setNewsList([...result.data]);
+      } catch (error) {
+        console.log(error);
+        setError(true);
+      }
+      setLoading(false);
+    }, []); */
 
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
