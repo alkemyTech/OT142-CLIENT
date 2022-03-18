@@ -15,12 +15,11 @@ import {
 } from '@chakra-ui/react';
 
 const Content = () => {
+  const fechaInicio = new Date().getTime();
+  const fechaFin = new Date('2023-01-31').getTime();
 
-  var fechaInicio = new Date().getTime();
-  var fechaFin = new Date('2023-01-31').getTime();
-
-  var diff = fechaFin - fechaInicio;
-  var totalDias = Math.trunc(diff / (1000 * 60 * 60 * 24))
+  const diff = fechaFin - fechaInicio;
+  const totalDias = Math.trunc(diff / (1000 * 60 * 60 * 24));
 
   const [isNotSmallerScreen] = useMediaQuery('(min-width:1200px)');
   const [margin] = useMediaQuery('(min-width:992px)');
@@ -43,7 +42,7 @@ const Content = () => {
         </Box>
 
         <Center mt={5} mb={5} >
-          <Image boxSize='200px' src={ImagenLapiz} mr={margin ? "10" : null} alt='Logotipo' />
+          <Image boxSize='200px' src={ImagenLapiz} mr={margin ? '10' : null} alt='Logotipo' />
         </Center>
 
         <Center mt={5}>
@@ -71,9 +70,6 @@ const Content = () => {
       </Container>
     </>
   );
-}
+};
 
 export default Content;
-
-
-
