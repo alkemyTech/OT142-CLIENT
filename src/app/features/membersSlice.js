@@ -22,6 +22,17 @@ export const addMember = createAsyncThunk(
   }
 );
 
+export const putMember = createAsyncThunk("members/putMember", async (data) => {
+  return await editMember(data.id, data);
+});
+
+export const removeMember = createAsyncThunk(
+  "members/removeMember",
+  async (data) => {
+    return await deleteMember(data.id);
+  }
+);
+
 const membersSlice = createSlice({
   name: "members",
   initialState: {
@@ -51,6 +62,18 @@ const membersSlice = createSlice({
       state.members = state.members.concat(action.payload);
     },
     [addMember.rejected]: (state, action) => {
+      state.status = "failed";
+      state.error = action.error;
+    },
+
+    [removeMember.pending]: (state) => {
+      state.status = loading;
+    },
+    [removeMember.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.members = state.members.filter(({ id }) => id !== payload);
+    },
+    [removeMember.rejected]: (state, action) => {
       state.status = "failed";
       state.error = action.error;
     },
