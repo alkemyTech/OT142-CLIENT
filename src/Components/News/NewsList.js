@@ -36,9 +36,8 @@ const NewsList = () => {
       console.log(error);
       setError(true);
     }
-    setLoading(false)
-  }, [dispatch])
-
+    setLoading(false);
+  }, [dispatch]);
 
   useEffect(() => {
     setNewsList(news.news)
