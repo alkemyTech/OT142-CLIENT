@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
+<<<<<<< HEAD
 import { Box, SimpleGrid, GridItem } from '@chakra-ui/react'
 import { getNews } from "../../Services/newsService";
 import Card from "../Card";
+=======
+import { Box, SimpleGrid, GridItem } from '@chakra-ui/react';
+import { getNews } from '../../Services/newsService';
+import Card from '../Card';
+>>>>>>> 27af3cf1c6768a347979839fa69fa552ee17459a
 import '../CardListStyles.css';
 import Spinner from '../Spinner/index';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
@@ -36,9 +42,8 @@ const NewsList = () => {
       console.log(error);
       setError(true);
     }
-    setLoading(false)
-  }, [dispatch])
-
+    setLoading(false);
+  }, [dispatch]);
 
   useEffect(() => {
     setNewsList(news.news)

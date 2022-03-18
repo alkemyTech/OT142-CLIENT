@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form, Formik, Field } from 'formik';
 import {
-  Button,
-  Stack
+    Button,
+    Stack
 } from '@chakra-ui/react';
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import * as Yup from 'yup';
@@ -13,36 +13,36 @@ import { createContact } from '../../Services/contactService';
 const { name, email, phone, message } = messageErrors;
 
 const schemaContact = Yup.object().shape({
-  firstName: Yup
-    .string()
-    .required(name.messageRequired)
-    .matches(/^[aA-zZ\s]+$/, name.typeError),
-  email:
+    firstName: Yup
+        .string()
+        .required(name.messageRequired)
+        .matches(/^[aA-zZ\s]+$/, name.typeError),
+    email:
         Yup.string()
-          .email(email.formatInvalid)
-          .required(email.messageRequired),
-  phone: Yup
-    .number()
-    .typeError(phone.typeError)
-    .test('len', phone.minCharacters, val => val && val.toString().length >= 8)
-    .required(phone.messageRequired),
-  message: Yup
-    .string()
-    .required(message.messageRequired)
+            .email(email.formatInvalid)
+            .required(email.messageRequired),
+    phone: Yup
+        .number()
+        .typeError(phone.typeError)
+        .test('len', phone.minCharacters, val => val && val.toString().length >= 8)
+        .required(phone.messageRequired),
+    message: Yup
+        .string()
+        .required(message.messageRequired)
 });
 
 const ContactForm = () => {
-  return (
+    return (
         <Formik
             initialValues={{
-              firstName: '',
-              email: '',
-              phone: '',
-              message: ''
+                firstName: '',
+                email: '',
+                phone: '',
+                message: ''
             }}
             validationSchema={schemaContact}
             onSubmit={values => {
-              createContact(values);
+                createContact(values);
             }}
         >
             {(props) => (
@@ -109,7 +109,7 @@ const ContactForm = () => {
                 </Form>
             )}
         </Formik>
-  );
+    );
 };
 
 export default ContactForm;

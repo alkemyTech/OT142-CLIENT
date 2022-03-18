@@ -154,7 +154,7 @@ const Home = () => {
               </Flex>
             </GridItem>
 
-          </Grid >
+          </Grid>
         )
         : (
           <Spinner />
