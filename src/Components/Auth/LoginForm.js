@@ -1,10 +1,10 @@
 import '../FormStyles.css';
 import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import Spinner from '../Spinner/index';
 
 const LoginForm = () => {
   const [inputValue, setInputValue] = useState({});
-
   console.log(inputValue);
 
   return (
@@ -36,17 +36,22 @@ const LoginForm = () => {
                     )
                   ) {
                     errores.password =
-                            'Debe contener una longitud mínima de 6 caracteres, y  al menos un número, una letra y un símbolo (por ejemplo @#$%).';
+                            'Debe contener una longitud mínima de 6 caracteres, y al menos un número, una letra y un símbolo (por ejemplo @#$%).';
                   }
                   return errores;
                 }}
-                onSubmit={(values, { resetForm }) => {
-                  setInputValue(values);
-                  resetForm();
+                onSubmit={(values, { resetForm, setSubmitting }) => {
+                  setSubmitting(true);
+
+                  setTimeout(() => {
+                    setInputValue(values);
+                    setSubmitting(false);
+                    resetForm();
+                  }, 3000);
                 }}
             >
-                {({ errors }) => (
-                    <Form className="formulario">
+                {({ errors, isSubmitting }) => (
+                  <Form className="formulario">
                         <div>
                             <label htmlFor="email">Email</label>
                             <Field
@@ -75,7 +80,9 @@ const LoginForm = () => {
                         </div>
 
                         <button type="submit">Login</button>
+                      {isSubmitting ? <Spinner /> : null}
                     </Form>
+
                 )}
             </Formik>
         </div>
