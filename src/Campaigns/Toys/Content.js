@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Stack, Text, Box, Center, Image, Flex, Spacer } from '@chakra-ui/react';
+import { Heading, Stack, Text, Box, Center, Image, Flex } from '@chakra-ui/react';
 import './Content.css';
 import foto1 from './assets/toy1.jpg';
 import foto3 from './assets/toy3.webp';

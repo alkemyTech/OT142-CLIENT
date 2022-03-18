@@ -13,12 +13,12 @@ export const FooterLandingPage = () => {
 
         <Box d={{ md: 'none' }}>
           <Center>
-            <Image src={logo} alt='logoONG'/>
+            <Image src={logo} alt='logoONG' />
           </Center>
           <Center>
-            <Box p={3}><Link><HiOutlineMail size={30}/></Link></Box>
-            <Box p={3}><Link><FaInstagram size={30} padding={5}/></Link></Box>
-            <Box p={3}><Link><FaFacebook size={30}/></Link></Box>
+            <Box p={3}><Link><HiOutlineMail size={30} /></Link></Box>
+            <Box p={3}><Link><FaInstagram size={30} padding={5} /></Link></Box>
+            <Box p={3}><Link><FaFacebook size={30} /></Link></Box>
           </Center>
           <Center>
             <Box>
@@ -40,9 +40,10 @@ export const FooterLandingPage = () => {
             <Text pr={{ md: '2', lg: '4' }} pl={{ md: '1', lg: '3' }} fontSize={{ lg: '20px' }} fontWeight={'bold'}><Link>Actividades</Link></Text>
             <Text pr={{ md: '2', lg: '4' }} pl={{ md: '1', lg: '3' }} fontSize={{ lg: '20px' }} fontWeight={'bold'}><Link>Novedades</Link></Text>
           </Flex>
-            <Spacer />
-            <Box position={'relative'} top={{ md: '-30px', lg: '-50px' }}><Image w={{ lg: '250px' }} src={logo} alt='logoONG'/></Box>
-            <Spacer />
+
+          <Spacer />
+          <Box position={'relative'} top={{ md: '-30px', lg: '-50px' }}><Image w={{ lg: '250px' }} src={logo} alt='logoONG' /></Box>
+          <Spacer />
           <Flex mt='45px'>
             <Text pr={{ md: '2', lg: '4' }} pl={{ md: '1', lg: '3' }} fontSize={{ lg: '20px' }} fontWeight={'bold'}><Link>Testimonios</Link></Text>
             <Text pr={{ md: '2', lg: '4' }} pl={{ md: '1', lg: '3' }} fontSize={{ lg: '20px' }} fontWeight={'bold'}><Link>Nosotros</Link></Text>
@@ -54,7 +55,9 @@ export const FooterLandingPage = () => {
             <Flex flexDir={{ lg: 'column' }}>
               <Link>
                 <Flex flexDir={{ lg: 'row' }} p={{ md: '3', lg: '5' }} alignItems='center'>
-                  <Box><HiOutlineMail size={40}/></Box>
+
+                  <Box><HiOutlineMail size={40} /></Box>
+
                   <Box d={{ base: 'none', md: 'none', lg: 'flex' }}>
                     <Text fontWeight={'bold'} pl={{ lg: '2' }}>somosfundacionmas@gmail.com</Text>
                   </Box>
@@ -62,7 +65,9 @@ export const FooterLandingPage = () => {
               </Link>
               <Link>
                 <Flex flexDir={{ lg: 'row' }} p={{ md: '3', lg: '5' }} alignItems='center'>
-                  <Box><FaInstagram size={40}/></Box>
+
+                  <Box><FaInstagram size={40} /></Box>
+
                   <Box d={{ base: 'none', md: 'none', lg: 'flex' }}>
                     <Text fontWeight={'bold'} pl={{ lg: '2' }}>SomosMas</Text>
                   </Box>
@@ -70,7 +75,9 @@ export const FooterLandingPage = () => {
               </Link>
               <Link>
                 <Flex flexDir={{ lg: 'row' }} p={{ md: '3', lg: '5' }} alignItems='center'>
-                  <Box><FaFacebook size={40}/></Box>
+
+                  <Box><FaFacebook size={40} /></Box>
+
                   <Box d={{ base: 'none', md: 'none', lg: 'flex' }}>
                     <Text fontWeight={'bold'} pl={{ lg: '2' }}>Somos_Mas</Text >
                   </Box>
