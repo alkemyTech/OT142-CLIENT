@@ -1,27 +1,22 @@
 module.exports = {
   env: {
-    browser: true,
-    es2021: true
+    browser: false,
+    es2021: false,
   },
-  extends: [
-    'plugin:react/recommended',
-    'standard'
-  ],
+  extends: ["plugin:react/recommended", "standard"],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
-    ecmaVersion: 12,
-    sourceType: 'module'
+    ecmaVersion: 2021,
+    sourceType: "module",
   },
-  plugins: [
-    'react'
-  ],
+  plugins: ["react"],
   rules: {
-    semi: ['error', 'always'],
-    quotes: ['error', 'single'],
-    'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off',
-    'react/no-children-prop': 'off'
-  }
+    semi: ["error", "always"],
+    quotes: ["error", "single"],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/no-children-prop": "off",
+  },
 };

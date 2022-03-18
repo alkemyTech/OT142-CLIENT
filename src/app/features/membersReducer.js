@@ -6,7 +6,7 @@ export const getAllMembers = createAsyncThunk(
   "members/getMembers",
   async () => {
     const response = await getMembers();
-    return response;
+    return response.data;
   }
 );
 
