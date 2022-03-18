@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -25,7 +25,7 @@ import BackOfficeActivities from './Components/Activities/backoffice';
 import Home from './Components/Home';
 import MembersList from './Components/AboutUs/MembersList';
 import UserList from './Components/Dashboard/UsersList';
-import { ChakraProvider } from '@chakra-ui/react';
+/* import { ChakraProvider } from '@chakra-ui/react'; */
 import { AlertRoute } from './Services/AlertServicie/AlertRoute';
 import ContactOngDate from './Components/Contact/ContactOngDate';
 import NewsList from './Components/News/NewsList';
@@ -35,33 +35,30 @@ import TableCategorie from './Components/Categories/TableCategorie';
 import { News } from './Components/News';
 import EditHomeForm from './Components/Dashboard/editHomeForm';
 
-import ContactForm from "./Components/Contact/ContactForm"
+import ContactForm from './Components/Contact/ContactForm';
 import { AnimatedSwitch, spring } from 'react-router-transition';
 
-import { PageNotFound } from "./Components/PageNotFound/PageNotFound";
+import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 
-
-function mapStyles(styles) {
+function mapStyles (styles) {
   return {
     opacity: styles.opacity,
     transform: `translateX(${styles.translateX}%)`
   };
 }
 
-function bounce(val) {
+function bounce (val) {
   return spring(val, {
     stiffness: 300,
     damping: 40
   });
 }
 
-
-
-function App() {
+function App () {
   return (
     <>
         <BrowserRouter>
-       
+
           <AnimatedSwitch
             atEnter={{ opacity: 0, translateX: -100 }}
             atActive={{ opacity: bounce(1), translateX: bounce(0) }}
@@ -112,14 +109,14 @@ function App() {
             <Route path="/categories" component={CategoriesForm} />
             <Route path="/*" component={PageNotFound} />
           </AnimatedSwitch>
-        
+
       </BrowserRouter>
-      
+
       <div className="App">
         <header className="App-header"></header>
       </div>
     </>
-  )
+  );
 }
 
 export default App;
