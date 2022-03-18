@@ -22,7 +22,7 @@ const SignupSchema = Yup.object().shape({
     .max(10, 'El campo password puede tener máximo 15 caracteres'),
   userRole: Yup.string()
     .oneOf(['Admin', 'User'], 'Role inválido')
-    .required('Debe seleccionar un role'),
+    .required('Debe seleccionar un role')
 });
 
 /*
@@ -46,7 +46,7 @@ const UserForm = (userData) => {
     name: '',
     email: '',
     password: '',
-    userRole: '',
+    userRole: ''
   });
 
   useEffect(() => {

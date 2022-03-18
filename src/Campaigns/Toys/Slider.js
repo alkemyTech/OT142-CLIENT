@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Box, IconButton, useBreakpointValue, Stack, Text, Container } from '@chakra-ui/react';
+import { Box, IconButton, useBreakpointValue, Stack, Text, Container, useMediaQuery } from '@chakra-ui/react';
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 import Slider from 'react-slick';
-import { useMediaQuery } from '@chakra-ui/react';
+
 import pic1 from '../../Assets/pic1-test.jpg';
 import pic2 from '../../Assets/pic2-test.jpg';
 import pic3 from '../../Assets/pic3-test.jpg';
@@ -16,7 +16,7 @@ const settings = {
   speed: 500,
   autoplaySpeed: 5000,
   slidesToShow: 1,
-  slidesToScroll: 1,
+  slidesToScroll: 1
 };
 
 const ToysSlider = () => {
@@ -28,16 +28,16 @@ const ToysSlider = () => {
   const cards = [
     {
       text: 'Podemos considerar la ultima campaña de donación juguetes como todo un exito! conseguimos 5234!',
-      image: pic1,
+      image: pic1
     },
     {
       text: 'La proxima semana se dara el tercer encuentro de partidos de futbol entre las escuelas secundarias❗❗',
-      image: pic2,
+      image: pic2
     },
     {
       text: 'Example text 3',
-      image: pic3,
-    },
+      image: pic3
+    }
   ];
 
   return (
@@ -88,7 +88,8 @@ const ToysSlider = () => {
             backgroundSize="cover"
             backgroundImage={card.image}
             w={{ base: '250px', sm: '400px' }}>
-            {isLargerThan767 ? (
+            {isLargerThan767
+              ? (
               <Container
                 size="container.md"
                 height="600px"
@@ -112,7 +113,8 @@ const ToysSlider = () => {
                   </Text>
                 </Stack>
               </Container>
-            ) : null}
+                )
+              : null}
           </Box>
         ))}
       </Slider>
