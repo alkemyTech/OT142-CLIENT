@@ -39,7 +39,7 @@ import { AnimatedSwitch, spring } from 'react-router-transition';
 
 import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 import Sidebar from './Components/Sidebar/Sidebar';
-import FooterPublic from './Components/Footer/FooterPublic';
+import Layout from './Components/Layout';
 
 function mapStyles (styles) {
   return {
@@ -58,8 +58,8 @@ function bounce (val) {
 function App () {
   return (
     <>
-        <BrowserRouter>
-
+      <BrowserRouter>
+        <Layout>
           <AnimatedSwitch
             atEnter={{ opacity: 0, translateX: -100 }}
             atActive={{ opacity: bounce(1), translateX: bounce(0) }}
@@ -89,8 +89,6 @@ function App () {
             <Route exact path="/backoffice/members/create" component={MembersForm} />
             <Route exact path="/create-project" component={ProjectsForm} />
             <Route exact path="/update-project/:id" component={ProjectsForm} />
-            <Route exact path="/school-campaign" component={SchoolCampaign} />
-            <Route exact path="/toys-campaign" component={ToysCampaign} />
             <Route exact path="/actividades/:id" component={ActivityDetail} />
             <Route exact path="/actividades" component={Activities} />
             <Route exact path="/register" component={RegisterForm} />
@@ -112,7 +110,10 @@ function App () {
 
             <Route path="/*" component={PageNotFound} />
           </AnimatedSwitch>
-        <FooterPublic />
+        </Layout>
+        {/* Estas dos rutas van fuera de Layout ya que usan un header y un footer diferentes */}
+        <Route exact path="/school-campaign" component={SchoolCampaign} />
+        <Route exact path="/toys-campaign" component={ToysCampaign} />
       </BrowserRouter>
       <div className="App">
         <header className="App-header"></header>
