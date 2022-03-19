@@ -3,9 +3,9 @@ import { Box, Flex, Image, Text } from '@chakra-ui/react';
 
 const Header = () => {
   return (
-    <Box backgroundColor={{ base: '#EBEBEB', md: '#EBEBEB', lg: '#EBEBEB', xl: 'rgba(235,235,235, .6)' }} maxHeight='206px'>
+    <Box backgroundColor={{ base: '#EBEBEB', md: '#EBEBEB', lg: '#EBEBEB', xl: 'rgba(235,235,235, .6)' }} maxHeight="206px">
       <Flex
-        alignItems='center'
+        alignItems="center"
         justifyContent={{ base: 'center', md: 'space-between', lg: 'space-around' }}
         p={4}
       >
@@ -21,13 +21,13 @@ const Header = () => {
         </Box>
 
         <Box display={{ base: 'none', md: 'none', lg: 'flex' }}>
-          <Text fontSize='2xl' color='#000'>#JuntosEnLaVueltaAlCole</Text>
+          <Text fontSize="2xl" color="#000">#JuntosEnLaVueltaAlCole</Text>
         </Box>
 
         <Box display={{ base: 'none', md: 'flex', lg: 'flex' }}>
           <Image
             src={process.env.PUBLIC_URL + '/images/LOGO-SOMOS-MAS.png'}
-            alt='logo de la ong'
+            alt="logo de la ong"
           />
         </Box>
       </Flex>
