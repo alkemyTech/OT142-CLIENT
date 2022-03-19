@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-
 import {
   Grid,
   GridItem,
@@ -8,7 +7,6 @@ import {
   Flex,
   Center,
   Button
-
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import CarouselSlides from '../Slides/HomeSlide';
