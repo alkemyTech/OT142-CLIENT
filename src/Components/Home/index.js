@@ -16,7 +16,6 @@ import { get } from '../../Services/publicApiService';
 import Spinner from '../Spinner/index';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
 import { FooterLandingPage } from '../Footer/FooterLandingPage';
-
 const Home = () => {
   const [loading, setLoading] = useState();
   // eslint-disable-next-line no-unused-vars

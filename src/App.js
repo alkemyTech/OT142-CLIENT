@@ -39,6 +39,7 @@ import ContactForm from './Components/Contact/ContactForm';
 import { AnimatedSwitch, spring } from 'react-router-transition';
 
 import { PageNotFound } from './Components/PageNotFound/PageNotFound';
+import Sidebar from './Components/Sidebar/Sidebar';
 
 function mapStyles (styles) {
   return {
@@ -107,11 +108,12 @@ function App () {
             <Route path="/create-member" component={MembersForm} />
             <Route path="/backoffice-categories" component={TableCategorie} />
             <Route path="/categories" component={CategoriesForm} />
+            <Route path="/sidebar" component={Sidebar} />
+
             <Route path="/*" component={PageNotFound} />
           </AnimatedSwitch>
 
       </BrowserRouter>
-
       <div className="App">
         <header className="App-header"></header>
       </div>
