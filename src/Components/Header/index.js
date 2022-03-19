@@ -1,4 +1,5 @@
-import {
+/*eslint-disable*/
+ import {
   Box,
   Flex,
   Text,
@@ -145,7 +146,7 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+const DesktopSubNav = ({ label, href, subLabel } : NavItem) => {
   return (
     <Link
       href={href}

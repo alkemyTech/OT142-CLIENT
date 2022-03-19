@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState } from 'react';
 import {
   Modal,
@@ -19,7 +20,7 @@ import Termspdf from '../../../Assets/terms-and-cond.pdf';
 
 const TermsAndConditions = ({ handleChange }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [aceptDeclineOption, setAceptDeclineOption] = useState('');
+  const [acceptDeclineValue, setAceptDeclineValue] = useState('');
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -30,13 +31,13 @@ const TermsAndConditions = ({ handleChange }) => {
   }
 
   const handleState = (string) => {
-    setAceptDeclineOption(string);
+    setAceptDeclineValue(string);
     handleChange(string);
   };
 
   return (
     <>
-      <RadioGroup value={aceptDeclineOption} onChange={setAceptDeclineOption}>
+      <RadioGroup value={acceptDeclineValue} onChange={setAceptDeclineValue}>
         <Stack direction="row">
           <Radio value="accept">He leido y acepto.</Radio>
           <Radio value="decline">No Acepto.</Radio>
@@ -48,7 +49,7 @@ const TermsAndConditions = ({ handleChange }) => {
       <Modal
         onClose={onClose}
         isOpen={isOpen}
-        scrollBehavior={aceptDeclineOption}
+        scrollBehavior={acceptDeclineValue}
         size="xl"
       >
         <ModalOverlay />

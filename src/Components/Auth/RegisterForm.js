@@ -180,8 +180,7 @@ const RegisterForm = () => {
           <Stack marginBottom="1rem">
             <TermsAndConditions handleChange={handleChange} />
             {registerValue === 'accept'
-              ?
-                (<Button
+              ? (<Button
                 type='submit'
                 size='md'
                 variant='solid'
