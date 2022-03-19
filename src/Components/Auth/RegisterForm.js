@@ -14,6 +14,7 @@ import {
   Heading,
   Stack
 } from '@chakra-ui/react';
+import MapsWrapper from '../Maps/MapsWrapper';
 
 const initialValues = {
   name: '',
@@ -21,10 +22,6 @@ const initialValues = {
   email: '',
   password: '',
   passwordRepeat: ''
-};
-
-const onSubmit = (values) => {
-  localStorage.setItem('token', 'tokenValueExample');
 };
 
 const validationSchema = Yup.object({
@@ -48,6 +45,18 @@ const validationSchema = Yup.object({
 });
 
 const RegisterForm = () => {
+  const [latLng, setLatLng] = useState({
+    latitude: 0,
+    longitude: 0,
+    address: ''
+  });
+
+  const onSubmit = (values) => {
+    const user = { ...values, ...latLng };
+    console.log(user);
+    localStorage.setItem('token', 'tokenValueExample');
+  };
+
   const [registerValue, setRegisterValue] = useState();
 
   const handleChange = (string) => {
@@ -131,6 +140,14 @@ const RegisterForm = () => {
 
               <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
             </FormControl>
+            <FormControl>
+              <Stack justifyContent="space-between" isInline>
+                <FormLabel htmlFor="address">Dirección</FormLabel>
+              </Stack>
+
+              <MapsWrapper setLatLng={setLatLng} />
+            </FormControl>
+
             <FormControl
               isInvalid={formik.errors.password && formik.touched.password}
             >

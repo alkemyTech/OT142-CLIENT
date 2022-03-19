@@ -30,7 +30,6 @@ import { AlertRoute } from './Services/AlertServicie/AlertRoute';
 import ContactOngDate from './Components/Contact/ContactOngDate';
 import NewsList from './Components/News/NewsList';
 import TableCategorie from './Components/Categories/TableCategorie';
-
 // import ContactForm from "./Components/Contact";
 import { News } from './Components/News';
 // import EditHomeForm from './Components/Dashboard/editHomeForm';
