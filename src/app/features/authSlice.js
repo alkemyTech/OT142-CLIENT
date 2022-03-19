@@ -30,7 +30,7 @@ export const loginUser = createAsyncThunk(
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    token: 'asd',
+    token: '',
     user: {},
     autentication: false
   },
