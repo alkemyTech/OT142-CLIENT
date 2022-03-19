@@ -15,7 +15,7 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import ActivityDetail from './Components/Activities/ActivityDetail';
 import Activities from './Components/Activities/Activities';
 import Dashboard from './Components/Dashboard/index.js';
-import OrganizationBoard from './Components/Dashboard/OrganizationBoard.js';
+// import OrganizationBoard from './Components/Dashboard/OrganizationBoard.js';
 import { NewsDetail } from './Components/News/Detail/NewsDetail';
 import EditForm from './Components/Dashboard/EditForm';
 import RegisterForm from './Components/Auth/RegisterForm';
@@ -33,13 +33,14 @@ import TableCategorie from './Components/Categories/TableCategorie';
 
 // import ContactForm from "./Components/Contact";
 import { News } from './Components/News';
-import EditHomeForm from './Components/Dashboard/editHomeForm';
+// import EditHomeForm from './Components/Dashboard/editHomeForm';
 
 import ContactForm from './Components/Contact/ContactForm';
 import { AnimatedSwitch, spring } from 'react-router-transition';
 
 import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 import Sidebar from './Components/Sidebar/Sidebar';
+import FooterPublic from './Components/Footer/FooterPublic';
 
 function mapStyles (styles) {
   return {
@@ -74,8 +75,8 @@ function App () {
             <Route exact path="/backoffice" component={Dashboard} />
             <Route exact path="/backoffice/create-slide" component={SlidesForm} />
             <Route exact path="/backoffice/organization/edit" component={EditForm} />
-            <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
-            <Route exact path="/backoffice/organization" component={OrganizationBoard} />
+            {/* <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
+            <Route exact path="/backoffice/organization" component={OrganizationBoard} /> */}
 
             {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
             <Route exact path="/backoffice/news/create" component={NewsForm} />
@@ -112,7 +113,7 @@ function App () {
 
             <Route path="/*" component={PageNotFound} />
           </AnimatedSwitch>
-
+        <FooterPublic />
       </BrowserRouter>
       <div className="App">
         <header className="App-header"></header>
