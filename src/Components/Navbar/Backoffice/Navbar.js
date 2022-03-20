@@ -3,6 +3,11 @@ import {
   Box,
   Flex,
   Image,
+<<<<<<< HEAD
+=======
+  Text,
+  Button,
+>>>>>>> main
   Stack
 
 } from '@chakra-ui/react';
