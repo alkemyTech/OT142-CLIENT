@@ -68,10 +68,8 @@ const DashboardPublic = () => {
                     <Route exact path="/register" component={RegisterForm} />
                     <Route exact path="/contact" component={Contact} />
                     <Route exact path="/contact-form" component={ContactForm} />
-                    <Route exact path="/nosotros" component={About} />
                     <Route exact path="/about-us/members" component={MembersList} />
                     <Route exact path='/contacto' component={ContactOngDate} />
-                    <Route exact path='/contact-form' component={ContactForm} />
                     <Route exact path='/nosotros' component={About} />
                     <Route exact path='/about-us/members' component={MembersList} />
                     <Route path="/*" component={PageNotFound} />
