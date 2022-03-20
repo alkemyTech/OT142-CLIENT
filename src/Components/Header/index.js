@@ -14,7 +14,8 @@
   PopoverContent,
   useColorModeValue,
   useBreakpointValue,
-  useDisclosure
+  useDisclosure,
+  Image
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -22,6 +23,8 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
+
+import { Link as ReachLink } from 'react-router-dom';
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -51,13 +54,8 @@ export default function WithSubnavigation() {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            Somos Más
-          </Text>
+        <Flex maxH='50px' flex={{ base: 1 }} alignItems='center' justify={{ base: 'center', md: 'start' }}>
+          <Image boxSize='120px' src='/images/LOGO-SOMOS-MAS.png'/>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
@@ -77,7 +75,7 @@ export default function WithSubnavigation() {
             href={'#'}>
             Ingresar
           </Button>
-          <Button
+          {/* <Button
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
@@ -88,7 +86,7 @@ export default function WithSubnavigation() {
               bg: 'pink.300',
             }}>
             Cerrar Sesión
-          </Button>
+          </Button> */}
         </Stack>
       </Flex>
 
@@ -111,8 +109,9 @@ const DesktopNav = () => {
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
               <Link
+                as={ReachLink}
                 p={2}
-                href={navItem.href ?? '#'}
+                to={navItem.href}
                 fontSize={'sm'}
                 fontWeight={500}
                 color={linkColor}
@@ -200,8 +199,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? '#'}
+        as={ReachLink}
+        to={href}
         justify={'space-between'}
         align={'center'}
         _hover={{
@@ -261,7 +260,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Contacto',
-    href: '/contacto',
+    href: '/contact',
   },
   {
     label: 'Campañas',

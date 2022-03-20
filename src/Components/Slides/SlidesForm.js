@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../FormStyles.css';
+import { useDispatch } from 'react-redux';
 
 import {
   Image,
@@ -8,7 +9,9 @@ import {
   FormControl,
   FormLabel,
   Stack,
-  Heading
+  Heading,
+  VStack,
+  Box
 } from '@chakra-ui/react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -20,8 +23,8 @@ const SlidesForm = ({ state }) => {
   const dispatch = useDispatch();
 
   const [initialValues, setInitialValues] = useState({
-    name: state?.name || 'prueba',
-    description: state?.description || 'prueba',
+    name: state?.name || '',
+    description: state?.description || '',
     order: state?.order || 0,
     image: state?.image || ''
   });
@@ -41,24 +44,30 @@ const SlidesForm = ({ state }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (initialValues) {
-      (dispatch(newSlideSlice(initialValues)));
+      dispatch(newSlideSlice(initialValues));
     } else {
       dispatch(putSlideSlice(initialValues));
     }
   };
 
   return (
-    <form className="global" onSubmit={handleSubmit}>
-      <Stack>
-        <Heading>Edición/Creación de Slides</Heading>
-      </Stack>
-      <Stack>
+    <form
+      onSubmit={handleSubmit}
+    >
+      <VStack
+        mx="auto"
+        w={{ base: '90%', md: 500 }}
+        h="100vh"
+        justifyContent="center"
+      >
+        <Box w="100%" p={4} bg="teal" color="white" textAlign="center">
+          <Heading>Formulario Edición / Creación de Slides</Heading>
+        </Box>
+
         <FormControl isRequired>
           <FormLabel htmlFor="first-name">Name</FormLabel>
-           <Input
+          <Input
             minLength={4}
-            // isInvalid
-            // focusBorderColor="red.300"
             variant="filled"
             type="text"
             name="name"
@@ -67,13 +76,9 @@ const SlidesForm = ({ state }) => {
             placeholder="Name"
           ></Input>
         </FormControl>
-      </Stack>
-      <Stack>
         <FormControl isRequired>
           <FormLabel htmlFor="first-name">Order</FormLabel>
           <Input
-            // isInvalid
-            // focusBorderColor="red.300"
             variant="filled"
             type="text"
             name="order"
@@ -82,34 +87,30 @@ const SlidesForm = ({ state }) => {
             placeholder="order"
           ></Input>
         </FormControl>
-      </Stack>
-      <Stack spacing={4}>
         <FormControl isRequired>
           <FormLabel htmlFor="first-name">Description</FormLabel>
           <CKEditor
-                config={{ placeholder: '...Description' }}
-                editor={ClassicEditor}
-                data={initialValues.description}
-                onChange={(event, editor) => {
-                  const data = editor.getData();
-                  console.log(data);
-                  setInitialValues({ ...initialValues, description: data });
-                }}
-              />
+            config={{ placeholder: '...Description' }}
+            editor={ClassicEditor}
+            data={initialValues.description}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              console.log(data);
+              setInitialValues({ ...initialValues, description: data });
+            }}
+          />
         </FormControl>
-      </Stack>
 
-      <Stack spacing={4}>
         <FormControl isRequired>
           <FormLabel htmlFor="first-name">Image</FormLabel>
           <Input
-           accept="image/x-png,image/jpeg"
+            accept="image/x-png,image/jpeg"
             id="image"
             type="file"
             variant="flushed"
             onChange={async (e) => {
               const file = e.currentTarget.files[0];
-              const imagen = await (toBase64(file));
+              const imagen = await toBase64(file);
               setInitialValues({
                 ...initialValues,
                 image: imagen
@@ -119,12 +120,13 @@ const SlidesForm = ({ state }) => {
           />
           <Image id="img-preview"></Image>
         </FormControl>
-      </Stack>
-      <Stack spacing={4}>
-        <Button mt={4} colorScheme="teal" type="submit">
-          Send
-        </Button>
-      </Stack>
+
+        <Stack w={'100%'}>
+          <Button type="submit" size="md" variant="solid" colorScheme="teal">
+            Enviar
+          </Button>
+        </Stack>
+      </VStack>
     </form>
   );
 };
