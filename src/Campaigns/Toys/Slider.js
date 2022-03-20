@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Box, IconButton, useBreakpointValue, Stack, Text, Container, useMediaQuery } from '@chakra-ui/react';
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 import Slider from 'react-slick';
-
 import pic1 from '../../Assets/pic1-test.jpg';
 import pic2 from '../../Assets/pic2-test.jpg';
 import pic3 from '../../Assets/pic3-test.jpg';

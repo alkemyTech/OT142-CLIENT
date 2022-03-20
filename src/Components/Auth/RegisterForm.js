@@ -1,6 +1,8 @@
+import React, { useState } from 'react';
 import '../FormStyles.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import TermsAndConditions from '../Modal/TermsAndCond';
 import {
   Button,
   Input,
@@ -12,6 +14,7 @@ import {
   Heading,
   Stack
 } from '@chakra-ui/react';
+import MapsWrapper from '../Maps/MapsWrapper';
 
 const initialValues = {
   name: '',
@@ -19,10 +22,6 @@ const initialValues = {
   email: '',
   password: '',
   passwordRepeat: ''
-};
-
-const onSubmit = (values) => {
-  localStorage.setItem('token', 'tokenValueExample');
 };
 
 const validationSchema = Yup.object({
@@ -46,6 +45,24 @@ const validationSchema = Yup.object({
 });
 
 const RegisterForm = () => {
+  const [latLng, setLatLng] = useState({
+    latitude: 0,
+    longitude: 0,
+    address: ''
+  });
+
+  const onSubmit = (values) => {
+    const user = { ...values, ...latLng };
+    console.log(user);
+    localStorage.setItem('token', 'tokenValueExample');
+  };
+
+  const [registerValue, setRegisterValue] = useState();
+
+  const handleChange = (string) => {
+    setRegisterValue(string);
+  };
+
   const formik = useFormik({
     initialValues,
     onSubmit,
@@ -70,27 +87,22 @@ const RegisterForm = () => {
         <Heading marginBottom="1.5rem">Registro</Heading>
         <form className="form-container" onSubmit={formik.handleSubmit}>
           <Stack spacing={4} marginBottom="1rem">
-            <FormControl
-
-              isInvalid={formik.errors.name && formik.touched.name}
-            >
+            <FormControl isInvalid={formik.errors.name && formik.touched.name}>
               <FormLabel htmlFor="name">Nombre</FormLabel>
 
-                <Input
-                  variant="outline"
-                  type="text"
-                  name="name"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  placeholder="Ingrese su nombre"
-                ></Input>
+              <Input
+                variant="outline"
+                type="text"
+                name="name"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="Ingrese su nombre"
+              ></Input>
 
-                <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
-
+              <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
             </FormControl>
             <FormControl
-
               isInvalid={formik.errors.lastName && formik.touched.lastName}
             >
               <Stack justifyContent="space-between" isInline>
@@ -110,7 +122,6 @@ const RegisterForm = () => {
               <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
             </FormControl>
             <FormControl
-
               isInvalid={formik.errors.email && formik.touched.email}
             >
               <Stack justifyContent="space-between" isInline>
@@ -129,8 +140,15 @@ const RegisterForm = () => {
 
               <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
             </FormControl>
-            <FormControl
+            <FormControl>
+              <Stack justifyContent="space-between" isInline>
+                <FormLabel htmlFor="address">Dirección</FormLabel>
+              </Stack>
 
+              <MapsWrapper setLatLng={setLatLng} />
+            </FormControl>
+
+            <FormControl
               isInvalid={formik.errors.password && formik.touched.password}
             >
               <Stack justifyContent="space-between" isInline>
@@ -150,7 +168,6 @@ const RegisterForm = () => {
               <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
             </FormControl>
             <FormControl
-
               isInvalid={
                 formik.errors.passwordRepeat && formik.touched.passwordRepeat
               }
@@ -178,9 +195,22 @@ const RegisterForm = () => {
           </Stack>
 
           <Stack marginBottom="1rem">
-            <Button type="submit" size="md" variant="solid" colorScheme="teal">
-              Registrar
-            </Button>
+            <TermsAndConditions handleChange={handleChange} />
+            {registerValue === 'accept'
+              ? (<Button
+                type='submit'
+                size='md'
+                variant='solid'
+                colorScheme='teal'
+              >
+                Registrar
+              </Button>
+                )
+              : (
+              <Button size="md" variant="ghost" colorScheme="teal">
+                Registrar
+              </Button>
+                ) }
           </Stack>
         </form>
       </Box>

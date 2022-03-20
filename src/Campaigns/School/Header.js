@@ -11,12 +11,12 @@ const Header = () => {
       >
         <Box>
           <Image
-            boxSize="140px"
+            boxSize='140px'
             src={
               process.env.PUBLIC_URL +
               '/images/Logotipo_campaña_materiales_escolares.png'
             }
-            alt="logo de la campaña"
+            alt='logo de la campaña'
           />
         </Box>
 
