@@ -14,7 +14,8 @@
   PopoverContent,
   useColorModeValue,
   useBreakpointValue,
-  useDisclosure
+  useDisclosure,
+  Image
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -24,11 +25,6 @@ import {
 } from '@chakra-ui/icons';
 
 import { Link as ReachLink } from 'react-router-dom';
-import Home from '../Home';
-import About from '../About';
-import Contact from '../Contact';
-import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
-import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -58,13 +54,8 @@ export default function WithSubnavigation() {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            Somos Más
-          </Text>
+        <Flex maxH='50px' flex={{ base: 1 }} alignItems='center' justify={{ base: 'center', md: 'start' }}>
+          <Image boxSize='120px' src='/images/LOGO-SOMOS-MAS.png'/>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
