@@ -16,6 +16,7 @@ import { PageNotFound } from '../Components/PageNotFound/PageNotFound';
 
 const DashboardPrivate = () => {
   return (
+    // Este es el layour del backend arreglar responsive con display flex y columna cuando es mobile
     <main style={{ display: 'flex' }}>
       <Sidebar />
       <Switch>
