@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
-const ActivityContent = ({ htmlText }) => {
+const RenderHtml = ({ htmlText }) => {
   return (
     <Box p="2em">
       <div dangerouslySetInnerHTML={{ __html: htmlText }} />
@@ -9,4 +9,4 @@ const ActivityContent = ({ htmlText }) => {
   );
 };
 
-export default ActivityContent;
+export default RenderHtml;
