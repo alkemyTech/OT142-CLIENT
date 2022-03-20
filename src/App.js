@@ -40,6 +40,7 @@ import { AnimatedSwitch, spring } from 'react-router-transition';
 import { PageNotFound } from './Components/PageNotFound/PageNotFound';
 import Sidebar from './Components/Sidebar/Sidebar';
 import Layout from './Components/Layout';
+import { ButtonPay } from './Components/ButtonPay/ButtonPay';
 
 function mapStyles (styles) {
   return {
@@ -107,6 +108,7 @@ function App () {
             <Route path="/backoffice-categories" component={TableCategorie} />
             <Route path="/categories" component={CategoriesForm} />
             <Route path="/sidebar" component={Sidebar} />
+            <Route path="/pay" component={ButtonPay} />
 
             <Route path="/*" component={PageNotFound} />
           </AnimatedSwitch>
