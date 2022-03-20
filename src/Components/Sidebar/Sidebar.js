@@ -21,9 +21,8 @@ const LinkItems = [
   { name: 'Activities', route: '/backoffice/activities', icon: FiActivity },
   { name: 'Users', route: '/backoffice/users', icon: FaUserAlt },
   { name: 'Create members', route: '/backoffice/members/create', icon: MdCardMembership },
-  { name: 'Create news', route: '/create-news', icon: MdCreate },
-  { name: 'Category', route: '/backoffice-categories', icon: MdCategory }
-
+  { name: 'Create news', route: '/backoffice/create-news', icon: MdCreate },
+  { name: 'Category', route: '/backoffice/categories', icon: MdCategory }
 ];
 
 export default function Sidebar ({ children }) {
