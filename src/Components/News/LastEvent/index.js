@@ -64,9 +64,8 @@ const LastEvent = () => {
             volume={volume}
             playing={isPlaying}
             onProgress={(val) => {
-              console.log(val);
               setCurrentSeek(parseInt(val.playedSeconds));
-              setPlayed(val.played);
+              setPlayed(val.played * 100);
             }}
             onDuration={(seconds) => {
               setVideoDuration(seconds);
@@ -91,7 +90,6 @@ const LastEvent = () => {
               {`${currentSeekFormat()} / ${totalDurationFormat()}`}
             </Box>
           </Center>
-
           <Box bg={'gray'} width={RELATIVE_PLAYER_WIDTH} pl={2} pr={2} pb={2}>
             <Button
               size='xs'
