@@ -14,8 +14,43 @@ const LastEvent = () => {
   const [volume, setVolume] = useState(0.05);
   const [previousVolume, setPreviousVolume] = useState(0.05);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentSeek, setCurrentSeek] = useState(0);
+  const [videoDuration, setVideoDuration] = useState(0);
+  const [played, setPlayed] = useState(0);
 
   const RELATIVE_PLAYER_WIDTH = '50vw';
+
+  const totalDurationFormat = () => {
+    let minutes = 0;
+    let videoSeconds = videoDuration ? videoDuration : 0;
+
+    while (videoSeconds >= 60) {
+      videoSeconds -= 60;
+      minutes += 1;
+    }
+
+    if (videoSeconds < 10) {
+      videoSeconds = `${0}${videoSeconds}`;
+    }
+
+    return `${minutes}:${videoSeconds}`;
+  };
+
+  const currentSeekFormat = () => {
+    let minutes = 0;
+    let seconds = currentSeek;
+
+    while (seconds >= 60) {
+      seconds -= 60;
+      minutes += 1;
+    }
+
+    if (seconds < 10) {
+      seconds = `${0}${seconds}`;
+    }
+
+    return `${minutes || 0}:${seconds}`;
+  };
 
   return (
     <>
@@ -23,9 +58,23 @@ const LastEvent = () => {
         <Box pt={2} pl={2} pr={2}>
           <ReactPlayer
             width={RELATIVE_PLAYER_WIDTH}
-            url={'https://youtu.be/HQ_TD6dFpE0'}
+            url={
+              'https://www.youtube.com/watch?v=4YnSk1gI_Oo&ab_channel=OIMArgentina'
+            }
             volume={volume}
             playing={isPlaying}
+            onProgress={(val) => {
+              console.log(val);
+              setCurrentSeek(parseInt(val.playedSeconds));
+              setPlayed(val.played);
+            }}
+            onDuration={(seconds) => {
+              setVideoDuration(seconds);
+            }}
+            onSeek={(val) => {
+              console.log(val);
+            }}
+            progressInterval={500}
           />
         </Box>
       </Center>
@@ -33,16 +82,13 @@ const LastEvent = () => {
         <VStack>
           <Center>
             <Box>
-              <Slider
-                aria-label='slider-ex-1'
-                width={RELATIVE_PLAYER_WIDTH}
-                defaultValue={30}
-              >
+              <Slider aria-label='slider-ex-1' width={'45vw'} value={played}>
                 <SliderTrack>
                   <SliderFilledTrack />
                 </SliderTrack>
                 <SliderThumb />
               </Slider>
+              {`${currentSeekFormat()} / ${totalDurationFormat()}`}
             </Box>
           </Center>
 
