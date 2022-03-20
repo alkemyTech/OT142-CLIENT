@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Slider from './Slider';
 import Content from './Content';
-import Footer from './Footer';
+import { FooterLandingPage } from '../../Components/Footer/FooterLandingPage';
 
 const SchoolCampaign = () => {
   return (
@@ -10,7 +10,7 @@ const SchoolCampaign = () => {
       <Header />
       <Slider />
       <Content />
-      <Footer />
+      <FooterLandingPage />
     </>
   );
 };
