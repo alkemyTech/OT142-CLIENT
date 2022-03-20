@@ -54,8 +54,8 @@ const Card = ({ data }) => {
           </Heading>
           <Text color={'gray.500'}>
             {
-                data.content
-                  ? <RenderHtml htmlText={data.content}/>
+                data.description
+                  ? <RenderHtml htmlText={data.description}/>
                   : 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
             }
           </Text>

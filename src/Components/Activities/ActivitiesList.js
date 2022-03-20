@@ -1,9 +1,9 @@
-import { Button, Image, Box, Container, Text, Heading, Spinner, Grid } from '@chakra-ui/react';
-import Title from '../Titles';
-import { useHistory } from 'react-router-dom';
+import { Container, Text, Spinner, Grid, Box } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities } from '../../app/features/activitiesSlice';
+import Card from '../Card';
+
 const ActivitiesList = () => {
   const [data, setData] = useState([]);
 
@@ -18,33 +18,18 @@ const ActivitiesList = () => {
     setData(activitiesReducer.activities);
   }, [activitiesReducer]);
 
-  const history = useHistory();
-
-  const handleActivity = (id) => {
-    history.push(`/actividades/${id}`);
-  };
-
   return (
         <Container maxW='container.lg'>
-            <Title>Actividades</Title>
+            <Text fontSize='5xl' d='flex' justifyContent='center'>Actividades</Text>
 
             {activitiesReducer.status !== 'success' && <Spinner size='xl' />}
 
-            <Grid templateColumns='repeat(3, 1fr)' gap={6}>
+            <Grid templateColumns='repeat(4, 1fr)' gap={6}>
                 {data?.length > 0 &&
                     data.map((activity) => (
-                        <Box key={activity.id}>
-                            <Heading as='h3'>
-                                {activity.name}
-                            </Heading>
-                            <Text>
-                                {activity.description}
-                            </Text>
-                            <Box>
-                                <Image boxSize='100px' src={activity.image} />
-                            </Box>
-                            <Button variant='solid' size='xs' onClick={() => handleActivity(activity.id)}>Ver Detalle</Button>
-                        </Box>
+                      <Box key={activity.id}>
+                        <Card data={activity} />
+                      </Box>
                     ))}
             </Grid>
         </Container>
