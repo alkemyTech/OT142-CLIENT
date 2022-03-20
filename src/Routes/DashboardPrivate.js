@@ -12,7 +12,7 @@ import MembersForm from '../Components/Members/MembersForm';
 import NewsForm from '../Components/News/NewsForm';
 import NewsList from '../Components/News/NewsList';
 import SlidesForm from '../Components/Slides/SlidesForm';
-import { PageNotFound } from '../Components/PageNotFound/PageNotFound';
+import PageNotFound from '../Components/PageNotFound';
 
 const DashboardPrivate = () => {
   return (

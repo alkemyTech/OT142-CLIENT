@@ -9,8 +9,7 @@ import Contact from '../Components/Contact';
 import About from '../Components/About';
 // import Layout from '../Components/Layout';
 // import { AnimatedSwitch, spring } from 'react-router-transition';
-import { PageNotFound } from '../Components/PageNotFound/PageNotFound';
-// import { AnimatedSwitch, spring } from 'react-router-transition';
+import PageNotFound from '../Components/PageNotFound';
 
 /* <AnimatedSwitch
     atEnter={{ opacity: 0, translateX: -100 }}

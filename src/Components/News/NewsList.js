@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, SimpleGrid, GridItem } from '@chakra-ui/react';
+import { Box, SimpleGrid, GridItem, Text } from '@chakra-ui/react';
 /* import { getNews } from "../../Services/newsService"; */
 import Card from '../Card';
 import '../CardListStyles.css';
@@ -53,7 +53,7 @@ const NewsList = () => {
       {error &&
         showAlertErr()
       }
-      <SimpleGrid columns={[2, 4, 5]} spacing='30px' m='50px'>
+      <SimpleGrid columns={[1, 2, 3, 4]} spacing='30px' m='10px'>
         {
           newsList.length > 0
             ? newsList.map((news) => (
@@ -61,13 +61,16 @@ const NewsList = () => {
                 w='100%'
                 bg='#9AC9FB'
                 key={news.id}
-                maxHeight='250px'
+                // maxHeight='400px'
                 textAlign='center'>
                 <Card data={news} />
                 {/* {news.name}                                                            */}
               </GridItem>
             ))
-            : <p>No hay novedades</p>
+            // : <p>No hay novedades</p>
+            : <Box>
+                <Text>No hay novedades</Text>
+            </Box>
         }
       </SimpleGrid>
     </Box>
