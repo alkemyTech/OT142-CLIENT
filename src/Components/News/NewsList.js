@@ -45,7 +45,7 @@ const NewsList = () => {
   }, [news]);
 
   return (
-    <Box bg='#DB5752' p={4} >
+    <Box bg='#F8F9FA' p={4} >
       {loading &&
         <Spinner isLoading color="blue" size={40} />
       }
@@ -59,7 +59,7 @@ const NewsList = () => {
             ? newsList.map((news) => (
               <GridItem
                 w='100%'
-                bg='#9AC9FB'
+                // bg='#9AC9FB'
                 key={news.id}
                 // maxHeight='400px'
                 textAlign='center'>
