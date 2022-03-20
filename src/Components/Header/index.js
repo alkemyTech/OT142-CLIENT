@@ -23,6 +23,13 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 
+import { Link as ReachLink } from 'react-router-dom';
+import Home from '../Home';
+import About from '../About';
+import Contact from '../Contact';
+import SchoolCampaign from '../../Campaigns/School/SchoolCampaign';
+import ToysCampaign from '../../Campaigns/Toys/ToysCampaign';
+
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -77,7 +84,7 @@ export default function WithSubnavigation() {
             href={'#'}>
             Ingresar
           </Button>
-          <Button
+          {/* <Button
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
@@ -88,7 +95,7 @@ export default function WithSubnavigation() {
               bg: 'pink.300',
             }}>
             Cerrar Sesión
-          </Button>
+          </Button> */}
         </Stack>
       </Flex>
 
@@ -111,8 +118,9 @@ const DesktopNav = () => {
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
               <Link
+                as={ReachLink}
                 p={2}
-                href={navItem.href ?? '#'}
+                to={navItem.href}
                 fontSize={'sm'}
                 fontWeight={500}
                 color={linkColor}
@@ -200,8 +208,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? '#'}
+        as={ReachLink}
+        to={href}
         justify={'space-between'}
         align={'center'}
         _hover={{
@@ -261,7 +269,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Contacto',
-    href: '/contacto',
+    href: '/contact',
   },
   {
     label: 'Campañas',
