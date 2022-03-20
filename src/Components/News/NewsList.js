@@ -59,7 +59,7 @@ const NewsList = () => {
             ? newsList.map((news) => (
               <GridItem
                 w='100%'
-                bg='#9AC9FB'
+                // bg='#9AC9FB'
                 key={news.id}
                 // maxHeight='400px'
                 textAlign='center'>
