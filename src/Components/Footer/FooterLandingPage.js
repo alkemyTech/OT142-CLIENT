@@ -1,8 +1,8 @@
-import React from 'react'
-import { FaInstagram, FaFacebook } from 'react-icons/fa'
-import { HiOutlineMail } from 'react-icons/hi'
-import logo from '../../Assets/logoSomosMas.png'
-import { Link, Center, Box, Text, Flex, Spacer, Image, Heading } from '@chakra-ui/react'
+import React from 'react';
+import { FaInstagram, FaFacebook } from 'react-icons/fa';
+import { HiOutlineMail } from 'react-icons/hi';
+import logo from '../../Assets/logoSomosMas.png';
+import { Link, Center, Box, Text, Flex, Spacer, Image, Heading } from '@chakra-ui/react';
 
 export const FooterLandingPage = () => {
   return (
@@ -33,7 +33,6 @@ export const FooterLandingPage = () => {
         </Box>
 
         {/* ---- TABLET VIEW ---- */}
-
 
         <Flex d={{ base: 'none', sm: 'none', md: 'flex' }}>
           <Flex mt='45px'>
@@ -94,5 +93,5 @@ export const FooterLandingPage = () => {
 
       </Box>
     </>
-  )
-}
+  );
+};

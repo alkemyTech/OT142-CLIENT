@@ -1,15 +1,15 @@
 import React from 'react';
 import {
-    Tr,
-    Td,
-    Button,
-    Image,
-    Stack
+  Tr,
+  Td,
+  Button,
+  Image,
+  Stack
 } from '@chakra-ui/react';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
 const TrTable = ({ name, image, createdAt }) => {
-    return (
+  return (
         <Tr>
             <Td>{name}</Td>
             <Td>
@@ -27,7 +27,7 @@ const TrTable = ({ name, image, createdAt }) => {
                 </Stack>
             </Td>
         </Tr>
-    );
+  );
 };
 
 export default TrTable;

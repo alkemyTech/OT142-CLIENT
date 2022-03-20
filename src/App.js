@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import ActivitiesForm from './Components/Activities/ActivitiesForm';
 import CategoriesForm from './Components/Categories/CategoriesForm';
 import NewsForm from './Components/News/NewsForm';
@@ -15,7 +15,11 @@ import ProjectsForm from './Components/Projects/ProjectsForm';
 import ActivityDetail from './Components/Activities/ActivityDetail';
 import Activities from './Components/Activities/Activities';
 import Dashboard from './Components/Dashboard/index.js';
+<<<<<<< HEAD
 /* import OrganizationBoard from './Components/Dashboard/OrganizationBoard.js'; */
+=======
+// import OrganizationBoard from './Components/Dashboard/OrganizationBoard.js';
+>>>>>>> 915a23f67ffc7e94ac37c9973276841319835ceb
 import { NewsDetail } from './Components/News/Detail/NewsDetail';
 import EditForm from './Components/Dashboard/EditForm';
 import RegisterForm from './Components/Auth/RegisterForm';
@@ -30,20 +34,56 @@ import { AlertRoute } from './Services/AlertServicie/AlertRoute';
 import ContactOngDate from './Components/Contact/ContactOngDate';
 import NewsList from './Components/News/NewsList';
 import TableCategorie from './Components/Categories/TableCategorie';
-
 // import ContactForm from "./Components/Contact";
 import { News } from './Components/News';
+<<<<<<< HEAD
 /* import EditHomeForm from './Components/Dashboard/editHomeForm'; */
 
 /* import ContactForm from "./Components/Contact/ContactForm"
 import { PageNotFound } from "./Components/PageNotFound/PageNotFound"; */
+=======
+// import EditHomeForm from './Components/Dashboard/editHomeForm';
 
-function App() {
+import ContactForm from './Components/Contact/ContactForm';
+import { AnimatedSwitch, spring } from 'react-router-transition';
+
+import { PageNotFound } from './Components/PageNotFound/PageNotFound';
+import Sidebar from './Components/Sidebar/Sidebar';
+import Layout from './Components/Layout';
+
+function mapStyles (styles) {
+  return {
+    opacity: styles.opacity,
+    transform: `translateX(${styles.translateX}%)`
+  };
+}
+
+function bounce (val) {
+  return spring(val, {
+    stiffness: 300,
+    damping: 40
+  });
+}
+>>>>>>> 915a23f67ffc7e94ac37c9973276841319835ceb
+
+function App () {
   return (
     <>
+<<<<<<< HEAD
       <ChakraProvider>
         <BrowserRouter>
           <Switch>
+=======
+      <BrowserRouter>
+        <Layout>
+          <AnimatedSwitch
+            atEnter={{ opacity: 0, translateX: -100 }}
+            atActive={{ opacity: bounce(1), translateX: bounce(0) }}
+            atLeave={{ opacity: bounce(1), translateX: bounce(100) }}
+            mapStyles={mapStyles}
+            className="route-wrapper"
+          >
+>>>>>>> 915a23f67ffc7e94ac37c9973276841319835ceb
             <Route path="/" exact component={Home} />
             <Route exact path="/create-activity" component={ActivitiesForm} />
             <Route exact path="/Novedades/" component={News} />
@@ -51,7 +91,12 @@ function App() {
             <Route exact path="/backoffice" component={Dashboard} />
             <Route exact path="/backoffice/create-slide" component={SlidesForm} />
             <Route exact path="/backoffice/organization/edit" component={EditForm} />
+<<<<<<< HEAD
             {/*           <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} /> */}
+=======
+            {/* <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
+            <Route exact path="/backoffice/organization" component={OrganizationBoard} /> */}
+>>>>>>> 915a23f67ffc7e94ac37c9973276841319835ceb
 
             {/* <Route exact path="/backoffice/slides" component={SlidesTable} /> */}
             <Route exact path="/backoffice/news/create" component={NewsForm} />
@@ -65,17 +110,28 @@ function App() {
             <Route exact path="/backoffice/members/create" component={MembersForm} />
             <Route exact path="/create-project" component={ProjectsForm} />
             <Route exact path="/update-project/:id" component={ProjectsForm} />
+<<<<<<< HEAD
             <Route exact path="/school-campaign" component={SchoolCampaign} />
             <Route exact path="/toys-campaign" component={ToysCampaign} />
+=======
+>>>>>>> 915a23f67ffc7e94ac37c9973276841319835ceb
             <Route exact path="/actividades/:id" component={ActivityDetail} />
             <Route exact path="/actividades" component={Activities} />
             <Route exact path="/register" component={RegisterForm} />
             <Route exact path="/contact" component={Contact} />
+<<<<<<< HEAD
             {/*             <Route exact path="/contact-form" component={ContactForm} /> */}
             <Route exact path="/nosotros" component={About} />
             <Route exact path="/about-us/members" component={MembersList} />
             <Route exact path='/contacto' component={ContactOngDate} />
             {/*             <Route exact path='/contact-form' component={ContactForm} /> */}
+=======
+            <Route exact path="/contact-form" component={ContactForm} />
+            <Route exact path="/nosotros" component={About} />
+            <Route exact path="/about-us/members" component={MembersList} />
+            <Route exact path='/contacto' component={ContactOngDate} />
+            <Route exact path='/contact-form' component={ContactForm} />
+>>>>>>> 915a23f67ffc7e94ac37c9973276841319835ceb
             <Route exact path='/nosotros' component={About} />
             <Route exact path='/about-us/members' component={MembersList} />
             {/* <Route exact path='/alert' component={AlertServicie} /> */}
@@ -84,11 +140,23 @@ function App() {
             <Route path="/create-member" component={MembersForm} />
             <Route path="/backoffice-categories" component={TableCategorie} />
             <Route path="/categories" component={CategoriesForm} />
+<<<<<<< HEAD
             {/*             <Route path="/*" component={PageNotFound} />
  */}
           </Switch>
         </BrowserRouter>
       </ChakraProvider>
+=======
+            <Route path="/sidebar" component={Sidebar} />
+
+            <Route path="/*" component={PageNotFound} />
+          </AnimatedSwitch>
+        </Layout>
+        {/* Estas dos rutas van fuera de Layout ya que usan un header y un footer diferentes */}
+        <Route exact path="/school-campaign" component={SchoolCampaign} />
+        <Route exact path="/toys-campaign" component={ToysCampaign} />
+      </BrowserRouter>
+>>>>>>> 915a23f67ffc7e94ac37c9973276841319835ceb
       <div className="App">
         <header className="App-header"></header>
       </div>

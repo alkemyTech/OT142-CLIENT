@@ -4,10 +4,9 @@ import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import { BiWorld } from 'react-icons/bi';
 
 const Footer = () => {
-
-  const [isMobile] = useMediaQuery("(max-width: 768px)")
-  const [isDesktop] = useMediaQuery("(min-width: 960px)")
-  const [isTv] = useMediaQuery("(min-width: 1536px)")
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
+  const [isDesktop] = useMediaQuery('(min-width: 960px)');
+  const [isTv] = useMediaQuery('(min-width: 1536px)');
 
   return (
     <>
@@ -41,5 +40,5 @@ const Footer = () => {
       </Flex>
     </>
   );
-}
+};
 export default Footer;

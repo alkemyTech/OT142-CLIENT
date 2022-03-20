@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Box, SimpleGrid, GridItem } from '@chakra-ui/react'
+import { Box, SimpleGrid, GridItem } from '@chakra-ui/react';
 /* import { getNews } from "../../Services/newsService"; */
-import Card from "../Card";
+import Card from '../Card';
 import '../CardListStyles.css';
-import Spinner from '../Spinner/index';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
+/* import { getNews } from "../../Services/newsService"; */
+import Spinner from '../Spinner/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllNews } from '../../app/features/newsSlice';
 
