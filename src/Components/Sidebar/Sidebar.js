@@ -25,7 +25,6 @@ const LinkItems = [
   { name: 'Organization', route: '/backoffice/organization', icon: FaUserAlt },
   { name: 'Create members', route: '/backoffice/members/create', icon: MdCardMembership },
   { name: 'Create slide', route: '/backoffice/slide', icon: MdCategory },
-  { name: 'Members', route: '/backoffice/categories', icon: MdCategory },
   { name: 'Home', route: '/', icon: MdCategory }
 ];
 
