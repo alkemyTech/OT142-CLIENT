@@ -53,7 +53,7 @@ const NewsList = () => {
       {error &&
         showAlertErr()
       }
-      <SimpleGrid columns={[1, 2, 3, 4]} spacing='30px' m='50px'>
+      <SimpleGrid columns={[1, 2, 3, 4]} spacing='30px' m='10px'>
         {
           newsList.length > 0
             ? newsList.map((news) => (
