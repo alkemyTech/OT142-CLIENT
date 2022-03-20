@@ -16,8 +16,8 @@ import PageNotFound from '../Components/PageNotFound';
 
 const DashboardPrivate = () => {
   return (
-    // Este es el layour del backend arreglar responsive con display flex y columna cuando es mobile
-    <main style={{ display: 'flex' }}>
+  // Este es el layour del backend arreglar responsive con display flex y columna cuando es mobile
+<main style={{ display: 'flex' }}>
       <Sidebar />
       <Switch>
           <Route exact path="/backoffice" component={Dashboard} />
@@ -35,6 +35,7 @@ const DashboardPrivate = () => {
           <Route path="/backoffice/*" component={PageNotFound} />
       </Switch>
     </main>
+
   );
 };
 

@@ -7,6 +7,17 @@ import Activities from '../Components/Activities/Activities';
 import RegisterForm from '../Components/Auth/RegisterForm';
 import Contact from '../Components/Contact';
 import About from '../Components/About';
+import ActivitiesForm from '../Components/Activities/ActivitiesForm';
+import { News } from '../Components/News';
+import { NewsDetail } from '../Components/News/Detail/NewsDetail';
+import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
+import NewsForm from '../Components/News/NewsForm';
+import UserForm from '../Components/Users/UsersForm';
+import ProjectsForm from '../Components/Projects/ProjectsForm';
+import ActivityDetail from '../Components/Activities/ActivityDetail';
+import ContactForm from '../Components/Contact/ContactForm';
+import MembersList from '../Components/AboutUs/MembersList';
+import ContactOngDate from '../Components/Contact/ContactOngDate';
 // import Layout from '../Components/Layout';
 // import { AnimatedSwitch, spring } from 'react-router-transition';
 import PageNotFound from '../Components/PageNotFound';
@@ -44,6 +55,25 @@ const DashboardPublic = () => {
                     <Route exact path="/registro" component={RegisterForm} />
                     <Route exact path="/contacto" component={Contact} />
                     <Route exact path="/nosotros" component={About} />
+                    <Route exact path="/create-activity" component={ActivitiesForm} />
+                    <Route exact path="/Novedades/" component={News} />
+                    <Route exact path="/Novedades/:id" component={NewsDetail} />
+                    <Route exact path="/create-testimonials" component={TestimonialForm} />
+                    <Route exact path="/create-news" component={NewsForm} />
+                    <Route exact path="/create-user" component={UserForm} />
+                    <Route exact path="/create-project" component={ProjectsForm} />
+                    <Route exact path="/update-project/:id" component={ProjectsForm} />
+                    <Route exact path="/actividades/:id" component={ActivityDetail} />
+                    <Route exact path="/actividades" component={Activities} />
+                    <Route exact path="/register" component={RegisterForm} />
+                    <Route exact path="/contact" component={Contact} />
+                    <Route exact path="/contact-form" component={ContactForm} />
+                    <Route exact path="/nosotros" component={About} />
+                    <Route exact path="/about-us/members" component={MembersList} />
+                    <Route exact path='/contacto' component={ContactOngDate} />
+                    <Route exact path='/contact-form' component={ContactForm} />
+                    <Route exact path='/nosotros' component={About} />
+                    <Route exact path='/about-us/members' component={MembersList} />
                     <Route path="/*" component={PageNotFound} />
                 </Switch>
             </main>
