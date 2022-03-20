@@ -66,29 +66,29 @@ const CategoriesForm = () => {
 
   return (
     <>
-      <form className="global" onSubmit={handleSubmit}>
+      <form className='global' onSubmit={handleSubmit}>
         <Stack>
           <Heading>Edit/Categorie</Heading>
         </Stack>
         <Stack>
           <FormControl isRequired>
-            <FormLabel htmlFor="first-name">Name</FormLabel>
+            <FormLabel htmlFor='first-name'>Name</FormLabel>
             <Input
               isInvalid
-              focusBorderColor="red.300"
-              variant="filled"
-              type="text"
+              focusBorderColor='red.300'
+              variant='filled'
+              type='text'
               minLength={4}
-              name="name"
+              name='name'
               value={initialValues.name}
               onChange={handleChange}
-              placeholder="Name"
+              placeholder='Name'
             ></Input>
           </FormControl>
         </Stack>
         <Stack spacing={4}>
           <FormControl isRequired>
-            <FormLabel htmlFor="first-name">Description</FormLabel>
+            <FormLabel htmlFor='first-name'>Description</FormLabel>
             <CKEditor
               config={{ placeholder: '...Description' }}
               editor={ClassicEditor}
@@ -104,13 +104,13 @@ const CategoriesForm = () => {
 
         <Stack spacing={4}>
           <FormControl isRequired>
-            <FormLabel htmlFor="first-name">Image</FormLabel>
+            <FormLabel htmlFor='first-name'>Image</FormLabel>
 
             <Input
-              accept="image/x-png,image/jpeg"
-              id="image"
-              type="file"
-              variant="flushed"
+              accept='image/x-png,image/jpeg'
+              id='image'
+              type='file'
+              variant='flushed'
               onChange={(event) => {
                 const files = event.target.files;
                 const myFiles = Array.from(files);
@@ -122,12 +122,12 @@ const CategoriesForm = () => {
               mb={2}
             />
 
-            <Image id="img-preview"></Image>
+            <Image id='img-preview'></Image>
           </FormControl>
         </Stack>
 
         <Stack spacing={4}>
-          <Button mt={4} colorScheme="teal" type="submit">
+          <Button mt={4} colorScheme='teal' type='submit'>
             Send
           </Button>
         </Stack>

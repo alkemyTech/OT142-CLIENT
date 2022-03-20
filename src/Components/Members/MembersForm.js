@@ -24,24 +24,24 @@ const MembersForm = () => {
   };
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form className='form-container' onSubmit={handleSubmit}>
       <input
-        className="input-field"
-        type="text"
-        name="name"
+        className='input-field'
+        type='text'
+        name='name'
         value={initialValues.name}
         onChange={handleChange}
-        placeholder="Name"
+        placeholder='Name'
       ></input>
       <input
-        className="input-field"
-        type="text"
-        name="description"
+        className='input-field'
+        type='text'
+        name='description'
         value={initialValues.description}
         onChange={handleChange}
-        placeholder="Write some description"
+        placeholder='Write some description'
       ></input>
-      <button className="submit-btn" type="submit">
+      <button className='submit-btn' type='submit'>
         Send
       </button>
     </form>

@@ -38,23 +38,23 @@ const TermsAndConditions = ({ handleChange }) => {
   return (
     <>
       <RadioGroup value={acceptDeclineValue} onChange={setAceptDeclineValue}>
-        <Stack direction="row">
-          <Radio value="accept">He leido y acepto.</Radio>
-          <Radio value="decline">No Acepto.</Radio>
+        <Stack direction='row'>
+          <Radio value='accept'>He leido y acepto.</Radio>
+          <Radio value='decline'>No Acepto.</Radio>
         </Stack>
       </RadioGroup>
-      <Button mt={3} onClick={onOpen} bg="lightgray">
+      <Button mt={3} onClick={onOpen} bg='lightgray'>
         Leer Terminos y Condiciones
       </Button>
       <Modal
         onClose={onClose}
         isOpen={isOpen}
         scrollBehavior={acceptDeclineValue}
-        size="xl"
+        size='xl'
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader d="flex" justifyContent="center">
+          <ModalHeader d='flex' justifyContent='center'>
             Terminos y Condiciones
           </ModalHeader>
           <ModalBody>

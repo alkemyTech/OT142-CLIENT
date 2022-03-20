@@ -8,7 +8,7 @@ const LoginForm = () => {
   console.log(inputValue);
 
   return (
-        <div className="contenedor">
+        <div className='contenedor'>
             <Formik
                 initialValues={{
                   email: '',
@@ -46,35 +46,35 @@ const LoginForm = () => {
                 }}
             >
                 {({ errors }) => (
-                    <Form className="formulario">
+                    <Form className='formulario'>
                         <div>
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor='email'>Email</label>
                             <Field
-                                id="email"
-                                type="email"
-                                name="email"
-                                placeholder="correo@correo.com"
+                                id='email'
+                                type='email'
+                                name='email'
+                                placeholder='correo@correo.com'
                             />
                             <ErrorMessage
-                                name="email"
-                                component={() => <div className="error">{errors.email}</div>}
+                                name='email'
+                                component={() => <div className='error'>{errors.email}</div>}
                             />
                         </div>
                         <div>
-                            <label htmlFor="password">Contraseña</label>
+                            <label htmlFor='password'>Contraseña</label>
                             <Field
-                                id="password"
-                                type="password"
-                                name="password"
-                                placeholder="contraseña"
+                                id='password'
+                                type='password'
+                                name='password'
+                                placeholder='contraseña'
                             />
                             <ErrorMessage
-                                name="password"
-                                component={() => <div className="error">{errors.password}</div>}
+                                name='password'
+                                component={() => <div className='error'>{errors.password}</div>}
                             />
                         </div>
 
-                        <button type="submit">Login</button>
+                        <button type='submit'>Login</button>
                     </Form>
                 )}
             </Formik>

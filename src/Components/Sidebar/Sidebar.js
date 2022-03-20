@@ -30,7 +30,7 @@ export default function Sidebar ({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+    <Box minH='100vh' bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
@@ -38,11 +38,11 @@ export default function Sidebar ({ children }) {
       <Drawer
         autoFocus={false}
         isOpen={isOpen}
-        placement="left"
+        placement='left'
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size="full"
+        size='full'
       >
         <DrawerContent>
           <SidebarContent onClose={onClose} />
@@ -50,7 +50,7 @@ export default function Sidebar ({ children }) {
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} p='4'>
         {children}
       </Box>
     </Box>
@@ -62,16 +62,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
     <Box
 
       bg={useColorModeValue('gray.600', 'gray.900')}
-      borderRight="1px"
+      borderRight='1px'
       borderRightColor={useColorModeValue('gray.500', 'gray.700')}
       w={{ base: 'full', md: 60 }}
-      pos="fixed"
-      h="full"
-      color="white"
+      pos='fixed'
+      h='full'
+      color='white'
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <LogoOng borderRadius="full" boxSize="60px" alt="somosMas" />
+      <Flex h='20' alignItems='center' mx='8' justifyContent='space-between'>
+        <LogoOng borderRadius='full' boxSize='60px' alt='somosMas' />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
@@ -86,17 +86,17 @@ const SidebarContent = ({ onClose, ...rest }) => {
 const NavItem = ({ icon, children, ...rest }) => {
   return (
     <Link
-      href="#"
+      href='#'
       style={{ textDecoration: 'none' }}
       _focus={{ boxShadow: 'none' }}
     >
       <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
+        align='center'
+        p='4'
+        mx='4'
+        borderRadius='lg'
+        role='group'
+        cursor='pointer'
         _hover={{
           bg: 'cyan.400',
           color: 'white'
@@ -105,8 +105,8 @@ const NavItem = ({ icon, children, ...rest }) => {
       >
         {icon && (
           <Icon
-            mr="4"
-            fontSize="16"
+            mr='4'
+            fontSize='16'
             _groupHover={{
               color: 'white'
             }}
@@ -124,22 +124,22 @@ const MobileNav = ({ onOpen, ...rest }) => {
     <Flex
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 24 }}
-      display="flex"
-      justifyContent="space-between"
-      alignItems="center"
-      height="20"
+      display='flex'
+      justifyContent='space-between'
+      alignItems='center'
+      height='20'
       bg={useColorModeValue('white', 'gray.900')}
-      borderBottomWidth="1px"
+      borderBottomWidth='1px'
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       {...rest}
     >
       <IconButton
-        variant="outline"
+        variant='outline'
         onClick={onOpen}
-        aria-label="open menu"
+        aria-label='open menu'
         icon={<FiMenu />}
       />
-      <LogoOng borderRadius="full" boxSize="60px" alt="somosMas" />
+      <LogoOng borderRadius='full' boxSize='60px' alt='somosMas' />
     </Flex>
   );
 };

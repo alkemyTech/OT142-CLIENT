@@ -29,7 +29,7 @@ const Donation = ({ title, firstParagraph, secondParagraph }) => {
                     <Text fontSize='md'>{secondParagraph}</Text>
                 </Center>
                 <Center>
-                    <Link to="/">
+                    <Link to='/'>
                         <img src={IconoMercadoPago} alt='Icono MercadoPago' />
                     </Link>
                 </Center>

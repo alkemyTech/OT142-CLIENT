@@ -63,45 +63,45 @@ const EditForm = () => {
 
   return (
     <Flex
-      bg="secondary.background"
-      minHeight="100%"
-      width="100%"
-      alignItems="center"
-      justifyContent="center"
-      flexDirection="column"
+      bg='secondary.background'
+      minHeight='100%'
+      width='100%'
+      alignItems='center'
+      justifyContent='center'
+      flexDirection='column'
     >
       <Box
         width={{ base: '90%', md: '400px' }}
-        bg="secondary.card"
-        rounded="lg"
+        bg='secondary.card'
+        rounded='lg'
         p={5}
       >
-        <Heading marginBottom="1.5rem">Edición</Heading>
-        <form className="form-container" onSubmit={formik.handleSubmit}>
-          <Stack spacing={4} marginBottom="1rem">
+        <Heading marginBottom='1.5rem'>Edición</Heading>
+        <form className='form-container' onSubmit={formik.handleSubmit}>
+          <Stack spacing={4} marginBottom='1rem'>
             <FormControl isInvalid={formik.errors.name && formik.touched.name}>
-              <FormLabel htmlFor="email">Nombre</FormLabel>
+              <FormLabel htmlFor='email'>Nombre</FormLabel>
               <Input
-                variant="outline"
-                type="text"
-                name="name"
+                variant='outline'
+                type='text'
+                name='name'
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Ingrese nuevo nombre"
+                placeholder='Ingrese nuevo nombre'
               ></Input>
 
               <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
             </FormControl>
             <FormControl isInvalid={formik.errors.logo && formik.touched.logo}>
-              <Stack justifyContent="space-between" isInline>
-                <FormLabel htmlFor="logo">Logo</FormLabel>
+              <Stack justifyContent='space-between' isInline>
+                <FormLabel htmlFor='logo'>Logo</FormLabel>
               </Stack>
 
               <Input
-                // variant="outline"
-                type="file"
-                name="logo"
+                // variant='outline'
+                type='file'
+                name='logo'
                 // value={formik.values.logo}
                 onChange={(event, editor) => {
                   const file = event.target.files;
@@ -118,18 +118,18 @@ const EditForm = () => {
                 formik.touched.shortDescription
               }
             >
-              <Stack justifyContent="space-between" isInline>
-                <FormLabel htmlFor="shortDescription">
+              <Stack justifyContent='space-between' isInline>
+                <FormLabel htmlFor='shortDescription'>
                   Descripción corta
                 </FormLabel>
               </Stack>
 
               <CKEditor
-                className="ck-editor__editable"
+                className='ck-editor__editable'
                 config={{ name: 'shortDescription', placeholder: 'Ingrese nueva descripción corta' }}
                 editor={ClassicEditor}
                 data={formik.values.shortDescription}
-                name="shortDescription"
+                name='shortDescription'
                 onChange={(event, editor) => {
                   const data = editor.getData();
                   formik.setFieldValue('shortDescription', data);
@@ -151,18 +151,18 @@ const EditForm = () => {
                 formik.errors.longDescription && formik.touched.longDescription
               }
             >
-              <Stack justifyContent="space-between" isInline>
-                <FormLabel htmlFor="longDescription">Descripción larga</FormLabel>
+              <Stack justifyContent='space-between' isInline>
+                <FormLabel htmlFor='longDescription'>Descripción larga</FormLabel>
               </Stack>
 
               <Textarea
-                variant="outline"
-                type="text"
-                name="longDescription"
+                variant='outline'
+                type='text'
+                name='longDescription'
                 value={formik.values.longDescription}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Ingrese una nueva descripción"
+                placeholder='Ingrese una nueva descripción'
               ></Textarea>
 
               <FormErrorMessage>
@@ -174,26 +174,26 @@ const EditForm = () => {
                 formik.errors.socialLinks && formik.touched.socialLinks
               }
             >
-              <Stack justifyContent="space-between" isInline>
-                <FormLabel htmlFor="longDescription">Redes sociales</FormLabel>
+              <Stack justifyContent='space-between' isInline>
+                <FormLabel htmlFor='longDescription'>Redes sociales</FormLabel>
               </Stack>
 
               <Input
-                variant="outline"
-                type="text"
-                name="socialLinks"
+                variant='outline'
+                type='text'
+                name='socialLinks'
                 value={formik.values.socialLinks}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Ingrese una red social"
+                placeholder='Ingrese una red social'
               ></Input>
 
               <FormErrorMessage>{formik.errors.socialLinks}</FormErrorMessage>
             </FormControl>
           </Stack>
 
-          <Stack marginBottom="1rem">
-            <Button type="submit" size="md" variant="solid" colorScheme="teal">
+          <Stack marginBottom='1rem'>
+            <Button type='submit' size='md' variant='solid' colorScheme='teal'>
               Editar
             </Button>
           </Stack>

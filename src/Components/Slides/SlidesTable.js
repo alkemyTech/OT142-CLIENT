@@ -56,7 +56,7 @@ const SlidesTable = () => {
                 <Flex margin={16}>
                     <Heading size='xl'>Slides</Heading>
                     <Box ml={4} >
-                        <Link to="/backoffice/slides/create" p='10px'>
+                        <Link to='/backoffice/slides/create' p='10px'>
                             <Button
                                 leftIcon={<MdCreate />}
                                 variant='solid'
@@ -84,7 +84,7 @@ const SlidesTable = () => {
                             return (
                                     <Tr key={index}>
                                         <Td>{slide.name}</Td>
-                                        <Td><Image boxSize="100px" alt='imgSlide' src={slide.image} /></Td>
+                                        <Td><Image boxSize='100px' alt='imgSlide' src={slide.image} /></Td>
                                         <Td>{slide.order}</Td>
                                         <Td>
                                             <Button

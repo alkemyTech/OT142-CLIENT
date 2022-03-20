@@ -40,66 +40,66 @@ const EditHomeForm = () => {
                 }}
             >
             {({ errors }) => (
-                <Form className="formulario">
+                <Form className='formulario'>
                     <div>
-                        <label htmlFor="welcomeText">Texto de bienvenida</label>
+                        <label htmlFor='welcomeText'>Texto de bienvenida</label>
                         <Field
-                            type="text"
-                            id="welcomeText"
-                            name="welcomeText"
-                            placeholder="Ingresa un texto de bienvenida"
+                            type='text'
+                            id='welcomeText'
+                            name='welcomeText'
+                            placeholder='Ingresa un texto de bienvenida'
                             />
-                            <ErrorMessage name="welcomeText" component={() => (<div className="error">{errors.welcomeText}</div>)}/>
+                            <ErrorMessage name='welcomeText' component={() => (<div className='error'>{errors.welcomeText}</div>)}/>
                     </div>
                     <div>
-                        <label htmlFor="slide1">Texto de slide 1</label>
+                        <label htmlFor='slide1'>Texto de slide 1</label>
                         <Field
-                            type="text"
-                            id="slide1Text"
-                            name="slide1Text"
-                            placeholder="Ingresa un texto"
+                            type='text'
+                            id='slide1Text'
+                            name='slide1Text'
+                            placeholder='Ingresa un texto'
                             />
-                            <ErrorMessage name="slide1Text" component={() => (<div className="error">{errors.slide1Text}</div>)}/>
+                            <ErrorMessage name='slide1Text' component={() => (<div className='error'>{errors.slide1Text}</div>)}/>
                         <Field
-                            type="file"
-                            id="slide1IMG"
-                            name="slide1IMG"
-                            placeholder="Ingresa una imagen"
-                            />
-                    </div>
-                    <div>
-                        <label htmlFor="slide2">Slide 2</label>
-                        <Field
-                            type="text"
-                            id="slide2Text"
-                            name="slide2Text"
-                            placeholder="Ingresa un texto"
-                            />
-                            <ErrorMessage name="slide2Text" component={() => (<div className="error">{errors.slide2Text}</div>)}/>
-                        <Field
-                            type="file"
-                            id="slide2IMG"
-                            name="slide2IMG"
-                            placeholder="Ingresa una imagen"
+                            type='file'
+                            id='slide1IMG'
+                            name='slide1IMG'
+                            placeholder='Ingresa una imagen'
                             />
                     </div>
                     <div>
-                        <label htmlFor="slide3">Slide 3</label>
+                        <label htmlFor='slide2'>Slide 2</label>
                         <Field
-                            type="text"
-                            id="slide3Text"
-                            name="slide3Text"
-                            placeholder="Ingresa un texto"
+                            type='text'
+                            id='slide2Text'
+                            name='slide2Text'
+                            placeholder='Ingresa un texto'
                             />
-                            <ErrorMessage name="slide3Text" component={() => (<div className="error">{errors.slide3Text}</div>)}/>
+                            <ErrorMessage name='slide2Text' component={() => (<div className='error'>{errors.slide2Text}</div>)}/>
                         <Field
-                            type="file"
-                            id="slide3IMG"
-                            name="slide3IMG"
-                            placeholder="Ingresa una imagen"
+                            type='file'
+                            id='slide2IMG'
+                            name='slide2IMG'
+                            placeholder='Ingresa una imagen'
                             />
                     </div>
-                    <button type="submit">Editar</button>
+                    <div>
+                        <label htmlFor='slide3'>Slide 3</label>
+                        <Field
+                            type='text'
+                            id='slide3Text'
+                            name='slide3Text'
+                            placeholder='Ingresa un texto'
+                            />
+                            <ErrorMessage name='slide3Text' component={() => (<div className='error'>{errors.slide3Text}</div>)}/>
+                        <Field
+                            type='file'
+                            id='slide3IMG'
+                            name='slide3IMG'
+                            placeholder='Ingresa una imagen'
+                            />
+                    </div>
+                    <button type='submit'>Editar</button>
                     {sendedForm && <p>Formulario de edicion enviado con exito!</p>}
                 </Form>
             )}

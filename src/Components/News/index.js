@@ -4,7 +4,7 @@ import NewsList from './NewsList';
 export const News = () => {
   return (
         <>
-            <Title children="Novedades"/>
+            <Title children='Novedades'/>
             <NewsList />
         </>
   );

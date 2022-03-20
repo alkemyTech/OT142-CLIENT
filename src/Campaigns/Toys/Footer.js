@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <>
-      <Flex bg="red.200" flexDirection='column'>
+      <Flex bg='red.200' flexDirection='column'>
         <Flex p='5' flexDirection={isMobile ? 'column' : 'row'} justifyContent={isMobile ? 'center' : 'space-between'}>
           <Flex justifyContent='center' alignItems='center'>
             <Image boxSize='200px' src='/images/LOGO-SOMOS-MAS.png' />

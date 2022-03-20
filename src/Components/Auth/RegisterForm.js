@@ -36,7 +36,7 @@ const validationSchema = Yup.object({
     .min(6, 'Debe contener al menos 6 carácteres')
     .matches(
       // eslint-disable-next-line no-useless-escape
-      /^[0-9A-Za-z]*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?][0-9a-zA-Z]*$/,
+      /^[0-9A-Za-z]*[!@#$%^&*()_+\-=\[\]{};':'\\|,.<>\/?][0-9a-zA-Z]*$/,
       'Es necesario un carácter especial o número'
     ),
   passwordRepeat: Yup.string()
@@ -71,33 +71,33 @@ const RegisterForm = () => {
 
   return (
     <Flex
-      bg="secondary.background"
-      minHeight="100%"
-      width="100%"
-      alignItems="center"
-      justifyContent="center"
-      flexDirection="column"
+      bg='secondary.background'
+      minHeight='100%'
+      width='100%'
+      alignItems='center'
+      justifyContent='center'
+      flexDirection='column'
     >
       <Box
         width={{ base: '90%', md: '400px' }}
-        bg="secondary.card"
-        rounded="lg"
+        bg='secondary.card'
+        rounded='lg'
         p={5}
       >
-        <Heading marginBottom="1.5rem">Registro</Heading>
-        <form className="form-container" onSubmit={formik.handleSubmit}>
-          <Stack spacing={4} marginBottom="1rem">
+        <Heading marginBottom='1.5rem'>Registro</Heading>
+        <form className='form-container' onSubmit={formik.handleSubmit}>
+          <Stack spacing={4} marginBottom='1rem'>
             <FormControl isInvalid={formik.errors.name && formik.touched.name}>
-              <FormLabel htmlFor="name">Nombre</FormLabel>
+              <FormLabel htmlFor='name'>Nombre</FormLabel>
 
               <Input
-                variant="outline"
-                type="text"
-                name="name"
+                variant='outline'
+                type='text'
+                name='name'
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Ingrese su nombre"
+                placeholder='Ingrese su nombre'
               ></Input>
 
               <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
@@ -105,18 +105,18 @@ const RegisterForm = () => {
             <FormControl
               isInvalid={formik.errors.lastName && formik.touched.lastName}
             >
-              <Stack justifyContent="space-between" isInline>
-                <FormLabel htmlFor="lastName">Apellido</FormLabel>
+              <Stack justifyContent='space-between' isInline>
+                <FormLabel htmlFor='lastName'>Apellido</FormLabel>
               </Stack>
 
               <Input
-                variant="outline"
-                type="text"
-                name="lastName"
+                variant='outline'
+                type='text'
+                name='lastName'
                 value={formik.values.lastName}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Ingrese su apellido"
+                placeholder='Ingrese su apellido'
               ></Input>
 
               <FormErrorMessage>{formik.errors.lastName}</FormErrorMessage>
@@ -124,25 +124,25 @@ const RegisterForm = () => {
             <FormControl
               isInvalid={formik.errors.email && formik.touched.email}
             >
-              <Stack justifyContent="space-between" isInline>
-                <FormLabel htmlFor="email">Email</FormLabel>
+              <Stack justifyContent='space-between' isInline>
+                <FormLabel htmlFor='email'>Email</FormLabel>
               </Stack>
 
               <Input
-                variant="outline"
-                type="email"
-                name="email"
+                variant='outline'
+                type='email'
+                name='email'
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="name@ejemplo.com"
+                placeholder='name@ejemplo.com'
               ></Input>
 
               <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
             </FormControl>
             <FormControl>
-              <Stack justifyContent="space-between" isInline>
-                <FormLabel htmlFor="address">Dirección</FormLabel>
+              <Stack justifyContent='space-between' isInline>
+                <FormLabel htmlFor='address'>Dirección</FormLabel>
               </Stack>
 
               <MapsWrapper setLatLng={setLatLng} />
@@ -151,18 +151,18 @@ const RegisterForm = () => {
             <FormControl
               isInvalid={formik.errors.password && formik.touched.password}
             >
-              <Stack justifyContent="space-between" isInline>
-                <FormLabel htmlFor="password">Contraseña</FormLabel>
+              <Stack justifyContent='space-between' isInline>
+                <FormLabel htmlFor='password'>Contraseña</FormLabel>
               </Stack>
 
               <Input
-                variant="outline"
-                type="password"
-                name="password"
+                variant='outline'
+                type='password'
+                name='password'
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Ingrese su contraseña"
+                placeholder='Ingrese su contraseña'
               ></Input>
 
               <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
@@ -172,20 +172,20 @@ const RegisterForm = () => {
                 formik.errors.passwordRepeat && formik.touched.passwordRepeat
               }
             >
-              <Stack justifyContent="space-between" isInline>
-                <FormLabel htmlFor="passwordRepeated">
+              <Stack justifyContent='space-between' isInline>
+                <FormLabel htmlFor='passwordRepeated'>
                   Confirma tu contraseña
                 </FormLabel>
               </Stack>
 
               <Input
-                variant="outline"
-                type="password"
-                name="passwordRepeat"
+                variant='outline'
+                type='password'
+                name='passwordRepeat'
                 value={formik.values.passwordRepeat}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                placeholder="Confirme su contraseña"
+                placeholder='Confirme su contraseña'
               ></Input>
 
               <FormErrorMessage>
@@ -194,7 +194,7 @@ const RegisterForm = () => {
             </FormControl>
           </Stack>
 
-          <Stack marginBottom="1rem">
+          <Stack marginBottom='1rem'>
             <TermsAndConditions handleChange={handleChange} />
             {registerValue === 'accept'
               ? (<Button
@@ -207,7 +207,7 @@ const RegisterForm = () => {
               </Button>
                 )
               : (
-              <Button size="md" variant="ghost" colorScheme="teal">
+              <Button size='md' variant='ghost' colorScheme='teal'>
                 Registrar
               </Button>
                 ) }

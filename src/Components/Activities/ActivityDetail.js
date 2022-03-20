@@ -34,21 +34,21 @@ const ActivityDetail = () => {
       {loading === true && (
         <Center>
           {' '}
-          <Spinner mt="1em" d="flex" size="xl" />
+          <Spinner mt='1em' d='flex' size='xl' />
         </Center>
       )}
 
       {error === false
         ? (
         <Container
-          d="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
+          d='flex'
+          justifyContent='center'
+          alignItems='center'
+          flexDirection='column'
         >
-          <Text as="h1">{activity.name}</Text>
+          <Text as='h1'>{activity.name}</Text>
           <Image boxSize={200} src={activity.image} />
-          <Text as="h3" align="center">
+          <Text as='h3' align='center'>
             {activity.description}
           </Text>
         </Container>
@@ -56,7 +56,7 @@ const ActivityDetail = () => {
         : (
         <Center>
           {loading === false && (
-            <Alert mt="1em" p="1em" status="error" width="auto">
+            <Alert mt='1em' p='1em' status='error' width='auto'>
               <AlertIcon />
               <AlertTitle mr={2}> Ups! Algo salió mal.</AlertTitle>
             </Alert>

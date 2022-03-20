@@ -26,17 +26,17 @@ const TableCategorie = () => {
     <>
       <Stack>
         <Stack style={{ display: ' flex', alignItems: ' center' }}>
-          <Heading as="h4" size="md">
+          <Heading as='h4' size='md'>
             Listado de Categorías
           </Heading>
 
           <Stack>
-            <Button variant="outline" colorScheme="teal" size="xs">
-              <Link to="/backoffice/Categorías/create">Crear Categorias</Link>
+            <Button variant='outline' colorScheme='teal' size='xs'>
+              <Link to='/backoffice/Categorías/create'>Crear Categorias</Link>
             </Button>
           </Stack>
         </Stack>
-        <Table className="Table" size="lg" variant="striped" colorScheme="teal">
+        <Table className='Table' size='lg' variant='striped' colorScheme='teal'>
           <TableCaption>Screen Listado de Categorías (backoffice)</TableCaption>
           <Thead>
             <Tr>
@@ -56,10 +56,10 @@ const TableCategorie = () => {
                     <Td>{categorie.createdAt}</Td>
                     <Td isNumeric>{categorie.id}</Td>
                     <Td>
-                      <Button variant="outline" colorScheme="teal" size="xs">
+                      <Button variant='outline' colorScheme='teal' size='xs'>
                         Eliminar
                       </Button>
-                      <Button variant="outline" colorScheme="teal" size="xs">
+                      <Button variant='outline' colorScheme='teal' size='xs'>
                         Editar
                       </Button>
                     </Td>
@@ -74,7 +74,7 @@ const TableCategorie = () => {
 
 export default TableCategorie;
 
-// import React from "react";
+// import React from 'react';
 // import {
 //   Table,
 //   Thead,
@@ -84,32 +84,32 @@ export default TableCategorie;
 //   Th,
 //   Td,
 //   TableCaption,
-// } from "@chakra-ui/react";
-// import { Stack, Heading } from "@chakra-ui/react";
-// import styleCS from "../Categories/styleCS.css";
-// import { Button, ButtonGroup } from "@chakra-ui/react";
-// import { Link } from "react-router-dom";
+// } from '@chakra-ui/react';
+// import { Stack, Heading } from '@chakra-ui/react';
+// import styleCS from '../Categories/styleCS.css';
+// import { Button, ButtonGroup } from '@chakra-ui/react';
+// import { Link } from 'react-router-dom';
 
 // const TableCategorie = () => {
 //   const categorieData = [
 //     {
-//       name: "Nico",
-//       createdAt: "create1",
+//       name: 'Nico',
+//       createdAt: 'create1',
 //       id: 1,
 //     },
 //     {
-//       name: "Santi",
-//       createdAt: "create2",
+//       name: 'Santi',
+//       createdAt: 'create2',
 //       id: 2,
 //     },
 //     {
-//       name: "Gian",
-//       createdAt: "create3",
+//       name: 'Gian',
+//       createdAt: 'create3',
 //       id: 3,
 //     },
 //     {
-//       name: "Meli",
-//       createdAt: "create4",
+//       name: 'Meli',
+//       createdAt: 'create4',
 //       id: 4,
 //     },
 //   ];
@@ -118,18 +118,18 @@ export default TableCategorie;
 //   return (
 //     <>
 //       <Stack>
-//         <Stack style={{ display: " flex", alignItems: " center" }}>
-//           <Heading as="h4" size="md">
+//         <Stack style={{ display: ' flex', alignItems: ' center' }}>
+//           <Heading as='h4' size='md'>
 //             Listado de Categorías
 //           </Heading>
 
 //           <Stack>
-//             <Button variant="outline" colorScheme="teal" size="xs">
-//               <Link to="/backoffice/Categorías/create">Crear Categorias</Link>
+//             <Button variant='outline' colorScheme='teal' size='xs'>
+//               <Link to='/backoffice/Categorías/create'>Crear Categorias</Link>
 //             </Button>
 //           </Stack>
 //         </Stack>
-//         <Table className="Table" size="lg" variant="striped" colorScheme="teal">
+//         <Table className='Table' size='lg' variant='striped' colorScheme='teal'>
 //           <TableCaption>Screen Listado de Categorías (backoffice)</TableCaption>
 //           <Thead>
 //             <Tr>
@@ -141,7 +141,7 @@ export default TableCategorie;
 //           </Thead>
 
 //           {!categorieData
-//             ? "cargando..."
+//             ? 'cargando...'
 //             : categorieData.map((categorie) => {
 //                 return (
 //                   <Tr>
@@ -150,10 +150,10 @@ export default TableCategorie;
 //                     <Td>{categorie.createdAt}</Td>
 //                     <Td isNumeric>{categorie.id}</Td>
 //                     <Td>
-//                       <Button variant="outline" colorScheme="teal" size="xs">
+//                       <Button variant='outline' colorScheme='teal' size='xs'>
 //                         Eliminar
 //                       </Button>
-//                       <Button variant="outline" colorScheme="teal" size="xs">
+//                       <Button variant='outline' colorScheme='teal' size='xs'>
 //                         Editar
 //                       </Button>
 //                     </Td>

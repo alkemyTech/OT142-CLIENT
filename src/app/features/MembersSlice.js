@@ -1,9 +1,9 @@
 /* eslint-disable */
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getMembers } from "../../Services/membersService";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getMembers } from '../../Services/membersService';
 
 export const getMembersList = createAsyncThunk(
-  "members/getMembers",
+  'members/getMembers',
   async () => {
     return await getMembers()
       .then((res) => res.data)
@@ -12,7 +12,7 @@ export const getMembersList = createAsyncThunk(
 );
 
 export const deleteMemberApi = createAsyncThunk(
-  "members/deleteMembers",
+  'members/deleteMembers',
   async (id) => {
     return await getMembers(id)
       .then((res) => res.data)
@@ -22,7 +22,7 @@ export const deleteMemberApi = createAsyncThunk(
 
 const initialState = {
   members: [],
-  status: "idle",
+  status: 'idle',
   error: null,
 };
 

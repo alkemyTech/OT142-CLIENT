@@ -3,7 +3,7 @@ import { Text, Flex } from '@chakra-ui/react';
 
 const AboutOng = ({ text }) => {
   return (
-    <Flex flexDirection="column" justifyContent="center" alignItems="center">
+    <Flex flexDirection='column' justifyContent='center' alignItems='center'>
         <Text>
             {
                 text || 'Sobre Nosotros'

@@ -3,8 +3,6 @@ import {
   Box,
   Flex,
   Image,
-  Text,
-  Button,
   Stack
 
 } from '@chakra-ui/react';
@@ -30,15 +28,15 @@ const Navbar = () => {
   };
 
   return (
-    <Box style={navBarStyle} maxHeight="90px">
+    <Box style={navBarStyle} maxHeight='90px'>
       <Flex
-        maxHeight="80px"
-        alignItems="center"
+        maxHeight='80px'
+        alignItems='center'
         justifyContent={'space-between'}
         p={4}
       >
-        <Link to="/">
-          <Flex maxHeight="80px">
+        <Link to='/'>
+          <Flex maxHeight='80px'>
             {
               isOpen
                 ? <ImCross onClick={() => handleClick()} style={iconStyles}/>
@@ -49,12 +47,12 @@ const Navbar = () => {
         </Link>
 
         <Stack direction={'row'}>
-          <Link to="/">
-            <Flex maxHeight="80px">
+          <Link to='/'>
+            <Flex maxHeight='80px'>
               <Image
-                objectFit="cover"
+                objectFit='cover'
                 src={process.env.PUBLIC_URL + '/images/LOGO-SOMOS-MAS.png'}
-                alt="logo de la ong"
+                alt='logo de la ong'
               />
             </Flex>
           </Link>

@@ -87,65 +87,65 @@ const UserForm = (userData) => {
         reset();
       }}>
       {({ values, handleSubmit, handleChange, handleBlur, setFieldValue }) => (
-        <Form className="form-container" onSubmit={handleSubmit}>
+        <Form className='form-container' onSubmit={handleSubmit}>
           <input
-            className="input-field"
+            className='input-field'
             ref={ref}
-            name="file"
-            type="file"
+            name='file'
+            type='file'
             onChange={(event) => setFieldValue('file', event.target.files[0])}
           />
 
-          <ErrorMessage name="file" render={(msg) => <div className="error">{msg}</div>} />
+          <ErrorMessage name='file' render={(msg) => <div className='error'>{msg}</div>} />
 
           <Field
-            className="input-field"
-            autoComplete="off"
-            type="text"
-            name="name"
+            className='input-field'
+            autoComplete='off'
+            type='text'
+            name='name'
             value={userData ? values.name : initialValues.name}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder="Nombre"></Field>
+            placeholder='Nombre'></Field>
           <ErrorMessage
-            name="name"
-            component="div"
-            render={(msg) => <div className="error">{msg}</div>}
+            name='name'
+            component='div'
+            render={(msg) => <div className='error'>{msg}</div>}
           />
 
           <Field
-            className="input-field"
-            autoComplete="off"
-            type="text"
-            name="email"
+            className='input-field'
+            autoComplete='off'
+            type='text'
+            name='email'
             value={userData ? values.email : initialValues.email}
             onChange={handleChange}
-            placeholder="Correo electrónico"></Field>
-          <ErrorMessage name="email" render={(msg) => <div className="error">{msg}</div>} />
+            placeholder='Correo electrónico'></Field>
+          <ErrorMessage name='email' render={(msg) => <div className='error'>{msg}</div>} />
 
           <Field
-            className="input-field"
-            type="password"
-            autoComplete="off"
-            name="password"
+            className='input-field'
+            type='password'
+            autoComplete='off'
+            name='password'
             value={userData ? values.password : initialValues.password}
             onChange={handleChange}
-            placeholder="Contraseña"></Field>
-          <ErrorMessage name="password" render={(msg) => <div className="error">{msg}</div>} />
+            placeholder='Contraseña'></Field>
+          <ErrorMessage name='password' render={(msg) => <div className='error'>{msg}</div>} />
 
           <Field
-            className="input-field"
-            component="select"
-            name="userRole"
+            className='input-field'
+            component='select'
+            name='userRole'
             onChange={handleChange('userRole')}>
-            <option value="" disabled>
+            <option value='' disabled>
               {initialValues.userRole === '' ? 'Role del usuario' : initialValues.userRole}
             </option>
-            <option value="Admin">Administrador</option>
-            <option value="User">Usuario</option>
+            <option value='Admin'>Administrador</option>
+            <option value='User'>Usuario</option>
           </Field>
-          <ErrorMessage name="userRole" render={(msg) => <div className="error">{msg}</div>} />
-          <Button className="submit-btn" type="submit">
+          <ErrorMessage name='userRole' render={(msg) => <div className='error'>{msg}</div>} />
+          <Button className='submit-btn' type='submit'>
             Enviar
           </Button>
         </Form>

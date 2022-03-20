@@ -3,7 +3,7 @@ import ContactDate from './ContactDate';
 import TitleContact from './TitleContact';
 import MapViews from './ContactMap/MapView';
 
-export default function ContactOngDate() {
+export default function ContactOngDate () {
   return (
     <>
       <div>

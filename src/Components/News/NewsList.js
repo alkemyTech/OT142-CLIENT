@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Box, SimpleGrid, GridItem } from '@chakra-ui/react';
-/* import { getNews } from "../../Services/newsService"; */
+/* import { getNews } from '../../Services/newsService'; */
 import Card from '../Card';
 import '../CardListStyles.css';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
-/* import { getNews } from "../../Services/newsService"; */
+/* import { getNews } from '../../Services/newsService'; */
 import Spinner from '../Spinner/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllNews } from '../../app/features/newsSlice';
@@ -47,7 +47,7 @@ const NewsList = () => {
   return (
     <Box bg='#DB5752' p={4} >
       {loading &&
-        <Spinner isLoading color="blue" size={40} />
+        <Spinner isLoading color='blue' size={40} />
       }
 
       {error &&
