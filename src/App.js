@@ -37,7 +37,7 @@ import { News } from './Components/News';
 import ContactForm from './Components/Contact/ContactForm';
 import { AnimatedSwitch, spring } from 'react-router-transition';
 
-import { PageNotFound } from './Components/PageNotFound/PageNotFound';
+import PageNotFound from './Components/PageNotFound';
 import Sidebar from './Components/Sidebar/Sidebar';
 import Layout from './Components/Layout';
 
