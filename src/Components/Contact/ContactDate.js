@@ -8,7 +8,7 @@ export default function ContactDate () {
     mail: 'somosfundacionmas@gmail.com',
     instagram: 'SomosMás',
     facebook: 'Somos_Más',
-    teléfonoDeContacto: 1160112988
+    phone: 1160112988
   };
   return (
     <>

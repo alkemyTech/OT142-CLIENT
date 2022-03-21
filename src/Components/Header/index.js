@@ -42,7 +42,7 @@ export default function WithSubnavigation() {
   }
 
   return (
-    <Box>
+    <Box mb={'20px'}>
       <Flex
         bg={useColorModeValue('gray.300', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
@@ -67,8 +67,10 @@ export default function WithSubnavigation() {
           />
         </Flex>
         <Flex maxH='50px' flex={{ base: 1 }} alignItems='center' justify={{ base: 'center', md: 'start' }}>
-          <Image boxSize='120px' src='/images/LOGO-SOMOS-MAS.png' />
-
+          <Link as={ReachLink} to='/'>
+            <Image boxSize='120px' src='/images/LOGO-SOMOS-MAS.png' />  
+          </Link>
+        
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
           </Flex>
