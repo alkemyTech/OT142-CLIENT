@@ -15,9 +15,7 @@ import NewsForm from '../Components/News/NewsForm';
 import UserForm from '../Components/Users/UsersForm';
 import ProjectsForm from '../Components/Projects/ProjectsForm';
 import ActivityDetail from '../Components/Activities/ActivityDetail';
-import ContactForm from '../Components/Contact/ContactForm';
 import MembersList from '../Components/AboutUs/MembersList';
-import ContactOngDate from '../Components/Contact/ContactOngDate';
 import LoginForm from '../Components/Auth/LoginForm';
 // import Layout from '../Components/Layout';
 // import { AnimatedSwitch, spring } from 'react-router-transition';
@@ -49,7 +47,7 @@ const DashboardPublic = () => {
   return (
     <>
         <WithSubnavigation />
-            <main>
+            <main style={{ width: '100%' }}>
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/actividades" component={Activities} />
@@ -67,10 +65,7 @@ const DashboardPublic = () => {
                     <Route exact path="/update-project/:id" component={ProjectsForm} />
                     <Route exact path="/actividades/:id" component={ActivityDetail} />
                     <Route exact path="/actividades" component={Activities} />
-                    <Route exact path="/contact" component={Contact} />
-                    <Route exact path="/contact-form" component={ContactForm} />
                     <Route exact path="/about-us/members" component={MembersList} />
-                    <Route exact path='/contacto' component={ContactOngDate} />
                     <Route exact path='/nosotros' component={About} />
                     <Route exact path='/about-us/members' component={MembersList} />
                     <Route path="/*" component={PageNotFound} />
