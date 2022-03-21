@@ -30,7 +30,6 @@ const Home = () => {
 
   const getDataOrganization = useCallback(async () => {
     try {
-      debugger;
       const { data } = await get('/organization');
       setOrganizationdata(data.data);
       setLoading(true);
