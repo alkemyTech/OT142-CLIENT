@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Formik, Field } from 'formik';
 import {
+  Box,
   Button,
   Stack
 } from '@chakra-ui/react';
@@ -46,67 +47,69 @@ const ContactForm = () => {
             }}
         >
             {(props) => (
-                <Form>
-                    <Stack spacing={13} p={10}>
-                        <Field name='firstName'>
-                            {({ field, form }) => (
+                <Box w={'100%'}>
+                    <Form>
+                        <Stack spacing={13} p={10}>
+                            <Field name='firstName'>
+                                {({ field, form }) => (
 
-                                <FieldControl
-                                    type='text'
-                                    field={field}
-                                    form={form}
-                                    idName='firstName'
-                                    title='Nombre'
-                                    icon={AiOutlineUser}
-                                />
+                                    <FieldControl
+                                        type='text'
+                                        field={field}
+                                        form={form}
+                                        idName='firstName'
+                                        title='Nombre'
+                                        icon={AiOutlineUser}
+                                    />
 
-                            )}
-                        </Field>
+                                )}
+                            </Field>
 
-                        <Field name='email'>
-                            {({ field, form }) => (
+                            <Field name='email'>
+                                {({ field, form }) => (
 
-                                <FieldControl
-                                    type='text'
-                                    field={field}
-                                    form={form}
-                                    idName='email'
-                                    title='Email'
-                                    icon={AiOutlineMail}
-                                />
-                            )}
-                        </Field>
+                                    <FieldControl
+                                        type='text'
+                                        field={field}
+                                        form={form}
+                                        idName='email'
+                                        title='Email'
+                                        icon={AiOutlineMail}
+                                    />
+                                )}
+                            </Field>
 
-                        <Field name='phone'>
-                            {({ field, form }) => (
+                            <Field name='phone'>
+                                {({ field, form }) => (
 
-                                <FieldControl
-                                    type='text'
-                                    field={field}
-                                    form={form}
-                                    idName='phone'
-                                    title='Telefono'
-                                    icon={AiOutlinePhone}
-                                />
+                                    <FieldControl
+                                        type='text'
+                                        field={field}
+                                        form={form}
+                                        idName='phone'
+                                        title='Teléfono'
+                                        icon={AiOutlinePhone}
+                                    />
 
-                            )}
-                        </Field>
+                                )}
+                            </Field>
 
-                        <Field name='message'>
-                            {({ field, form }) => (
+                            <Field name='message'>
+                                {({ field, form }) => (
 
-                                <FieldControl
-                                    type='textarea'
-                                    field={field}
-                                    form={form}
-                                    idName='message'
-                                    title='Mensaje'
-                                />
-                            )}
-                        </Field>
-                        <Button type="submit" colorScheme='blue'>Enviar</Button>
-                    </Stack>
-                </Form>
+                                    <FieldControl
+                                        type='textarea'
+                                        field={field}
+                                        form={form}
+                                        idName='message'
+                                        title='Mensaje'
+                                    />
+                                )}
+                            </Field>
+                            <Button type="submit" colorScheme='blue'>Enviar</Button>
+                        </Stack>
+                    </Form>
+                </Box>
             )}
         </Formik>
   );
