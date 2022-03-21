@@ -13,6 +13,9 @@ import CarouselSlides from '../Slides/HomeSlide';
 import { get } from '../../Services/publicApiService';
 import Spinner from '../Spinner/index';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllNews } from '../../app/features/newsSlice';
+import NewsList from '../News/NewsList';
 
 const Home = () => {
   const [loading, setLoading] = useState();
@@ -21,6 +24,9 @@ const Home = () => {
   const [organizationData, setOrganizationdata] = useState();
   const [newsData, setNewsData] = useState();
   const [testimonialsData, setTestimonialsData] = useState();
+
+  const dispatch = useDispatch();
+  const { news } = useSelector(state => state);
 
   const getDataOrganization = useCallback(async () => {
     try {
@@ -57,6 +63,19 @@ const Home = () => {
     getDataTestimonials();
   }, []);
 
+  useEffect(async () => {
+    try {
+      // setLoading(true);
+      await dispatch(getAllNews());
+
+      setNewsData(news.news);
+    } catch (error) {
+      console.log(error);
+      // setError(true);
+    }
+    setLoading(false);
+  }, [dispatch]);
+
   return (
     <>
       {loading
@@ -65,11 +84,6 @@ const Home = () => {
             templateRows="80px 2fr .5fr .5fr .5fr .5fr .5fr"
             templateColumns="1fr"
           >
-            {/* <GridItem>
-              <Text align={'center'} fontSize="4xl">
-                Navbar
-              </Text>
-            </GridItem> */}
             <CarouselSlides />
             <GridItem mb={6}>
               <Flex justify="center">
@@ -93,22 +107,12 @@ const Home = () => {
               </Text>
 
               <Flex justify={'space-around'}>
-                {newsData?.length > 0
-                  ? newsData.slice(0, 6).map((novedad) => {
-                    return (
-                      <Image
-                        maxWidth="150px"
-                        key={novedad.id}
-                        objectFit="cover"
-                        src={novedad.image}
-                        alt={novedad.name}
-                      />
-                    );
-                  })
+                {news.news?.length > 0
+                  ? <NewsList newsList={news.news.slice(0, 4) || []} loading={news.newsLoading} error={news.newsError}/>
                   : <Text>No hay datos que mostrar</Text>}
               </Flex>
 
-              <Link to="#">
+              <Link to="/Novedades">
                 <Center>
                   <Button
                     display={{ base: 'none', md: 'inline-flex' }}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
 import { Box, SimpleGrid, GridItem, Text } from '@chakra-ui/react';
 /* import { getNews } from "../../Services/newsService"; */
 import Card from '../Card';
@@ -6,13 +6,13 @@ import '../CardListStyles.css';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
 /* import { getNews } from "../../Services/newsService"; */
 import Spinner from '../Spinner/index';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllNews } from '../../app/features/newsSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getAllNews } from '../../app/features/newsSlice';
 
-const NewsList = () => {
-  const [newsList, setNewsList] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+const NewsList = ({ newsList, loading, error }) => {
+  // const [newsList, setNewsList] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(false);
 
   /*   useEffect(async () => {
       try {
@@ -26,23 +26,23 @@ const NewsList = () => {
       setLoading(false);
     }, []); */
 
-  const dispatch = useDispatch();
-  const { news } = useSelector(state => state);
+  // const dispatch = useDispatch();
+  // const { news } = useSelector(state => state);
 
-  useEffect(async () => {
-    try {
-      setLoading(true);
-      await dispatch(getAllNews());
-    } catch (error) {
-      console.log(error);
-      setError(true);
-    }
-    setLoading(false);
-  }, [dispatch]);
+  // useEffect(async () => {
+  //   try {
+  //     setLoading(true);
+  //     await dispatch(getAllNews());
+  //   } catch (error) {
+  //     console.log(error);
+  //     setError(true);
+  //   }
+  //   setLoading(false);
+  // }, [dispatch]);
 
-  useEffect(() => {
-    setNewsList(news.news);
-  }, [news]);
+  // useEffect(() => {
+  //   setNewsList(news.news);
+  // }, [news]);
 
   return (
     <Box bg='#F8F9FA' p={4} width="100%">
