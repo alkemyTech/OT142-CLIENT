@@ -6,7 +6,8 @@ import {
   Text,
   Flex,
   Center,
-  Button
+  Button,
+  Heading
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import CarouselSlides from '../Slides/HomeSlide';
@@ -49,7 +50,7 @@ const Home = () => {
   }, []);
   const getDataTestimonials = useCallback(async () => {
     try {
-      const { data } = await get('/testimonials');
+      const { data } = await get(process.env.REACT_APP_TESTIMONIALS);
       setTestimonialsData(data.data);
     } catch (e) {
       console.log(e);
@@ -137,18 +138,24 @@ const Home = () => {
               <Text align={'center'} fontSize="3xl">
                 Testimonios
               </Text>
-              <Flex justify={'space-around'}>
+              <Flex justify={'space-around'} flexDir='row' ml={5} mr={5} wrap='wrap'>
                 {testimonialsData?.length > 0
                   ? testimonialsData.slice(0, 6).map((testimonial) => {
                     return (
-                      <Image
-                        borderRadius="full"
-                        boxSize="150px"
-                        key={testimonial.id}
-                        objectFit="cover"
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                      />
+                      <>
+                      <Flex flexDir='column' alignItems='center' m={2} p={3} boxShadow='0px 0px 10px 0px rgba(0,0,0,0.4)' borderRadius='5' maxW='220px'>
+                          <Image
+                            borderRadius="full"
+                            boxSize="100px"
+                            key={testimonial.id}
+                            objectFit="cover"
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                          />
+                          <Heading fontWeight='bold' fontSize={15} mb={5}>{testimonial.name}</Heading>
+                          <Text textAlign='justify'>{`"${testimonial.description}"`}</Text>
+                      </Flex>
+                      </>
                     );
                   })
                   : <Text>No hay datos que mostrar</Text>}
