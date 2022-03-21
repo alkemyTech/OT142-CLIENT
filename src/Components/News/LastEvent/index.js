@@ -8,7 +8,8 @@ import {
   Slider,
   SliderTrack,
   SliderFilledTrack,
-  SliderThumb
+  SliderThumb,
+  Text
 } from '@chakra-ui/react';
 import screenfull from 'screenfull';
 // 1- Fullscreen
@@ -21,13 +22,35 @@ const LastEvent = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSeek, setCurrentSeek] = useState(0);
   const [videoDuration, setVideoDuration] = useState(0);
+  const [opacity, setOpacity] = useState(100);
 
   const handleDuration = (duration) => {
     setVideoDuration(duration);
   };
 
-  const handleMouseOver = () => {
-    console.log('sep');
+  const handleClick = (e) => {
+    // if (isPlaying) {
+    //   setOpacity(100);
+    //   setTimeout(() => {
+    //     setOpacity(0);
+    //   });
+    // }
+    console.log(e);
+    console.log(window.innerWidth);
+  };
+
+  const handleMouseEnter = (isPlaying) => {
+    setOpacity(100);
+  };
+
+  const handleMouseLeave = (isPlaying) => {
+    setOpacity(0);
+  };
+
+  const handleClickFullScreen = () => {
+    if (screenfull.isEnabled) {
+      screenfull.request(player.wrapper);
+    }
   };
 
   const proportionalSeek = (currentSeek) => {
@@ -37,19 +60,15 @@ const LastEvent = () => {
     return (currentSeek / videoDuration) * 100;
   };
 
-  const handleClickFullScreen = () => {
-    if (screenfull.isEnabled) {
-      screenfull.request(player.wrapper);
-    }
-  };
-
   let player = null;
 
   const ref = (p) => {
     player = p;
   };
 
-  const PLAYER_WIDTH = '50vw';
+  const PLAYER_WIDTH = '75vw';
+  const PLAYER_HEIGHT = '50vh';
+  const SEEK_SLIDER_WIDTH = '70vw';
 
   const totalDurationFormat = () => {
     let minutes = 0;
@@ -88,14 +107,16 @@ const LastEvent = () => {
       playerVars: { modestbranding: 1 }
     }
   };
+
   return (
     <>
       <Center>
-        <Box width={'auto'} display={'flex'}>
-          <Box position={'relative'}>
+        <Center>
+          <Box>
             <ReactPlayer
               ref={ref}
               width={PLAYER_WIDTH}
+              height={PLAYER_HEIGHT}
               url={'https://www.youtube.com/watch?v=NO7EtdR3Dyw'}
               volume={volume}
               playing={isPlaying}
@@ -110,88 +131,101 @@ const LastEvent = () => {
               config={config}
             />
           </Box>
-          <Box
-            position={'absolute'}
-            top={0}
-            left={0}
-            right={0}
-            bottom={0}
-            display={'flex'}
-            flexDirection={'column'}
-            justifyContent={'flex-end'}
-            zIndex={20}
-            onMouseOver={handleMouseOver}
-          >
-            <VStack>
-              {/* SLIDER SEEK */}
-              <Slider
-                aria-label='slider-ex-1'
-                width={'45vw'}
-                position={'absolute'}
-                value={proportionalSeek(currentSeek)}
-                onChange={(value) => {
-                  player?.seekTo(value / 100, 'fraction');
-                }}
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-              <Box
-                display={'inline-flex'}
-                justifyContent='space-between'
-                width={'45vw'}
-                pb={2}
-              >
-                <Box>
-                  <Button
-                    size='xs'
-                    onClick={() => {
-                      setIsPlaying(!isPlaying);
-                    }}
-                    mr='1vw'
-                  >
-                    {isPlaying ? 'Stop' : 'Play'}
-                  </Button>
-                  <Button
-                    size='xs'
-                    onClick={() => {
-                      if (volume === 0) {
-                        setVolume(previousVolume);
-                      } else {
-                        setVolume(0.1);
-                        setVolume(0);
-                      }
-                    }}
-                  >
-                    A
-                  </Button>
-                  <Slider
-                    aria-label='slider-ex-1'
-                    defaultValue={0}
-                    onChange={(value) => {
-                      setVolume(value / 100);
-                      setPreviousVolume(value / 100);
-                    }}
-                    width={'5em'}
-                    ml='1vw'
-                  >
-                    <SliderTrack>
-                      <SliderFilledTrack />
-                    </SliderTrack>
-                    <SliderThumb />
-                  </Slider>
-                </Box>
-                <Box display='inline-flex' width='auto'>
-                  {`${currentSeekFormat()} / ${totalDurationFormat()}`}
-                  <Button size='xs' ml='1vw' onClick={handleClickFullScreen}>
-                    O
-                  </Button>
-                </Box>
+        </Center>
+
+        <Box
+          left={0}
+          right={0}
+          bottom={0}
+          margin={'auto'}
+          display={'flex'}
+          width={PLAYER_WIDTH}
+          height={PLAYER_HEIGHT}
+          flexDirection={'column'}
+          justifyContent={'flex-end'}
+          position={'absolute'}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
+        >
+          <VStack opacity={opacity}>
+            <Slider
+              aria-label='slider-ex-1'
+              width={SEEK_SLIDER_WIDTH}
+              position={'absolute'}
+              value={proportionalSeek(currentSeek)}
+              onChange={(value) => {
+                player?.seekTo(value / 100, 'fraction');
+              }}
+            >
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb />
+            </Slider>
+            <Box
+              display={'inline-flex'}
+              justifyContent='space-between'
+              width={PLAYER_WIDTH}
+              pb={2}
+              pt={2}
+              bg={'lightgrey'}
+            >
+              <Box>
+                <Button
+                  size='xs'
+                  onClick={() => {
+                    setIsPlaying(!isPlaying);
+                  }}
+                  mr='1vw'
+                  ml='1vw'
+                >
+                  {isPlaying ? 'Stop' : 'Play'}
+                </Button>
+                <Button
+                  size='xs'
+                  onClick={() => {
+                    if (volume === 0) {
+                      setVolume(previousVolume);
+                    } else {
+                      setVolume(0.1);
+                      setVolume(0);
+                    }
+                  }}
+                >
+                  A
+                </Button>
+                <Slider
+                  aria-label='slider-ex-1'
+                  defaultValue={previousVolume}
+                  onChange={(value) => {
+                    setVolume(value / 100);
+                    setPreviousVolume(value / 100);
+                  }}
+                  width={'5em'}
+                  ml='1vw'
+                >
+                  <SliderTrack>
+                    <SliderFilledTrack />
+                  </SliderTrack>
+                  <SliderThumb />
+                </Slider>
               </Box>
-            </VStack>
-          </Box>
+              <Box display='inline-flex' width='auto'>
+                <Text>
+                  {`${currentSeekFormat()} / ${totalDurationFormat()}`}
+                </Text>
+                <Button
+                  size='xs'
+                  ml='1vw'
+                  mr='1vw'
+                  onClick={handleClickFullScreen}
+                >
+                  O
+                </Button>
+              </Box>
+            </Box>
+          </VStack>
         </Box>
       </Center>
     </>
