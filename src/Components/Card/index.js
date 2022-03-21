@@ -12,11 +12,11 @@ import RenderHtml from '../RenderHtml';
 
 const Card = ({ data }) => {
   return (
-    <Center py={6}>
+    <Center py={6} maxW='100%'>
       <Box
         maxW={/* '445px' */'310px'}
         maxH={'500px'}
-        w={'full'}
+        w={'100%'}
         bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'2xl'}
         rounded={'md'}
