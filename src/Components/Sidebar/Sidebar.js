@@ -10,29 +10,32 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { FiMenu, FiActivity } from 'react-icons/fi';
-import { BiNews } from 'react-icons/bi';
+import { BiNews, BiCategory } from 'react-icons/bi';
 import { FaUserAlt } from 'react-icons/fa';
 import { MdCardMembership, MdCategory } from 'react-icons/md';
+import { RiOrganizationChart } from 'react-icons/ri';
+import { ImBriefcase } from 'react-icons/im';
+import { AiFillHome } from 'react-icons/ai';
 import { LogoOng } from '../LogoOng/LogoOng';
 import { Link } from 'react-router-dom';
 
 const LinkItems = [
-  { name: 'Startup', route: '/backoffice', icon: BiNews },
+  { name: 'Startup', route: '/backoffice', icon: ImBriefcase },
   { name: 'News', route: '/backoffice/news', icon: BiNews },
   { name: 'Activities', route: '/backoffice/activities', icon: FiActivity },
-  { name: 'Categories', route: '/backoffice/categories', icon: FaUserAlt },
+  { name: 'Categories', route: '/backoffice/categories', icon: BiCategory },
   { name: 'Users', route: '/backoffice/users', icon: FaUserAlt },
-  { name: 'Organization', route: '/backoffice/organization', icon: FaUserAlt },
+  { name: 'Organization', route: '/backoffice/organization', icon: RiOrganizationChart },
   { name: 'Create members', route: '/backoffice/members/create', icon: MdCardMembership },
   { name: 'Create slide', route: '/backoffice/slide', icon: MdCategory },
-  { name: 'Home', route: '/', icon: MdCategory }
+  { name: 'Home', route: '/', icon: AiFillHome }
 ];
 
 export default function Sidebar ({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box minH={['auto', 'auto', '100vh']}>
+    <Box minH={['auto', 'auto', '100vh']} >
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
@@ -62,6 +65,18 @@ export default function Sidebar ({ children }) {
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
+      overflowY='auto' css={{
+        '&::-webkit-scrollbar': {
+          width: '4px'
+        },
+        '&::-webkit-scrollbar-track': {
+          width: '6px'
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: '#EDF2F7',
+          borderRadius: '24px'
+        }
+      }}
       bg={useColorModeValue('gray.600', 'gray.900')}
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.500', 'gray.700')}
