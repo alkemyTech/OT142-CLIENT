@@ -26,6 +26,10 @@ const LastEvent = () => {
     setVideoDuration(duration);
   };
 
+  const handleMouseOver = () => {
+    console.log('sep');
+  };
+
   const proportionalSeek = (currentSeek) => {
     if (videoDuration === 0) {
       return 0;
@@ -79,40 +83,54 @@ const LastEvent = () => {
     return `${minutes || 0}:${seconds}`;
   };
 
+  const config = {
+    youtube: {
+      playerVars: { modestbranding: 1 }
+    }
+  };
   return (
     <>
       <Center>
-        <Box position={'relative'}>
-          <ReactPlayer
-            ref={ref}
-            width={PLAYER_WIDTH}
-            url={'https://www.youtube.com/watch?v=NO7EtdR3Dyw'}
-            volume={volume}
-            playing={isPlaying}
-            onProgress={(val) => {
-              console.log(val);
-              setCurrentSeek(parseInt(val.playedSeconds));
-            }}
-            onSeek={() => {}}
-            progressInterval={500}
-            onDuration={handleDuration}
-            config={{
-              youtube: {
-                playerVars: { modestbranding: 1 }
-              }
-            }}
-          />
-          <Box position={'absolute'}>
+        <Box width={'auto'} display={'flex'}>
+          <Box position={'relative'}>
+            <ReactPlayer
+              ref={ref}
+              width={PLAYER_WIDTH}
+              url={'https://www.youtube.com/watch?v=NO7EtdR3Dyw'}
+              volume={volume}
+              playing={isPlaying}
+              onProgress={(val) => {
+                setCurrentSeek(parseInt(val.playedSeconds));
+              }}
+              onSeek={() => {
+                setIsPlaying(true);
+              }}
+              progressInterval={500}
+              onDuration={handleDuration}
+              config={config}
+            />
+          </Box>
+          <Box
+            position={'absolute'}
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            display={'flex'}
+            flexDirection={'column'}
+            justifyContent={'flex-end'}
+            zIndex={20}
+            onMouseOver={handleMouseOver}
+          >
             <VStack>
               {/* SLIDER SEEK */}
               <Slider
                 aria-label='slider-ex-1'
-                width={PLAYER_WIDTH}
+                width={'45vw'}
                 position={'absolute'}
                 value={proportionalSeek(currentSeek)}
                 onChange={(value) => {
                   player?.seekTo(value / 100, 'fraction');
-                  setIsPlaying(true);
                 }}
               >
                 <SliderTrack>
@@ -123,9 +141,8 @@ const LastEvent = () => {
               <Box
                 display={'inline-flex'}
                 justifyContent='space-between'
-                width={'50vw'}
+                width={'45vw'}
                 pb={2}
-                position={'relative'}
               >
                 <Box>
                   <Button
