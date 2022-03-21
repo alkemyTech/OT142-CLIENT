@@ -38,8 +38,10 @@ const LoginForm = () => {
         try {
           const result = await login(values.email, values.password);
           if (!result.error) {
-            const { token } = await result.data;
+            console.log(result);
+            const { token, user } = await result.data;
             sessionStorage.setItem('login-token', token);
+            sessionStorage.setItem('login-role', user.role_id);
             history.push('/');
           } else {
             showAlertErr({ text: 'Por favor, verifica el usuario o la contraseña.' });
@@ -54,7 +56,7 @@ const LoginForm = () => {
         <Flex p='4' justifyContent='center' alignItems='center'>
           <Flex w='350px' shadow='md' borderRadius='md' p='4' flexDirection='column' justifyContent='center' alignItems='center' bg='gray.200'>
             <Image src='/images/LOGO-SOMOS-MAS.png' boxSize='150px' />
-            <Text fontSize='lg'>Iniciar sesiòn</Text>
+            <Text fontSize='lg'>Iniciar sesión</Text>
             <FormControl mt='4' isRequired isInvalid={errors.email}>
               <FormLabel>Email</FormLabel>
               <Input onChange={handleChange} onBlur={handleBlur} fontSize='sm' bg='white' borderColor='gray.300' id='email' type='email' placeholder='somosmas@example.com' />
