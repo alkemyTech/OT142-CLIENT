@@ -7,7 +7,7 @@ export default function TitleContact () {
       <Box style={{
         flexGrow: '1',
         width: '100%',
-        padding: '20px'
+        marginBottom: '10px'
       }}>
          <Heading isTruncated as='h1' size='xl'>Contacto</Heading>
       </Box>

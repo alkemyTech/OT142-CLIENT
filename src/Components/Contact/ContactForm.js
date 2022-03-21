@@ -49,7 +49,7 @@ const ContactForm = () => {
             {(props) => (
                 <Box w={'100%'}>
                     <Form>
-                        <Stack spacing={13} p={10}>
+                        <Stack spacing={13}>
                             <Field name='firstName'>
                                 {({ field, form }) => (
 
@@ -106,7 +106,7 @@ const ContactForm = () => {
                                     />
                                 )}
                             </Field>
-                            <Button type="submit" colorScheme='blue'>Enviar</Button>
+                            <Button type="submit" colorScheme='blue' width={'120px'}>Enviar</Button>
                         </Stack>
                     </Form>
                 </Box>

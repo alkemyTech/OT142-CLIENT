@@ -13,7 +13,7 @@ export default function Date (props) {
   return (
     <>
       <Box>
-        <VStack spacing={5}>
+        <VStack spacing={5} alignItems={'flex-start'} justifyContent={'flex-start'}>
           <HStack>
             <BsTelephoneForward />
             <Text>{props.phone}</Text>

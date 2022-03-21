@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <>
       <Box maxW={'100%'} display={'flex'} justifyContent='center'>
-        <Stack w={'1024px'} direction={['column', 'column', 'row']} flexWrap={'wrap'} backgroundColor={'gray.200'} borderRadius={'10px'} p={'20px'}>
+        <Stack w={'960px'} direction={['column', 'column', 'row']} flexWrap={'wrap'} backgroundColor={'gray.200'} borderRadius={'10px'} p={'20px'}>
           <ContactOngDate />
         </Stack>
       </Box>
