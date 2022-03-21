@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player/youtube';
-import { Box, Center, VStack, Button } from '@chakra-ui/react';
 import {
+  Box,
+  Center,
+  VStack,
+  Button,
   Slider,
   SliderTrack,
   SliderFilledTrack,
-  SliderThumb,
-  SliderMark,
+  SliderThumb
 } from '@chakra-ui/react';
-import { FaPlay } from 'react-icons';
+import screenfull from 'screenfull';
+// 1- Fullscreen
+// 2-  Cambiar Iconos
+// 3- Responsivesness
 
 const LastEvent = () => {
   const [volume, setVolume] = useState(0.05);
@@ -16,13 +21,35 @@ const LastEvent = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentSeek, setCurrentSeek] = useState(0);
   const [videoDuration, setVideoDuration] = useState(0);
-  const [played, setPlayed] = useState(0);
 
-  const RELATIVE_PLAYER_WIDTH = '50vw';
+  const handleDuration = (duration) => {
+    setVideoDuration(duration);
+  };
+
+  const proportionalSeek = (currentSeek) => {
+    if (videoDuration === 0) {
+      return 0;
+    }
+    return (currentSeek / videoDuration) * 100;
+  };
+
+  const handleClickFullScreen = () => {
+    if (screenfull.isEnabled) {
+      screenfull.request(player.wrapper);
+    }
+  };
+
+  let player = null;
+
+  const ref = (p) => {
+    player = p;
+  };
+
+  const PLAYER_WIDTH = '50vw';
 
   const totalDurationFormat = () => {
     let minutes = 0;
-    let videoSeconds = videoDuration ? videoDuration : 0;
+    let videoSeconds = videoDuration;
 
     while (videoSeconds >= 60) {
       videoSeconds -= 60;
@@ -55,79 +82,100 @@ const LastEvent = () => {
   return (
     <>
       <Center>
-        <Box pt={2} pl={2} pr={2}>
+        <Box position={'relative'}>
           <ReactPlayer
-            width={RELATIVE_PLAYER_WIDTH}
-            url={
-              'https://www.youtube.com/watch?v=4YnSk1gI_Oo&ab_channel=OIMArgentina'
-            }
+            ref={ref}
+            width={PLAYER_WIDTH}
+            url={'https://www.youtube.com/watch?v=NO7EtdR3Dyw'}
             volume={volume}
             playing={isPlaying}
             onProgress={(val) => {
-              setCurrentSeek(parseInt(val.playedSeconds));
-              setPlayed(val.played * 100);
-            }}
-            onDuration={(seconds) => {
-              setVideoDuration(seconds);
-            }}
-            onSeek={(val) => {
               console.log(val);
+              setCurrentSeek(parseInt(val.playedSeconds));
             }}
+            onSeek={() => {}}
             progressInterval={500}
+            onDuration={handleDuration}
+            config={{
+              youtube: {
+                playerVars: { modestbranding: 1 }
+              }
+            }}
           />
-        </Box>
-      </Center>
-      <Center>
-        <VStack>
-          <Center>
-            <Box>
-              <Slider aria-label='slider-ex-1' width={'45vw'} value={played}>
+          <Box position={'absolute'}>
+            <VStack>
+              {/* SLIDER SEEK */}
+              <Slider
+                aria-label='slider-ex-1'
+                width={PLAYER_WIDTH}
+                position={'absolute'}
+                value={proportionalSeek(currentSeek)}
+                onChange={(value) => {
+                  player?.seekTo(value / 100, 'fraction');
+                  setIsPlaying(true);
+                }}
+              >
                 <SliderTrack>
                   <SliderFilledTrack />
                 </SliderTrack>
                 <SliderThumb />
               </Slider>
-              {`${currentSeekFormat()} / ${totalDurationFormat()}`}
-            </Box>
-          </Center>
-          <Box bg={'gray'} width={RELATIVE_PLAYER_WIDTH} pl={2} pr={2} pb={2}>
-            <Button
-              size='xs'
-              onClick={() => {
-                setIsPlaying(!isPlaying);
-              }}
-            >
-              {isPlaying ? 'Stop' : 'Play'}
-            </Button>
-            <Button
-              size='xs'
-              onClick={() => {
-                if (volume === 0) {
-                  setVolume(previousVolume);
-                } else {
-                  setVolume(0.1);
-                  setVolume(0);
-                }
-              }}
-            >
-              A
-            </Button>
-            <Slider
-              aria-label='slider-ex-1'
-              defaultValue={0}
-              onChange={(value) => {
-                setVolume(value / 100);
-                setPreviousVolume(value / 100);
-              }}
-              width={'5em'}
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
+              <Box
+                display={'inline-flex'}
+                justifyContent='space-between'
+                width={'50vw'}
+                pb={2}
+                position={'relative'}
+              >
+                <Box>
+                  <Button
+                    size='xs'
+                    onClick={() => {
+                      setIsPlaying(!isPlaying);
+                    }}
+                    mr='1vw'
+                  >
+                    {isPlaying ? 'Stop' : 'Play'}
+                  </Button>
+                  <Button
+                    size='xs'
+                    onClick={() => {
+                      if (volume === 0) {
+                        setVolume(previousVolume);
+                      } else {
+                        setVolume(0.1);
+                        setVolume(0);
+                      }
+                    }}
+                  >
+                    A
+                  </Button>
+                  <Slider
+                    aria-label='slider-ex-1'
+                    defaultValue={0}
+                    onChange={(value) => {
+                      setVolume(value / 100);
+                      setPreviousVolume(value / 100);
+                    }}
+                    width={'5em'}
+                    ml='1vw'
+                  >
+                    <SliderTrack>
+                      <SliderFilledTrack />
+                    </SliderTrack>
+                    <SliderThumb />
+                  </Slider>
+                </Box>
+                <Box display='inline-flex' width='auto'>
+                  {`${currentSeekFormat()} / ${totalDurationFormat()}`}
+                  <Button size='xs' ml='1vw' onClick={handleClickFullScreen}>
+                    O
+                  </Button>
+                </Box>
+              </Box>
+            </VStack>
           </Box>
-        </VStack>
+        </Box>
       </Center>
     </>
   );
