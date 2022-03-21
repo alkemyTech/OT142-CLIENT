@@ -19,6 +19,7 @@ import ActivityDetail from '../Components/Activities/ActivityDetail';
 import ContactForm from '../Components/Contact/ContactForm';
 import MembersList from '../Components/AboutUs/MembersList';
 import ContactOngDate from '../Components/Contact/ContactOngDate';
+import LoginForm from '../Components/Auth/LoginForm';
 // import Layout from '../Components/Layout';
 // import { AnimatedSwitch, spring } from 'react-router-transition';
 import PageNotFound from '../Components/PageNotFound';
@@ -54,6 +55,7 @@ const DashboardPublic = () => {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/actividades" component={Activities} />
                     <Route exact path="/registro" component={RegisterForm} />
+                    <Route exact path="/login" component={LoginForm} />
                     <Route exact path="/contacto" component={Contact} />
                     <Route exact path="/nosotros" component={About} />
                     <Route exact path="/create-activity" component={ActivitiesForm} />

@@ -19,7 +19,7 @@ const ActivitiesList = () => {
   }, [activitiesReducer]);
 
   return (
-        <Container maxW='container.lg'>
+        <Container maxW='100%'>
             <Text fontSize='5xl' d='flex' justifyContent='center'>Actividades</Text>
 
             {activitiesReducer.status !== 'success' && <Spinner size='xl' />}
