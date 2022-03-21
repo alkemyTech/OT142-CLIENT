@@ -1,7 +1,8 @@
-import { Container, Text, Spinner, Grid, Box } from '@chakra-ui/react';
+import { Text, Spinner, SimpleGrid, Box, GridItem } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities } from '../../app/features/activitiesSlice';
+import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
 import Card from '../Card';
 
 const ActivitiesList = () => {
@@ -19,20 +20,29 @@ const ActivitiesList = () => {
   }, [activitiesReducer]);
 
   return (
-        <Container maxW='100%'>
+        <Box bg='#F8F9FA' p={4} width="100%">
             <Text fontSize='5xl' d='flex' justifyContent='center'>Actividades</Text>
 
-            {activitiesReducer.status !== 'success' && <Spinner size='xl' />}
+            {activitiesReducer.status !== 'success' && <Spinner color="blue" size='xl' />}
+            {activitiesReducer.status === 'failed' && showAlertErr()}
 
-            <Grid templateColumns='repeat(4, 1fr)' gap={6}>
-                {data?.length > 0 &&
-                    data.map((activity) => (
-                      <Box key={activity.id}>
-                        <Card data={activity} />
+            <SimpleGrid columns={[1, 2, 3, 4]} spacing='30px' m='10px'>
+                {
+                  data.length > 0
+                    ? data.map((activity) => (
+                      <GridItem
+                        key={activity.id}
+                        w='100%'
+                        textAlign='center'>
+                          <Card data={activity} />
+                      </GridItem>
+                    ))
+                    : <Box>
+                        <Text>No hay actividades</Text>
                       </Box>
-                    ))}
-            </Grid>
-        </Container>
+                    }
+            </SimpleGrid>
+        </Box>
   );
 };
 export default ActivitiesList;
