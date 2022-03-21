@@ -5,6 +5,7 @@ import WithSubnavigation from '../Components/Header';
 import Home from '../Components/Home';
 import Activities from '../Components/Activities/Activities';
 import RegisterForm from '../Components/Auth/RegisterForm';
+import LoginForm from '../Components/Auth/LoginForm';
 import Contact from '../Components/Contact';
 import About from '../Components/About';
 import ActivitiesForm from '../Components/Activities/ActivitiesForm';
@@ -65,7 +66,7 @@ const DashboardPublic = () => {
                     <Route exact path="/update-project/:id" component={ProjectsForm} />
                     <Route exact path="/actividades/:id" component={ActivityDetail} />
                     <Route exact path="/actividades" component={Activities} />
-                    <Route exact path="/register" component={RegisterForm} />
+                    <Route exact path="/login" component={LoginForm} />
                     <Route exact path="/contact" component={Contact} />
                     <Route exact path="/contact-form" component={ContactForm} />
                     <Route exact path="/about-us/members" component={MembersList} />

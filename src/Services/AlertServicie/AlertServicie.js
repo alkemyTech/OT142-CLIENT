@@ -42,9 +42,8 @@ export const showAlertErr = (props = {}) => {
     title: 'Error',
     text: props.text ? props.text : 'Upssss...!! no has completado la tarea',
     showConfirmButton: true,
-    timer: 3000,
-    footer: props.footer ? props.footer : 'Comience de nuevo!!'
-
+    timer: 3000
+    // footer: props.footer ? props.footer : 'Comience de nuevo!!'
   });
 };
 

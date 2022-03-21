@@ -1,5 +1,5 @@
 /*eslint-disable*/
- import {
+import {
   Box,
   Flex,
   Text,
@@ -25,9 +25,21 @@ import {
 } from '@chakra-ui/icons';
 
 import { Link as ReachLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.getItem('login-token') && setIsLoggedIn(true);
+  }, [isLoggedIn])
+
+
+  const handleCloseSesion = () => {
+    sessionStorage.removeItem('login-token');
+    setIsLoggedIn(false);
+  }
 
   return (
     <Box>
@@ -55,7 +67,7 @@ export default function WithSubnavigation() {
           />
         </Flex>
         <Flex maxH='50px' flex={{ base: 1 }} alignItems='center' justify={{ base: 'center', md: 'start' }}>
-          <Image boxSize='120px' src='/images/LOGO-SOMOS-MAS.png'/>
+          <Image boxSize='120px' src='/images/LOGO-SOMOS-MAS.png' />
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav />
@@ -67,26 +79,29 @@ export default function WithSubnavigation() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}>
-            Ingresar
-          </Button>
-          {/* <Button
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            href={'#'}
-            _hover={{
-              bg: 'pink.300',
-            }}>
-            Cerrar Sesión
-          </Button> */}
+          {isLoggedIn ?
+            <Button
+              onClick={handleCloseSesion}
+              as={ReachLink}
+              to='/login'
+              fontSize={'xs'}
+              fontWeight={600}
+              color={'white'}
+              bg={'pink.400'}
+              _hover={{
+                bg: 'pink.300',
+              }}>
+              Cerrar sesiòn
+            </Button>
+            : <Button
+              as={ReachLink}
+              to='/login'
+              fontSize={'sm'}
+              fontWeight={400}
+              variant={'link'}
+              >
+              Ingresar
+            </Button>}
         </Stack>
       </Flex>
 
@@ -145,7 +160,7 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel } : NavItem) => {
+const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
     <Link
       href={href}
