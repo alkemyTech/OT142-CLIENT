@@ -24,6 +24,7 @@ const Home = () => {
   const [organizationData, setOrganizationdata] = useState();
   const [newsData, setNewsData] = useState();
   const [testimonialsData, setTestimonialsData] = useState();
+  console.log(newsData);
 
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
