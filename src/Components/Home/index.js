@@ -140,7 +140,7 @@ const Home = () => {
               </Text>
               <Flex justify={'space-around'} flexDir='row' ml={5} mr={5} wrap='wrap'>
                 {testimonialsData?.length > 0
-                  ? testimonialsData.slice(0, 6).map((testimonial) => {
+                  ? testimonialsData.slice(0, 4).map((testimonial) => {
                     return (
                       <>
                       <Flex flexDir='column' alignItems='center' m={2} p={3} boxShadow='0px 0px 10px 0px rgba(0,0,0,0.4)' borderRadius='5' maxW='220px'>
