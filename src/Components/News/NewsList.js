@@ -45,7 +45,7 @@ const NewsList = () => {
   }, [news]);
 
   return (
-    <Box bg='#F8F9FA' p={4} >
+    <Box bg='#F8F9FA' p={4} width="100%">
       {loading &&
         <Spinner isLoading color="blue" size={40} />
       }

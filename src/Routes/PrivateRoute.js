@@ -1,7 +1,6 @@
 import { Route } from 'react-router';
 
 const PrivateRoute = ({
-  isAuthenticated,
   component: Component,
   ...rest
 }) => {
