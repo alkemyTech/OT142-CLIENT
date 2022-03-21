@@ -80,11 +80,13 @@ const ToysSlider = () => {
         {cards.map((card, index) => (
           <Box
             key={index}
-            height={'6xl'}
+            minWidth={'100vw'}
+            height={'md'}
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
+            objectFit={'cover'}
             backgroundImage={card.image}
             w={{ base: '250px', sm: '400px' }}>
             {isLargerThan767
@@ -100,14 +102,17 @@ const ToysSlider = () => {
                   w={'full'}
                   maxW={{ base: 'lg' }}
                   position="absolute"
-                  top={{ base: '22%', sm: 110, lg: 150 }}
-                  left={{ base: '-2%', sm: -5, md: -155, lg: -250 }}
+                  // top={'10%'}
+                  // left={'-20%'}
+                  right={'80%'}
+                  bottom={'30%'}
                   border="1px solid"
                   borderRadius="5px"
                   padding="0.5rem"
                   backgroundColor="rgba(0,0,0,0.5)"
-                  transform="translate(0, 350%)">
-                  <Text fontSize={{ base: 'sm', lg: 'lg' }} color="white" fontWeight="bold">
+                  // transform="translate(0, 350%)"
+                  >
+                  <Text fontSize={{ base: 'md', lg: 'lg' }} color="white" fontWeight="bold">
                     {card.text}
                   </Text>
                 </Stack>
