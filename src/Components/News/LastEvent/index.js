@@ -12,6 +12,8 @@ import {
   Text
 } from '@chakra-ui/react';
 import screenfull from 'screenfull';
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
+import { MdOutlineFullscreen } from 'react-icons/md';
 // 1- Fullscreen
 // 2-  Cambiar Iconos
 // 3- Responsivesness
@@ -23,6 +25,7 @@ const LastEvent = () => {
   const [currentSeek, setCurrentSeek] = useState(0);
   const [videoDuration, setVideoDuration] = useState(0);
   const [opacity, setOpacity] = useState(100);
+  const [youtubeControls, setYoutubeControls] = useState(false);
 
   const handleDuration = (duration) => {
     setVideoDuration(duration);
@@ -40,6 +43,7 @@ const LastEvent = () => {
   };
 
   const handleMouseEnter = (isPlaying) => {
+    setYoutubeControls(false);
     setOpacity(100);
   };
 
@@ -48,6 +52,7 @@ const LastEvent = () => {
   };
 
   const handleClickFullScreen = () => {
+    setYoutubeControls(true);
     if (screenfull.isEnabled) {
       screenfull.request(player.wrapper);
     }
@@ -129,6 +134,7 @@ const LastEvent = () => {
               progressInterval={500}
               onDuration={handleDuration}
               config={config}
+              controls={youtubeControls}
             />
           </Box>
         </Center>
@@ -163,27 +169,32 @@ const LastEvent = () => {
               </SliderTrack>
               <SliderThumb />
             </Slider>
+
             <Box
               display={'inline-flex'}
               justifyContent='space-between'
               width={PLAYER_WIDTH}
               pb={2}
               pt={2}
-              bg={'lightgrey'}
+              bg={'white'}
+              border='1px'
+              borderColor='gray.400'
+              alignItems={'center'}
             >
               <Box>
                 <Button
-                  size='xs'
+                  size='s'
                   onClick={() => {
                     setIsPlaying(!isPlaying);
                   }}
                   mr='1vw'
                   ml='1vw'
+                  variant='ghost'
                 >
-                  {isPlaying ? 'Stop' : 'Play'}
+                  {isPlaying ? <FaPause /> : <FaPlay />}
                 </Button>
                 <Button
-                  size='xs'
+                  size='s'
                   onClick={() => {
                     if (volume === 0) {
                       setVolume(previousVolume);
@@ -192,8 +203,9 @@ const LastEvent = () => {
                       setVolume(0);
                     }
                   }}
+                  variant='ghost'
                 >
-                  A
+                  <Box>{volume !== 0 ? <FaVolumeUp /> : <FaVolumeMute />}</Box>
                 </Button>
                 <Slider
                   aria-label='slider-ex-1'
@@ -211,17 +223,19 @@ const LastEvent = () => {
                   <SliderThumb />
                 </Slider>
               </Box>
+
               <Box display='inline-flex' width='auto'>
                 <Text>
                   {`${currentSeekFormat()} / ${totalDurationFormat()}`}
                 </Text>
                 <Button
-                  size='xs'
+                  size='s'
                   ml='1vw'
                   mr='1vw'
                   onClick={handleClickFullScreen}
+                  variant='ghost'
                 >
-                  O
+                  <MdOutlineFullscreen />
                 </Button>
               </Box>
             </Box>
