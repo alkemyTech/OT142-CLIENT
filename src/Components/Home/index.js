@@ -6,13 +6,17 @@ import {
   Text,
   Flex,
   Center,
-  Button
+  Button,
+  Heading
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import CarouselSlides from '../Slides/HomeSlide';
 import { get } from '../../Services/publicApiService';
 import Spinner from '../Spinner/index';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllNews } from '../../app/features/newsSlice';
+import NewsList from '../News/NewsList';
 
 const Home = () => {
   const [loading, setLoading] = useState();
@@ -21,9 +25,14 @@ const Home = () => {
   const [organizationData, setOrganizationdata] = useState();
   const [newsData, setNewsData] = useState();
   const [testimonialsData, setTestimonialsData] = useState();
+  console.log(newsData);
+
+  const dispatch = useDispatch();
+  const { news } = useSelector(state => state);
 
   const getDataOrganization = useCallback(async () => {
     try {
+      // debugger;
       const { data } = await get('/organization');
       setOrganizationdata(data.data);
       setLoading(true);
@@ -43,7 +52,7 @@ const Home = () => {
   }, []);
   const getDataTestimonials = useCallback(async () => {
     try {
-      const { data } = await get('/testimonials');
+      const { data } = await get(process.env.REACT_APP_TESTIMONIALS);
       setTestimonialsData(data.data);
     } catch (e) {
       console.log(e);
@@ -57,19 +66,27 @@ const Home = () => {
     getDataTestimonials();
   }, []);
 
+  useEffect(async () => {
+    try {
+      // setLoading(true);
+      await dispatch(getAllNews());
+
+      setNewsData(news.news);
+    } catch (error) {
+      console.log(error);
+      // setError(true);
+    }
+    setLoading(false);
+  }, [dispatch]);
+
   return (
     <>
       {loading
         ? (
           <Grid
-            templateRows="80px 2fr .5fr .5fr .5fr .5fr .5fr"
+            templateRows="auto"
             templateColumns="1fr"
           >
-            {/* <GridItem>
-              <Text align={'center'} fontSize="4xl">
-                Navbar
-              </Text>
-            </GridItem> */}
             <CarouselSlides />
             <GridItem mb={6}>
               <Flex justify="center">
@@ -93,22 +110,12 @@ const Home = () => {
               </Text>
 
               <Flex justify={'space-around'}>
-                {newsData?.length > 0
-                  ? newsData.slice(0, 6).map((novedad) => {
-                    return (
-                      <Image
-                        maxWidth="150px"
-                        key={novedad.id}
-                        objectFit="cover"
-                        src={novedad.image}
-                        alt={novedad.name}
-                      />
-                    );
-                  })
+                {news.news?.length > 0
+                  ? <NewsList newsList={news.news.slice(0, 4) || []} loading={news.newsLoading} error={news.newsError}/>
                   : <Text>No hay datos que mostrar</Text>}
               </Flex>
 
-              <Link to="#">
+              <Link to="/Novedades">
                 <Center>
                   <Button
                     display={{ base: 'none', md: 'inline-flex' }}
@@ -133,18 +140,24 @@ const Home = () => {
               <Text align={'center'} fontSize="3xl">
                 Testimonios
               </Text>
-              <Flex justify={'space-around'}>
+              <Flex justify={'space-around'} flexDir='row' ml={5} mr={5} wrap='wrap'>
                 {testimonialsData?.length > 0
                   ? testimonialsData.slice(0, 6).map((testimonial) => {
                     return (
-                      <Image
-                        borderRadius="full"
-                        boxSize="150px"
-                        key={testimonial.id}
-                        objectFit="cover"
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                      />
+                      <>
+                      <Flex flexDir='column' alignItems='center' m={2} p={3} boxShadow='0px 0px 10px 0px rgba(0,0,0,0.4)' borderRadius='5' maxW='220px'>
+                          <Image
+                            borderRadius="full"
+                            boxSize="100px"
+                            key={testimonial.id}
+                            objectFit="cover"
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                          />
+                          <Heading fontWeight='bold' fontSize={15} mb={5}>{testimonial.name}</Heading>
+                          <Text textAlign='justify'>{`"${testimonial.description}"`}</Text>
+                      </Flex>
+                      </>
                     );
                   })
                   : <Text>No hay datos que mostrar</Text>}

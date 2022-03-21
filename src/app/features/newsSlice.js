@@ -15,19 +15,25 @@ export const newsSlice = createSlice({
   name: 'news',
   initialState: {
     news: [],
-    status: null
+    status: null,
+    newsError: false,
+    newsLoading: true
   },
   reducers: {},
   extraReducers: {
     [getAllNews.pending]: (state) => {
       state.status = 'loading';
+      state.newsLoading = true;
     },
     [getAllNews.fulfilled]: (state, { payload }) => {
       state.news = payload.data;
       state.status = 'success';
+      state.newsLoading = false;
+      state.newsError = false;
     },
     [getAllNews.rejected]: (state) => {
       state.status = 'failed';
+      state.newsError = true;
     }
   }
 });
