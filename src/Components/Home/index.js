@@ -30,6 +30,7 @@ const Home = () => {
 
   const getDataOrganization = useCallback(async () => {
     try {
+      debugger;
       const { data } = await get('/organization');
       setOrganizationdata(data.data);
       setLoading(true);
@@ -81,7 +82,7 @@ const Home = () => {
       {loading
         ? (
           <Grid
-            templateRows="80px 2fr .5fr .5fr .5fr .5fr .5fr"
+            templateRows="auto"
             templateColumns="1fr"
           >
             <CarouselSlides />
