@@ -25,7 +25,7 @@ const LastEvent = () => {
   const [currentSeek, setCurrentSeek] = useState(0);
   const [videoDuration, setVideoDuration] = useState(0);
   const [opacity, setOpacity] = useState(100);
-  const [youtubeControls, setYoutubeControls] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const handleDuration = (duration) => {
     setVideoDuration(duration);
@@ -38,21 +38,23 @@ const LastEvent = () => {
     //     setOpacity(0);
     //   });
     // }
+    setOpacity(100);
     console.log(e);
     console.log(window.innerWidth);
   };
 
-  const handleMouseEnter = (isPlaying) => {
-    setYoutubeControls(false);
+  const handleMouseOver = (isPlaying) => {
     setOpacity(100);
   };
 
   const handleMouseLeave = (isPlaying) => {
-    setOpacity(0);
+    if (isPlaying) {
+      setOpacity(0);
+    }
   };
 
   const handleClickFullScreen = () => {
-    setYoutubeControls(true);
+    setIsFullscreen(!isFullscreen);
     if (screenfull.isEnabled) {
       screenfull.request(player.wrapper);
     }
@@ -107,141 +109,138 @@ const LastEvent = () => {
     return `${minutes || 0}:${seconds}`;
   };
 
-  const config = {
-    youtube: {
-      playerVars: { modestbranding: 1 }
-    }
-  };
-
   return (
     <>
-      <Center>
+      {isFullscreen ? <Box width='100%' bg={'red'} zIndex={'999'}></Box> : null}
+      <Box position='relative' width='100%'>
         <Center>
-          <Box>
-            <ReactPlayer
-              ref={ref}
-              width={PLAYER_WIDTH}
-              height={PLAYER_HEIGHT}
-              url={'https://www.youtube.com/watch?v=NO7EtdR3Dyw'}
-              volume={volume}
-              playing={isPlaying}
-              onProgress={(val) => {
-                setCurrentSeek(parseInt(val.playedSeconds));
-              }}
-              onSeek={() => {
-                setIsPlaying(true);
-              }}
-              progressInterval={500}
-              onDuration={handleDuration}
-              config={config}
-              controls={youtubeControls}
-            />
+          <ReactPlayer
+            ref={ref}
+            width={PLAYER_WIDTH}
+            height={PLAYER_HEIGHT}
+            url={'https://www.youtube.com/watch?v=NO7EtdR3Dyw'}
+            volume={volume}
+            playing={isPlaying}
+            onProgress={(val) => {
+              setCurrentSeek(parseInt(val.playedSeconds));
+            }}
+            onSeek={() => {
+              setIsPlaying(true);
+            }}
+            progressInterval={500}
+            onDuration={handleDuration}
+            controls={false}
+          />
+
+          <Box
+            left={0}
+            right={0}
+            bottom={0}
+            margin={'auto'}
+            display={'flex'}
+            width={PLAYER_WIDTH}
+            height={PLAYER_HEIGHT}
+            flexDirection={'column'}
+            position={'absolute'}
+            justifyContent={'flex-end'}
+            onMouseOver={handleMouseOver}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
+          >
+            <VStack opacity={opacity}>
+              <Slider
+                aria-label='slider-ex-1'
+                width={SEEK_SLIDER_WIDTH}
+                position={'absolute'}
+                value={proportionalSeek(currentSeek)}
+                onChange={(value) => {
+                  player?.seekTo(value / 100, 'fraction');
+                }}
+              >
+                <SliderTrack>
+                  <SliderFilledTrack />
+                </SliderTrack>
+                <SliderThumb />
+              </Slider>
+
+              <Box
+                display={'inline-flex'}
+                justifyContent='space-between'
+                width={PLAYER_WIDTH}
+                pb={2}
+                pt={2}
+                bg={'white'}
+                border='1px'
+                borderColor='gray.400'
+                alignItems={'center'}
+              >
+                <Box>
+                  <Button
+                    size='s'
+                    onClick={() => {
+                      setIsPlaying(!isPlaying);
+                      setTimeout(() => {
+                        setOpacity(0);
+                      }, 3000);
+                    }}
+                    mr='1vw'
+                    ml='1vw'
+                    variant='ghost'
+                  >
+                    {isPlaying ? <FaPause /> : <FaPlay />}
+                  </Button>
+                  <Button
+                    size='s'
+                    onClick={() => {
+                      if (volume === 0) {
+                        setVolume(previousVolume);
+                      } else {
+                        setVolume(0.1);
+                        setVolume(0);
+                      }
+                    }}
+                    variant='ghost'
+                  >
+                    <Box>
+                      {volume !== 0 ? <FaVolumeUp /> : <FaVolumeMute />}
+                    </Box>
+                  </Button>
+                  <Slider
+                    aria-label='slider-ex-1'
+                    defaultValue={previousVolume}
+                    onChange={(value) => {
+                      setVolume(value / 100);
+                      setPreviousVolume(value / 100);
+                    }}
+                    width={'5em'}
+                    ml='1vw'
+                  >
+                    <SliderTrack>
+                      <SliderFilledTrack />
+                    </SliderTrack>
+                    <SliderThumb />
+                  </Slider>
+                </Box>
+
+                <Box display='inline-flex' width='auto'>
+                  <Text>
+                    {`${currentSeekFormat()} / ${totalDurationFormat()}`}
+                  </Text>
+                  <Button
+                    size='s'
+                    ml='1vw'
+                    mr='1vw'
+                    onClick={handleClickFullScreen}
+                    variant='ghost'
+                  >
+                    <MdOutlineFullscreen />
+                  </Button>
+                </Box>
+              </Box>
+            </VStack>
           </Box>
         </Center>
-
-        <Box
-          left={0}
-          right={0}
-          bottom={0}
-          margin={'auto'}
-          display={'flex'}
-          width={PLAYER_WIDTH}
-          height={PLAYER_HEIGHT}
-          flexDirection={'column'}
-          justifyContent={'flex-end'}
-          position={'absolute'}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleClick}
-        >
-          <VStack opacity={opacity}>
-            <Slider
-              aria-label='slider-ex-1'
-              width={SEEK_SLIDER_WIDTH}
-              position={'absolute'}
-              value={proportionalSeek(currentSeek)}
-              onChange={(value) => {
-                player?.seekTo(value / 100, 'fraction');
-              }}
-            >
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider>
-
-            <Box
-              display={'inline-flex'}
-              justifyContent='space-between'
-              width={PLAYER_WIDTH}
-              pb={2}
-              pt={2}
-              bg={'white'}
-              border='1px'
-              borderColor='gray.400'
-              alignItems={'center'}
-            >
-              <Box>
-                <Button
-                  size='s'
-                  onClick={() => {
-                    setIsPlaying(!isPlaying);
-                  }}
-                  mr='1vw'
-                  ml='1vw'
-                  variant='ghost'
-                >
-                  {isPlaying ? <FaPause /> : <FaPlay />}
-                </Button>
-                <Button
-                  size='s'
-                  onClick={() => {
-                    if (volume === 0) {
-                      setVolume(previousVolume);
-                    } else {
-                      setVolume(0.1);
-                      setVolume(0);
-                    }
-                  }}
-                  variant='ghost'
-                >
-                  <Box>{volume !== 0 ? <FaVolumeUp /> : <FaVolumeMute />}</Box>
-                </Button>
-                <Slider
-                  aria-label='slider-ex-1'
-                  defaultValue={previousVolume}
-                  onChange={(value) => {
-                    setVolume(value / 100);
-                    setPreviousVolume(value / 100);
-                  }}
-                  width={'5em'}
-                  ml='1vw'
-                >
-                  <SliderTrack>
-                    <SliderFilledTrack />
-                  </SliderTrack>
-                  <SliderThumb />
-                </Slider>
-              </Box>
-
-              <Box display='inline-flex' width='auto'>
-                <Text>
-                  {`${currentSeekFormat()} / ${totalDurationFormat()}`}
-                </Text>
-                <Button
-                  size='s'
-                  ml='1vw'
-                  mr='1vw'
-                  onClick={handleClickFullScreen}
-                  variant='ghost'
-                >
-                  <MdOutlineFullscreen />
-                </Button>
-              </Box>
-            </Box>
-          </VStack>
-        </Box>
-      </Center>
+      </Box>
     </>
   );
 };
