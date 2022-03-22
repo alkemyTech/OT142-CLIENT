@@ -309,8 +309,8 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/nosotros",
   },
   {
-    label: "Contacto",
-    href: "/contact",
+    label: 'Contacto',
+    href: '/contacto',
   },
   {
     label: "Campañas",

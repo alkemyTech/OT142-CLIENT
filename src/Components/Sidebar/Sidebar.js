@@ -18,14 +18,14 @@ import { Link } from 'react-router-dom';
 
 const LinkItems = [
   { name: 'Startup', route: '/backoffice', icon: BiNews },
-  { name: 'News', route: '/backoffice/news', icon: BiNews },
-  { name: 'Activities', route: '/backoffice/activities', icon: FiActivity },
-  { name: 'Categories', route: '/backoffice/categories', icon: FaUserAlt },
-  { name: 'Users', route: '/backoffice/users', icon: FaUserAlt },
-  { name: 'Organization', route: '/backoffice/organization', icon: FaUserAlt },
-  { name: 'Create members', route: '/backoffice/members/create', icon: MdCardMembership },
-  { name: 'Create slide', route: '/backoffice/slide', icon: MdCategory },
-  { name: 'Home', route: '/', icon: MdCategory }
+  { name: 'Novedades', route: '/backoffice/news', icon: BiNews },
+  { name: 'Actividades', route: '/backoffice/activities', icon: FiActivity },
+  { name: 'Categorías', route: '/backoffice/categories', icon: FaUserAlt },
+  { name: 'Usuarios', route: '/backoffice/users', icon: FaUserAlt },
+  { name: 'Organización', route: '/backoffice/organization', icon: FaUserAlt },
+  { name: 'Crear Miembros', route: '/backoffice/members/create', icon: MdCardMembership },
+  { name: 'Crear Slide', route: '/backoffice/slide', icon: MdCategory },
+  { name: 'Inicio', route: '/', icon: MdCategory }
 ];
 
 export default function Sidebar ({ children }) {
