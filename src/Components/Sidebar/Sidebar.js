@@ -21,14 +21,14 @@ import { Link } from 'react-router-dom';
 
 const LinkItems = [
   { name: 'Startup', route: '/backoffice', icon: ImBriefcase },
-  { name: 'News', route: '/backoffice/news', icon: BiNews },
-  { name: 'Activities', route: '/backoffice/activities', icon: FiActivity },
-  { name: 'Categories', route: '/backoffice/categories', icon: BiCategory },
-  { name: 'Users', route: '/backoffice/users', icon: FaUserAlt },
-  { name: 'Organization', route: '/backoffice/organization', icon: RiOrganizationChart },
-  { name: 'Create members', route: '/backoffice/members/create', icon: MdCardMembership },
-  { name: 'Create slide', route: '/backoffice/slide', icon: MdCategory },
-  { name: 'Home', route: '/', icon: AiFillHome }
+  { name: 'Novedades', route: '/backoffice/news', icon: BiNews },
+  { name: 'Actividades', route: '/backoffice/activities', icon: FiActivity },
+  { name: 'Categorías', route: '/backoffice/categories', icon: BiCategory },
+  { name: 'Usuarios', route: '/backoffice/users', icon: FaUserAlt },
+  { name: 'Organización', route: '/backoffice/organization', icon: RiOrganizationChart },
+  { name: 'Crear Miembros', route: '/backoffice/members/create', icon: MdCardMembership },
+  { name: 'Crear Slide', route: '/backoffice/slide', icon: MdCategory },
+  { name: 'Inicio', route: '/', icon: AiFillHome }
 ];
 
 export default function Sidebar ({ children }) {

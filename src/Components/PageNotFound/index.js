@@ -20,13 +20,13 @@ const PageNotFound = () => {
         404
       </Heading>
       <Text fontSize='18px' mt={3} mb={2}>
-        Pagina no encontrada
+        Página no encontrada.
       </Text>
       <Text color={'gray.600'} mb={2}>
-        La pagina que estas buscando no existe!
+        La página que estás buscando no existe!
       </Text>
       <Text color={'gray.600'} mb={4}>
-        Por favor comunicate con el administrador del sitio web.
+        Por favor comunícate con el administrador del sitio web.
       </Text>
 
       <Button
@@ -36,7 +36,7 @@ const PageNotFound = () => {
         variant='solid'
         onClick={handleClick}
       >
-        Ir a home
+        Ir al inicio
       </Button>
     </Box>
   );

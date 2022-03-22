@@ -30,14 +30,16 @@ import { useState, useEffect } from 'react';
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     sessionStorage.getItem('login-token') && setIsLoggedIn(true);
+    sessionStorage.getItem('login-role') && sessionStorage.getItem('login-role') === "1" && setIsAdmin(true);
   }, [isLoggedIn])
-
 
   const handleCloseSesion = () => {
     sessionStorage.removeItem('login-token');
+    sessionStorage.removeItem('login-role');
     setIsLoggedIn(false);
   }
 
@@ -68,40 +70,53 @@ export default function WithSubnavigation() {
         </Flex>
         <Flex maxH='50px' flex={{ base: 1 }} alignItems='center' justify={{ base: 'center', md: 'start' }}>
           <Link as={ReachLink} to='/'>
-            <Image boxSize='120px' src='/images/LOGO-SOMOS-MAS.png' />  
+            <Image boxSize='120px' src='/images/LOGO-SOMOS-MAS.png' />
           </Link>
-        
+
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-            <DesktopNav />
+            <DesktopNav isLoggedIn={isLoggedIn} />
           </Flex>
         </Flex>
 
         <Stack
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
-          direction={'row'}
-          spacing={6}>
+          direction={{ base: 'column', md: 'row' }}
+          spacing={1}>
           {isLoggedIn ?
-            <Button
-              onClick={handleCloseSesion}
-              as={ReachLink}
-              to='/login'
-              fontSize={'xs'}
-              fontWeight={600}
-              color={'white'}
-              bg={'pink.400'}
-              _hover={{
-                bg: 'pink.300',
-              }}>
-              Cerrar sesiòn
-            </Button>
+            <>
+              {isAdmin &&
+                <Button
+                  as={ReachLink}
+                  to='/backoffice'
+                  bg='none'
+                  fontSize='sm'
+                  _hover={{ bg: 'none' }}
+                >
+                  Backoffice
+                </Button>
+              }
+              <Button
+                onClick={handleCloseSesion}
+                as={ReachLink}
+                to='/login'
+                fontSize={'xs'}
+                fontWeight={600}
+                color={'white'}
+                bg={'pink.400'}
+                _hover={{
+                  bg: 'pink.300',
+                }}>
+                Cerrar sesión
+              </Button>
+            </>
             : <Button
               as={ReachLink}
               to='/login'
               fontSize={'sm'}
               fontWeight={400}
               variant={'link'}
-              >
+            >
               Ingresar
             </Button>}
         </Stack>
@@ -114,7 +129,7 @@ export default function WithSubnavigation() {
   );
 }
 
-const DesktopNav = () => {
+const DesktopNav = ({ isLoggedIn }) => {
   const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('gray.800', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
@@ -276,11 +291,20 @@ const NAV_ITEMS: Array<NavItem> = [
     href: '/nosotros',
   },
   {
+    label: 'Actividades',
+    href: '/actividades',
+  },
+  {
+    label: 'Novedades',
+    href: '/novedades',
+  },
+  {
     label: 'Contacto',
-    href: '/contact',
+    href: '/contacto',
   },
   {
     label: 'Campañas',
+    href: '/',
     children: [
       {
         label: 'Escuela',
@@ -293,5 +317,5 @@ const NAV_ITEMS: Array<NavItem> = [
         href: '/toys-campaign',
       },
     ],
-  }
+  },
 ];

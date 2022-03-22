@@ -16,6 +16,7 @@ const Card = ({ data }) => {
       <Box
         maxW={/* '445px' */'310px'}
         maxH={'500px'}
+        minW={'225px'}
         w={'100%'}
         bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'2xl'}
@@ -56,7 +57,7 @@ const Card = ({ data }) => {
             {
                 data.description
                   ? <RenderHtml htmlText={data.description}/>
-                  : 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
+                  : data.content ? data.content : 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
             }
           </Text>
         </Stack>

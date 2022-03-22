@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar/Sidebar';
 import BackOfficeActivities from '../Components/Activities/backoffice';
 import TableCategorie from '../Components/Categories/TableCategorie';
@@ -16,6 +16,12 @@ import PageNotFound from '../Components/PageNotFound';
 import { Container, Stack } from '@chakra-ui/react';
 
 const DashboardPrivate = () => {
+  const history = useHistory();
+
+  useEffect(() => {
+    sessionStorage.getItem('login-role') !== '1' && history.push('/login');
+  }, []);
+
   return (
   // Este es el layour del backend arreglar responsive con display flex y columna cuando es mobile
     <Container maxW='100%' p={0}>

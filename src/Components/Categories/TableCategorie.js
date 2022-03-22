@@ -32,7 +32,7 @@ const TableCategorie = () => {
 
           <Stack>
             <Button variant="outline" colorScheme="teal" size="xs">
-              <Link to="/backoffice/Categorías/create">Crear Categorias</Link>
+              <Link to="/backoffice/Categorías/create">Crear Categorías</Link>
             </Button>
           </Stack>
         </Stack>
@@ -40,8 +40,8 @@ const TableCategorie = () => {
           <TableCaption>Screen Listado de Categorías (backoffice)</TableCaption>
           <Thead>
             <Tr>
-              <Th>Name</Th>
-              <Th>Create4</Th>
+              <Th>Nombre</Th>
+              <Th>Crear</Th>
               <Th isNumeric>Id</Th>
               <Th>Acciones</Th>
             </Tr>

@@ -1,13 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { getNews } from '../../Services/newsService';
 
 export const getAllNews = createAsyncThunk(
   'news/getAllNews',
-  async () => {
-    const response = await axios.get(
-      'https://ongapi.alkemy.org/api/news'
-    );
-    return response.data;
+  async (id) => {
+    try {
+      return await getNews(id);
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
   }
 );
 

@@ -75,7 +75,7 @@ const Footer = () => {
               Accede a nuestro sitio web
               <Link as={RouterLink} to='/' target='_blank'>
                 <Link target="_blank" color="blue.500" ms="1">
-                  aqui
+                  aquí
                 </Link>
               </Link>
             </Flex>
@@ -103,7 +103,7 @@ const Footer = () => {
           )}
         </Flex>
         <Flex p="3" justifyContent="center" alignItems="center">
-          <Text>© 2022 Somos Más | All Rights Reserved</Text>
+          <Text textAlign='center'>© 2022 Somos Más | Todos los derechos reservados. </Text>
         </Flex>
       </Flex>
     </>

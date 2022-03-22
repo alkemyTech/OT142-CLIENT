@@ -6,8 +6,7 @@ import {
   Text,
   Flex,
   Center,
-  Button,
-  Heading
+  Button
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import CarouselSlides from '../Slides/HomeSlide';
@@ -17,18 +16,23 @@ import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllNews } from '../../app/features/newsSlice';
 import NewsList from '../News/NewsList';
+import TestimonialSeccion from '../Testimonials';
 
 const Home = () => {
   const [loading, setLoading] = useState();
   // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState();
   const [organizationData, setOrganizationdata] = useState();
-  const [newsData, setNewsData] = useState();
+  const [newsData, setNewsData] = useState([]);
   const [testimonialsData, setTestimonialsData] = useState();
-  console.log(newsData);
 
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
+
+  useEffect(() => {
+    const dataNews = news.news;
+    setNewsData(dataNews);
+  }, [news]);
 
   const getDataOrganization = useCallback(async () => {
     try {
@@ -41,15 +45,16 @@ const Home = () => {
       showAlertErr({ text: 'Upssss...!! sucedió un error' });
     }
   }, []);
-  const getDataNews = useCallback(async () => {
-    try {
-      const { data } = await get('/news');
-      setNewsData(data.data);
-    } catch (e) {
-      console.log(e);
-      showAlertErr({ text: 'Upssss...!! sucedió un error' });
-    }
-  }, []);
+  // const getDataNews = useCallback(async () => {
+  //   try {
+  //     const { data } = await get('/news');
+  //     console.log('dataGetDataNews', data);
+  //     setNewsData(data.data);
+  //   } catch (e) {
+  //     console.log(e);
+  //     showAlertErr({ text: 'Upssss...!! sucedió un error' });
+  //   }
+  // }, []);
   const getDataTestimonials = useCallback(async () => {
     try {
       const { data } = await get(process.env.REACT_APP_TESTIMONIALS);
@@ -62,22 +67,23 @@ const Home = () => {
 
   useEffect(() => {
     getDataOrganization();
-    getDataNews();
+    dispatch(getAllNews());
+    // getDataNews();
     getDataTestimonials();
   }, []);
 
-  useEffect(async () => {
-    try {
-      // setLoading(true);
-      await dispatch(getAllNews());
-
-      setNewsData(news.news);
-    } catch (error) {
-      console.log(error);
-      // setError(true);
-    }
-    setLoading(false);
-  }, [dispatch]);
+  // useEffect(async () => {
+  //   try {
+  //     // setLoading(true);
+  //     await dispatch(getAllNews());
+  //     console.log('newsGetAllNews', news);
+  //     setNewsData(news.news);
+  //   } catch (error) {
+  //     console.log(error);
+  //     // setError(true);
+  //   }
+  //   setLoading(false);
+  // }, [dispatch]);
 
   return (
     <>
@@ -111,7 +117,7 @@ const Home = () => {
 
               <Flex justify={'space-around'}>
                 {news.news?.length > 0
-                  ? <NewsList newsList={news.news.slice(0, 4) || []} loading={news.newsLoading} error={news.newsError}/>
+                  ? <NewsList newsList={newsData.slice(0, 4) || []} loading={news.newsLoading} error={news.newsError}/>
                   : <Text>No hay datos que mostrar</Text>}
               </Flex>
 
@@ -140,28 +146,39 @@ const Home = () => {
               <Text align={'center'} fontSize="3xl">
                 Testimonios
               </Text>
-              <Flex justify={'space-around'} flexDir='row' ml={5} mr={5} wrap='wrap'>
+              <Flex>
                 {testimonialsData?.length > 0
-                  ? testimonialsData.slice(0, 6).map((testimonial) => {
+                  ? testimonialsData.slice(0, 6).map(({ id, image, name, description }) => {
                     return (
-                      <>
-                      <Flex flexDir='column' alignItems='center' m={2} p={3} boxShadow='0px 0px 10px 0px rgba(0,0,0,0.4)' borderRadius='5' maxW='220px'>
-                          <Image
-                            borderRadius="full"
-                            boxSize="100px"
-                            key={testimonial.id}
-                            objectFit="cover"
-                            src={testimonial.image}
-                            alt={testimonial.name}
-                          />
-                          <Heading fontWeight='bold' fontSize={15} mb={5}>{testimonial.name}</Heading>
-                          <Text textAlign='justify'>{`"${testimonial.description}"`}</Text>
-                      </Flex>
-                      </>
+                      <TestimonialSeccion
+                        key={id}
+                        src={image}
+                        name={name}
+                        description={description}
+                        />
                     );
                   })
                   : <Text>No hay datos que mostrar</Text>}
               </Flex>
+              <Link to="/testimonials">
+                    <Center>
+                      <Button
+                        display={{ base: 'none', md: 'inline-flex' }}
+                        fontSize={'sm'}
+                        fontWeight={600}
+                        color={'blue.300'}
+                        bg={'white'}
+                        variant="outline"
+                        borderColor="blue.300"
+                        _hover={{
+                          bg: 'blue.300',
+                          color: 'white'
+                        }}
+                  >
+                    Ver todos
+                  </Button>
+                </Center>
+              </Link>
             </GridItem>
 
           </Grid>

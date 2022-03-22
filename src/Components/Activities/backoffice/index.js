@@ -34,7 +34,7 @@ const BackOfficeActivities = () => {
         <Container maxW='100%'>
 
             <Box mb={5}>
-                <Text fontSize='6xl'>Backoffice de actividades</Text>
+                <Text fontSize='6xl'>Backoffice de Actividades</Text>
                 <Link to="/backoffice/activities/create">
                     <Button colorScheme='green'>
                         Crear nueva actividad
@@ -45,10 +45,10 @@ const BackOfficeActivities = () => {
             <Table variant='simple'>
                 <Thead>
                     <Tr>
-                        <Th>name</Th>
-                        <Th>image</Th>
-                        <Th>createdAt</Th>
-                        <Th>Actions</Th>
+                        <Th>Nombre</Th>
+                        <Th>Imagen</Th>
+                        <Th>Fecha de Creación</Th>
+                        <Th>Acción</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
