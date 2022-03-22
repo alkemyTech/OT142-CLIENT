@@ -22,7 +22,7 @@ export const messageErrors = {
   },
   logo: {
     messageRequired: 'Por favor cargue un logo o imagen',
-    formatInvalid: 'solo se permiten formatos .png y .jpg'
+    formatInvalid: 'Solo se permiten formatos .png y .jpg'
   },
   shortDescription: {
     messageRequired: 'Por favor ingrese una descripción corta',
@@ -34,21 +34,21 @@ export const messageErrors = {
   },
   socialLinks: {
     minCharacters: 'Debe contener al menos 6 caracteres',
-    formatInvalid: 'Por favor ingrese una URL valida'
+    formatInvalid: 'Por favor ingrese una URL válida'
   },
   phone: {
     messageRequired: 'Por favor ingrese un teléfono',
     minCharacters: 'Debe contener al menos 8 caracteres',
-    typeError: 'Este campo solo acepta numeros'
+    typeError: 'Este campo solo acepta números'
   },
   message: {
     messageRequired: 'Por favor ingrese un mensaje'
   },
   category: {
-    messageRequired: 'Por favor ingrese una categoria'
+    messageRequired: 'Por favor ingrese una categoría'
   },
   title: {
-    messageRequired: 'Por favor ingrese un titulo',
+    messageRequired: 'Por favor ingrese un título',
     minCharacters: 'Debe contener al menos 4 caracteres'
   }
 };

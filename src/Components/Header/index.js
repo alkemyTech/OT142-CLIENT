@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import {
   Box,
   Flex,
@@ -13,7 +14,8 @@ import {
   PopoverContent,
   useColorModeValue,
   useBreakpointValue,
-  useDisclosure
+  useDisclosure,
+  Image
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -22,11 +24,27 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 
+import { Link as ReachLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    sessionStorage.getItem('login-token') && setIsLoggedIn(true);
+    sessionStorage.getItem('login-role') && sessionStorage.getItem('login-role') === "1" && setIsAdmin(true);
+  }, [isLoggedIn])
+
+  const handleCloseSesion = () => {
+    sessionStorage.removeItem('login-token');
+    sessionStorage.removeItem('login-role');
+    setIsLoggedIn(false);
+  }
 
   return (
-    <Box>
+    <Box mb={'20px'}>
       <Flex
         bg={useColorModeValue('gray.300', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
@@ -50,44 +68,57 @@ export default function WithSubnavigation() {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            Somos Más
-          </Text>
+        <Flex maxH='50px' flex={{ base: 1 }} alignItems='center' justify={{ base: 'center', md: 'start' }}>
+          <Link as={ReachLink} to='/'>
+            <Image boxSize='120px' src='/images/LOGO-SOMOS-MAS.png' />
+          </Link>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-            <DesktopNav />
+            <DesktopNav isLoggedIn={isLoggedIn} />
           </Flex>
         </Flex>
 
         <Stack
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
-          direction={'row'}
-          spacing={6}>
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}>
-            Ingresar
-          </Button>
-          <Button
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            href={'#'}
-            _hover={{
-              bg: 'pink.300',
-            }}>
-            Cerrar Sesión
-          </Button>
+          direction={{ base: 'column', md: 'row' }}
+          spacing={1}>
+          {isLoggedIn ?
+            <>
+              {isAdmin &&
+                <Button
+                  as={ReachLink}
+                  to='/backoffice'
+                  bg='none'
+                  fontSize='sm'
+                  _hover={{ bg: 'none' }}
+                >
+                  Backoffice
+                </Button>
+              }
+              <Button
+                onClick={handleCloseSesion}
+                as={ReachLink}
+                to='/login'
+                fontSize={'xs'}
+                fontWeight={600}
+                color={'white'}
+                bg={'pink.400'}
+                _hover={{
+                  bg: 'pink.300',
+                }}>
+                Cerrar sesión
+              </Button>
+            </>
+            : <Button
+              as={ReachLink}
+              to='/login'
+              fontSize={'sm'}
+              fontWeight={400}
+              variant={'link'}
+            >
+              Ingresar
+            </Button>}
         </Stack>
       </Flex>
 
@@ -98,7 +129,7 @@ export default function WithSubnavigation() {
   );
 }
 
-const DesktopNav = () => {
+const DesktopNav = ({ isLoggedIn }) => {
   const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('gray.800', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
@@ -110,8 +141,9 @@ const DesktopNav = () => {
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
               <Link
+                as={ReachLink}
                 p={2}
-                href={navItem.href ?? '#'}
+                to={navItem.href}
                 fontSize={'sm'}
                 fontWeight={500}
                 color={linkColor}
@@ -199,8 +231,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? '#'}
+        as={ReachLink}
+        to={href}
         justify={'space-between'}
         align={'center'}
         _hover={{
@@ -276,5 +308,5 @@ const NAV_ITEMS: Array<NavItem> = [
         href: '/toys-campaign',
       },
     ],
-  }
+  },
 ];

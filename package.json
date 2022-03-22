@@ -10,6 +10,7 @@
     "@ckeditor/ckeditor5-react": "^4.0.0",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@googlemaps/react-wrapper": "^1.1.27",
     "@reduxjs/toolkit": "^1.8.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
@@ -33,6 +34,7 @@
     "screenfull": "^6.0.1",
     "sweetalert2": "^11.4.0",
     "sweetalert2-react": "^0.8.3",
+    "use-deep-compare-effect": "^1.8.1",
     "yup": "^0.32.11"
   },
   "scripts": {

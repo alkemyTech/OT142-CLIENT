@@ -7,7 +7,7 @@ import {
 const SocialMediaWidgets = () => {
   return (
         <Box m='4'>
-            <Heading as='h2' size='md'>Redes sociales</Heading>
+            <Heading as='h2' size='md' textAlign='center'>Redes sociales</Heading>
             <Flex justifyContent='end' alignItems='end' flexDirection='column' me='4'>
                 <LinkedinFollowCompany
                     companyId={3144678}

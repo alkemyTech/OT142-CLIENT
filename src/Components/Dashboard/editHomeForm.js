@@ -42,7 +42,7 @@ const EditHomeForm = () => {
             {({ errors }) => (
                 <Form className="formulario">
                     <div>
-                        <label htmlFor="welcomeText">Texto de bienvenida</label>
+                        <label htmlFor="welcomeText">Texto de Bienvenida</label>
                         <Field
                             type="text"
                             id="welcomeText"
@@ -100,7 +100,7 @@ const EditHomeForm = () => {
                             />
                     </div>
                     <button type="submit">Editar</button>
-                    {sendedForm && <p>Formulario de edicion enviado con exito!</p>}
+                    {sendedForm && <p>Formulario de edición enviado con éxito!</p>}
                 </Form>
             )}
 
