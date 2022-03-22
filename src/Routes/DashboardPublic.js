@@ -20,6 +20,7 @@ import LoginForm from '../Components/Auth/LoginForm';
 // import Layout from '../Components/Layout';
 // import { AnimatedSwitch, spring } from 'react-router-transition';
 import PageNotFound from '../Components/PageNotFound';
+import TestimonialList from '../Components/Testimonials/TestimonialsList';
 
 /* <AnimatedSwitch
     atEnter={{ opacity: 0, translateX: -100 }}
@@ -59,6 +60,7 @@ const DashboardPublic = () => {
                     <Route exact path="/Novedades/" component={News} />
                     <Route exact path="/Novedades/:id" component={NewsDetail} />
                     <Route exact path="/create-testimonials" component={TestimonialForm} />
+                    <Route exact path="/testimonials" component={TestimonialList} />
                     <Route exact path="/create-news" component={NewsForm} />
                     <Route exact path="/create-user" component={UserForm} />
                     <Route exact path="/create-project" component={ProjectsForm} />
