@@ -3,7 +3,7 @@ import swal from 'sweetalert2';
 export const showAlertOkey = (props = {}) => {
   swal.fire({
     icon: 'success',
-    title: props.title ? props.title : 'Tarea realizada con exito',
+    title: props.title ? props.title : 'Tarea realizada con éxito',
     text: props.text ? props.text : 'Felicitaciones',
     showConfirmButton: true,
     confirmButtonColor: '#EF3D3D',
@@ -11,7 +11,7 @@ export const showAlertOkey = (props = {}) => {
     cancelButtonText: 'Cancelar',
     cancelButtonAriaLabel: 'Cancelar',
     showCloseButton: true,
-    closeButtonAriaLabel: 'cerrar alerta',
+    closeButtonAriaLabel: 'Cerrar alerta',
     footer: props.footer ? props.footer : 'Pasas a la siguiente tarea!',
     timer: props.timer ? props.timer : 5000,
     timerProgressBar: true,
@@ -32,7 +32,7 @@ export const showAlertInfo = (props = {}) => {
     allowEscapeKey: false,
     allowEnterKey: false,
     stopKeydownPropagation: false,
-    footer: props.footer ? props.footer : 'importante!!'
+    footer: props.footer ? props.footer : 'Importante!!'
   });
 };
 
@@ -40,7 +40,7 @@ export const showAlertErr = (props = {}) => {
   swal.fire({
     icon: 'error',
     title: 'Error',
-    text: props.text ? props.text : 'Upssss...!! no has completado la tarea',
+    text: props.text ? props.text : 'Upssss...!! No has completado la tarea',
     showConfirmButton: true,
     timer: 3000
     // footer: props.footer ? props.footer : 'Comience de nuevo!!'

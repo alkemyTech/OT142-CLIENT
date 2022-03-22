@@ -33,12 +33,12 @@ const MembersList = () => {
   return (
     <>
       <Table variant="simple" size="md" colorScheme="telegram">
-        <TableCaption placement="top">Listado de miembros</TableCaption>
+        <TableCaption placement="top">Listado de Miembros</TableCaption>
         <Thead style={{ backgroundColor: "#EDF2F7" }}>
           <Tr>
             <Th>Nombre</Th>
             <Th>Imagen</Th>
-            <Th>Descripcion</Th>
+            <Th>Descripción</Th>
             <Th>Facebook</Th>
             <Th>Linkedin</Th>
           </Tr>

@@ -70,7 +70,7 @@ const LoginForm = () => {
             {isSubmitting
               ? <Spinner isLoading={isSubmitting} size='40px' color='blue'/>
               : <Button onClick={handleSubmit} background='gray.300' mt='4' type='submit'>Ingresar</Button>}
-            <Text fontSize='sm' mt='3'>¿No tienes una cuenta?<Link color='blue.400' as={ReachLink} to='/registro'> Registrate</Link></Text>
+            <Text fontSize='sm' mt='3'>¿No tienes una cuenta?<Link color='blue.400' as={ReachLink} to='/registro'> Regístrate</Link></Text>
           </Flex>
         </Flex>
       )}

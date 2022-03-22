@@ -292,7 +292,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Contacto',
-    href: '/contact',
+    href: '/contacto',
   },
   {
     label: 'Campañas',
