@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Box, SimpleGrid, GridItem } from '@chakra-ui/react';
+// import React, { useEffect, useState } from 'react';
+import { Box, SimpleGrid, GridItem, Text } from '@chakra-ui/react';
 /* import { getNews } from "../../Services/newsService"; */
 import Card from '../Card';
 import '../CardListStyles.css';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
 /* import { getNews } from "../../Services/newsService"; */
 import Spinner from '../Spinner/index';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllNews } from '../../app/features/newsSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getAllNews } from '../../app/features/newsSlice';
 
-const NewsList = () => {
-  const [newsList, setNewsList] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+const NewsList = ({ newsList, loading, error }) => {
+  // const [newsList, setNewsList] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(false);
 
   /*   useEffect(async () => {
       try {
@@ -26,26 +26,26 @@ const NewsList = () => {
       setLoading(false);
     }, []); */
 
-  const dispatch = useDispatch();
-  const { news } = useSelector(state => state);
+  // const dispatch = useDispatch();
+  // const { news } = useSelector(state => state);
 
-  useEffect(async () => {
-    try {
-      setLoading(true);
-      await dispatch(getAllNews());
-    } catch (error) {
-      console.log(error);
-      setError(true);
-    }
-    setLoading(false);
-  }, [dispatch]);
+  // useEffect(async () => {
+  //   try {
+  //     setLoading(true);
+  //     await dispatch(getAllNews());
+  //   } catch (error) {
+  //     console.log(error);
+  //     setError(true);
+  //   }
+  //   setLoading(false);
+  // }, [dispatch]);
 
-  useEffect(() => {
-    setNewsList(news.news);
-  }, [news]);
+  // useEffect(() => {
+  //   setNewsList(news.news);
+  // }, [news]);
 
   return (
-    <Box bg='#DB5752' p={4} >
+    <Box bg='#F8F9FA' p={4} width="100%">
       {loading &&
         <Spinner isLoading color="blue" size={40} />
       }
@@ -53,21 +53,24 @@ const NewsList = () => {
       {error &&
         showAlertErr()
       }
-      <SimpleGrid columns={[2, 4, 5]} spacing='30px' m='50px'>
+      <SimpleGrid columns={[1, 2, 3, 4]} spacing='30px' m='10px'>
         {
           newsList.length > 0
             ? newsList.map((news) => (
               <GridItem
                 w='100%'
-                bg='#9AC9FB'
+                // bg='#9AC9FB'
                 key={news.id}
-                maxHeight='250px'
+                // maxHeight='400px'
                 textAlign='center'>
                 <Card data={news} />
                 {/* {news.name}                                                            */}
               </GridItem>
             ))
-            : <p>No hay novedades</p>
+            // : <p>No hay novedades</p>
+            : <Box>
+                <Text>No hay novedades</Text>
+            </Box>
         }
       </SimpleGrid>
     </Box>

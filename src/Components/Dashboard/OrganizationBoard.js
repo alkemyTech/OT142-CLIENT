@@ -33,7 +33,7 @@ const OrganizationBoard = ({ data }) => {
 
         <Stat>
           <StatLabel fontSize="xl">Logo actual:</StatLabel>
-          <Box boxSize="300px" >
+          <Box boxSize="200px" >
             <Image
               objectFit="cover"
               src={process.env.PUBLIC_URL + '/images/LOGO-SOMOS-MAS.png'}

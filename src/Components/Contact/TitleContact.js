@@ -5,9 +5,9 @@ export default function TitleContact () {
   return (
     <>
       <Box style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'stretch'
+        flexGrow: '1',
+        width: '100%',
+        marginBottom: '10px'
       }}>
          <Heading isTruncated as='h1' size='xl'>Contacto</Heading>
       </Box>

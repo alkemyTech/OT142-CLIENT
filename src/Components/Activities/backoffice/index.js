@@ -31,7 +31,7 @@ const BackOfficeActivities = () => {
   }, [activitiesReducer]);
 
   return (
-        <Container maxW='90%'>
+        <Container maxW='100%'>
 
             <Box mb={5}>
                 <Text fontSize='6xl'>Backoffice de actividades</Text>

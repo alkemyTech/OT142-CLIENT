@@ -8,21 +8,23 @@ import {
   useColorModeValue,
   Image
 } from '@chakra-ui/react';
+import RenderHtml from '../RenderHtml';
 
 const Card = ({ data }) => {
   return (
-    <Center py={6}>
+    <Center py={6} maxW='100%'>
       <Box
         maxW={/* '445px' */'310px'}
         maxH={'500px'}
-        w={'full'}
+        minW={'225px'}
+        w={'100%'}
         bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'2xl'}
         rounded={'md'}
         p={6}
         overflow={'hidden'}>
         <Box
-          h={'210px'}
+          h={'200px'}
           bg={'gray.100'}
           mt={-6}
           mx={-6}
@@ -31,6 +33,8 @@ const Card = ({ data }) => {
           overflow={'hidden'}>
 
           <Image
+            boxSize='100%'
+            objectFit='cover'
             src={data.image
               ? data.image
               : process.env.PUBLIC_URL + '/images/placeholder/270x180.png'
@@ -39,18 +43,6 @@ const Card = ({ data }) => {
           />
         </Box>
         <Stack>
-          <Text
-            color={'green.500'}
-            textTransform={'uppercase'}
-            fontWeight={800}
-            fontSize={'sm'}
-            letterSpacing={1.1}>
-            {
-                data.section
-                  ? data.section
-                  : 'Blog'
-            }
-          </Text>
           <Heading
             color={useColorModeValue('gray.700', 'white')}
             fontSize={'2xl'}
@@ -63,9 +55,9 @@ const Card = ({ data }) => {
           </Heading>
           <Text color={'gray.500'}>
             {
-                data.content
-                  ? data.content
-                  : 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
+                data.description
+                  ? <RenderHtml htmlText={data.description}/>
+                  : data.content ? data.content : 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.'
             }
           </Text>
         </Stack>
