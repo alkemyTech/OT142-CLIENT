@@ -23,12 +23,16 @@ const Home = () => {
   // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState();
   const [organizationData, setOrganizationdata] = useState();
-  const [newsData, setNewsData] = useState();
+  const [newsData, setNewsData] = useState([]);
   const [testimonialsData, setTestimonialsData] = useState();
-  console.log(newsData);
 
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
+
+  useEffect(() => {
+    const dataNews = news.news;
+    setNewsData(dataNews);
+  }, [news]);
 
   const getDataOrganization = useCallback(async () => {
     try {
@@ -40,15 +44,16 @@ const Home = () => {
       showAlertErr({ text: 'Upssss...!! sucedió un error' });
     }
   }, []);
-  const getDataNews = useCallback(async () => {
-    try {
-      const { data } = await get('/news');
-      setNewsData(data.data);
-    } catch (e) {
-      console.log(e);
-      showAlertErr({ text: 'Upssss...!! sucedió un error' });
-    }
-  }, []);
+  // const getDataNews = useCallback(async () => {
+  //   try {
+  //     const { data } = await get('/news');
+  //     console.log('dataGetDataNews', data);
+  //     setNewsData(data.data);
+  //   } catch (e) {
+  //     console.log(e);
+  //     showAlertErr({ text: 'Upssss...!! sucedió un error' });
+  //   }
+  // }, []);
   const getDataTestimonials = useCallback(async () => {
     try {
       const { data } = await get(process.env.REACT_APP_TESTIMONIALS);
@@ -61,22 +66,23 @@ const Home = () => {
 
   useEffect(() => {
     getDataOrganization();
-    getDataNews();
+    dispatch(getAllNews());
+    // getDataNews();
     getDataTestimonials();
   }, []);
 
-  useEffect(async () => {
-    try {
-      // setLoading(true);
-      await dispatch(getAllNews());
-
-      setNewsData(news.news);
-    } catch (error) {
-      console.log(error);
-      // setError(true);
-    }
-    setLoading(false);
-  }, [dispatch]);
+  // useEffect(async () => {
+  //   try {
+  //     // setLoading(true);
+  //     await dispatch(getAllNews());
+  //     console.log('newsGetAllNews', news);
+  //     setNewsData(news.news);
+  //   } catch (error) {
+  //     console.log(error);
+  //     // setError(true);
+  //   }
+  //   setLoading(false);
+  // }, [dispatch]);
 
   return (
     <>
@@ -110,7 +116,7 @@ const Home = () => {
 
               <Flex justify={'space-around'}>
                 {news.news?.length > 0
-                  ? <NewsList newsList={news.news.slice(0, 4) || []} loading={news.newsLoading} error={news.newsError}/>
+                  ? <NewsList newsList={newsData.slice(0, 4) || []} loading={news.newsLoading} error={news.newsError}/>
                   : <Text>No hay datos que mostrar</Text>}
               </Flex>
 
