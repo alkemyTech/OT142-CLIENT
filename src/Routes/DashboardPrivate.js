@@ -10,7 +10,7 @@ import OrganizationBoard from '../Components/Dashboard/OrganizationBoard';
 import UserList from '../Components/Dashboard/UsersList';
 import MembersForm from '../Components/Members/MembersForm';
 import NewsForm from '../Components/News/NewsForm';
-import { News } from '../Components/News';
+import BackofficeNews from '../Components/News/Backoffice';
 import SlidesForm from '../Components/Slides/SlidesForm';
 import PageNotFound from '../Components/PageNotFound';
 import { Container, Stack } from '@chakra-ui/react';
@@ -19,9 +19,9 @@ import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
 const DashboardPrivate = () => {
   const history = useHistory();
 
-  useEffect(() => {
-    sessionStorage.getItem('login-role') !== '1' && history.push('/login');
-  }, []);
+  // useEffect(() => {
+  //   sessionStorage.getItem('login-role') !== '1' && history.push('/login');
+  // }, []);
 
   return (
   // Este es el layour del backend arreglar responsive con display flex y columna cuando es mobile
@@ -34,7 +34,7 @@ const DashboardPrivate = () => {
             <Route exact path="/backoffice/organization" component={OrganizationBoard} />
             <Route exact path="/backoffice/organization/edit" component={EditForm} />
             <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
-            <Route exact path="/backoffice/news" component={News} />
+            <Route exact path="/backoffice/news" component={BackofficeNews} />
             <Route exact path="/backoffice/news/create" component={NewsForm} />
             <Route exact path="/backoffice/news/:id" component={NewsForm} />
             <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
