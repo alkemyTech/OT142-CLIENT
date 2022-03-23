@@ -309,11 +309,20 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/nosotros",
   },
   {
+    label: 'Actividades',
+    href: '/actividades',
+  },
+  {
+    label: 'Novedades',
+    href: '/novedades',
+  },
+  {
     label: 'Contacto',
     href: '/contacto',
   },
   {
-    label: "Campañas",
+    label: 'Campañas',
+    href: '/',
     children: [
       {
         label: "Escuela",
