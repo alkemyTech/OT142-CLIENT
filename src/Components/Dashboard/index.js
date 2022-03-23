@@ -10,7 +10,7 @@ import { cardsInfo } from './cardsInfo';
 const Dashboard = () => {
   return (
         <Box bg={'gray.100'} width={'100%'} maxW={'100%'} >
-          <Text fontSize='4xl' fontWeight={800}color='gray.600' align={'center'} mt={[10, null, 20, '150px']}>Bienvenido Administrador</Text>
+          <Text fontSize='4xl' fontWeight={800}color='gray.600' align={'center'} mt={[10, null, 20, '100px', '150px']}>Bienvenido Administrador</Text>
             <SimpleGrid columns={[1, 2, 2, 3, 4]} spacing='20px' m={10}>
                 {
                     cardsInfo.map((info, i) => {

@@ -20,7 +20,7 @@ import { LogoOng } from '../LogoOng/LogoOng';
 import { Link } from 'react-router-dom';
 
 const LinkItems = [
-  { name: 'Startup', route: '/backoffice', icon: ImBriefcase },
+  { name: 'Menú', route: '/backoffice', icon: ImBriefcase },
   { name: 'Novedades', route: '/backoffice/news', icon: BiNews },
   { name: 'Actividades', route: '/backoffice/activities', icon: FiActivity },
   { name: 'Categorías', route: '/backoffice/categories', icon: BiCategory },

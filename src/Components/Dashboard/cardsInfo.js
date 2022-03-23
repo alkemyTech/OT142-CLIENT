@@ -28,7 +28,7 @@ export const cardsInfo = [
   {
     Icon: chat,
     title: 'Testimonios',
-    link: '/backoffice/testimonials'
+    link: '/create-testimonials'
   },
   {
     Icon: org,
