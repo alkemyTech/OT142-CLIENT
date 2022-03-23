@@ -1,9 +1,10 @@
-import { Button, Image, Box, Container, Text, Heading, Spinner, Grid } from '@chakra-ui/react';
-import Title from '../Titles';
-import { useHistory } from 'react-router-dom';
+import { Text, Spinner, SimpleGrid, Box, GridItem } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities } from '../../app/features/activitiesSlice';
+import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
+import Card from '../Card';
+
 const ActivitiesList = () => {
   const [data, setData] = useState([]);
 
@@ -18,36 +19,30 @@ const ActivitiesList = () => {
     setData(activitiesReducer.activities);
   }, [activitiesReducer]);
 
-  const history = useHistory();
-
-  const handleActivity = (id) => {
-    history.push(`/actividades/${id}`);
-  };
-
   return (
-        <Container maxW='container.lg'>
-            <Title>Actividades</Title>
+        <Box bg='#F8F9FA' p={4} width="100%">
+            <Text fontSize='5xl' d='flex' justifyContent='center'>Actividades</Text>
 
-            {activitiesReducer.status !== 'success' && <Spinner size='xl' />}
+            {activitiesReducer.status !== 'success' && <Spinner color="blue" size='xl' />}
+            {activitiesReducer.status === 'failed' && showAlertErr()}
 
-            <Grid templateColumns='repeat(3, 1fr)' gap={6}>
-                {data?.length > 0 &&
-                    data.map((activity) => (
-                        <Box key={activity.id}>
-                            <Heading as='h3'>
-                                {activity.name}
-                            </Heading>
-                            <Text>
-                                {activity.description}
-                            </Text>
-                            <Box>
-                                <Image boxSize='100px' src={activity.image} />
-                            </Box>
-                            <Button variant='solid' size='xs' onClick={() => handleActivity(activity.id)}>Ver Detalle</Button>
-                        </Box>
-                    ))}
-            </Grid>
-        </Container>
+            <SimpleGrid columns={[1, 2, 3, 4]} spacing='30px' m='10px'>
+                {
+                  data.length > 0
+                    ? data.map((activity) => (
+                      <GridItem
+                        key={activity.id}
+                        w='100%'
+                        textAlign='center'>
+                          <Card data={activity} />
+                      </GridItem>
+                    ))
+                    : <Box>
+                        <Text>No hay actividades</Text>
+                      </Box>
+                    }
+            </SimpleGrid>
+        </Box>
   );
 };
 export default ActivitiesList;

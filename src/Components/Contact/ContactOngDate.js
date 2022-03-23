@@ -1,16 +1,17 @@
+import { Stack } from '@chakra-ui/react';
 import React from 'react';
 import ContactDate from './ContactDate';
+import ContactForm from './ContactForm';
 import TitleContact from './TitleContact';
-import MapViews from './ContactMap/MapView';
 
 export default function ContactOngDate () {
   return (
     <>
-      <div>
-        <TitleContact />
-        <ContactDate />
-        <MapViews />
-      </div>
-    </>
+      <TitleContact />
+      <Stack marginBottom={'5px'} direction={['column', 'column', 'row']} w={'100%'} alignItems={'center'} spacing={5}>
+        <ContactForm />
+      </Stack>
+      <ContactDate />
+     </>
   );
 }

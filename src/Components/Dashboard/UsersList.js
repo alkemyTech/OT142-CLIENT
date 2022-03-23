@@ -55,9 +55,9 @@ const UserList = () => {
                 <TableCaption>Gestión de usuarios</TableCaption>
                 <Thead>
                     <Tr>
-                        <Th>Name</Th>
+                        <Th>Nombre</Th>
                         <Th>Email</Th>
-                        <Th>Actions</Th>
+                        <Th>Acciones</Th>
                     </Tr>
                 </Thead>
                 <Tbody>

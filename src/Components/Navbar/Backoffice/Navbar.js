@@ -4,7 +4,6 @@ import {
   Flex,
   Image,
   Stack
-
 } from '@chakra-ui/react';
 import { FaBars } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';

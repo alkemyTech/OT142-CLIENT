@@ -10,10 +10,10 @@ const Content = () => {
   const now = new Date();
   const diff = future - now;
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const mins = Math.floor(diff / (1000 * 60));
-  const h = hours - days * 24;
-  const m = mins - hours * 60;
+  // const hours = Math.floor(diff / (1000 * 60 * 60));
+  // const mins = Math.floor(diff / (1000 * 60));
+  // const h = hours - days * 24;
+  // const m = mins - hours * 60;
 
   return (
     <Box className='fondo'>
@@ -27,7 +27,7 @@ const Content = () => {
 
         <Center>
           <Text align={'center'} color={'gray.800'} maxW={'xl'} padding={'10px'} fontSize={'xl'}>
-            En el Predio Vicente, Localidad, Provincia
+            En el Predio Vicente, Localidad, Provincia.
           </Text>
         </Center>
 
@@ -45,7 +45,7 @@ const Content = () => {
                 boxShadow={'3xl'}
                 rounded={'md'}>
                 <Text fontSize={['xl', '2xl', '3xl', '4xl']} fontWeight={900}>
-                  Te quedan {days}d {h}h {m}m para participar
+                  Quedan {days} días para colaborar.
                 </Text>
               </Box>
             </Center>
@@ -60,9 +60,7 @@ const Content = () => {
 
         <Center>
           <Text color={'gray.500'} maxW={'xl'} padding={'10px'}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil tenetur, quas maiores
-            modi ut quaerat, repudiandae voluptatum doloremque non fuga asperiores blanditiis? Nobis
-            pariatur amet a vel voluptate incidunt. Animi?
+           Somos Más lanza una campaña de recolección de juguetes a celebrarse en el mes de marzo. En esta oportunidad se solicitan: juguetes en buen estado, juegos de mesa, libros de cuentos, ropa de abrigo y calzado.
           </Text>
         </Center>
 

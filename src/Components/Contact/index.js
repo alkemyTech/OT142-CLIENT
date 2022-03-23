@@ -1,17 +1,15 @@
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
-import ContactForm from './ContactForm';
+import { Box, Stack } from '@chakra-ui/react';
+import ContactOngDate from './ContactOngDate';
 
 const Contact = () => {
   return (
     <>
-
-        <Heading p={10}>
-            Formulario de contacto
-        </Heading>
-
-        <ContactForm />
-
+      <Box maxW={'100%'} display={'flex'} justifyContent='center'>
+        <Stack w={'760px'} direction={['column', 'column', 'row']} flexWrap={'wrap'} backgroundColor={'gray.200'} borderRadius={'10px'} p={'20px'}>
+          <ContactOngDate />
+        </Stack>
+      </Box>
     </>
   );
 };

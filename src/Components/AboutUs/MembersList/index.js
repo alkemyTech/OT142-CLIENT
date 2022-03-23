@@ -9,10 +9,11 @@ import {
   Th,
   Td,
   TableCaption,
-} from '@chakra-ui/react';
-import Spinner from '../../Spinner/index';
-import { showAlertErr } from '../../../Services/AlertServicie/AlertServicie';
-import { useDispatch, useSelector } from 'react-redux';
+  Image,
+} from "@chakra-ui/react";
+import Spinner from "../../Spinner/index";
+import { showAlertErr } from "../../../Services/AlertServicie/AlertServicie";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getAllMembers,
   getMembersList,
@@ -22,7 +23,7 @@ const MembersList = () => {
   const members = useSelector(getAllMembers);
 
   const memberStatus = useSelector((state) => state.members.status);
-  
+
   useEffect(() => {
     if (memberStatus === 'idle') {
       dispatch(getMembersList());
@@ -31,13 +32,13 @@ const MembersList = () => {
 
   return (
     <>
-      <Table variant='striped' size='sm' colorScheme='blue'>
-        <TableCaption>Listado de miembros</TableCaption>
-        <Thead>
+      <Table variant="simple" size="md" colorScheme="telegram">
+        <TableCaption placement="top">Listado de Miembros</TableCaption>
+        <Thead style={{ backgroundColor: "#EDF2F7" }}>
           <Tr>
             <Th>Nombre</Th>
             <Th>Imagen</Th>
-            <Th>Descripcion</Th>
+            <Th>Descripción</Th>
             <Th>Facebook</Th>
             <Th>Linkedin</Th>
           </Tr>
@@ -56,7 +57,14 @@ const MembersList = () => {
             members.map((member, i) => (
               <Tr key={i}>
                 <Td>{member.name}</Td>
-                <Td>{member.image}</Td>
+                <Td>
+                  <Image
+                    boxSize="110px"
+                    objectFit="cover"
+                    src={member.image}
+                    alt={member.name}
+                  />
+                </Td>
                 <Td>{member.description}</Td>
                 <Td>{member.facebookUrl}</Td>
                 <Td>{member.linkedinUrl}</Td>

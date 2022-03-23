@@ -55,7 +55,7 @@ const FooterPublic = () => {
                         </Box>
                         <Show above='md'>
                             <Box flex={1} p={4}>
-                                <Stack direction={['row']} justifyContent='space-around' alignItems='flex-end'>
+                                <Stack direction={['row']} justifyContent='space-around' alignItems='baseline'>
                                     <nav className='nav-footer'>
                                         <ul>
                                             <li>
@@ -77,20 +77,14 @@ const FooterPublic = () => {
                                     </nav>
                                     <Show above='2xl'>
                                         <VStack>
-                                            <Heading as='h2' fontSize={{ base: '18px', sm: '1.4em', lg: '1.8em' }}>Campañas</Heading>
+                                            <Heading as='h2' fontSize={{ base: '18px', sm: '1em', lg: '1.2em' }}>Campañas</Heading>
                                             <nav className='nav-footer'>
                                                 <ul>
                                                     <li>
-                                                        <Link>Escuelas</Link>
+                                                        <Link to='/school-campaign'>Escuelas</Link>
                                                     </li>
                                                     <li>
-                                                        <Link>Juguetes</Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link>Actividades</Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link>Testimonios</Link>
+                                                        <Link to='/toys-campaign'>Juguetes</Link>
                                                     </li>
                                                 </ul>
                                             </nav>
