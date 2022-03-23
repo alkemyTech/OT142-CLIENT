@@ -55,40 +55,40 @@ const SlidesForm = ({ state }) => {
       onSubmit={handleSubmit}
     >
       <VStack
-        mx="auto"
+        mx='auto'
         w={{ base: '90%', md: 500 }}
-        h="100vh"
-        justifyContent="center"
+        h='100vh'
+        justifyContent='center'
       >
-        <Box w="100%" p={4} bg="teal" color="white" textAlign="center">
+        <Box w='100%' p={4} bg='teal' color='white' textAlign='center'>
           <Heading>Formulario Edición / Creación de Slides</Heading>
         </Box>
 
         <FormControl isRequired>
-          <FormLabel htmlFor="first-name">Name</FormLabel>
+          <FormLabel htmlFor='first-name'>Name</FormLabel>
           <Input
             minLength={4}
-            variant="filled"
-            type="text"
-            name="name"
+            variant='filled'
+            type='text'
+            name='name'
             value={initialValues.name}
             onChange={handleChange}
-            placeholder="Name"
+            placeholder='Name'
           ></Input>
         </FormControl>
         <FormControl isRequired>
-          <FormLabel htmlFor="first-name">Order</FormLabel>
+          <FormLabel htmlFor='first-name'>Order</FormLabel>
           <Input
-            variant="filled"
-            type="text"
-            name="order"
+            variant='filled'
+            type='text'
+            name='order'
             value={initialValues.order}
             onChange={handleChange}
-            placeholder="order"
+            placeholder='order'
           ></Input>
         </FormControl>
         <FormControl isRequired>
-          <FormLabel htmlFor="first-name">Description</FormLabel>
+          <FormLabel htmlFor='first-name'>Description</FormLabel>
           <CKEditor
             config={{ placeholder: '...Description' }}
             editor={ClassicEditor}
@@ -102,12 +102,12 @@ const SlidesForm = ({ state }) => {
         </FormControl>
 
         <FormControl isRequired>
-          <FormLabel htmlFor="first-name">Image</FormLabel>
+          <FormLabel htmlFor='first-name'>Image</FormLabel>
           <Input
-            accept="image/x-png,image/jpeg"
-            id="image"
-            type="file"
-            variant="flushed"
+            accept='image/x-png,image/jpeg'
+            id='image'
+            type='file'
+            variant='flushed'
             onChange={async (e) => {
               const file = e.currentTarget.files[0];
               const imagen = await toBase64(file);
@@ -118,11 +118,11 @@ const SlidesForm = ({ state }) => {
             }}
             mb={2}
           />
-          <Image id="img-preview"></Image>
+          <Image id='img-preview'></Image>
         </FormControl>
 
         <Stack w={'100%'}>
-          <Button type="submit" size="md" variant="solid" colorScheme="teal">
+          <Button type='submit' size='md' variant='solid' colorScheme='teal'>
             Enviar
           </Button>
         </Stack>

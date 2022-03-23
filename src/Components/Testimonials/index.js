@@ -11,11 +11,11 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-const Testimonial = ({ children } : { children: ReactNode }) => {
+const Testimonial = ({ children }) => {
   return <Box>{children}</Box>;
 };
 
-const TestimonialContent = ({ children }: { children: ReactNode }) => {
+const TestimonialContent = ({ children }/*: { children: ReactNode }*/) => {
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
@@ -39,13 +39,14 @@ const TestimonialContent = ({ children }: { children: ReactNode }) => {
         bottom: '-16px',
         left: '50%',
         transform: 'translateX(-50%)',
-      }}>
+      }}
+      >
       {children}
     </Stack>
   );
 };
 
-const TestimonialHeading = ({ children }: { children: ReactNode }) => {
+const TestimonialHeading = ({ children }) => {
   return (
     <Heading as={'h3'} fontSize={'xl'}>
       {children}
@@ -53,7 +54,7 @@ const TestimonialHeading = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const TestimonialText = ({ children }: { children: ReactNode }) => {
+const TestimonialText = ({ children }) => {
   return (
     <Text
       textAlign={'center'}
@@ -80,8 +81,8 @@ const TestimonialAvatar = ({
 
 export default function TestimonialSeccion({name, src, description}) {
   return (
-    <Box bg={useColorModeValue('gray.100', 'gray.700')}>
-      <Container maxW={'7xl'} py={6} as={Stack} spacing={12}>
+    <Box bg={useColorModeValue('gray.100', 'gray.700')} >
+      <Container maxW={'7xl'} py={6}  spacing={12}>
         <Stack
           direction={{ base: 'column', md: 'row' }}
           spacing={{ base: 10, md: 4, lg: 10 }}>

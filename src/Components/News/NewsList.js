@@ -4,7 +4,7 @@ import { Box, SimpleGrid, GridItem, Text } from '@chakra-ui/react';
 import Card from '../Card';
 import '../CardListStyles.css';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
-/* import { getNews } from "../../Services/newsService"; */
+/* import { getNews } from '../../Services/newsService'; */
 import Spinner from '../Spinner/index';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { getAllNews } from '../../app/features/newsSlice';
@@ -47,13 +47,13 @@ const NewsList = ({ newsList, loading, error }) => {
   return (
     <Box bg='#F8F9FA' p={4} width="100%">
       {loading &&
-        <Spinner isLoading color="blue" size={40} />
+        <Spinner isLoading color='blue' size={40} />
       }
 
       {error &&
         showAlertErr()
       }
-      <SimpleGrid columns={[1, 2, 3, 4]} spacing='30px' m='10px'>
+      <SimpleGrid columns={{ sm: '1', md: '2', lg: '3', xl: '4' }} spacing='30px' alignItems={'center'}>
         {
           newsList.length > 0
             ? newsList.map((news) => (

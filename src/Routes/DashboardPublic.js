@@ -10,7 +10,6 @@ import About from '../Components/About';
 import ActivitiesForm from '../Components/Activities/ActivitiesForm';
 import { News } from '../Components/News';
 import { NewsDetail } from '../Components/News/Detail/NewsDetail';
-import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
 import NewsForm from '../Components/News/NewsForm';
 import UserForm from '../Components/Users/UsersForm';
 import ProjectsForm from '../Components/Projects/ProjectsForm';
@@ -48,7 +47,7 @@ const DashboardPublic = () => {
   return (
     <>
         <WithSubnavigation />
-            <main style={{ width: '100%' }}>
+            <main style={{ width: '100%', minHeight: '500px' }}>
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/actividades" component={Activities} />
@@ -59,7 +58,6 @@ const DashboardPublic = () => {
                     <Route exact path="/create-activity" component={ActivitiesForm} />
                     <Route exact path="/Novedades/" component={News} />
                     <Route exact path="/Novedades/:id" component={NewsDetail} />
-                    <Route exact path="/create-testimonials" component={TestimonialForm} />
                     <Route exact path="/testimonials" component={TestimonialList} />
                     <Route exact path="/create-news" component={NewsForm} />
                     <Route exact path="/create-user" component={UserForm} />

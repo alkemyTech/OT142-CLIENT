@@ -37,7 +37,7 @@ const validationSchema = Yup.object({
     .min(6, 'Debe contener al menos 6 carácteres')
     .matches(
       // eslint-disable-next-line no-useless-escape
-      /^[0-9A-Za-z]*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?][0-9a-zA-Z]*$/,
+      /^[0-9A-Za-z]*[!@#$%^&*()_+\-=\[\]{};':'\\|,.<>\/?][0-9a-zA-Z]*$/,
       'Es necesario un carácter especial o número'
     ),
   passwordRepeat: Yup.string()

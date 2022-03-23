@@ -26,7 +26,7 @@ const NewsListTable = ({ data, handleDeleteNews }) => {
                     </Box>
                     <Spacer />
                     <Box>
-                        <Link to="/backoffice/news/create">
+                        <Link to='/backoffice/news/create'>
                             <Button colorScheme='teal' mr='4'>
                                 Crear Novedad
                             </Button>

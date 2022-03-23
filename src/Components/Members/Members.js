@@ -63,39 +63,39 @@ const Members = (membersData) => {
         >
             {formik => (
                 <VStack
-                    as="form"
-                    mx="auto"
+                    as='form'
+                    mx='auto'
                     w={{ base: '90%', md: 500 }}
-                    h="100vh"
-                    justifyContent="center"
+                    h='100vh'
+                    justifyContent='center'
                     onSubmit={formik.handleSubmit}>
 
                     <Box
-                        w="100%"
+                        w='100%'
                         p={4}
-                        textAlign="center"
+                        textAlign='center'
                     >
                         <Heading className='form__titulo' >Formulario Creación / Edición de Miembros</Heading>
                     </Box>
 
                     <FormControl marginBottom={5} isInvalid={formik.errors.name && formik.touched.name}>
-                        <FormLabel htmlFor="email">Nombre</FormLabel>
+                        <FormLabel htmlFor='email'>Nombre</FormLabel>
                         <Input
-                            type="text"
-                            name="name"
+                            type='text'
+                            name='name'
                             value={formik.values.name}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            placeholder="Ingrese su Nombre"
+                            placeholder='Ingrese su Nombre'
                         />
                         <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
                     </FormControl>
 
                     <FormControl marginBottom={5} isInvalid={formik.errors.image && formik.touched.image}>
-                        <FormLabel htmlFor="image">Imagen</FormLabel>
+                        <FormLabel htmlFor='image'>Imagen</FormLabel>
                         <Input
-                            type="file"
-                            name="image"
+                            type='file'
+                            name='image'
                             onChange={(event, editor) => {
                               const file = event.target.files;
                               formik.setFieldValue('image', file[0]);
@@ -108,12 +108,12 @@ const Members = (membersData) => {
                         formik.errors.description && formik.touched.description
                     }
                     >
-                        <FormLabel htmlFor="description">Descripción</FormLabel>
+                        <FormLabel htmlFor='description'>Descripción</FormLabel>
                         <CKEditor
                             config={{ name: 'description' }}
                             editor={ClassicEditor}
                             data={formik.values.description}
-                            name="description"
+                            name='description'
                             onChange={(event, editor) => {
                               const data = editor.getData();
                               formik.setFieldValue('description', data);
@@ -129,20 +129,20 @@ const Members = (membersData) => {
                     <FormControl marginBottom={5} isInvalid={
                         formik.errors.socialMedia && formik.touched.socialMedia}
                     >
-                        <FormLabel htmlFor="socialMedia">Redes sociales</FormLabel>
+                        <FormLabel htmlFor='socialMedia'>Redes sociales</FormLabel>
                         <Input
-                            type="text"
-                            name="socialMedia"
+                            type='text'
+                            name='socialMedia'
                             value={formik.values.socialMedia}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
-                            placeholder="Ingrese URL"
+                            placeholder='Ingrese URL'
                         />
                         <FormErrorMessage>{formik.errors.socialMedia}</FormErrorMessage>
                     </FormControl>
 
                     <Button
-                        type="submit"
+                        type='submit'
                         colorScheme='blue'
                         isFullWidth
                         marginTop={5}>

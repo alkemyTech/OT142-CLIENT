@@ -57,19 +57,19 @@ const TestimonialForm = (testimonialData) => {
         >
             {formik => (
                 <VStack
-                    as="form"
-                    mx="auto"
+                    as='form'
+                    mx='auto'
                     w={{ base: '90%', md: 500 }}
-                    h="100vh"
-                    justifyContent="center"
+                    h='100vh'
+                    justifyContent='center'
                     onSubmit={formik.handleSubmit}>
 
                         <Box
-                            w="100%"
+                            w='100%'
                             p={4}
-                            bg="tomato"
-                            color="white"
-                            textAlign="center">
+                            bg='tomato'
+                            color='white'
+                            textAlign='center'>
                                <Heading >Formulario Edición / Creación de Testimonios</Heading>
                         </Box>
 
@@ -78,9 +78,9 @@ const TestimonialForm = (testimonialData) => {
                             <Input
                                 onChange={formik.handleChange}
                                 value={formik.values.name}
-                                type="text"
-                                name="name"
-                                placeholder="Título"
+                                type='text'
+                                name='name'
+                                placeholder='Título'
                                 onBlur={formik.handleBlur}/>
                                 <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
                         </FormControl>
@@ -103,9 +103,9 @@ const TestimonialForm = (testimonialData) => {
                         <FormControl isInvalid={formik.errors.image && formik.touched.image}>
                             <FormLabel>Imagen</FormLabel>
                             <Input
-                                id="image"
-                                type="file"
-                                variant="flushed"
+                                id='image'
+                                type='file'
+                                variant='flushed'
                                 onChange={event => {
                                   const files = event.target.files;
                                   const myFiles = Array.from(files);
@@ -116,10 +116,10 @@ const TestimonialForm = (testimonialData) => {
                         </FormControl>
 
                         <Button
-                            type="submit"
+                            type='submit'
                             size='md'
-                            variant="solid"
-                            colorScheme="teal">
+                            variant='solid'
+                            colorScheme='teal'>
                             Enviar
                         </Button>
 

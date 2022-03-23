@@ -15,19 +15,19 @@ import {
 
 const OrganizationBoard = ({ data }) => {
   return (
-    <Container maxW="container.sm">
+    <Container maxW='container.sm'>
       <Stack
 
-        justifyContent="left"
+        justifyContent='left'
         p={2}
         spacing={6}
-        direction="column"
+        direction='column'
       >
-        <Box w="100%" p={4} bg="#9AC9FB" color="white" textAlign="center">
+        <Box w='100%' p={4} bg='#9AC9FB' color='white' textAlign='center'>
           <Heading>Datos de la organización</Heading>
         </Box>
-        <Stat textAlign="left">
-          <StatLabel fontSize="xl">Nombre actual:</StatLabel>
+        <Stat textAlign='left'>
+          <StatLabel fontSize='xl'>Nombre actual:</StatLabel>
           <Text >Somos Más</Text>
         </Stat>
 
@@ -35,15 +35,15 @@ const OrganizationBoard = ({ data }) => {
           <StatLabel fontSize="xl">Logo actual:</StatLabel>
           <Box boxSize="200px" >
             <Image
-              objectFit="cover"
+              objectFit='cover'
               src={process.env.PUBLIC_URL + '/images/LOGO-SOMOS-MAS.png'}
-              alt="logo de la ong"
+              alt='logo de la ong'
             />
           </Box>
         </Stat>
 
         <Stat>
-          <StatLabel fontSize="xl">Descripción actual:</StatLabel>
+          <StatLabel fontSize='xl'>Descripción actual:</StatLabel>
           <Text>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita
             voluptatibus maiores quam iure repellat similique atque impedit
@@ -55,17 +55,17 @@ const OrganizationBoard = ({ data }) => {
           </Text>
         </Stat>
 
-          <Link to="/backoffice/organization/edit">
+          <Link to='/backoffice/organization/edit'>
             <Button
-              mt="8"
+              mt='8'
               leftIcon={<MdBuild />}
-              colorScheme="blue"
-              variant="solid"
-              size="md"
-              height="48px"
-              width="200px"
-              border="2px"
-              type="submit"
+              colorScheme='blue'
+              variant='solid'
+              size='md'
+              height='48px'
+              width='200px'
+              border='2px'
+              type='submit'
             >
               Editar
             </Button>

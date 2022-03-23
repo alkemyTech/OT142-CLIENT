@@ -43,37 +43,37 @@ const ToysSlider = () => {
     <Box position={'relative'} height={'600px'} width={'full'} overflow={'hidden'}>
       {/* CSS files for react-slick */}
       <link
-        rel="stylesheet"
-        type="text/css"
-        charSet="UTF-8"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
+        rel='stylesheet'
+        type='text/css'
+        charSet='UTF-8'
+        href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css'
       />
       <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
+        rel='stylesheet'
+        type='text/css'
+        href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css'
       />
       <IconButton
-        aria-label="left-arrow"
-        variant="ghost"
-        position="absolute"
+        aria-label='left-arrow'
+        variant='ghost'
+        position='absolute'
         left={side}
         top={top}
         transform={'translate(0%, -50%)'}
         zIndex={2}
         onClick={() => slider?.slickPrev()}>
-        <BiLeftArrowAlt size="40px" />
+        <BiLeftArrowAlt size='40px' />
       </IconButton>
       <IconButton
-        aria-label="right-arrow"
-        variant="ghost"
-        position="absolute"
+        aria-label='right-arrow'
+        variant='ghost'
+        position='absolute'
         right={side}
         top={top}
         transform={'translate(0%, -50%)'}
         zIndex={2}
         onClick={() => slider?.slickNext()}>
-        <BiRightArrowAlt size="40px" />
+        <BiRightArrowAlt size='40px' />
       </IconButton>
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
@@ -92,11 +92,11 @@ const ToysSlider = () => {
             {isLargerThan767
               ? (
               <Container
-                size="container.md"
-                height="600px"
+                size='container.md'
+                height='600px'
                 w={{ base: '250px', sm: '400px' }}
                 centerContent
-                position="relative">
+                position='relative'>
                 <Stack
                   spacing={6}
                   w={'full'}

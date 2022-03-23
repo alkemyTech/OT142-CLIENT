@@ -38,8 +38,8 @@ const UserList = () => {
   }, [userStatus, dispatch]);
 
   return (
-        <Flex flexDirection="column" justifyContent="center" alignItems="center" p="2">
-            ¿Deseas crear un nuevo usuario? <Text textColor="blue.400"><Link to="/backoffice/users/create">Crear usuario</Link></Text>
+        <Flex flexDirection='column' justifyContent='center' alignItems='center' p='2'>
+            ¿Deseas crear un nuevo usuario? <Text textColor='blue.400'><Link to='/backoffice/users/create'>Crear usuario</Link></Text>
 
             {userStatus === 'loading' &&
                 <Spinner
@@ -51,7 +51,7 @@ const UserList = () => {
                 />
             }
 
-            <Table variant="simple" size="sm" maxW="500px" mt="4">
+            <Table variant='simple' size='sm' maxW='500px' mt='4'>
                 <TableCaption>Gestión de usuarios</TableCaption>
                 <Thead>
                     <Tr>
@@ -67,9 +67,9 @@ const UserList = () => {
                             <Td>{user.name}</Td>
                             <Td>{user.email}</Td>
                             <Td>
-                                <Flex justifyContent="center" alignItems="center">
-                                    <Button onClick={() => handleEdit(user.id)} colorScheme="blue" size="sm">Editar</Button>
-                                    <Button onClick={() => handleDelete(user.id)} colorScheme="red" size="sm" ms="1">Eliminar</Button>
+                                <Flex justifyContent='center' alignItems='center'>
+                                    <Button onClick={() => handleEdit(user.id)} colorScheme='blue' size='sm'>Editar</Button>
+                                    <Button onClick={() => handleDelete(user.id)} colorScheme='red' size='sm' ms='1'>Eliminar</Button>
                                 </Flex>
                             </Td>
                         </Tr>

@@ -1,4 +1,4 @@
-/*  import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+/* import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login, register } from '../../Services/authService';
 
 export const registerUser = createAsyncThunk(

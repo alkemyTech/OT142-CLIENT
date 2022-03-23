@@ -5,10 +5,10 @@ const Loader = ({ type, size, color, height }) => {
     ? (
     <Center>
       <Spinner
-        mt="1em"
-        thickness="4px"
-        speed="0.65s"
-        emptyColor="gray.200"
+        mt='1em'
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
         color={color || 'blue.500'}
         size={size || 'xl'}
       />

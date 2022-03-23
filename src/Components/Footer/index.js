@@ -50,39 +50,39 @@ const Footer = () => {
   const NewsletterForm = (
     <Center>
       <VStack
-        as="form"
-        h="auto"
-        mx="auto"
+        as='form'
+        h='auto'
+        mx='auto'
         onSubmit={formik.handleSubmit}
-        p="2em"
+        p='2em'
       >
-        <Checkbox isRequired={true} name="acceptSubscribe">
+        <Checkbox isRequired={true} name='acceptSubscribe'>
           Deseo suscribirme al Newsletter para recibir actualizaciones
         </Checkbox>
         <FormControl isInvalid={formik.errors.email && formik.touched.email}>
-          <Box display="flex" width="100%" justifyContent="space-around">
+          <Box display='flex' width='100%' justifyContent='space-around'>
             <InputGroup>
-              <InputLeftAddon children="Email" />
+              <InputLeftAddon children='Email' />
               <Input
-                name="email"
+                name='email'
                 onChange={formik.handleChange}
                 value={formik.values.email}
-                placeholder="foo@gmail.com"
-                p="1em"
-                width="85%"
-                align-self="flex-start"
+                placeholder='foo@gmail.com'
+                p='1em'
+                width='85%'
+                align-self='flex-start'
                 isRequired={false}
               />
             </InputGroup>
-            <Button ml="1em" type="submit" colorScheme="blue" width="25%">
+            <Button ml='1em' type='submit' colorScheme='blue' width='25%'>
               Acepto
             </Button>
           </Box>
-          <Box mt="1em">
+          <Box mt='1em'>
             <SlideFade in={formik.errors.email && formik.touched.email}>
               {formik.errors.email && formik.touched.email
                 ? (
-                <Alert borderRadius="0.5em" status="error" tm="1em">
+                <Alert borderRadius='0.5em' status='error' tm='1em'>
                   <AlertIcon />
                   <AlertTitle>{formik.errors.email}</AlertTitle>
                 </Alert>
@@ -97,7 +97,7 @@ const Footer = () => {
     </Center>
   );
 
-  return isSubscribed ? null : <Box p="2em">{NewsletterForm}</Box>;
+  return isSubscribed ? null : <Box p='2em'>{NewsletterForm}</Box>;
 };
 
 export default Footer;

@@ -10,29 +10,32 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { FiMenu, FiActivity } from 'react-icons/fi';
-import { BiNews } from 'react-icons/bi';
+import { BiNews, BiCategory } from 'react-icons/bi';
 import { FaUserAlt } from 'react-icons/fa';
 import { MdCardMembership, MdCategory } from 'react-icons/md';
+import { RiOrganizationChart } from 'react-icons/ri';
+import { ImBriefcase } from 'react-icons/im';
+import { AiFillHome } from 'react-icons/ai';
 import { LogoOng } from '../LogoOng/LogoOng';
 import { Link } from 'react-router-dom';
 
 const LinkItems = [
-  { name: 'Startup', route: '/backoffice', icon: BiNews },
+  { name: 'Menú', route: '/backoffice', icon: ImBriefcase },
   { name: 'Novedades', route: '/backoffice/news', icon: BiNews },
   { name: 'Actividades', route: '/backoffice/activities', icon: FiActivity },
-  { name: 'Categorías', route: '/backoffice/categories', icon: FaUserAlt },
+  { name: 'Categorías', route: '/backoffice/categories', icon: BiCategory },
   { name: 'Usuarios', route: '/backoffice/users', icon: FaUserAlt },
-  { name: 'Organización', route: '/backoffice/organization', icon: FaUserAlt },
+  { name: 'Organización', route: '/backoffice/organization', icon: RiOrganizationChart },
   { name: 'Crear Miembros', route: '/backoffice/members/create', icon: MdCardMembership },
   { name: 'Crear Slide', route: '/backoffice/slide', icon: MdCategory },
-  { name: 'Inicio', route: '/', icon: MdCategory }
+  { name: 'Inicio', route: '/', icon: AiFillHome }
 ];
 
 export default function Sidebar ({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box minH={['auto', 'auto', '100vh']}>
+    <Box minH={['auto', 'auto', '100vh']} >
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
@@ -40,11 +43,11 @@ export default function Sidebar ({ children }) {
       <Drawer
         autoFocus={false}
         isOpen={isOpen}
-        placement="left"
+        placement='left'
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size="full"
+        size='full'
       >
         <DrawerContent>
           <SidebarContent onClose={onClose} />
@@ -52,7 +55,7 @@ export default function Sidebar ({ children }) {
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} >
         {children}
       </Box>
     </Box>
@@ -62,16 +65,28 @@ export default function Sidebar ({ children }) {
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
+      overflowY='auto' css={{
+        '&::-webkit-scrollbar': {
+          width: '4px'
+        },
+        '&::-webkit-scrollbar-track': {
+          width: '6px'
+        },
+        '&::-webkit-scrollbar-thumb': {
+          background: '#EDF2F7',
+          borderRadius: '24px'
+        }
+      }}
       bg={useColorModeValue('gray.600', 'gray.900')}
-      borderRight="1px"
+      borderRight='1px'
       borderRightColor={useColorModeValue('gray.500', 'gray.700')}
       w={{ base: 'full', md: 60 }}
-      pos="fixed"
-      h="full"
-      color="white"
+      pos='fixed'
+      h='full'
+      color='white'
       {...rest}
     >
-      <Flex alignItems="center" mx="8" justifyContent="space-between">
+      <Flex alignItems="center" mx="8" justifyContent="space-between" mt={10}>
         <LogoOng boxSize="60px" alt="somosMas" />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
@@ -92,12 +107,12 @@ const NavItem = ({ icon, route, children, ...rest }) => {
       _focus={{ boxShadow: 'none' }}
     >
       <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
+        align='center'
+        p='4'
+        mx='4'
+        borderRadius='lg'
+        role='group'
+        cursor='pointer'
         _hover={{
           bg: 'cyan.400',
           color: 'white'
@@ -106,8 +121,8 @@ const NavItem = ({ icon, route, children, ...rest }) => {
       >
         {icon && (
           <Icon
-            mr="4"
-            fontSize="16"
+            mr='4'
+            fontSize='16'
             _groupHover={{
               color: 'white'
             }}
@@ -129,18 +144,18 @@ const MobileNav = ({ onOpen, ...rest }) => {
       justifyContent="space-between"
       alignItems="center"
       bg={useColorModeValue('white', 'gray.900')}
-      borderBottomWidth="1px"
+      borderBottomWidth='1px'
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       {...rest}
       p={5}
     >
       <IconButton
-        variant="outline"
+        variant='outline'
         onClick={onOpen}
-        aria-label="open menu"
+        aria-label='open menu'
         icon={<FiMenu />}
       />
-      <LogoOng borderRadius="full" boxSize="60px" alt="somosMas" />
+      <LogoOng borderRadius='full' boxSize='60px' alt='somosMas' />
     </Flex>
   );
 };
