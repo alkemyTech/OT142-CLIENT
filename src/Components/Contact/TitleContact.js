@@ -9,7 +9,7 @@ export default function TitleContact () {
         width: '100%',
         marginBottom: '10px'
       }}>
-         <Heading isTruncated as='h1' size='xl'>Contacto</Heading>
+         <Heading isTruncated as='h1' size='xl' textAlign='center' >Contacto</Heading>
       </Box>
     </>
   );

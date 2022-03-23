@@ -47,12 +47,12 @@ const TermsAndConditions = ({ handleChange }) => {
         Leer Términos y Condiciones
       </Button>
       
-      <Box>
+     
       <Modal
         onClose={onClose}
         isOpen={isOpen}
         scrollBehavior={acceptDeclineValue}
-        size="xl"
+        size="xl"        
       >
         <ModalOverlay />
         <ModalContent>
@@ -79,7 +79,7 @@ const TermsAndConditions = ({ handleChange }) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      </Box>
+   
     </>
   );
 };
