@@ -37,7 +37,11 @@ const DashboardPrivate = () => {
             <Route exact path="/backoffice/news" component={BackofficeNews} />
             <Route exact path="/backoffice/news/create" component={NewsForm} />
             <Route exact path="/backoffice/news/:id" component={NewsForm} />
+            {/* faltacomponente formulario actividades */}
+            {/* <Route exact path="/backoffice/activities/create" component={activitiesForm} /> */}
             <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
+            {/* falta componente para el editar actividades */}
+            <Route exact path="/backoffice/activities/:id" component={BackOfficeActivities} />
             <Route exact path="/backoffice/users" component={UserList} />
             <Route exact path="/backoffice/members/create" component={MembersForm} />
             <Route exact path="/backoffice/categories" component={TableCategorie} />

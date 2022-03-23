@@ -10,7 +10,7 @@ import {
   Box,
   Button
 } from '@chakra-ui/react';
-import TrTable from './TrTable';
+import TrTable from '../../../utils/TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllNews, deleteNovedad, deleteNews } from '../../../app/features/newsSlice';
@@ -59,6 +59,7 @@ const BackOfficeNews = () => {
                                 image={news.image}
                                 createdAt={news.created_at}
                                 handleDelete={handleDelete}
+                                path={'news/'}
                             />;
                         })
                     }

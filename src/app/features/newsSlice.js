@@ -1,11 +1,23 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
-import { getNews, deleteNews as deleteApiNews } from '../../Services/newsService';
+import { getNews, deleteNews as deleteApiNews, editNews as editApiNews } from '../../Services/newsService';
 
 export const getAllNews = createAsyncThunk(
   'news/getAllNews',
   async (id) => {
     try {
       const response = await getNews(id);
+      return response;
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
+  }
+);
+
+export const editNews = createAsyncThunk(
+  'news/editNews',
+  async (id, payload) => {
+    try {
+      const response = await editApiNews(id, payload);
       return response;
     } catch (error) {
       console.log(error, 'ERROR');

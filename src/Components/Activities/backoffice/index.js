@@ -10,7 +10,7 @@ import {
   Box,
   Button
 } from '@chakra-ui/react';
-import TrTable from './TrTable';
+import TrTable from '../../../utils/TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities } from '../../../app/features/activitiesSlice';
@@ -19,6 +19,10 @@ const BackOfficeActivities = () => {
   const [activities, setActivities] = useState([]);
   const dispatch = useDispatch();
   const { activitiesReducer } = useSelector(state => state);
+
+  const handleDelete = () => {
+    console.log('delete');
+  };
 
   useEffect(() => {
     dispatch(getAllActivities());
@@ -56,9 +60,12 @@ const BackOfficeActivities = () => {
                         activities.map(activitie => {
                           return <TrTable
                                 key={activitie.id}
+                                id={activitie.id}
                                 name={activitie.name}
                                 image={activitie.image}
                                 createdAt={activitie.created_at}
+                                handleDelete={handleDelete}
+                                path={'activities/'}
                             />;
                         })
                     }
