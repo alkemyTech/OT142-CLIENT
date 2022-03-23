@@ -20,7 +20,7 @@ const TrTable = ({ id, name, image, createdAt, handleDelete, path }) => {
             <Td>
                 <Stack spacing={2}>
                     <Link to={`${path}${id}`}>
-                        <Button colorScheme='orange'>
+                        <Button colorScheme='blue'>
                             <AiFillEdit />
                         </Button>
                     </Link>
