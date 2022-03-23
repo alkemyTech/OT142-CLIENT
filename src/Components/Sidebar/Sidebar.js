@@ -55,7 +55,7 @@ export default function Sidebar ({ children }) {
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} >
         {children}
       </Box>
     </Box>
@@ -86,7 +86,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       color="white"
       {...rest}
     >
-      <Flex alignItems="center" mx="8" justifyContent="space-between">
+      <Flex alignItems="center" mx="8" justifyContent="space-between" mt={10}>
         <LogoOng boxSize="60px" alt="somosMas" />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
