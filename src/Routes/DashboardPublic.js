@@ -47,7 +47,7 @@ const DashboardPublic = () => {
   return (
     <>
         <WithSubnavigation />
-            <main style={{ width: '100%' }}>
+            <main style={{ width: '100%', minHeight: '500px' }}>
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/actividades" component={Activities} />

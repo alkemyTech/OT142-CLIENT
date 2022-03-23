@@ -103,18 +103,18 @@ const Home = () => {
               </Flex>
             </GridItem>
 
-            <GridItem mb="6">
+            <GridItem marginBottom={'20px'} >
               <Text align={'center'} fontSize="4xl">
                 {organizationData.welcome_text}
               </Text>
             </GridItem>
 
-            <GridItem>
-              <Text align={'center'} fontSize="3xl">
+            <GridItem marginBottom={'40px'}>
+              <Text align={'center'} fontSize="3xl" marginBottom={'20px'}>
                 Últimas novedades
               </Text>
 
-              <Flex justify={'space-around'}>
+              <Flex justify={'space-around'} marginBottom={'30px'}>
                 {news.news?.length > 0
                   ? <NewsList newsList={newsData.slice(0, 4) || []} loading={news.newsLoading} error={news.newsError}/>
                   : <Text>No hay datos que mostrar</Text>}
@@ -141,11 +141,11 @@ const Home = () => {
               </Link>
             </GridItem>
 
-            <GridItem mt='4'>
-              <Text align={'center'} fontSize="3xl">
+            <GridItem marginBottom={'40px'}>
+              <Text align={'center'} fontSize="3xl" marginBottom={'20px'}>
                 Testimonios
               </Text>
-              <Flex direction={{ base: 'column', sm: 'column', md: 'row' }}>
+              <Flex direction={{ base: 'column', sm: 'column', md: 'row' }} marginBottom={'30px'} alignItems='flex-end' background={'gray.100'}>
                 {testimonialsData?.length > 0
                   ? testimonialsData.slice(0, 4).map(({ id, image, name, description }) => {
                     return (
