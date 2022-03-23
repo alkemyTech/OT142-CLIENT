@@ -36,7 +36,6 @@ const Home = () => {
 
   const getDataOrganization = useCallback(async () => {
     try {
-      // debugger;
       const { data } = await get('/organization');
       setOrganizationdata(data.data);
       setLoading(true);
@@ -146,9 +145,9 @@ const Home = () => {
               <Text align={'center'} fontSize="3xl">
                 Testimonios
               </Text>
-              <Flex>
+              <Flex direction={{ base: 'column', sm: 'column', md: 'row' }}>
                 {testimonialsData?.length > 0
-                  ? testimonialsData.slice(0, 6).map(({ id, image, name, description }) => {
+                  ? testimonialsData.slice(0, 4).map(({ id, image, name, description }) => {
                     return (
                       <TestimonialSeccion
                         key={id}
