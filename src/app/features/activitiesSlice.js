@@ -1,23 +1,49 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
+import { getActivities, deleteActivity as deleteApiActivity } from '../../Services/activitiesService';
+// import axios from 'axios';
 
 export const getAllActivities = createAsyncThunk(
-  'activitiesReducer/getActivities',
-  async () => {
-    const response = await axios.get(
-      'https://ongapi.alkemy.org/api/activities'
-    );
-    return response.data;
+  'activities/getAllActivities',
+  async (id) => {
+    try {
+      const response = await getActivities(id);
+      return response;
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
+  }
+);
+
+export const deleteActivity = createAsyncThunk(
+  'activities/deleteActivity',
+  async (id) => {
+    try {
+      return await deleteApiActivity(id);
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
   }
 );
 
 export const activitiesSlice = createSlice({
-  name: 'activitiesReducer',
+  name: 'activities',
   initialState: {
     activities: [],
     status: null
   },
-  reducers: {},
+  reducers: {
+    reducers: {
+      deleteActivities: (state, action) => {
+        const currentState = current(state);
+        const filteredActivities = currentState.news.filter(item => item.id !== action.payload);
+
+        return {
+          ...currentState,
+          activities: filteredActivities
+        };
+      }
+    }
+  },
   extraReducers: {
     [getAllActivities.pending]: (state) => {
       state.status = 'loading';
@@ -32,5 +58,5 @@ export const activitiesSlice = createSlice({
   }
 });
 
-export const { ALL_ACTIVITIES } = activitiesSlice.actions;
+export const { deleteActivities } = activitiesSlice.actions;
 export default activitiesSlice.reducer;
