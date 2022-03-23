@@ -141,7 +141,7 @@ const Home = () => {
               </Link>
             </GridItem>
 
-            <GridItem>
+            <GridItem mt='4'>
               <Text align={'center'} fontSize="3xl">
                 Testimonios
               </Text>
