@@ -29,7 +29,7 @@ const Content = () => {
       <Container maxW='container.xxl' mt={20} p={2} bg={isNotSmallerScreen ? 'gray.100' : null}>
 
         <Center mb={5}>
-          <Text fontSize='xl' fontWeight='semibold'>Campaña solidaria: DONACIÓN DE ÚTILES ESCOLARES.</Text>
+          <Text fontSize='xl' fontWeight='semibold' textAlign='center'>Campaña solidaria: DONACIÓN DE ÚTILES ESCOLARES.</Text>
         </Center>
 
         <Box>
@@ -46,21 +46,21 @@ const Content = () => {
         </Center>
 
         <Center mt={5}>
-          <Text fontSize='xl'>Fecha: 31 de Enero, 12:30 hs.</Text>
+          <Text fontSize='xl' textAlign='center'>Fecha: 31 de Enero, 12:30 hs.</Text>
         </Center>
 
         <Center>
-          <Text fontSize='xl'>Lugar: Calle 123, Capital, Córdoba.</Text>
+          <Text fontSize='xl' textAlign='center'>Lugar: Calle 123, Capital, Córdoba.</Text>
         </Center>
 
         <Show above='md'>
           <Center mt={5} mb={5} bg='gray.300'>
-            <Text fontSize='3xl'>FALTAN {totalDias} DIAS</Text>
+            <Text fontSize='3xl' textAlign='center'>FALTAN {totalDias} DIAS</Text>
           </Center>
         </Show>
 
         <Show above='lg'>
-          <Center>
+          <Center mb={5}>
             <Image boxSize='xs' m={5} src={ImagenEscolar1} className='animate__animated animate__fadeInLeft' alt='Imagen Escolar' />
             <Image m={5} src={Logotipo2} className='animate__animated animate__fadeIn' alt='Imagen Escolar' />
             <Image boxSize='xs' m={5} src={ImagenEscolar3} className='animate__animated animate__fadeInRight' alt='Imagen Escolar' />

@@ -26,15 +26,15 @@ const ToysSlider = () => {
 
   const cards = [
     {
-      text: 'Podemos considerar la ultima campaña de donación juguetes como todo un exito! conseguimos 5234!',
+      text: 'Podemos considerar la última campaña de donación juguetes como todo un éxito! Hemos recolectado 5234 juguetes.',
       image: pic1
     },
     {
-      text: 'La proxima semana se dara el tercer encuentro de partidos de futbol entre las escuelas secundarias❗❗',
+      text: 'La próxima semana se realizará el tercer encuentro de partidos de fútbol entre las escuelas secundarias.',
       image: pic2
     },
     {
-      text: 'Example text 3',
+      text: 'Al donar un juguete, fomentamos el espíritu solidario entre los más pequeños, para que conozcan el valor de compartir y ayudar a quienes más lo necesitan.',
       image: pic3
     }
   ];

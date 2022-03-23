@@ -3,10 +3,7 @@ import {
   Box,
   Flex,
   Image,
-  Text,
-  Button,
   Stack
-
 } from '@chakra-ui/react';
 import { FaBars } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
