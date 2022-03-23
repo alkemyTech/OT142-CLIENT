@@ -1,11 +1,24 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getNews } from '../../Services/newsService';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
+import { getNews, deleteNews as deleteApiNews } from '../../Services/newsService';
 
 export const getAllNews = createAsyncThunk(
   'news/getAllNews',
   async (id) => {
     try {
-      return await getNews(id);
+      const response = await getNews(id);
+      return response;
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
+  }
+);
+
+export const deleteNovedad = createAsyncThunk(
+  'news/deleteNews',
+  async (id) => {
+    try {
+      console.log('borro');
+      return await deleteApiNews(id);
     } catch (error) {
       console.log(error, 'ERROR');
     }
@@ -20,7 +33,17 @@ export const newsSlice = createSlice({
     newsError: false,
     newsLoading: true
   },
-  reducers: {},
+  reducers: {
+    deleteNews: (state, action) => {
+      const currentState = current(state);
+      const filteredNews = currentState.news.filter(item => item.id !== action.payload);
+
+      return {
+        ...currentState,
+        news: filteredNews
+      };
+    }
+  },
   extraReducers: {
     [getAllNews.pending]: (state) => {
       state.status = 'loading';
@@ -38,5 +61,7 @@ export const newsSlice = createSlice({
     }
   }
 });
+
+export const { deleteNews } = newsSlice.actions;
 
 export default newsSlice.reducer;

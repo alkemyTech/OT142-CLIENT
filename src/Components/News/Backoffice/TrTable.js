@@ -9,11 +9,7 @@ import {
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
-const TrTable = ({ name, image, createdAt }) => {
-  const handleDelete = () => {
-    console.log('borro news');
-  };
-
+const TrTable = ({ id, name, image, createdAt, handleDelete }) => {
   return (
         <Tr>
             <Td>{name}</Td>
@@ -29,7 +25,7 @@ const TrTable = ({ name, image, createdAt }) => {
                             <AiFillEdit />
                         </Button>
                     </Link>
-                    <Button colorScheme='red' onClick={() => handleDelete()}>
+                    <Button colorScheme='red' onClick={() => handleDelete(id)}>
                         <AiFillDelete />
                     </Button>
                 </Stack>

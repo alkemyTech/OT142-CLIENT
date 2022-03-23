@@ -13,15 +13,20 @@ import {
 import TrTable from './TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllNews } from '../../../app/features/newsSlice';
+import { getAllNews, deleteNovedad, deleteNews } from '../../../app/features/newsSlice';
 
 const BackOfficeNews = () => {
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
-  //   debugger;
-  useEffect(() => {
-    dispatch(getAllNews());
+
+  useEffect(async () => {
+    dispatch(await getAllNews());
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    dispatch(deleteNovedad(id));
+    dispatch(deleteNews(id));
+  };
 
   return (
         <Container maxW='100%'>
@@ -49,9 +54,11 @@ const BackOfficeNews = () => {
                         news.news.map(news => {
                           return <TrTable
                                 key={news.id}
+                                id ={news.id}
                                 name={news.name}
                                 image={news.image}
                                 createdAt={news.created_at}
+                                handleDelete={handleDelete}
                             />;
                         })
                     }

@@ -19,9 +19,9 @@ import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
 const DashboardPrivate = () => {
   const history = useHistory();
 
-  useEffect(() => {
-    sessionStorage.getItem('login-role') !== '1' && history.push('/login');
-  }, []);
+  // useEffect(() => {
+  //   sessionStorage.getItem('login-role') !== '1' && history.push('/login');
+  // }, []);
 
   return (
   // Este es el layour del backend arreglar responsive con display flex y columna cuando es mobile
