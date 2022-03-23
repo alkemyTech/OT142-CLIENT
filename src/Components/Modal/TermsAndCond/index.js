@@ -52,21 +52,18 @@ const TermsAndConditions = ({ handleChange }) => {
         onClose={onClose}
         isOpen={isOpen}
         scrollBehavior={acceptDeclineValue}
-        size="xl"        
+        size='xl'
       >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader d="flex" justifyContent="center">
             Términos y Condiciones
           </ModalHeader>
-          <ModalBody>
+          <ModalBody >
             <Box>
               <Document file={Termspdf} onLoadSuccess={loadSuccess}>
-                <Page pageNumber={pageNumber} setNumPages={pageNumber} />
+                <Page width={500} pageNumber={pageNumber} setNumPages={pageNumber} />
               </Document>
-              <Text>
-                Página {pageNumber} de {numPages}
-              </Text>
             </Box>
           </ModalBody>
           <ModalFooter>

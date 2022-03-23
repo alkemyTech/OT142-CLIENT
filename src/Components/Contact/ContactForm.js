@@ -47,7 +47,7 @@ const ContactForm = () => {
             }}
         >
             {(props) => (
-                <Box w={'100%'}>
+                <Box w={'100%'} mb={5}>
                     <Form>
                         <Stack spacing={13}>
                             <Field name='firstName'>

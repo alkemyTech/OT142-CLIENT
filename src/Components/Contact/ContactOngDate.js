@@ -8,10 +8,10 @@ export default function ContactOngDate () {
   return (
     <>
       <TitleContact />
-      <Stack direction={['column', 'column', 'row']} w={'100%'} alignItems={'center'} spacing={5}>
-        <ContactDate />
+      <Stack marginBottom={'5px'} direction={['column', 'column', 'row']} w={'100%'} alignItems={'center'} spacing={5}>
         <ContactForm />
       </Stack>
-    </>
+      <ContactDate />
+     </>
   );
 }
