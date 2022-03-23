@@ -61,7 +61,7 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    // Esto es para que no pueda entrar al registro si ya esta autenticado
+    // Esto es para que no pueda entrar al registro si ya esta autenticado.
     sessionStorage.getItem('login-token') && history.push('/');
   });
 
