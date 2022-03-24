@@ -18,6 +18,7 @@ import MapsWrapper from '../Maps/MapsWrapper';
 import { register } from '../../Services/authService';
 import { useHistory, Link as ReachLink } from 'react-router-dom';
 import Spinner from '../Spinner';
+import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
 
 const initialValues = {
   name: '',
@@ -73,7 +74,10 @@ const RegisterForm = () => {
       onSubmit={async (values, action) => {
         try {
           const result = await register(values.name, values.email, values.password);
-          if (result.success) {
+          console.log(result);
+          if (!result) {
+            showAlertErr({ text: 'Ocurrio un error al registrar el usuario, puede que este usuario ya exista.' });
+          } else if (result.success) {
             const { token, user } = await result.data;
             sessionStorage.setItem('login-token', token);
             sessionStorage.setItem('login-role', user.role_id);
@@ -125,7 +129,7 @@ const RegisterForm = () => {
             </Flex>
             {registerValue === 'accept' &&
               isSubmitting
-              ? <Spinner isLoading={isSubmitting} size='40px' color='blue'/>
+              ? <Spinner isLoading={isSubmitting} size='40px' color='blue' />
               : <Button onClick={handleSubmit} background='gray.300' mt='4' type='submit'>Registrarme</Button>}
             <Text fontSize='sm' mt='4'>¿Ya tienes una cuenta?<Link color='blue.400' as={ReachLink} to='/login'> Inicia sesión</Link></Text>
           </Flex>

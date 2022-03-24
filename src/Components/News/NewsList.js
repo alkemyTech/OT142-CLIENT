@@ -53,7 +53,7 @@ const NewsList = ({ newsList, loading, error }) => {
       {error &&
         showAlertErr()
       }
-      <SimpleGrid columns={[1, 2, 3, 4]} spacing='30px' m='10px'>
+      <SimpleGrid columns={{ sm: '1', md: '2', lg: '3', xl: '4' }} spacing='30px' alignItems={'center'}>
         {
           newsList.length > 0
             ? newsList.map((news) => (
