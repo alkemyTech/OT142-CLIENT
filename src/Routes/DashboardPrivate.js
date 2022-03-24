@@ -8,7 +8,7 @@ import EditForm from '../Components/Dashboard/EditForm';
 import EditHomeForm from '../Components/Dashboard/editHomeForm';
 import OrganizationBoard from '../Components/Dashboard/OrganizationBoard';
 import UserList from '../Components/Dashboard/UsersList';
-import MembersForm from '../Components/Members/MembersForm';
+import Members from '../Components/Members/Members';
 import NewsForm from '../Components/News/NewsForm';
 import BackofficeNews from '../Components/News/Backoffice';
 import SlidesForm from '../Components/Slides/SlidesForm';
@@ -46,7 +46,7 @@ const DashboardPrivate = () => {
             <Route exact path="/backoffice/users" component={UserList} />
             <Route exact path="/backoffice/create-user" component={UserForm} />
             <Route exact path="/backoffice/edit-user" component={UserForm} />
-            <Route exact path="/backoffice/members/create" component={MembersForm} />
+            <Route exact path="/backoffice/members/create" component={Members} />
             <Route exact path="/backoffice/categories" component={TableCategorie} />
             <Route exact path="/backoffice/create-testimonials" component={TestimonialForm} />
             <Route exact path="/backoffice/*" component={PageNotFound} />
