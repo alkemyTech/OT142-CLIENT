@@ -15,6 +15,7 @@ import SlidesForm from '../Components/Slides/SlidesForm';
 import PageNotFound from '../Components/PageNotFound';
 import { Container, Stack } from '@chakra-ui/react';
 import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
+import CategoriesForm from '../Components/Categories/CategoriesForm';
 
 const DashboardPrivate = () => {
   const history = useHistory();
@@ -44,6 +45,7 @@ const DashboardPrivate = () => {
             <Route exact path="/backoffice/activities/:id" component={BackOfficeActivities} />
             <Route exact path="/backoffice/users" component={UserList} />
             <Route exact path="/backoffice/members/create" component={MembersForm} />
+            <Route exact path="/backoffice/categories/create" component={CategoriesForm} />
             <Route exact path="/backoffice/categories" component={TableCategorie} />
             <Route exact path="/backoffice/create-testimonials" component={TestimonialForm} />
             <Route exact path="/backoffice/*" component={PageNotFound} />

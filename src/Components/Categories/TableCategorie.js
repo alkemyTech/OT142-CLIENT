@@ -5,21 +5,28 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption, Stack, Heading, Button
+  TableCaption, Stack, Heading, Button, Flex, FormControl, Input
 } from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
-import { getAllCategories } from '../../app/features/ReducerCategories';
+import { getAllCategories, getCategorieByName, getCategoriesList } from '../../app/features/ReducerCategories';
 import { useDispatch, useSelector } from 'react-redux';
 
 const TableCategorie = () => {
-  const { list: categories } = useSelector((state) => state.categories);
+  const dispatch = useDispatch();
+  const categories = useSelector(getAllCategories);
   console.log(categories);
 
-  const dispatch = useDispatch();
+  const handleChange = (e) => {
+    if (e.target.value.length > 2) {
+      dispatch(getCategorieByName(e.target.value));
+    } else {
+      dispatch(getCategoriesList());
+    }
+  };
 
   useEffect(() => {
-    dispatch(getAllCategories());
+    dispatch(getCategoriesList());
   }, [dispatch]);
 
   return (
@@ -32,8 +39,17 @@ const TableCategorie = () => {
 
           <Stack>
             <Button variant="outline" colorScheme="teal" size="xs">
-              <Link to="/backoffice/Categorías/create">Crear Categorías</Link>
+              <Link to="/backoffice/categories/create">Crear Categorías</Link>
             </Button>
+            <Flex mt='2'>
+              <FormControl>
+                <Input
+                  onChange={handleChange}
+                  bg='white'
+                  type='search'
+                  placeholder='Buscar categoria' />
+              </FormControl>
+            </Flex>
           </Stack>
         </Stack>
         <Table className="Table" size="lg" variant="striped" colorScheme="teal">
@@ -50,8 +66,9 @@ const TableCategorie = () => {
           {!categories
             ? 'cargando...'
             : categories.map((categorie) => {
+              console.log(categorie);
               return (
-                  <Tr key={categories.key}>
+                  <Tr key={categorie.id}>
                     <Td>{categorie.name}</Td>
                     <Td>{categorie.createdAt}</Td>
                     <Td isNumeric>{categorie.id}</Td>
