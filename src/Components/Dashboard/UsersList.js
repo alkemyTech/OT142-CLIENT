@@ -16,6 +16,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers, getUsersList, getUserFromName, renderUserList, deletetUsersApi } from '../../app/features/UsersSlice';
+import { debouncer } from '../../utils/debouncer';
 
 const UserList = () => {
   const history = useHistory();
@@ -56,7 +57,7 @@ const UserList = () => {
       <Flex mt='2'>
         <FormControl>
           <Input
-            onChange={handleChange}
+            onChange={debouncer(handleChange)}
             bg='white'
             type='search'
             placeholder='Buscar usuario' />
