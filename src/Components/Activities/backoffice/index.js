@@ -26,7 +26,7 @@ const BackOfficeActivities = () => {
   const handleDelete = (id) => {
     console.log('delete :' + id);
     // comentar esta asi no modifica la api
-    // dispatch(deleteActivity(id));
+    dispatch(deleteActivity(id));
     dispatch(deleteActivities(id));
   };
 
