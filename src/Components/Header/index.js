@@ -32,6 +32,7 @@ export default function WithSubnavigation() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
+  //Session Storage
   useEffect(() => {
     sessionStorage.getItem("login-token") && setIsLoggedIn(true);
     sessionStorage.getItem("login-role") &&
