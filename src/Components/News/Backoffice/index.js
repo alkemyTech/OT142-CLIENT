@@ -57,7 +57,7 @@ const BackOfficeNews = () => {
                   onChange={handleSearch}
                   bg='white'
                   type='search'
-                  placeholder='Buscar usuario' />
+                  placeholder='Buscar novedades' />
               </FormControl>
             </Flex>
 
