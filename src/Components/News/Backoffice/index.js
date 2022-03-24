@@ -11,7 +11,9 @@ import {
   Button,
   Flex,
   FormControl,
-  Input
+  Input,
+  Spinner,
+  Center
 } from '@chakra-ui/react';
 import TrTable from '../../../utils/TrTable';
 import { Link } from 'react-router-dom';
@@ -25,6 +27,8 @@ const BackOfficeNews = () => {
 
   const dispatch = useDispatch();
   const { news } = useSelector(state => state.news);
+  const { status } = useSelector(state => state.news);
+
   console.log(news.data);
 
   useEffect(() => {
@@ -60,6 +64,16 @@ const BackOfficeNews = () => {
                   placeholder='Buscar novedades' />
               </FormControl>
             </Flex>
+                  {status === 'loading' &&
+                    <Center h='100px'>
+                      <Spinner
+                        thickness='4px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='gray.500'
+                        size='xl'/>
+                    </Center>
+                    }
 
             <Table variant='simple'>
                 <Thead>
