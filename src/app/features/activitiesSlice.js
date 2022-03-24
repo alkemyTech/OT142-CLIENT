@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
-import { getActivities, deleteActivity as deleteApiActivity } from '../../Services/activitiesService';
+import { getActivities, deleteActivity as deleteApiActivity, getSearchActivities } from '../../Services/activitiesService';
 // import axios from 'axios';
 
 export const getAllActivities = createAsyncThunk(
@@ -7,6 +7,18 @@ export const getAllActivities = createAsyncThunk(
   async (id) => {
     try {
       const response = await getActivities(id);
+      return response;
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
+  }
+);
+
+export const getOnChangeActivities = createAsyncThunk(
+  'activities/getOnChangeActivities',
+  async (word) => {
+    try {
+      const response = await getSearchActivities(word);
       return response;
     } catch (error) {
       console.log(error, 'ERROR');
@@ -52,9 +64,12 @@ export const activitiesSlice = createSlice({
     },
     [getAllActivities.rejected]: (state) => {
       state.status = 'failed';
+    },
+    [getOnChangeActivities.fulfilled]: (state, { payload }) => {
+      state.activities = payload.data;
     }
   }
 });
 
-export const { deleteActivities } = activitiesSlice.actions;
+export const { deleteActivities, searchActivities } = activitiesSlice.actions;
 export default activitiesSlice.reducer;
