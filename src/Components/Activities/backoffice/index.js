@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   Table,
   Thead,
@@ -13,26 +13,28 @@ import {
 import TrTable from '../../../utils/TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllActivities } from '../../../app/features/activitiesSlice';
+import { deleteActivities, getAllActivities, deleteActivity } from '../../../app/features/activitiesSlice';
 
 const BackOfficeActivities = () => {
-  const [activities, setActivities] = useState([]);
   const dispatch = useDispatch();
-  const { activitiesReducer } = useSelector(state => state);
+  const { activities } = useSelector(state => state);
 
-  const handleDelete = () => {
-    console.log('delete');
-  };
-
-  useEffect(() => {
-    dispatch(getAllActivities());
+  useEffect(async () => {
+    dispatch(await getAllActivities());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (activitiesReducer.status === 'success') {
-      setActivities(activitiesReducer.activities);
-    }
-  }, [activitiesReducer]);
+  const handleDelete = (id) => {
+    console.log('delete :' + id);
+    // comentar esta asi no modifica la api
+    dispatch(deleteActivity(id));
+    dispatch(deleteActivities(id));
+  };
+
+  // useEffect(() => {
+  //   if (activitiesReducer.status === 'success') {
+  //     setActivities(activitiesReducer.activities);
+  //   }
+  // }, [activitiesReducer]);
 
   return (
         <Container maxW='100%'>
@@ -57,7 +59,7 @@ const BackOfficeActivities = () => {
                 </Thead>
                 <Tbody>
                     {
-                        activities.map(activitie => {
+                        activities.activities.map(activitie => {
                           return <TrTable
                                 key={activitie.id}
                                 id={activitie.id}
