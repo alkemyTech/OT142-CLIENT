@@ -10,10 +10,10 @@ import OrganizationBoard from '../Components/Dashboard/OrganizationBoard';
 import UserList from '../Components/Dashboard/UsersList';
 import MembersForm from '../Components/Members/MembersForm';
 import NewsForm from '../Components/News/NewsForm';
-import { News } from '../Components/News';
 import SlidesForm from '../Components/Slides/SlidesForm';
 import PageNotFound from '../Components/PageNotFound';
 import { Container, Stack } from '@chakra-ui/react';
+import NewsList from '../Components/News/NewListTable/NewsList';
 
 const DashboardPrivate = () => {
   const history = useHistory();
@@ -33,7 +33,7 @@ const DashboardPrivate = () => {
             <Route exact path="/backoffice/organization" component={OrganizationBoard} />
             <Route exact path="/backoffice/organization/edit" component={EditForm} />
             <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
-            <Route exact path="/backoffice/news" component={News} />
+            <Route exact path="/backoffice/news" component={NewsList} />
             <Route exact path="/backoffice/news/create" component={NewsForm} />
             <Route exact path="/backoffice/news/:id" component={NewsForm} />
             <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
