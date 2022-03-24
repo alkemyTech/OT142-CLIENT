@@ -32,16 +32,14 @@ export const activitiesSlice = createSlice({
     status: null
   },
   reducers: {
-    reducers: {
-      deleteActivities: (state, action) => {
-        const currentState = current(state);
-        const filteredActivities = currentState.news.filter(item => item.id !== action.payload);
+    deleteActivities: (state, action) => {
+      const currentState = current(state);
+      const filteredActivities = currentState.activities.filter(item => item.id !== action.payload);
 
-        return {
-          ...currentState,
-          activities: filteredActivities
-        };
-      }
+      return {
+        ...currentState,
+        activities: filteredActivities
+      };
     }
   },
   extraReducers: {
