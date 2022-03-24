@@ -21,7 +21,7 @@ import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
-  ChevronRightIcon,
+  ChevronRightIcon
 } from '@chakra-ui/icons';
 
 import { Link as ReachLink } from 'react-router-dom';
@@ -34,17 +34,19 @@ export default function WithSubnavigation() {
 
   useEffect(() => {
     sessionStorage.getItem('login-token') && setIsLoggedIn(true);
-    sessionStorage.getItem('login-role') && sessionStorage.getItem('login-role') === "1" && setIsAdmin(true);
-  }, [isLoggedIn])
+    sessionStorage.getItem('login-role') &&
+      sessionStorage.getItem('login-role') === '1' &&
+      setIsAdmin(true);
+  }, [isLoggedIn]);
 
   const handleCloseSesion = () => {
     sessionStorage.removeItem('login-token');
     sessionStorage.removeItem('login-role');
     setIsLoggedIn(false);
-  }
+  };
 
   return (
-    <Box mb={'20px'}>
+    <Box>
       <Flex
         bg={useColorModeValue('gray.300', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
@@ -54,11 +56,13 @@ export default function WithSubnavigation() {
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
-        align={'center'}>
+        align={'center'}
+      >
         <Flex
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
-          display={{ base: 'flex', md: 'none' }}>
+          display={{ base: 'flex', md: 'none' }}
+        >
           <IconButton
             onClick={onToggle}
             icon={
@@ -68,7 +72,12 @@ export default function WithSubnavigation() {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        <Flex maxH='50px' flex={{ base: 1 }} alignItems='center' justify={{ base: 'center', md: 'start' }}>
+        <Flex
+          maxH='50px'
+          flex={{ base: 1 }}
+          alignItems='center'
+          justify={{ base: 'center', md: 'start' }}
+        >
           <Link as={ReachLink} to='/'>
             <Image boxSize='120px' src='/images/LOGO-SOMOS-MAS.png' />
           </Link>
@@ -82,10 +91,11 @@ export default function WithSubnavigation() {
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={{ base: 'column', md: 'row' }}
-          spacing={1}>
-          {isLoggedIn ?
+          spacing={1}
+        >
+          {isLoggedIn ? (
             <>
-              {isAdmin &&
+              {isAdmin && (
                 <Button
                   as={ReachLink}
                   to='/backoffice'
@@ -95,7 +105,7 @@ export default function WithSubnavigation() {
                 >
                   Backoffice
                 </Button>
-              }
+              )}
               <Button
                 onClick={handleCloseSesion}
                 as={ReachLink}
@@ -105,12 +115,14 @@ export default function WithSubnavigation() {
                 color={'white'}
                 bg={'pink.400'}
                 _hover={{
-                  bg: 'pink.300',
-                }}>
+                  bg: 'pink.300'
+                }}
+              >
                 Cerrar sesión
               </Button>
             </>
-            : <Button
+          ) : (
+            <Button
               as={ReachLink}
               to='/login'
               fontSize={'sm'}
@@ -118,7 +130,8 @@ export default function WithSubnavigation() {
               variant={'link'}
             >
               Ingresar
-            </Button>}
+            </Button>
+          )}
         </Stack>
       </Flex>
 
@@ -149,8 +162,9 @@ const DesktopNav = ({ isLoggedIn }) => {
                 color={linkColor}
                 _hover={{
                   textDecoration: 'none',
-                  color: linkHoverColor,
-                }}>
+                  color: linkHoverColor
+                }}
+              >
                 {navItem.label}
               </Link>
             </PopoverTrigger>
@@ -162,7 +176,8 @@ const DesktopNav = ({ isLoggedIn }) => {
                 bg={popoverContentBgColor}
                 p={4}
                 rounded={'xl'}
-                minW={'sm'}>
+                minW={'sm'}
+              >
                 <Stack>
                   {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
@@ -185,13 +200,15 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
       display={'block'}
       p={2}
       rounded={'md'}
-      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}
+    >
       <Stack direction={'row'} align={'center'}>
         <Box>
           <Text
             transition={'all .3s ease'}
             _groupHover={{ color: 'pink.400' }}
-            fontWeight={500}>
+            fontWeight={500}
+          >
             {label}
           </Text>
           <Text fontSize={'sm'}>{subLabel}</Text>
@@ -203,7 +220,8 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
           justify={'flex-end'}
           align={'center'}
-          flex={1}>
+          flex={1}
+        >
           <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
@@ -216,7 +234,8 @@ const MobileNav = () => {
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
-      display={{ md: 'none' }}>
+      display={{ md: 'none' }}
+    >
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -236,11 +255,13 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         justify={'space-between'}
         align={'center'}
         _hover={{
-          textDecoration: 'none',
-        }}>
+          textDecoration: 'none'
+        }}
+      >
         <Text
           fontWeight={600}
-          color={useColorModeValue('gray.600', 'gray.200')}>
+          color={useColorModeValue('gray.600', 'gray.200')}
+        >
           {label}
         </Text>
         {children && (
@@ -261,7 +282,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           borderLeft={1}
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.700')}
-          align={'start'}>
+          align={'start'}
+        >
           {children &&
             children.map((child) => (
               <Link key={child.label} py={2} href={child.href}>
@@ -284,15 +306,15 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Inicio',
-    href: '/',
+    href: '/'
   },
   {
     label: 'Nosotros',
-    href: '/nosotros',
+    href: '/nosotros'
   },
   {
     label: 'Contacto',
-    href: '/contacto',
+    href: '/contacto'
   },
   {
     label: 'Campañas',
@@ -300,13 +322,13 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: 'Escuela',
         subLabel: 'Recolección de útiles escolares',
-        href: '/school-campaign',
+        href: '/school-campaign'
       },
       {
         label: 'Juguetes',
         subLabel: 'Recolección de juguetes',
-        href: '/toys-campaign',
-      },
-    ],
-  },
+        href: '/toys-campaign'
+      }
+    ]
+  }
 ];
