@@ -1,15 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { Box, Text, Heading } from '@chakra-ui/react';
-import Loader from '../../Components/Loader';
 import imageOne from '../School/Assets/SchoolImage1.jpg';
 import imageTwo from '../School/Assets/SchoolImage2.jpg';
 import imageThree from '../School/Assets/SchoolImage3.jpg';
 
 const SchoolCarousel = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
   const sliderContent = [
     {
       title: 'Asistiendo a los niños',
