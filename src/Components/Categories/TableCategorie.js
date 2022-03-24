@@ -5,8 +5,9 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption, Stack, Heading, Button
+  TableCaption, Stack, Text, Button
 } from '@chakra-ui/react';
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
 import { Link } from 'react-router-dom';
 import { getAllCategories } from '../../app/features/ReducerCategories';
@@ -26,13 +27,10 @@ const TableCategorie = () => {
     <>
       <Stack>
         <Stack style={{ display: ' flex', alignItems: ' center' }}>
-          <Heading as="h4" size="md">
-            Listado de Categorías
-          </Heading>
-
+          <Text fontSize='6xl'>Backoffice de Categorías</Text>
           <Stack>
-            <Button variant="outline" colorScheme="teal" size="xs">
-              <Link to="/backoffice/Categorías/create">Crear Categorías</Link>
+            <Button colorScheme='green'>
+              <Link to="/backoffice/Categorías/create">Crear nueva categoría</Link>
             </Button>
           </Stack>
         </Stack>
@@ -56,11 +54,11 @@ const TableCategorie = () => {
                     <Td>{categorie.createdAt}</Td>
                     <Td isNumeric>{categorie.id}</Td>
                     <Td>
-                      <Button variant="outline" colorScheme="teal" size="xs">
-                        Eliminar
+                      <Button colorScheme='blue'>
+                        <AiFillEdit />
                       </Button>
-                      <Button variant="outline" colorScheme="teal" size="xs">
-                        Editar
+                      <Button colorScheme='red'>
+                        <AiFillDelete />
                       </Button>
                     </Td>
                   </Tr>
