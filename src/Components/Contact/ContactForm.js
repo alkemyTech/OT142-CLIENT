@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Formik, Field } from 'formik';
 import {
+  Box,
   Button,
   Stack
 } from '@chakra-ui/react';
@@ -9,6 +10,7 @@ import * as Yup from 'yup';
 import FieldControl from './FieldControl';
 import { messageErrors } from '../../utils/messageErrors';
 import { createContact } from '../../Services/contactService';
+import { showAlertOkey } from '../../Services/AlertServicie/AlertServicie';
 
 const { name, email, phone, message } = messageErrors;
 
@@ -41,72 +43,80 @@ const ContactForm = () => {
               message: ''
             }}
             validationSchema={schemaContact}
-            onSubmit={values => {
-              createContact(values);
+            onSubmit={async (values, { resetForm }) => {
+              try {
+                await createContact(values);
+                resetForm();
+                showAlertOkey({ title: 'Datos de contacto enviados con éxito', text: 'En brevedad será contactado por uno de los medios suministrados' });
+              } catch (error) {
+                console.log(error);
+              }
             }}
         >
-            {(props) => (
-                <Form>
-                    <Stack spacing={13} p={10}>
-                        <Field name='firstName'>
-                            {({ field, form }) => (
+            {({ handleSubmit }) => (
+                <Box w={'100%'} mb={5}>
+                    <Form>
+                        <Stack spacing={13}>
+                            <Field name='firstName'>
+                                {({ field, form }) => (
 
-                                <FieldControl
-                                    type='text'
-                                    field={field}
-                                    form={form}
-                                    idName='firstName'
-                                    title='Nombre'
-                                    icon={AiOutlineUser}
-                                />
+                                    <FieldControl
+                                        type='text'
+                                        field={field}
+                                        form={form}
+                                        idName='firstName'
+                                        title='Nombre'
+                                        icon={AiOutlineUser}
+                                    />
 
-                            )}
-                        </Field>
+                                )}
+                            </Field>
 
-                        <Field name='email'>
-                            {({ field, form }) => (
+                            <Field name='email'>
+                                {({ field, form }) => (
 
-                                <FieldControl
-                                    type='text'
-                                    field={field}
-                                    form={form}
-                                    idName='email'
-                                    title='Email'
-                                    icon={AiOutlineMail}
-                                />
-                            )}
-                        </Field>
+                                    <FieldControl
+                                        type='text'
+                                        field={field}
+                                        form={form}
+                                        idName='email'
+                                        title='Email'
+                                        icon={AiOutlineMail}
+                                    />
+                                )}
+                            </Field>
 
-                        <Field name='phone'>
-                            {({ field, form }) => (
+                            <Field name='phone'>
+                                {({ field, form }) => (
 
-                                <FieldControl
-                                    type='text'
-                                    field={field}
-                                    form={form}
-                                    idName='phone'
-                                    title='Telefono'
-                                    icon={AiOutlinePhone}
-                                />
+                                    <FieldControl
+                                        type='text'
+                                        field={field}
+                                        form={form}
+                                        idName='phone'
+                                        title='Teléfono'
+                                        icon={AiOutlinePhone}
+                                    />
 
-                            )}
-                        </Field>
+                                )}
+                            </Field>
 
-                        <Field name='message'>
-                            {({ field, form }) => (
+                            <Field name='message'>
+                                {({ field, form }) => (
 
-                                <FieldControl
-                                    type='textarea'
-                                    field={field}
-                                    form={form}
-                                    idName='message'
-                                    title='Mensaje'
-                                />
-                            )}
-                        </Field>
-                        <Button type="submit" colorScheme='blue'>Enviar</Button>
-                    </Stack>
-                </Form>
+                                    <FieldControl
+                                        type='textarea'
+                                        field={field}
+                                        form={form}
+                                        idName='message'
+                                        title='Mensaje'
+                                    />
+                                )}
+                            </Field>
+                            <Button onClick={handleSubmit} colorScheme='blue' width={'120px'}>Enviar</Button>
+                        </Stack>
+                    </Form>
+                </Box>
             )}
         </Formik>
   );

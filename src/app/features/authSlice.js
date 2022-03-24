@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+/*  import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { login, register } from '../../Services/authService';
 
 export const registerUser = createAsyncThunk(
@@ -30,7 +30,7 @@ export const loginUser = createAsyncThunk(
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    token: 'asd',
+    token: '',
     user: {},
     autentication: false
   },
@@ -58,4 +58,4 @@ export const authSlice = createSlice({
 export const { userAuthLogout } = authSlice.actions;
 const { reducer } = authSlice;
 
-export default reducer;
+export default reducer; */
