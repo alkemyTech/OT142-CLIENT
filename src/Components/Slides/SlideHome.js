@@ -1,67 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Center,
-  Image,
-  Text,
-  Fade,
-  ScaleFade,
-  Slide,
-  SlideFade
-} from '@chakra-ui/react';
+import React, { useState, useEffect, useCallback } from 'react';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
+import { Box, Text, Heading } from '@chakra-ui/react';
+import { get } from '../../Services/publicApiService';
+import RenderHtml from '../RenderHtml';
+import Loader from '../../Components/Loader';
 
-// Agregar animaciones con framer motion
 const HomeCarousel = () => {
-  const [count, setCount] = useState(0);
+  const [slideData, setSlideData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const images = [
-    'https://picsum.photos/id/237/200/300',
-    'https://picsum.photos/id/238/200/300',
-    'https://picsum.photos/id/239/200/300'
-  ];
+  const getDataSlide = useCallback(async () => {
+    try {
+      const { data } = await get('/slides');
+      setSlideData(data.data);
+      setIsLoading(false);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
   useEffect(() => {
-    const timerId = setInterval(() => {
-      if (count === images.length - 1) {
-        setCount(0);
-      } else {
-        setCount(count + 1);
-      }
-    }, 5000);
+    getDataSlide();
+  }, []);
 
-    return () => clearInterval(timerId);
-  }, [count]);
-
-  const image = images[count];
-
-  return (
-    <Box>
-      <Center>
-        <Box width='100%' height={'50%'} bg='black'>
-          <Center>
-            <Image width='auto' height='50vh' src={image} />
+  return isLoading ? (
+    <Loader type='spinner' />
+  ) : (
+    <Carousel autoPlay infiniteLoop interval={5000} transitionTime={1400}>
+      {slideData?.map((slide) => {
+        return (
+          <>
             <Box
-              position='absolute'
-              width='40%'
-              bg='rgba(255,0,0,0.5)'
-              alignSelf={'end'}
-              mb={2}
-              p={3}
-              opacity={40}
-              borderRadius={'2px'}
+              height={'lg'}
+              position='relative'
+              backgroundPosition='center'
+              backgroundRepeat='no-repeat'
+              backgroundSize='cover'
+              backgroundImage={slide.image}
+              key={slide.id}
             >
-              Prueba
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Molestias aspernatur dicta, odit sequi rerum officia
-                dignissimos, quibusdam fugiat aut amet pariatur! Labore magni
-                voluptatibus possimus hic porro optio eveniet dignissimos!
-              </Text>
+              <Box
+                bottom={0}
+                left={0}
+                right={0}
+                ml={'auto'}
+                mr={'auto'}
+                position='absolute'
+                width='40%'
+                bg='yellow.200'
+                mb={7}
+                p={3}
+                opacity={'90%'}
+                borderRadius={'2px'}
+                display={{ base: 'none', md: 'none', lg: 'initial' }}
+              >
+                <Heading>{slide.name}</Heading>
+                <Text fontSize={'lg'} color='gray.700' fontWeight='bold'>
+                  <RenderHtml htmlText={slide.description} />
+                </Text>
+              </Box>
             </Box>
-          </Center>
-        </Box>
-      </Center>
-    </Box>
+          </>
+        );
+      })}
+    </Carousel>
   );
 };
 
