@@ -41,7 +41,7 @@ const TableCategorie = () => {
               <Th>Nombre</Th>
               <Th>Crear</Th>
               <Th isNumeric>Id</Th>
-              <Th>Acciones</Th>
+              <Th>Acción</Th>
             </Tr>
           </Thead>
 
