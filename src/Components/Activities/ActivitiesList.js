@@ -26,7 +26,7 @@ const ActivitiesList = () => {
             {activitiesReducer.status !== 'success' && <Spinner color="blue" size='xl' />}
             {activitiesReducer.status === 'failed' && showAlertErr()}
 
-            <SimpleGrid columns={[1, 2, 3, 4]} spacing='30px' m='10px'>
+            <SimpleGrid columns={[1, 1, 2, 3, 4]} spacing='30px' m='10px'>
                 {
                   data.length > 0
                     ? data.map((activity) => (

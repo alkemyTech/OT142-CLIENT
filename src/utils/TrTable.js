@@ -9,7 +9,7 @@ import {
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
-const TrTable = ({ id, name, image, createdAt, handleDelete }) => {
+const TrTable = ({ id, name, image, createdAt, handleDelete, path }) => {
   return (
         <Tr>
             <Td>{name}</Td>
@@ -18,16 +18,18 @@ const TrTable = ({ id, name, image, createdAt, handleDelete }) => {
             </Td>
             <Td>{new Date(createdAt).toLocaleDateString('es-ES')}</Td>
             <Td>
-                {/* poner funcionalidad para borrar novedades y editarlas */}
                 <Stack spacing={2}>
-                    <Link to='backoffice/news/edit'>
-                        <Button colorScheme='orange'>
+                    <Link to={`${path}${id}`}>
+                        <Button colorScheme='blue'>
                             <AiFillEdit />
                         </Button>
                     </Link>
-                    <Button colorScheme='red' onClick={() => handleDelete(id)}>
-                        <AiFillDelete />
-                    </Button>
+                    <Link>
+                        <Button colorScheme='red' onClick={() => handleDelete(id)}>
+                            <AiFillDelete />
+                        </Button>
+                    </Link>
+
                 </Stack>
             </Td>
         </Tr>
