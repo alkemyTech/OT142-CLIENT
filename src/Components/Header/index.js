@@ -46,7 +46,7 @@ export default function WithSubnavigation() {
   };
 
   return (
-    <Box>
+    <Box mb='20px'>
       <Flex
         bg={useColorModeValue('gray.300', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
