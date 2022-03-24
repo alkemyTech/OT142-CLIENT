@@ -1,4 +1,4 @@
-import { Text, Spinner, SimpleGrid, Box, GridItem, Input } from '@chakra-ui/react';
+import { Text, Spinner, SimpleGrid, Box, GridItem } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities, getOnChangeActivities } from '../../app/features/activitiesSlice';
