@@ -12,7 +12,7 @@ const getAuthorizationToken = () => {
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
-    Group: '142'
+    // Group: '142'
   }
 });
 
@@ -27,6 +27,13 @@ export const remove = (route, id) => {
 
 export const get = (route, id) => {
   const fullRoute = id ? `${route}/${id}` : `${route}`;
+  return axiosInstance.get(fullRoute, {
+    headers: getAuthorizationToken()
+  });
+};
+
+export const getSearch = (route, word) => {
+  const fullRoute = word ? `${route}?search=${word}` : `${route}`;
   return axiosInstance.get(fullRoute, {
     headers: getAuthorizationToken()
   });

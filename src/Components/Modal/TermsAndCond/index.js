@@ -47,7 +47,7 @@ const TermsAndConditions = ({ handleChange }) => {
         Leer Términos y Condiciones
       </Button>
       
-      <Box>
+     
       <Modal
         onClose={onClose}
         isOpen={isOpen}
@@ -76,7 +76,7 @@ const TermsAndConditions = ({ handleChange }) => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      </Box>
+   
     </>
   );
 };

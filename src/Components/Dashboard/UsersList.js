@@ -9,16 +9,16 @@ import {
   Button,
   Flex,
   Text,
-  Spinner,
   FormControl,
   Input
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers, getUsersList, getUserFromName, renderUserList, deletetUsersApi } from '../../app/features/UsersSlice';
 
 const UserList = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const users = useSelector(getAllUsers);
 
@@ -29,8 +29,11 @@ const UserList = () => {
     dispatch(renderUserList(id));
   };
 
-  const handleEdit = (id) => {
-    console.log(id);
+  const handleEdit = (user) => {
+    history.push({
+      pathname: 'edit-user',
+      state: user
+    });
   };
 
   const handleChange = (e) => {
@@ -48,9 +51,8 @@ const UserList = () => {
   }, [userStatus, dispatch]);
 
   return (
-    <Flex bg='gray.200' flexDirection="column" alignItems='center' p="2">
-      ¿Deseas crear un nuevo usuario? <Text textColor="blue.400"><Link to="/backoffice/users/create">Crear usuario</Link></Text>
-
+    <Flex flexDirection="column" justifyContent="center" alignItems="center" p="2">
+      ¿Deseas crear un nuevo usuario? <Text textColor="blue.400"><Link to="create-user">Crear usuario</Link></Text>
       <Flex mt='2'>
         <FormControl>
           <Input
@@ -60,17 +62,6 @@ const UserList = () => {
             placeholder='Buscar usuario' />
         </FormControl>
       </Flex>
-
-      {userStatus === 'loading' &&
-        <Spinner
-          thickness='4px'
-          speed='0.65s'
-          emptyColor='gray.200'
-          color='blue.500'
-          size='xl'
-        />
-      }
-
       <Table variant="simple" size="sm" maxW="500px" mt="4">
         <TableCaption>Gestión de usuarios</TableCaption>
         <Thead>
@@ -88,7 +79,7 @@ const UserList = () => {
                 <Td>{user.email}</Td>
                 <Td>
                   <Flex justifyContent="center" alignItems="center">
-                    <Button onClick={() => handleEdit(user.id)} colorScheme="blue" size="sm">Editar</Button>
+                    <Button onClick={() => handleEdit(user)} colorScheme="blue" size="sm">Editar</Button>
                     <Button onClick={() => handleDelete(user.id)} colorScheme="red" size="sm" ms="1">Eliminar</Button>
                   </Flex>
                 </Td>

@@ -13,37 +13,29 @@ import {
 import TrTable from '../../../utils/TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteActivities, getAllActivities, deleteActivity } from '../../../app/features/activitiesSlice';
+import { getAllNews, deleteNovedad, deleteNews } from '../../../app/features/newsSlice';
 
-const BackOfficeActivities = () => {
+const BackOfficeNews = () => {
   const dispatch = useDispatch();
-  const { activities } = useSelector(state => state);
+  const { news } = useSelector(state => state);
 
   useEffect(async () => {
-    dispatch(await getAllActivities());
+    dispatch(await getAllNews());
   }, [dispatch]);
 
   const handleDelete = (id) => {
-    console.log('delete :' + id);
-    // comentar esta asi no modifica la api
-    dispatch(deleteActivity(id));
-    dispatch(deleteActivities(id));
+    dispatch(deleteNovedad(id));
+    dispatch(deleteNews(id));
   };
-
-  // useEffect(() => {
-  //   if (activitiesReducer.status === 'success') {
-  //     setActivities(activitiesReducer.activities);
-  //   }
-  // }, [activitiesReducer]);
 
   return (
         <Container maxW='100%'>
 
             <Box mb={5}>
-                <Text fontSize='6xl'>Backoffice de Actividades</Text>
-                <Link to="/backoffice/activities/create">
+                <Text fontSize='6xl'>Backoffice de Novedades</Text>
+                <Link to="/backoffice/news/create">
                     <Button colorScheme='green'>
-                        Crear nueva actividad
+                        Crear nueva novedad
                     </Button>
                 </Link>
             </Box>
@@ -59,15 +51,15 @@ const BackOfficeActivities = () => {
                 </Thead>
                 <Tbody>
                     {
-                        activities.activities.map(activitie => {
+                        news.news.map(news => {
                           return <TrTable
-                                key={activitie.id}
-                                id={activitie.id}
-                                name={activitie.name}
-                                image={activitie.image}
-                                createdAt={activitie.created_at}
+                                key={news.id}
+                                id ={news.id}
+                                name={news.name}
+                                image={news.image}
+                                createdAt={news.created_at}
                                 handleDelete={handleDelete}
-                                path={'activities/'}
+                                path={'news/'}
                             />;
                         })
                     }
@@ -78,4 +70,4 @@ const BackOfficeActivities = () => {
   );
 };
 
-export default BackOfficeActivities;
+export default BackOfficeNews;

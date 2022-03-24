@@ -10,14 +10,15 @@ import {
   Text,
   Box,
   Image,
-  Button
+  Button,
+  Center
 } from '@chakra-ui/react';
 
 const OrganizationBoard = ({ data }) => {
   return (
-    <Container maxW="container.sm">
+    <Container maxW="container.xl">
+      <Center>
       <Stack
-
         justifyContent="left"
         p={2}
         spacing={6}
@@ -27,35 +28,41 @@ const OrganizationBoard = ({ data }) => {
           <Heading>Datos de la organización</Heading>
         </Box>
         <Stat textAlign="left">
-          <StatLabel fontSize="xl">Nombre actual:</StatLabel>
-          <Text >Somos Más</Text>
+          <StatLabel fontSize="xl" textAlign="center">Nombre actual:</StatLabel>
+          <Text textAlign="center">Somos Más</Text>
         </Stat>
 
         <Stat>
-          <StatLabel fontSize="xl">Logo actual:</StatLabel>
-          <Box boxSize="200px" >
+          <StatLabel fontSize="xl" textAlign="center">Logo actual:</StatLabel>
+          <Center>
+          <Box boxSize="200px">
             <Image
               objectFit="cover"
               src={process.env.PUBLIC_URL + '/images/LOGO-SOMOS-MAS.png'}
               alt="logo de la ong"
             />
           </Box>
+          </Center>
         </Stat>
 
         <Stat>
-          <StatLabel fontSize="xl">Descripción actual:</StatLabel>
-          <Text>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita
-            voluptatibus maiores quam iure repellat similique atque impedit
-            beatae quis. Iure harum nisi doloremque, animi tempore inventore
-            maiores excepturi consectetur! Minus. Vero cupiditate provident iste
-            maxime ratione possimus fugit incidunt unde, quam labore odio nisi
-            voluptatum, eveniet eius ducimus harum! Hic pariatur numquam nostrum
-            odio quaerat porro doloribus at sapiente labore.
+          <StatLabel fontSize="xl" textAlign="center">Descripción actual:</StatLabel>
+          <Text textAlign="center">
+          Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y papás,
+          abuelos y vecinos del barrio La Cava generando procesos de crecimiento y de
+          inserción social. Uniendo las manos de todas las familias, las que viven en el barrio
+          y las que viven fuera de él, es que podemos pensar, crear y garantizar estos
+          procesos. Somos una asociación civil sin fines de lucro que se creó en 1997 con la
+          intención de dar alimento a las familias del barrio. Con el tiempo fuimos
+          involucrándonos con la comunidad y agrandando y mejorando nuestra capacidad de
+          trabajo. Hoy somos un centro comunitario que acompaña a más de 700 personas a
+          través de las áreas de: Educación, deportes, primera infancia, salud, alimentación y
+          trabajo social.
           </Text>
         </Stat>
 
           <Link to="/backoffice/organization/edit">
+            <Center>
             <Button
               mt="8"
               leftIcon={<MdBuild />}
@@ -69,9 +76,11 @@ const OrganizationBoard = ({ data }) => {
             >
               Editar
             </Button>
+            </Center>
           </Link>
 
       </Stack>
+      </Center>
     </Container>
   );
 };

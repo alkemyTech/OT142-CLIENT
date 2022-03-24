@@ -11,7 +11,7 @@ import membersReducer from './features/MembersSlice';
 export default configureStore({
   reducer: {
     categories,
-    activitiesReducer,
+    activities: activitiesReducer,
     users: usersReducer,
     slides: slidesSlice,
     comments: commentsSlice,

@@ -8,13 +8,14 @@ import EditForm from '../Components/Dashboard/EditForm';
 import EditHomeForm from '../Components/Dashboard/editHomeForm';
 import OrganizationBoard from '../Components/Dashboard/OrganizationBoard';
 import UserList from '../Components/Dashboard/UsersList';
-import MembersForm from '../Components/Members/MembersForm';
+import Members from '../Components/Members/Members';
 import NewsForm from '../Components/News/NewsForm';
-import { News } from '../Components/News';
+import BackofficeNews from '../Components/News/Backoffice';
 import SlidesForm from '../Components/Slides/SlidesForm';
 import PageNotFound from '../Components/PageNotFound';
 import { Container, Stack } from '@chakra-ui/react';
 import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
+import UserForm from '../Components/Users/UsersForm';
 
 const DashboardPrivate = () => {
   const history = useHistory();
@@ -34,12 +35,18 @@ const DashboardPrivate = () => {
             <Route exact path="/backoffice/organization" component={OrganizationBoard} />
             <Route exact path="/backoffice/organization/edit" component={EditForm} />
             <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
-            <Route exact path="/backoffice/news" component={News} />
+            <Route exact path="/backoffice/news" component={BackofficeNews} />
             <Route exact path="/backoffice/news/create" component={NewsForm} />
             <Route exact path="/backoffice/news/:id" component={NewsForm} />
+            {/* faltacomponente formulario actividades */}
+            {/* <Route exact path="/backoffice/activities/create" component={activitiesForm} /> */}
             <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
+            {/* falta componente para el editar actividades */}
+            <Route exact path="/backoffice/activities/:id" component={BackOfficeActivities} />
             <Route exact path="/backoffice/users" component={UserList} />
-            <Route exact path="/backoffice/members/create" component={MembersForm} />
+            <Route exact path="/backoffice/create-user" component={UserForm} />
+            <Route exact path="/backoffice/edit-user" component={UserForm} />
+            <Route exact path="/backoffice/members/create" component={Members} />
             <Route exact path="/backoffice/categories" component={TableCategorie} />
             <Route exact path="/backoffice/create-testimonials" component={TestimonialForm} />
             <Route exact path="/backoffice/*" component={PageNotFound} />

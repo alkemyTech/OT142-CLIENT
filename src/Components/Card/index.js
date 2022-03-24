@@ -42,7 +42,7 @@ const Card = ({ data }) => {
             layout={'fill'}
           />
         </Box>
-        <Stack>
+        <Stack h='280px'>
           <Heading
             color={useColorModeValue('gray.700', 'white')}
             fontSize={'2xl'}
