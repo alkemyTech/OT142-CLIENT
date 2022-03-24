@@ -13,6 +13,7 @@ import { AiOutlineTwitter, AiFillFacebook, AiFillLinkedin, AiFillInstagram } fro
 import './footer.css';
 import { get } from '../../Services/publicApiService';
 import logo from '../../Assets/logoSomosMas.png';
+import Footer from '.';
 
 const FooterPublic = () => {
   const [organization, setOrganization] = useState({});
@@ -35,8 +36,10 @@ const FooterPublic = () => {
               height: '40px',
               margin: '-1px',
               marginTop: '150px'
-            }}></div>
+            }}>
+            </div>
             <Container bg='gray.300' padding='4' maxW='100%'>
+                <Footer/>
                 <footer>
                     <Stack
                         spacing='24px'

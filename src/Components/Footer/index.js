@@ -13,12 +13,12 @@ import {
 } from '@chakra-ui/react';
 
 import * as Yup from 'yup';
+import { AlertOkeyInfo } from '../../Services/AlertServicie/AlertServicie';
 
 const Footer = () => {
   const [isSubscribed, setIsSubscribed] = useState(
     localStorage.getItem('isSuscribed')
   );
-
   const [subscriberList, setSubscriberList] = useState([]);
 
   const SubscriptionSchema = Yup.object().shape({
@@ -40,6 +40,7 @@ const Footer = () => {
     onSubmit: (values) => {
       localStorage.setItem('isSuscribed', true);
       setIsSubscribed(true);
+      AlertOkeyInfo({ title: 'Muchas gracias', text: 'Te has subscripto a Newsletter' });
       // Here we will introduce the Axios POST logic in the future
       setSubscriberList((prev) => [...prev, values.email]);
       console.log(values.email);
@@ -54,7 +55,6 @@ const Footer = () => {
         h="auto"
         mx="auto"
         onSubmit={formik.handleSubmit}
-        p="2em"
       >
         <Checkbox isRequired={true} name="acceptSubscribe">
           Deseo suscribirme al Newsletter para recibir actualizaciones
@@ -97,7 +97,7 @@ const Footer = () => {
     </Center>
   );
 
-  return isSubscribed ? null : <Box p="2em">{NewsletterForm}</Box>;
+  return isSubscribed ? null : <Box p="1em">{NewsletterForm}</Box>;
 };
 
 export default Footer;
