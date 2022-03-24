@@ -5,7 +5,7 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption, Stack, Text, Button
+  TableCaption, Text, Button, Box, Container, Stack
 } from '@chakra-ui/react';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
@@ -25,22 +25,20 @@ const TableCategorie = () => {
 
   return (
     <>
-      <Stack>
-        <Stack style={{ display: ' flex', alignItems: ' center' }}>
+      <Container maxW='100%'>
+      <Box mb={5}>
           <Text fontSize='6xl'>Backoffice de Categorías</Text>
-          <Stack>
             <Button colorScheme='green'>
               <Link to="/backoffice/Categorías/create">Crear nueva categoría</Link>
             </Button>
-          </Stack>
-        </Stack>
-        <Table className="Table" size="lg" variant="striped" colorScheme="teal">
+        </Box>
+        <Table variant="simple">
           <TableCaption>Screen Listado de Categorías (backoffice)</TableCaption>
           <Thead>
             <Tr>
               <Th>Nombre</Th>
-              <Th>Crear</Th>
-              <Th isNumeric>Id</Th>
+              <Th>Fecha de Creación</Th>
+              <Th>Id</Th>
               <Th>Acción</Th>
             </Tr>
           </Thead>
@@ -52,20 +50,26 @@ const TableCategorie = () => {
                   <Tr key={categories.key}>
                     <Td>{categorie.name}</Td>
                     <Td>{categorie.createdAt}</Td>
-                    <Td isNumeric>{categorie.id}</Td>
+                    <Td>{categorie.id}</Td>
                     <Td>
+                    <Stack spacing={2}>
+                    <Link>
                       <Button colorScheme='blue'>
                         <AiFillEdit />
                       </Button>
+                    </Link>
+                    <Link>
                       <Button colorScheme='red'>
                         <AiFillDelete />
                       </Button>
+                    </Link>
+                    </Stack>
                     </Td>
                   </Tr>
               );
             })}
         </Table>
-      </Stack>
+      </Container>
     </>
   );
 };
