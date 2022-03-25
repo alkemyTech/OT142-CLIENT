@@ -10,8 +10,7 @@ const override = css`
 
 const Spinner = ({ isLoading, color, size }) => {
   return (
-            <MoonLoader loading={isLoading} css={override} size={size} color={color} />
-
+    <MoonLoader loading={isLoading} css={override} size={size} color={color} />
   );
 };
 

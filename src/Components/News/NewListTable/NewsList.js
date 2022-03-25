@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NewsListTable from './NewsListTable';
 import { getNews, deleteNews } from '../../../Services/newsService';
+import { Box } from '@chakra-ui/react';
 
 const NewsList = () => {
   // const newsMock = [
@@ -23,15 +24,13 @@ const NewsList = () => {
 
   return (
     <>
-      {data.length > 0
-        ? (
-        <div>
+      {data.length > 0 ? (
+        <Box>
           <NewsListTable data={data} handleDeleteNews={handleDeleteNews} />
-        </div>
-          )
-        : (
+        </Box>
+      ) : (
         <p>No hay novedades</p>
-          )}
+      )}
     </>
   );
 };
