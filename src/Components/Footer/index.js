@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@chakra-ui/button';
 import { FormControl } from '@chakra-ui/form-control';
 import { Input, InputLeftAddon, InputGroup } from '@chakra-ui/input';
@@ -19,8 +19,15 @@ const Footer = () => {
   const [isSubscribed, setIsSubscribed] = useState(
     localStorage.getItem('isSuscribed')
   );
+  const [logined, setLogined] = useState(false);
   const [subscriberList, setSubscriberList] = useState([]);
 
+  useEffect(() => {
+    const quepe = sessionStorage.getItem('login-token');
+    quepe && setLogined(true);
+    // && setIsLoggedIn(true);
+  }, []);
+  console.log(logined);
   const SubscriptionSchema = Yup.object().shape({
     email: Yup.string()
       .email('Por favor, introduzca un email válido.')
@@ -50,6 +57,7 @@ const Footer = () => {
 
   const NewsletterForm = (
     <Center>
+      {(logined) &&
       <VStack
         as="form"
         h="auto"
@@ -94,6 +102,7 @@ const Footer = () => {
           </Box>
         </FormControl>
       </VStack>
+      }
     </Center>
   );
 
