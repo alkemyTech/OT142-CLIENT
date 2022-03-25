@@ -15,7 +15,7 @@ const About = React.lazy(() => import('../Components/About'));
 const ActivitiesForm = React.lazy(() =>
   import('../Components/Activities/ActivitiesForm')
 );
-const News = React.lazy(() => import('../Components/News'));
+const { News } = React.lazy(() => import('../Components/News'));
 const NewsDetail = React.lazy(() =>
   import('../Components/News/Detail/NewsDetail')
 );
@@ -34,6 +34,7 @@ const LoginForm = React.lazy(() => import('../Components/Auth/LoginForm'));
 const TestimonialList = React.lazy(() =>
   import('../Components/Testimonials/TestimonialsList')
 );
+
 // import Layout from '../Components/Layout';
 // import { AnimatedSwitch, spring } from 'react-router-transition';
 
@@ -67,24 +68,22 @@ const DashboardPublic = () => {
         <Switch>
           <Suspense fallback={<div>Loading...</div>}>
             <Route exact path='/' component={Home} />
-            <Route exact path='/actividades' component={Activities} />
             <Route exact path='/registro' component={RegisterForm} />
             <Route exact path='/login' component={LoginForm} />
             <Route exact path='/contacto' component={Contact} />
             <Route exact path='/nosotros' component={About} />
+            <Route exact path='/actividades' component={Activities} />
             <Route exact path='/create-activity' component={ActivitiesForm} />
-            <Route exact path='/Novedades/' component={News} />
-            <Route exact path='/Novedades/:id' component={NewsDetail} />
-            <Route exact path='/testimonials' component={TestimonialList} />
+            <Route exact path='/actividades/:id' component={ActivityDetail} />
+            <Route exact path='/novedades' component={News} />
+            <Route exact path='/novedades/:id' component={NewsDetail} />
             <Route exact path='/create-news' component={NewsForm} />
+            <Route exact path='/testimonials' component={TestimonialList} />
             <Route exact path='/create-user' component={UserForm} />
             <Route exact path='/create-project' component={ProjectsForm} />
             <Route exact path='/update-project/:id' component={ProjectsForm} />
-            <Route exact path='/actividades/:id' component={ActivityDetail} />
-            <Route exact path='/actividades' component={Activities} />
             <Route exact path='/about-us/members' component={MembersList} />
             <Route exact path='/nosotros' component={About} />
-            <Route exact path='/about-us/members' component={MembersList} />
           </Suspense>
           <Route path='/*' component={PageNotFound} />
         </Switch>

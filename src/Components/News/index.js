@@ -4,8 +4,8 @@ import NewsList from './NewsList';
 import { useSelector } from 'react-redux';
 // import { getAllNews } from '../../app/features/newsSlice';
 
-export const News = () => {
-  const { news } = useSelector(state => state);
+const News = () => {
+  const { news } = useSelector((state) => state);
   // const [newsList, setNewsList] = useState([]);
   // const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(false);
@@ -29,9 +29,15 @@ export const News = () => {
   // }, [news]);
 
   return (
-        <>
-            <Title children="Novedades"/>
-            <NewsList newsList={news.news || []} loading={news.newsLoading} error={news.newsError}/>
-        </>
+    <>
+      <Title children='Novedades' />
+      <NewsList
+        newsList={news.news || []}
+        loading={news.newsLoading}
+        error={news.newsError}
+      />
+    </>
   );
 };
+
+export default News;
