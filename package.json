@@ -41,11 +41,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint . --fix",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest)/)'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "env": {
+      "jest": true
+    }
   },
   "browserslist": {
     "production": [
@@ -65,6 +68,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.2.0",
-    "eslint-plugin-react": "^7.29.4"
+    "eslint-plugin-react": "^7.29.4",
+    "jest": "^26.6.0"
   }
 }
