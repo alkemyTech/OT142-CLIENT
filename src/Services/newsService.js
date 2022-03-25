@@ -7,6 +7,12 @@ export const getNews = (id) => {
     .catch((error) => console.log(error));
 };
 
+export const searchNew = (name) => {
+  return get(`news?search=${name}`)
+    .then((res) => res.data)
+    .catch((error) => console.log(error));
+};
+
 export const postNews = (id, name, slug, content, image, user_id, category_id, created_at, updated_at, deleted_at, group_id) => {
   const payload = {
     id: id,

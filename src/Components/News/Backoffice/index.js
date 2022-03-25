@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   Thead,
@@ -8,17 +8,18 @@ import {
   Text,
   Container,
   Box,
-  Button
+  Button,
+  Input
 } from '@chakra-ui/react';
 import TrTable from '../../../utils/TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllNews, deleteNovedad, deleteNews } from '../../../app/features/newsSlice';
+import { getAllNews, deleteNovedad, deleteNews, filterNews } from '../../../app/features/newsSlice';
 
 const BackOfficeNews = () => {
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
-
+  const [name, setName] = useState('');
   useEffect(async () => {
     dispatch(await getAllNews());
   }, [dispatch]);
@@ -26,6 +27,18 @@ const BackOfficeNews = () => {
   const handleDelete = (id) => {
     dispatch(deleteNovedad(id));
     dispatch(deleteNews(id));
+  };
+
+  const handleOnChange = (e) => {
+    setName(e.target.value);
+    console.log(e.target.value);
+    if (e.target.value === '') {
+      dispatch(getAllNews());
+      console.log('se ejecuto get');
+    } else {
+      dispatch(filterNews(name));
+      console.log(name);
+    }
   };
 
   return (
@@ -38,6 +51,17 @@ const BackOfficeNews = () => {
                         Crear nueva novedad
                     </Button>
                 </Link>
+            </Box>
+            <Box>
+                {news.news && (
+                    <Input
+                    placeholder='busqueda por nombre'
+                    name='name'
+                    value={name}
+                    minLenght='3'
+                    onChange={handleOnChange}
+                    />
+                ) }
             </Box>
 
             <Table variant='simple'>
