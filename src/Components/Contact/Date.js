@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Box,
-  VStack,
   Text,
   HStack
 } from '@chakra-ui/react';
@@ -12,25 +11,25 @@ import { HiOutlineMail } from 'react-icons/hi';
 export default function Date (props) {
   return (
     <>
-      <Box>
-        <VStack spacing={5} alignItems={'flex-start'} justifyContent={'flex-start'}>
+      <Box w={'100%'} >
+        <HStack flexWrap={'wrap'} spacing={5} justifyContent={'center'}>
           <HStack>
-            <BsTelephoneForward />
-            <Text>{props.phone}</Text>
+            <BsTelephoneForward style={ { fontSize: '25px', color: '#0F9D58' } }/>
+            <Text style={ { fontSize: '15px' } }>{props.phone}</Text>
           </HStack>
           <HStack>
-            <AiFillFacebook />
+            <AiFillFacebook style={ { fontSize: '25px', color: '#4267B2' } } />
             <Text>{props.facebook}</Text>
           </HStack>
           <HStack>
-            <BsInstagram />
+            <BsInstagram style={ { fontSize: '25px', color: '#C13584' } }/>
             <Text>{props.instagram}</Text>
           </HStack>
           <HStack>
-            <HiOutlineMail />
+            <HiOutlineMail style={ { fontSize: '25px', color: '#DB4437' } }/>
             <Text>{props.mail}</Text>
           </HStack>
-        </VStack>
+        </HStack>
       </Box>
     </>
   );

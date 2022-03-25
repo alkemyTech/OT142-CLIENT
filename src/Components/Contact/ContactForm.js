@@ -3,13 +3,15 @@ import { Form, Formik, Field } from 'formik';
 import {
   Box,
   Button,
-  Stack
+  Stack,
+  Center
 } from '@chakra-ui/react';
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import * as Yup from 'yup';
 import FieldControl from './FieldControl';
 import { messageErrors } from '../../utils/messageErrors';
 import { createContact } from '../../Services/contactService';
+import { showAlertOkey } from '../../Services/AlertServicie/AlertServicie';
 
 const { name, email, phone, message } = messageErrors;
 
@@ -42,12 +44,18 @@ const ContactForm = () => {
               message: ''
             }}
             validationSchema={schemaContact}
-            onSubmit={values => {
-              createContact(values);
+            onSubmit={async (values, { resetForm }) => {
+              try {
+                await createContact(values);
+                resetForm();
+                showAlertOkey({ title: 'Datos de contacto enviados con éxito', text: 'En brevedad será contactado por uno de los medios suministrados' });
+              } catch (error) {
+                console.log(error);
+              }
             }}
         >
-            {(props) => (
-                <Box w={'100%'}>
+            {({ handleSubmit }) => (
+                <Box w={'100%'} mb={5}>
                     <Form>
                         <Stack spacing={13}>
                             <Field name='firstName'>
@@ -106,7 +114,9 @@ const ContactForm = () => {
                                     />
                                 )}
                             </Field>
-                            <Button type="submit" colorScheme='blue' width={'120px'}>Enviar</Button>
+                            <Center>
+                              <Button onClick={handleSubmit} colorScheme='blue' width={'120px'}>Enviar</Button>
+                            </Center>
                         </Stack>
                     </Form>
                 </Box>

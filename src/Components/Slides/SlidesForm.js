@@ -61,11 +61,11 @@ const SlidesForm = ({ state }) => {
         justifyContent="center"
       >
         <Box w="100%" p={4} bg="teal" color="white" textAlign="center">
-          <Heading>Formulario Edición / Creación de Slides</Heading>
+          <Heading>Formulario Creación / Edición de Slides</Heading>
         </Box>
 
         <FormControl isRequired>
-          <FormLabel htmlFor="first-name">Name</FormLabel>
+          <FormLabel htmlFor="first-name">Nombre</FormLabel>
           <Input
             minLength={4}
             variant="filled"
@@ -73,24 +73,24 @@ const SlidesForm = ({ state }) => {
             name="name"
             value={initialValues.name}
             onChange={handleChange}
-            placeholder="Name"
+            placeholder="Nombre"
           ></Input>
         </FormControl>
         <FormControl isRequired>
-          <FormLabel htmlFor="first-name">Order</FormLabel>
+          <FormLabel htmlFor="first-name">Orden</FormLabel>
           <Input
             variant="filled"
             type="text"
             name="order"
             value={initialValues.order}
             onChange={handleChange}
-            placeholder="order"
+            placeholder="Orden"
           ></Input>
         </FormControl>
         <FormControl isRequired>
-          <FormLabel htmlFor="first-name">Description</FormLabel>
+          <FormLabel htmlFor="first-name">Descripción</FormLabel>
           <CKEditor
-            config={{ placeholder: '...Description' }}
+            config={{ placeholder: '... Descripción' }}
             editor={ClassicEditor}
             data={initialValues.description}
             onChange={(event, editor) => {
@@ -102,7 +102,7 @@ const SlidesForm = ({ state }) => {
         </FormControl>
 
         <FormControl isRequired>
-          <FormLabel htmlFor="first-name">Image</FormLabel>
+          <FormLabel htmlFor="first-name">Imagen</FormLabel>
           <Input
             accept="image/x-png,image/jpeg"
             id="image"
