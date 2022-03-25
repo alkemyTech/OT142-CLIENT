@@ -88,6 +88,7 @@ export const FooterLandingPage = () => {
               Facebook
             </Link>
           </Flex>
+
           <Flex
             flexDir={{ md: 'column', lg: 'row' }}
             alignItems="center"
@@ -131,6 +132,7 @@ export const FooterLandingPage = () => {
             >
               Twitter
             </Link>
+
           </Flex>
           <Flex
             flexDir={{ md: 'column', lg: 'row' }}
