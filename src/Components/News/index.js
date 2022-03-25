@@ -2,9 +2,10 @@ import Title from '../Titles';
 import NewsList from './NewsList';
 // import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import LastEvent from './LastEvent';
 // import { getAllNews } from '../../app/features/newsSlice';
 
-const News = () => {
+export const News = () => {
   const { news } = useSelector((state) => state);
   // const [newsList, setNewsList] = useState([]);
   // const [loading, setLoading] = useState(false);
@@ -31,6 +32,7 @@ const News = () => {
   return (
     <>
       <Title children='Novedades' />
+      <LastEvent video={'https://youtu.be/4YnSk1gI_Oo'} />
       <NewsList
         newsList={news.news || []}
         loading={news.newsLoading}

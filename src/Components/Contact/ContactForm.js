@@ -3,7 +3,8 @@ import { Form, Formik, Field } from 'formik';
 import {
   Box,
   Button,
-  Stack
+  Stack,
+  Center
 } from '@chakra-ui/react';
 import { AiOutlineUser, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import * as Yup from 'yup';
@@ -113,7 +114,9 @@ const ContactForm = () => {
                                     />
                                 )}
                             </Field>
-                            <Button onClick={handleSubmit} colorScheme='blue' width={'120px'}>Enviar</Button>
+                            <Center>
+                              <Button onClick={handleSubmit} colorScheme='blue' width={'120px'}>Enviar</Button>
+                            </Center>
                         </Stack>
                     </Form>
                 </Box>
