@@ -20,6 +20,7 @@ import LoginForm from '../Components/Auth/LoginForm';
 // import { AnimatedSwitch, spring } from 'react-router-transition';
 import PageNotFound from '../Components/PageNotFound';
 import TestimonialList from '../Components/Testimonials/TestimonialsList';
+import Login from '../Components/Auth/Login';
 
 /* <AnimatedSwitch
     atEnter={{ opacity: 0, translateX: -100 }}
@@ -46,32 +47,32 @@ import TestimonialList from '../Components/Testimonials/TestimonialsList';
 const DashboardPublic = () => {
   return (
     <>
-        <WithSubnavigation />
-            <main style={{ width: '100%', minHeight: '500px' }}>
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/actividades" component={Activities} />
-                    <Route exact path="/registro" component={RegisterForm} />
-                    <Route exact path="/login" component={LoginForm} />
-                    <Route exact path="/contacto" component={Contact} />
-                    <Route exact path="/nosotros" component={About} />
-                    <Route exact path="/create-activity" component={ActivitiesForm} />
-                    <Route exact path="/Novedades/" component={News} />
-                    <Route exact path="/Novedades/:id" component={NewsDetail} />
-                    <Route exact path="/testimonials" component={TestimonialList} />
-                    <Route exact path="/create-news" component={NewsForm} />
-                    <Route exact path="/create-user" component={UserForm} />
-                    <Route exact path="/create-project" component={ProjectsForm} />
-                    <Route exact path="/update-project/:id" component={ProjectsForm} />
-                    <Route exact path="/actividades/:id" component={ActivityDetail} />
-                    <Route exact path="/actividades" component={Activities} />
-                    <Route exact path="/about-us/members" component={MembersList} />
-                    <Route exact path='/nosotros' component={About} />
-                    <Route exact path='/about-us/members' component={MembersList} />
-                    <Route path="/*" component={PageNotFound} />
-                </Switch>
-            </main>
-        <FooterPublic />
+      <WithSubnavigation />
+      <main style={{ width: '100%', minHeight: '500px' }}>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/actividades' component={Activities} />
+          <Route exact path='/registro' component={RegisterForm} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/contacto' component={Contact} />
+          <Route exact path='/nosotros' component={About} />
+          <Route exact path='/create-activity' component={ActivitiesForm} />
+          <Route exact path='/Novedades/' component={News} />
+          <Route exact path='/Novedades/:id' component={NewsDetail} />
+          <Route exact path='/testimonials' component={TestimonialList} />
+          <Route exact path='/create-news' component={NewsForm} />
+          <Route exact path='/create-user' component={UserForm} />
+          <Route exact path='/create-project' component={ProjectsForm} />
+          <Route exact path='/update-project/:id' component={ProjectsForm} />
+          <Route exact path='/actividades/:id' component={ActivityDetail} />
+          <Route exact path='/actividades' component={Activities} />
+          <Route exact path='/about-us/members' component={MembersList} />
+          <Route exact path='/nosotros' component={About} />
+          <Route exact path='/about-us/members' component={MembersList} />
+          <Route path='/*' component={PageNotFound} />
+        </Switch>
+      </main>
+      <FooterPublic />
     </>
   );
 };
