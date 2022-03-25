@@ -41,3 +41,5 @@ export const News = () => {
     </>
   );
 };
+
+export default News;
