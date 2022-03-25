@@ -4,13 +4,8 @@ import { getNews, deleteNews } from '../../../Services/newsService';
 import { Box } from '@chakra-ui/react';
 
 const NewsList = () => {
-  // const newsMock = [
-  //     { id: 1, name: 'Nombre de prueba 1', image: 'Imagen de prueba 1', createdAt: 'Descripcion de prueba 1' },
-  //     { id: 2, name: 'Nombre de prueba 2', image: 'Imagen de prueba 2', createdAt: 'Descripcion de prueba 2' },
-  //     { id: 3, name: 'Nombre de prueba 3', image: 'Imagen de prueba 3', createdAt: 'Descripcion de prueba 3' }
-  // ];
-
   const [data, setData] = useState([]);
+
   useEffect(async () => {
     const news = await getNews();
     setData([...news.data]);
