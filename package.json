@@ -23,14 +23,15 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-lazy-load-image-component": "^1.5.1",
-    "react-pdf": "^5.7.1",
+    "react-player": "^2.10.0",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.2.0",
     "react-router-transition": "^2.1.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.0",
     "react-slick": "^0.28.1",
     "react-social-plugins": "^2.1.0",
     "react-spinners": "^0.11.0",
+    "screenfull": "^6.0.1",
     "sweetalert2": "^11.4.0",
     "sweetalert2-react": "^0.8.3",
     "use-deep-compare-effect": "^1.8.1",
@@ -40,11 +41,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint . --fix",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest)/)'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "env": {
+      "jest": true
+    }
   },
   "browserslist": {
     "production": [
@@ -64,6 +68,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.2.0",
-    "eslint-plugin-react": "^7.29.4"
+    "eslint-plugin-react": "^7.29.4",
+    "jest": "^26.6.0"
   }
 }
