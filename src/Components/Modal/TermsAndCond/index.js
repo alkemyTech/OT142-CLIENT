@@ -15,7 +15,7 @@ import {
   Radio,
   Text
 } from '@chakra-ui/react';
-import { Document, Page, pdfjs } from 'react-pdf';
+// import { Document, Page, pdfjs } from 'react-pdf';
 import Termspdf from '../../../Assets/terms-and-cond.pdf';
 
 const TermsAndConditions = ({ handleChange }) => {
