@@ -24,7 +24,7 @@ const TermsAndConditions = ({ handleChange }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
-  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+  // pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
   function loadSuccess ({ numPages }) {
     setNumPages(numPages);
@@ -61,9 +61,9 @@ const TermsAndConditions = ({ handleChange }) => {
           </ModalHeader>
           <ModalBody >
             <Box>
-              <Document file={Termspdf} onLoadSuccess={loadSuccess}>
+              {/* <Document file={Termspdf} onLoadSuccess={loadSuccess}>
                 <Page width={500} pageNumber={pageNumber} setNumPages={pageNumber} />
-              </Document>
+              </Document> */}
             </Box>
           </ModalBody>
           <ModalFooter>
