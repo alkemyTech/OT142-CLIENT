@@ -9,6 +9,7 @@ export const getCategoriesList = createAsyncThunk(
       .catch((error) => console.log(error));
   }
 );
+
 export const getCategorieByName = createAsyncThunk(
   'categories/getCategorieByName', async (name) => {
     return await get(process.env.REACT_APP_CATEGORIES + `?search=${name}`)
