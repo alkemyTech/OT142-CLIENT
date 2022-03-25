@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Box } from '@chakra-ui/react';
 import Loader from '../Components/Loader';
 import FooterPublic from '../Components/Footer/FooterPublic';
 import WithSubnavigation from '../Components/Header';
@@ -20,11 +19,7 @@ const About = React.lazy(() => import('../Components/About'));
 const ActivitiesForm = React.lazy(() =>
   import('../Components/Activities/ActivitiesForm')
 );
-// const { News } = React.lazy(() => import('../Components/News'));
-// const NewsDetail = React.lazy(() =>
-//   import('../Components/News/Detail/NewsDetail')
-// );
-// const NewsForm = React.lazy(() => import('../Components/News/NewsForm'));
+
 const UserForm = React.lazy(() => import('../Components/Users/UsersForm'));
 const ProjectsForm = React.lazy(() =>
   import('../Components/Projects/ProjectsForm')
