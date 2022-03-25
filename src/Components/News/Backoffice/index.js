@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   Thead,
@@ -8,26 +8,41 @@ import {
   Text,
   Container,
   Box,
-  Button
+  Button,
+  Flex,
+  FormControl,
+  Input,
+  Spinner,
+  Center
 } from '@chakra-ui/react';
 import TrTable from '../../../utils/TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllNews, deleteNovedad, deleteNews } from '../../../app/features/newsSlice';
+import { deleteNovedad, deleteNews, searchNews } from '../../../app/features/newsSlice';
+import { useDebounceSearch } from '../../../hooks/useDebounceSearch';
 
 const BackOfficeNews = () => {
-  const dispatch = useDispatch();
-  const { news } = useSelector(state => state);
+  const [valuesSearch, setValuesSearch] = useState('');
+  const searchValues = useDebounceSearch(valuesSearch);
 
-  useEffect(async () => {
-    dispatch(await getAllNews());
-  }, [dispatch]);
+  const dispatch = useDispatch();
+  const { news } = useSelector(state => state.news);
+  const { status } = useSelector(state => state.news);
+
+  console.log(news.data);
+
+  useEffect(() => {
+    dispatch(searchNews(searchValues));
+    console.log('entra');
+  }, [dispatch, searchValues]);
 
   const handleDelete = (id) => {
     dispatch(deleteNovedad(id));
     dispatch(deleteNews(id));
   };
-
+  const handleSearch = (e) => {
+    setValuesSearch(e.target.value);
+  };
   return (
         <Container maxW='100%'>
 
@@ -40,6 +55,26 @@ const BackOfficeNews = () => {
                 </Link>
             </Box>
 
+            <Flex mt='2'>
+              <FormControl>
+                <Input
+                  onChange={handleSearch}
+                  bg='white'
+                  type='search'
+                  placeholder='Buscar novedades' />
+              </FormControl>
+            </Flex>
+                  {status === 'loading' &&
+                    <Center h='100px'>
+                      <Spinner
+                        thickness='4px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='gray.500'
+                        size='xl'/>
+                    </Center>
+                    }
+
             <Table variant='simple'>
                 <Thead>
                     <Tr>
@@ -51,7 +86,8 @@ const BackOfficeNews = () => {
                 </Thead>
                 <Tbody>
                     {
-                        news.news.map(news => {
+                      (news.data)
+                        ? news.data.map(news => {
                           return <TrTable
                                 key={news.id}
                                 id ={news.id}
@@ -62,6 +98,7 @@ const BackOfficeNews = () => {
                                 path={'news/'}
                             />;
                         })
+                        : <Text>No hay novedades</Text>
                     }
                 </Tbody>
             </Table>
