@@ -5,11 +5,7 @@ import {
   Tr,
   Th,
   Td,
-<<<<<<< HEAD
   TableCaption, Stack, Heading, Button, Flex, FormControl, Input
-=======
-  TableCaption, Text, Button, Box, Container, Stack
->>>>>>> 2ae9c5afd2f197fc65ad33ceff56145bd548dde8
 } from '@chakra-ui/react';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
@@ -36,7 +32,6 @@ const TableCategorie = () => {
 
   return (
     <>
-<<<<<<< HEAD
       <Stack>
         <Stack style={{ display: ' flex', alignItems: ' center' }}>
           <Heading as="h4" size="md">
@@ -59,16 +54,6 @@ const TableCategorie = () => {
           </Stack>
         </Stack>
         <Table className="Table" size="lg" variant="striped" colorScheme="teal">
-=======
-      <Container maxW='100%'>
-      <Box mb={5}>
-          <Text fontSize='6xl'>Backoffice de Categorías</Text>
-            <Button colorScheme='green'>
-              <Link to="/backoffice/Categorías/create">Crear nueva categoría</Link>
-            </Button>
-        </Box>
-        <Table variant="simple">
->>>>>>> 2ae9c5afd2f197fc65ad33ceff56145bd548dde8
           <TableCaption>Screen Listado de Categorías (backoffice)</TableCaption>
           <Thead>
             <Tr>
@@ -106,7 +91,7 @@ const TableCategorie = () => {
               );
             })}
         </Table>
-      </Container>
+      </Stack>
     </>
   );
 };
