@@ -1,57 +1,35 @@
-import React from "react";
+import React from 'react';
 import {
-  List,
-  ListItem,
-  ListIcon,
   Box,
-} from "@chakra-ui/react";
-import { AiFillFacebook } from "react-icons/ai";
-import { BsInstagram } from "react-icons/bs";
-import { HiOutlineMail } from "react-icons/hi";
-import { BsTelephoneForward } from "react-icons/bs";
+  Text,
+  HStack
+} from '@chakra-ui/react';
+import { AiFillFacebook } from 'react-icons/ai';
+import { BsInstagram, BsTelephoneForward } from 'react-icons/bs';
+import { HiOutlineMail } from 'react-icons/hi';
 
-export default function Date(props) {
-  console.log(props);
-
+export default function Date (props) {
   return (
     <>
-      <Box
-        style={{
-          display: " flex",
-          flexDirection: "column",
-          flexWrap: "nowrap",
-          alignContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Box>
-        <List spacing={3}>
-          <ListItem>
-            <ListIcon size={5}>
-              <AiFillFacebook />
-            </ListIcon>
-            {props.facebook}
-          </ListItem>
-          <ListItem>
-            <ListIcon>
-              <HiOutlineMail />
-            </ListIcon>
-            {props.mail}
-          </ListItem>
-          <ListItem>
-            <ListIcon>
-              <BsInstagram />
-            </ListIcon>
-            {props.instagram}
-          </ListItem>
-          <ListItem>
-            <ListIcon>
-              <BsTelephoneForward />
-            </ListIcon>
-            {props.teléfonoDeContacto}
-          </ListItem>
-        </List>
-        </Box>
+      <Box w={'100%'} >
+        <HStack flexWrap={'wrap'} spacing={5} justifyContent={'center'}>
+          <HStack>
+            <BsTelephoneForward style={ { fontSize: '25px', color: '#0F9D58' } }/>
+            <Text style={ { fontSize: '15px' } }>{props.phone}</Text>
+          </HStack>
+          <HStack>
+            <AiFillFacebook style={ { fontSize: '25px', color: '#4267B2' } } />
+            <Text>{props.facebook}</Text>
+          </HStack>
+          <HStack>
+            <BsInstagram style={ { fontSize: '25px', color: '#C13584' } }/>
+            <Text>{props.instagram}</Text>
+          </HStack>
+          <HStack>
+            <HiOutlineMail style={ { fontSize: '25px', color: '#DB4437' } }/>
+            <Text>{props.mail}</Text>
+          </HStack>
+        </HStack>
       </Box>
     </>
   );

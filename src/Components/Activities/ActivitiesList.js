@@ -1,54 +1,53 @@
-import { Button, Image, Box, Container, Text, Heading, Spinner, Grid } from '@chakra-ui/react';
-import Title from '../Titles'
-import { useHistory } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Text, Spinner, SimpleGrid, Box, GridItem } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllActivities } from '../../app/features/activitiesSlice';
+import { getAllActivities, getOnChangeActivities } from '../../app/features/activitiesSlice';
+import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
+import Card from '../Card';
+import Searchbar from '../../utils/Searchbar';
+import { debouncer } from '../../utils/debouncer';
+
 const ActivitiesList = () => {
+  const dispatch = useDispatch();
+  const { activities } = useSelector(state => state);
 
-    const [data, setData] = useState([]);
+  useEffect(() => {
+    dispatch(getAllActivities());
+  }, [dispatch]);
 
-    const dispatch = useDispatch();
-    const { activitiesReducer } = useSelector(state => state);
-
-    useEffect(() => {
-        dispatch(getAllActivities());
-    }, [dispatch]);
-
-    useEffect(() => {
-        setData(activitiesReducer.activities)
-    }, [activitiesReducer])
-
-    const history = useHistory();
-
-    const handleActivity = (id) => {
-        history.push(`/actividades/${id}`);
+  const handleChange = (e) => {
+    const { value } = e.target;
+    if (value.length > 3) {
+      dispatch(getOnChangeActivities(e.target.value));
+    } else {
+      dispatch(getAllActivities());
     }
+  };
 
-    return (
-        <Container maxW='container.lg'>
-            <Title>Actividades</Title>
+  return (
+        <Box bg='#F8F9FA' p={4} width="100%">
+            <Text fontSize='5xl' d='flex' justifyContent='center'>Actividades</Text>
+            <Searchbar handleChange={debouncer(handleChange)} />
+            {activities.status !== 'success' && <Spinner color="blue" size='xl' />}
+            {activities.status === 'failed' && showAlertErr()}
 
-            {activitiesReducer.status !== 'success' && <Spinner size='xl' />}
-
-            <Grid templateColumns='repeat(3, 1fr)' gap={6}>
-                {data?.length > 0 &&
-                    data.map((activity) => (
-                        <Box key={activity.id}>
-                            <Heading as='h3'>
-                                {activity.name}
-                            </Heading>
-                            <Text>
-                                {activity.description}
-                            </Text>
-                            <Box>
-                                <Image boxSize='100px' src={activity.image} />
-                            </Box>
-                            <Button variant='solid' size='xs' onClick={() => handleActivity(activity.id)}>Ver Detalle</Button>
-                        </Box>
-                    ))}
-            </Grid>
-        </Container>
-    )
-}
+            <SimpleGrid columns={[1, 1, 2, 3, 4]} spacing='30px' m='10px'>
+                {
+                  activities.activities.length > 0
+                    ? activities.activities.map((activity) => (
+                      <GridItem
+                        key={activity.id}
+                        w='100%'
+                        textAlign='center'>
+                          <Card data={activity} />
+                      </GridItem>
+                    ))
+                    : <Box>
+                        <Text>No hay actividades</Text>
+                      </Box>
+                    }
+            </SimpleGrid>
+        </Box>
+  );
+};
 export default ActivitiesList;

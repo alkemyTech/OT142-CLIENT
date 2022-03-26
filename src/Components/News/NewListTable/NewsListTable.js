@@ -1,26 +1,23 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {
-    VStack,
-    Container,
-    Heading,
-    Flex,
-    Box,
-    Spacer,
-    Button,
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td
+  VStack,
+  Container,
+  Heading,
+  Flex,
+  Box,
+  Spacer,
+  Button,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td
 } from '@chakra-ui/react';
 
-
 const NewsListTable = ({ data, handleDeleteNews }) => {
-
-
-    return (
+  return (
         <VStack>
             <Container maxW='container.lg'>
                 <Flex margin={10}>
@@ -48,7 +45,7 @@ const NewsListTable = ({ data, handleDeleteNews }) => {
                     </Thead>
                     <Tbody>
                         {data.map((tableContent) => {
-                            return (
+                          return (
                                 <Tr key={tableContent.id}>
                                     <Td>{tableContent.name}</Td>
                                     <Td>{tableContent.image}</Td>
@@ -57,19 +54,19 @@ const NewsListTable = ({ data, handleDeleteNews }) => {
                                         <Link to={`news/${tableContent.id}`}>
                                             <Button colorScheme='blue'>Editar</Button>
                                         </Link>
-                                   
+
                                     </Td>
                                     <Td>
-                                        <Button onClick={() => handleDeleteNews("news", tableContent.id)} colorScheme='red'>Eliminar</Button>
+                                        <Button onClick={() => handleDeleteNews('news', tableContent.id)} colorScheme='red'>Eliminar</Button>
                                     </Td>
                                 </Tr>
-                            )
+                          );
                         })}
                     </Tbody>
                 </Table>
             </Container>
         </VStack>
-    )
-}
+  );
+};
 
 export default NewsListTable;

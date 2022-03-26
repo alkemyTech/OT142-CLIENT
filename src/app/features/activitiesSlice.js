@@ -1,36 +1,75 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
+import { getActivities, deleteActivity as deleteApiActivity, getSearchActivities } from '../../Services/activitiesService';
+// import axios from 'axios';
 
 export const getAllActivities = createAsyncThunk(
-  "activitiesReducer/getActivities",
-  async () => {
-    const response = await axios.get(
-      "https://ongapi.alkemy.org/api/activities"
-    );
-    return response.data;
+  'activities/getAllActivities',
+  async (id) => {
+    try {
+      const response = await getActivities(id);
+      return response;
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
+  }
+);
+
+export const getOnChangeActivities = createAsyncThunk(
+  'activities/getOnChangeActivities',
+  async (word) => {
+    try {
+      const response = await getSearchActivities(word);
+      return response;
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
+  }
+);
+
+export const deleteActivity = createAsyncThunk(
+  'activities/deleteActivity',
+  async (id) => {
+    try {
+      return await deleteApiActivity(id);
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
   }
 );
 
 export const activitiesSlice = createSlice({
-  name: "activitiesReducer",
+  name: 'activities',
   initialState: {
     activities: [],
-    status: null,
+    status: null
   },
-  reducers: {},
+  reducers: {
+    deleteActivities: (state, action) => {
+      const currentState = current(state);
+      const filteredActivities = currentState.activities.filter(item => item.id !== action.payload);
+
+      return {
+        ...currentState,
+        activities: filteredActivities
+      };
+    }
+  },
   extraReducers: {
     [getAllActivities.pending]: (state) => {
-      state.status = "loading";
+      state.status = 'loading';
     },
     [getAllActivities.fulfilled]: (state, { payload }) => {
       state.activities = payload.data;
-      state.status = "success";
+      state.status = 'success';
     },
     [getAllActivities.rejected]: (state) => {
-      state.status = "failed";
+      state.status = 'failed';
     },
-  },
+    [getOnChangeActivities.fulfilled]: (state, { payload }) => {
+      state.activities = payload.data;
+    }
+  }
 });
 
-export const { ALL_ACTIVITIES } = activitiesSlice.actions;
+export const { deleteActivities, searchActivities } = activitiesSlice.actions;
 export default activitiesSlice.reducer;
