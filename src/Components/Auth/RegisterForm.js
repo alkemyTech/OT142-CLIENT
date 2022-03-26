@@ -118,7 +118,7 @@ const RegisterForm = () => {
                   {errors && <FormErrorMessage maxW='150px'>{errors.password}</FormErrorMessage>}
                 </FormControl>
                 <FormControl mt='2' isInvalid={errors.passwordRepeat}>
-                  <FormLabel>Repetir contraseña</FormLabel>
+                  <FormLabel>Repetir</FormLabel>
                   <Input value={values.passwordRepeat} name='passwordRepeat' onChange={handleChange} onBlur={handleBlur} bg='white' type='password' placeholder='Repita su contraseña' />
                   {errors && <FormErrorMessage maxW='150px'>{errors.passwordRepeat}</FormErrorMessage>}
                 </FormControl>

@@ -37,10 +37,10 @@ const TermsAndConditions = ({ handleChange }) => {
 
   return (
     <>
-      <RadioGroup value={acceptDeclineValue} onChange={setAceptDeclineValue}>
+      <RadioGroup label="RadioButton" value={acceptDeclineValue} onChange={setAceptDeclineValue}>
         <Stack direction="row">
-          <Radio value="accept">He leído y acepto.</Radio>
-          <Radio value="decline">No acepto.</Radio>
+          <Radio  value="accept">He leído y acepto.</Radio>
+          <Radio  value="decline">No acepto.</Radio>
         </Stack>
       </RadioGroup>
       <Button mt={3} onClick={onOpen} bg="lightgray">
