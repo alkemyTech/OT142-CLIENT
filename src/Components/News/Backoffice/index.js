@@ -15,29 +15,33 @@ import TrTable from '../../../utils/TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllNews, deleteNovedad, deleteNews, filterNews } from '../../../app/features/newsSlice';
+import { useDebounce } from 'use-debounce';
 
 const BackOfficeNews = () => {
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
   const [name, setName] = useState('');
+  const [useDebounceValue] = useDebounce(name, 500);
   useEffect(async () => {
     dispatch(await getAllNews());
   }, [dispatch]);
+  useEffect(() => {
+    useDebounceFuntion();
+  }, [useDebounceValue]);
 
   const handleDelete = (id) => {
     dispatch(deleteNovedad(id));
     dispatch(deleteNews(id));
   };
-
   const handleOnChange = (e) => {
-    setName(e.target.value);
-    console.log(e.target.value);
-    if (e.target.value === '') {
-      dispatch(getAllNews());
-      console.log('se ejecuto get');
-    } else {
-      dispatch(filterNews(name));
-      console.log(name);
+    if (e.target.value.lenght > 3) {
+      setName(e.target.value);
+    }
+  };
+
+  const useDebounceFuntion = () => {
+    if (useDebounceValue) {
+      dispatch(filterNews(useDebounceValue));
     }
   };
 
@@ -58,7 +62,6 @@ const BackOfficeNews = () => {
                     placeholder='busqueda por nombre'
                     name='name'
                     value={name}
-                    minLenght='3'
                     onChange={handleOnChange}
                     />
                 ) }
