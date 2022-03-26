@@ -10,8 +10,8 @@ import {
 } from '@chakra-ui/react';
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 import Slider from 'react-slick';
-
 import { get } from '../../Services/publicApiService';
+import RenderHtml from '../RenderHtml';
 
 const settings = {
   dots: true,
@@ -132,7 +132,7 @@ const CarouselSlides = () => {
                   color="white"
                   fontWeight="bold"
                 >
-                  {card.description}
+                  <RenderHtml htmlText={card.description}/>
                 </Text>
               </Stack>
             </Container>

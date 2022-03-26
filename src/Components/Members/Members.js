@@ -1,5 +1,4 @@
-import './MembersEdit.css';
-import { Box, FormControl, FormErrorMessage, FormLabel, Heading, VStack } from '@chakra-ui/react';
+import { Box, FormControl, FormErrorMessage, FormLabel, Heading, VStack, Stack } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
 import { Formik } from 'formik';
@@ -70,12 +69,8 @@ const Members = (membersData) => {
                     justifyContent="center"
                     onSubmit={formik.handleSubmit}>
 
-                    <Box
-                        w="100%"
-                        p={4}
-                        textAlign="center"
-                    >
-                        <Heading className='form__titulo' >Formulario Creación / Edición de Miembros</Heading>
+                    <Box w="100%" p={4} bg="teal" color="white" textAlign="center">
+                        <Heading>Formulario Creación / Edición de Miembros</Heading>
                     </Box>
 
                     <FormControl marginBottom={5} isInvalid={formik.errors.name && formik.touched.name}>
@@ -141,14 +136,11 @@ const Members = (membersData) => {
                         <FormErrorMessage>{formik.errors.socialMedia}</FormErrorMessage>
                     </FormControl>
 
-                    <Button
-                        type="submit"
-                        colorScheme='blue'
-                        isFullWidth
-                        marginTop={5}>
+                    <Stack w={'100%'}>
+                      <Button type="submit" size="md" variant="solid" colorScheme="teal">
                         Enviar
-                    </Button>
-
+                      </Button>
+                    </Stack>
                 </VStack>
             )}
         </Formik>

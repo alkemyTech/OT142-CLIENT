@@ -32,6 +32,13 @@ export const get = (route, id) => {
   });
 };
 
+export const getSearch = (route, word) => {
+  const fullRoute = word ? `${route}?search=${word}` : `${route}`;
+  return axiosInstance.get(fullRoute, {
+    headers: getAuthorizationToken()
+  });
+};
+
 export const post = (route, payload) => {
   return axiosInstance.post(route, payload, {
     headers: getAuthorizationToken()
