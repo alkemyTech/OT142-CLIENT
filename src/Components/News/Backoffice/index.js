@@ -20,7 +20,7 @@ import { useDebounce } from 'use-debounce';
 const BackOfficeNews = () => {
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
-  const [name, setName] = useState('');
+  const [nameValue, setName] = useState('');
   const [useDebounceValue] = useDebounce(name, 500);
   useEffect(async () => {
     dispatch(await getAllNews());
@@ -61,7 +61,7 @@ const BackOfficeNews = () => {
                     <Input
                     placeholder='busqueda por nombre'
                     name='name'
-                    value={name}
+                    value={nameValue}
                     onChange={handleOnChange}
                     />
                 ) }
