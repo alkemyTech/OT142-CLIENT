@@ -216,6 +216,7 @@ const NewsForm = () => {
                                 </FormControl>
 
                                 <FormControl isInvalid={formik.errors.category && formik.touched.category}>
+                                <FormLabel>Categoría</FormLabel>
                                     <Select name="category" value={formik.values.category} onChange={formik.handleChange}>
                                         <option value="" disabled>Select category</option>
                                         {
@@ -228,7 +229,7 @@ const NewsForm = () => {
                                 </FormControl>
 
                                 <FormControl isInvalid={formik.errors.image && formik.touched.image}>
-                                    <FormLabel>Imagen</FormLabel>
+                                <FormLabel>Imagen</FormLabel>
                                     <Input
                                         id="image"
                                         type="file"
