@@ -1,5 +1,5 @@
-import { Button, Flex, Box, FormControl, FormLabel, Input, Text, Link, Image } from '@chakra-ui/react';
-import { Link as ReachLink, useHistory } from 'react-router-dom';
+import { Button, Flex, Box, FormControl, FormLabel, Input, Text, Image } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { login } from '../../Services/authService';
@@ -70,7 +70,7 @@ const LoginForm = () => {
             {isSubmitting
               ? <Spinner isLoading={isSubmitting} size='40px' color='blue'/>
               : <Button onClick={handleSubmit} background='gray.300' mt='4' type='submit'>Ingresar</Button>}
-            <Text fontSize='sm' mt='3'>¿No tienes una cuenta?<Link color='blue.400' as={ReachLink} to='/registro'> Regístrate</Link></Text>
+            {/* <Text fontSize='sm' mt='3'>¿No tienes una cuenta?<Link color='blue.400' as={ReachLink} to='/registro'> Regístrate</Link></Text> */}
           </Flex>
         </Flex>
       )}
