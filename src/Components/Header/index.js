@@ -185,10 +185,11 @@ const DesktopNav = ({ isLoggedIn }) => {
 };
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+  console.log("href: " + href)
   return (
     <Link
       as={ReachLink}
-      href={href}
+      to={href}
       role={"group"}
       display={"block"}
       p={2}
