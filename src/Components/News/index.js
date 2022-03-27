@@ -1,11 +1,12 @@
-import Title from '../Titles';
 import NewsList from './NewsList';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Searchbar from '../../utils/Searchbar';
 import { debouncer } from '../../utils/debouncer';
 import { getAllNews, filterNews } from '../../app/features/newsSlice';
-import { Box } from '@chakra-ui/react';
+import { Heading, Box } from '@chakra-ui/react';
+// import { getAllNews } from '../../app/features/newsSlice';
+
 export const News = () => {
   const { news } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -32,14 +33,11 @@ export const News = () => {
           alignItems: 'center'
         }}
       >
-        <Title children="Novedades" />
+        <Heading as='h2' size='md' textAlign='center' mb={3}>Novedades</Heading>
         <Searchbar handleChange={debouncer(handleChange)} />
-        <NewsList
-          newsList={news.news || []}
-          loading={news.newsLoading}
-          error={news.newsError}
-        />
+        <NewsList newsList={news.news || []} loading={news.newsLoading} error={news.newsError}/>
       </Box>
     </>
+
   );
 };

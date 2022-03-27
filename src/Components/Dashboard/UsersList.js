@@ -9,7 +9,8 @@ import {
   Button,
   Flex,
   Text,
-  Spinner
+  Spinner,
+  Container
 } from '@chakra-ui/react';
 import { Link, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -42,6 +43,7 @@ const UserList = () => {
   }, [userStatus, dispatch]);
 
   return (
+      <Container maxW='container.xl' mx="auto" p={4}>
         <Flex flexDirection="column" justifyContent="center" alignItems="center" p="2">
             ¿Deseas crear un nuevo usuario? <Text textColor="blue.400"><Link to="create-user">Crear usuario</Link></Text>
 
@@ -82,6 +84,7 @@ const UserList = () => {
                 </Tbody>
             </Table>
         </Flex>
+        </Container>
   );
 };
 export default UserList;
