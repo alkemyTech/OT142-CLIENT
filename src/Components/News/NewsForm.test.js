@@ -17,7 +17,7 @@ describe('News form test', () => {
   //   </MemoryRouter>
   // );
 
-  // ** RENDER DEL COMPONENTE SIN ID PARA CREAR
+  // **** RENDER DEL COMPONENTE SIN ID PARA CREAR
   // const renderComponentCreate = () => render(
   //   <MemoryRouter initialEntries={['/backoffice/news/create']}>
   //     <Route path="/backoffice/news/create">
