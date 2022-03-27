@@ -1,29 +1,26 @@
+/* eslint-disable no-trailing-spaces */
 /* eslint-disable import/no-duplicates */
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
-import { fireEvent, render, screen, wait, waitFor, click, getByLabelText, getByText } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
-import LoginForm from './LoginForm';
-import userEvent from '@testing-library/user-event';
-import { act } from 'react-dom/test-utils';
 import '@testing-library/jest-dom';
 import user from '@testing-library/user-event';
 import RegisterForm from './RegisterForm';
 
 describe('<Register/>', () => {
-  it('existen inputs & submit', () => {
+  it('there are inputs & submit', () => {
     render(<RegisterForm/>);
     expect(screen.getByRole('textbox', { name: /nombre completo/i })).toBeInTheDocument();
     expect(screen.getByRole('textbox', { name: /email/i })).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/ingrese su contraseña/i)).toBeInTheDocument();
-    expect(screen.getByText(/repetir/i)).toBeInTheDocument();
-    expect(screen.getByText(/he leído y acepto\./i)).toBeInTheDocument();
+    expect(screen.getByText(/repetir contraseña/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /registrarme/i })).toBeInTheDocument();
   });
-  it('Campos vacíos largan error', async () => {
-    const onSubmit = jest.fn();
-    render(<RegisterForm onSubmit={onSubmit} />);
+
+  it('Empty fields show error', async () => {
+    render(<RegisterForm />);
     fireEvent.click(screen.getByRole('button', { name: /registrarme/i }));
     await waitFor(() => {
       expect(screen.getByText(/por favor ingrese un nombre/i));
@@ -32,13 +29,49 @@ describe('<Register/>', () => {
       expect(screen.getByText(/por favor repita su contraseña/i));
     });
   });
-  it('Comprobar que funcione check', async () => {
+
+  it('the inputs are changed and the passwords are different', async () => {
     const onSubmit = jest.fn();
     render(<RegisterForm onSubmit={onSubmit} />);
-    const radio = screen.getByText(/he leído y acepto\./i);
-    userEvent.click(radio);
+    const nameInput = screen.getByRole('textbox', { name: /nombre completo/i });
+    const emailInput = screen.getByRole('textbox', { name: /email/i });
+    const pass1 = screen.getByPlaceholderText(/ingrese su contraseña/i);
+    const pass2 = screen.getByPlaceholderText(/repita su contraseña/i); 
+    user.type(nameInput, 'David');
+    user.type(emailInput, 'david@gmail.com');
+    user.type(pass1, '123456_');
+    user.type(pass2, '12346_');
+    expect(nameInput.value).toMatch('David');
     await waitFor(() => {
-      // expect(radio).toBeChecked();
+      fireEvent.change(nameInput, { target: { value: 'nombre' } });
+      fireEvent.change(emailInput, { target: { value: 'email@.com' } });
+      fireEvent.change(pass1, { target: { value: '12346_' } });
+      fireEvent.change(pass2, { target: { value: '16_' } });
     });
+    expect(nameInput.value).toMatch('nombre');
+    expect(screen.getByText(/la contraseña debe coincidir/i)).toBeInTheDocument();
+  });
+
+  it('submit button disappears when user managed to register', async () => {
+    const onSubmit = jest.fn();
+    render(<RegisterForm onSubmit={onSubmit} />);
+    const nameInput = screen.getByRole('textbox', { name: /nombre completo/i });
+    const emailInput = screen.getByRole('textbox', { name: /email/i });
+    const pass1 = screen.getByPlaceholderText(/ingrese su contraseña/i);
+    const pass2 = screen.getByPlaceholderText(/repita su contraseña/i); 
+    const submit = screen.getByRole('button', { name: /registrarme/i });
+    user.type(nameInput, 'David');
+    user.type(emailInput, 'david@gmail.com');
+    user.type(pass1, '123456_');
+    user.type(pass2, '12346_');
+    expect(nameInput.value).toMatch('David');
+    await waitFor(() => {
+      fireEvent.change(nameInput, { target: { value: 'nombre' } });
+      fireEvent.change(emailInput, { target: { value: 'email@.com' } });
+      fireEvent.change(pass1, { target: { value: '12346_' } });
+      fireEvent.change(pass2, { target: { value: '16_' } });
+      fireEvent.click(submit);
+    });
+    expect(submit).not.toBeDisabled();
   });
 });
