@@ -26,8 +26,8 @@ const LinkItems = [
   { name: 'Categorías', route: '/backoffice/categories', icon: BiCategory },
   { name: 'Usuarios', route: '/backoffice/users', icon: FaUserAlt },
   { name: 'Organización', route: '/backoffice/organization', icon: RiOrganizationChart },
-  { name: 'Crear Miembros', route: '/backoffice/members/create', icon: MdCardMembership },
-  { name: 'Crear Slide', route: '/backoffice/slide', icon: MdCategory },
+  { name: 'Miembros', route: '/backoffice/members/create', icon: MdCardMembership },
+  { name: 'Slide', route: '/backoffice/slides', icon: MdCategory },
   { name: 'Inicio', route: '/', icon: AiFillHome }
 ];
 

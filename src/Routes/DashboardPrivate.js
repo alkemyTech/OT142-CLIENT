@@ -16,6 +16,7 @@ import PageNotFound from '../Components/PageNotFound';
 import { Container, Stack } from '@chakra-ui/react';
 import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
 import UserForm from '../Components/Users/UsersForm';
+import BackOfficeSlides from '../Components/Slides/backoffice';
 
 const DashboardPrivate = () => {
   const history = useHistory();
@@ -31,7 +32,8 @@ const DashboardPrivate = () => {
         <Sidebar />
         <Switch>
             <Route exact path="/backoffice" component={Dashboard} />
-            <Route exact path="/backoffice/slide" component={SlidesForm} />
+            <Route exact path="/backoffice/slides" component={BackOfficeSlides} />
+            <Route exact path="/backoffice/slides/create" component={SlidesForm} />
             <Route exact path="/backoffice/organization" component={OrganizationBoard} />
             <Route exact path="/backoffice/organization/edit" component={EditForm} />
             <Route exact path="/backoffice/organization/edit-home" component={EditHomeForm} />
