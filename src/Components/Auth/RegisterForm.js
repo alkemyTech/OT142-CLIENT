@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../FormStyles.css';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-// import TermsAndConditions from '../Modal/TermsAndCond';
+import TermsAndConditions from '../Modal/TermsAndCond';
 import {
   Button,
   Input,
@@ -50,7 +50,7 @@ const validationSchema = Yup.object({
 });
 
 const RegisterForm = () => {
-  // const [registerValue, setRegisterValue] = useState();
+  const [registerValue, setRegisterValue] = useState();
 
   // const [latLng, setLatLng] = useState({
   //   latitude: 0,
@@ -60,9 +60,10 @@ const RegisterForm = () => {
 
   const history = useHistory();
 
-  // const onCheckChange = (string) => {
-  //   setRegisterValue(string);
-  // };
+  const onCheckChange = (string) => {
+    setRegisterValue(string);
+  };
+  console.log(registerValue);
 
   useEffect(() => {
     // Esto es para que no pueda entrar al registro si ya esta autenticado
@@ -85,7 +86,6 @@ const RegisterForm = () => {
             sessionStorage.setItem('login-token', token);
             sessionStorage.setItem('login-role', user.role_id);
             history.push('/');
-            console.log('registrado');
           }
         } catch (error) {
           console.log(error);
@@ -118,7 +118,7 @@ const RegisterForm = () => {
                   {errors && <FormErrorMessage maxW='150px'>{errors.password}</FormErrorMessage>}
                 </FormControl>
                 <FormControl mt='2' isInvalid={errors.passwordRepeat}>
-                  <FormLabel>Repetir contraseña</FormLabel>
+                  <FormLabel>Repetir</FormLabel>
                   <Input value={values.passwordRepeat} name='passwordRepeat' onChange={handleChange} onBlur={handleBlur} bg='white' type='password' placeholder='Repita su contraseña' />
                   {errors && <FormErrorMessage maxW='150px'>{errors.passwordRepeat}</FormErrorMessage>}
                 </FormControl>
@@ -127,13 +127,13 @@ const RegisterForm = () => {
             <FormControl mt='4'>
               {/* <MapsWrapper setLatLng={setLatLng} /> */}
             </FormControl>
-            {/* <Flex flexDirection='column' mt='2'>
+            <Flex flexDirection='column' mt='2'>
               <TermsAndConditions handleChange={onCheckChange} />
-            </Flex> */}
-            {
+            </Flex>
+            {registerValue === 'accept' &&
               isSubmitting
-                ? <Spinner isLoading={isSubmitting} size='40px' color='blue' />
-                : <Button onClick={handleSubmit} background='gray.300' mt='4' type='submit'>Registrarme</Button>}
+              ? <Spinner isLoading={isSubmitting} size='40px' color='blue' />
+              : <Button onClick={handleSubmit} background='gray.300' mt='4' type='submit'>Registrarme</Button>}
             {/* <Text fontSize='sm' mt='4'>¿Ya tienes una cuenta?<Link color='blue.400' as={ReachLink} to='/login'> Inicia sesión</Link></Text> */}
           </Flex>
         </Flex>

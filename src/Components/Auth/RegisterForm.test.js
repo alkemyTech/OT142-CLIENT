@@ -15,7 +15,7 @@ describe('<Register/>', () => {
     expect(screen.getByRole('textbox', { name: /nombre completo/i })).toBeInTheDocument();
     expect(screen.getByRole('textbox', { name: /email/i })).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/ingrese su contraseña/i)).toBeInTheDocument();
-    expect(screen.getByText(/repetir contraseña/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/repita su contraseña/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /registrarme/i })).toBeInTheDocument();
   });
 
