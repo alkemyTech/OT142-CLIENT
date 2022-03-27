@@ -4,9 +4,11 @@
 // import NewsForm from './NewsForm';
 import '@testing-library/jest-dom/extend-expect';
 
+// **** INICIAMOS LOS TESTEOS
 describe('News form test', () => {
   // Para que el test funcione tenemos que comentar el CKEditor de NewsForm
 
+  // **** RENDER DEL COMPONENTE SI LLEGA UN ID PARA EDITAR
   // const renderComponentEdit = ({ id }) => render(
   //   <MemoryRouter initialEntries={[`/backoffice/news/create/${id}`]}>
   //     <Route path="/backoffice/news/create/:id">
@@ -15,6 +17,7 @@ describe('News form test', () => {
   //   </MemoryRouter>
   // );
 
+  // ** RENDER DEL COMPONENTE SIN ID PARA CREAR
   // const renderComponentCreate = () => render(
   //   <MemoryRouter initialEntries={['/backoffice/news/create']}>
   //     <Route path="/backoffice/news/create">
@@ -23,18 +26,21 @@ describe('News form test', () => {
   //   </MemoryRouter>
   // );
 
+  // **** TEST DEL COMPONENTE, SI EL TITULO ES CREAR NOVEDAD, ES UN COMPONENTE PARA CREAR
   // test('News create form should be in the document', () => {
   //   const { getByText } = renderComponentCreate();
   //   const title = getByText('Crear novedad');
   //   expect(title).toBeInTheDocument();
   // });
 
+  // **** TEST DEL COMPONENTE, SI EL TITULO ES EDITAR NOVEDAD, ES UN COMPONENTE PARA EDITAR
   // test('News edit form should be in the document', () => {
   //   const { getByText } = renderComponentEdit({ id: 1942 });
   //   const titleEdit = getByText('Editar novedad');
   //   expect(titleEdit).toBeInTheDocument();
   // });
 
+  // **** TEST DEL COMPONENTE CUANDO HACEN CLICK PARA VER QUE LOS CAMPOS VACIOS TIREN EL ERROR.
   // test('Submit form should show errors messages', async () => {
   //   const wrapper = renderComponentCreate();
   //   const button = wrapper.getByText('Crear');
