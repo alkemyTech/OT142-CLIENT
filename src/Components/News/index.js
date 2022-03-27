@@ -1,7 +1,7 @@
-import Title from '../Titles';
 import NewsList from './NewsList';
 // import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Heading } from '@chakra-ui/react';
 // import { getAllNews } from '../../app/features/newsSlice';
 
 export const News = () => {
@@ -30,7 +30,7 @@ export const News = () => {
 
   return (
         <>
-            <Title children="Novedades"/>
+            <Heading as='h2' size='md' textAlign='center' mb={3}>Novedades</Heading>
             <NewsList newsList={news.news || []} loading={news.newsLoading} error={news.newsError}/>
         </>
   );

@@ -11,7 +11,8 @@ import {
   Stack,
   Heading,
   VStack,
-  Box
+  Box,
+  Container
 } from '@chakra-ui/react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -51,6 +52,7 @@ const SlidesForm = ({ state }) => {
   };
 
   return (
+    <Container maxW='container.xl'>
     <form
       onSubmit={handleSubmit}
     >
@@ -73,7 +75,7 @@ const SlidesForm = ({ state }) => {
             name="name"
             value={initialValues.name}
             onChange={handleChange}
-            placeholder="Nombre"
+            placeholder="Ingrese su Nombre"
           ></Input>
         </FormControl>
         <FormControl isRequired>
@@ -90,7 +92,6 @@ const SlidesForm = ({ state }) => {
         <FormControl isRequired>
           <FormLabel htmlFor="first-name">Descripción</FormLabel>
           <CKEditor
-            config={{ placeholder: '... Descripción' }}
             editor={ClassicEditor}
             data={initialValues.description}
             onChange={(event, editor) => {
@@ -128,6 +129,7 @@ const SlidesForm = ({ state }) => {
         </Stack>
       </VStack>
     </form>
+    </Container>
   );
 };
 
