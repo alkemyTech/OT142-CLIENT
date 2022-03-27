@@ -15,9 +15,9 @@ export const getAllNews = createAsyncThunk(
 
 export const filterNews = createAsyncThunk(
   'news/filterNew',
-  async (name) => {
+  async (word) => {
     try {
-      const response = await searchNew(name);
+      const response = await searchNew(word);
       return response;
     } catch (error) {
       console.log(error, 'ERROR');
@@ -82,6 +82,9 @@ export const newsSlice = createSlice({
     [getAllNews.rejected]: (state) => {
       state.status = 'failed';
       state.newsError = true;
+    },
+    [filterNews.fulfilled]: (state, { payload }) => {
+      state.news = payload.data;
     }
   }
 });

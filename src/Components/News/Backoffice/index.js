@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Table,
   Thead,
@@ -8,41 +8,24 @@ import {
   Text,
   Container,
   Box,
-  Button,
-  Input
+  Button
 } from '@chakra-ui/react';
 import TrTable from '../../../utils/TrTable';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllNews, deleteNovedad, deleteNews, filterNews } from '../../../app/features/newsSlice';
-import { useDebounce } from 'use-debounce';
+import { getAllNews, deleteNovedad, deleteNews } from '../../../app/features/newsSlice';
 
 const BackOfficeNews = () => {
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
-  const [nameValue, setName] = useState('');
-  const [useDebounceValue] = useDebounce(name, 500);
+  console.log(news);
   useEffect(async () => {
     dispatch(await getAllNews());
   }, [dispatch]);
-  useEffect(() => {
-    useDebounceFuntion();
-  }, [useDebounceValue]);
 
   const handleDelete = (id) => {
     dispatch(deleteNovedad(id));
     dispatch(deleteNews(id));
-  };
-  const handleOnChange = (e) => {
-    if (e.target.value.lenght > 3) {
-      setName(e.target.value);
-    }
-  };
-
-  const useDebounceFuntion = () => {
-    if (useDebounceValue) {
-      dispatch(filterNews(useDebounceValue));
-    }
   };
 
   return (
@@ -55,16 +38,6 @@ const BackOfficeNews = () => {
                         Crear nueva novedad
                     </Button>
                 </Link>
-            </Box>
-            <Box>
-                {news.news && (
-                    <Input
-                    placeholder='busqueda por nombre'
-                    name='name'
-                    value={nameValue}
-                    onChange={handleOnChange}
-                    />
-                ) }
             </Box>
 
             <Table variant='simple'>
