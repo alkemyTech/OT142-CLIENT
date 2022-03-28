@@ -4,7 +4,7 @@ import { Text, Flex, Container, Heading, Box } from '@chakra-ui/react';
 const AboutOng = ({ text }) => {
   return (
     <Flex flexDirection="column" justifyContent="center" alignItems="center">
-        <Container maxW='container.xl'>
+        <Container maxW='container.xl' mt={3}>
           <Box>
           <Heading as='h2' size='md' textAlign='center' mb={3}>Nosotros</Heading>
           <Text textAlign='center' mb={3}>
