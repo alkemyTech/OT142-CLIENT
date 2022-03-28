@@ -12,6 +12,7 @@ const Routes = () => {
         <Switch>
             <Route exact path='/school-campaign' component={SchoolCampaign}/>
             <Route exact path='/toys-campaign' component={ToysCampaign} />
+
             <PrivateRoute
                 path="/backoffice"
                 component={DashboardPrivate}
