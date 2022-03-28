@@ -11,13 +11,14 @@ import {
   Button
 } from '@chakra-ui/react';
 import TrTable from '../../../utils/TrTable';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllNews, deleteNovedad, deleteNews } from '../../../app/features/newsSlice';
+import { useHistory } from 'react-router-dom';
 
 const BackOfficeNews = () => {
   const dispatch = useDispatch();
   const { news } = useSelector(state => state);
+  const history = useHistory();
 
   useEffect(async () => {
     dispatch(await getAllNews());
@@ -33,11 +34,9 @@ const BackOfficeNews = () => {
 
             <Box mb={5}>
                 <Text fontSize='6xl'>Backoffice de Novedades</Text>
-                <Link to="/backoffice/news/create">
-                    <Button colorScheme='green'>
+                    <Button onClick={() => history.push('/backoffice/news/create')} colorScheme='green'>
                         Crear nueva novedad
                     </Button>
-                </Link>
             </Box>
 
             <Table variant='simple'>
