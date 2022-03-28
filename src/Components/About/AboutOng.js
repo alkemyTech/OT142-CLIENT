@@ -1,11 +1,13 @@
 import React from 'react';
-import { Text, Flex, Container } from '@chakra-ui/react';
+import { Text, Flex, Container, Heading, Box } from '@chakra-ui/react';
 
 const AboutOng = ({ text }) => {
   return (
     <Flex flexDirection="column" justifyContent="center" alignItems="center">
         <Container maxW='container.xl'>
-          <Text>
+          <Box>
+          <Heading as='h2' size='md' textAlign='center' mb={3}>Nosotros</Heading>
+          <Text textAlign='center' mb={3}>
           Desde 1997, en Somos Más trabajamos con los chicos y chicas, mamás y papás,
           abuelos y vecinos del barrio La Cava generando procesos de crecimiento y de
           inserción social. Uniendo las manos de todas las familias, las que viven en el barrio
@@ -17,6 +19,23 @@ const AboutOng = ({ text }) => {
           través de las áreas de: Educación, deportes, primera infancia, salud, alimentación y
           trabajo social.
           </Text>
+          </Box>
+          <Box>
+          <Heading as='h2' size='md' textAlign='center' mb={3}>Visión</Heading>
+          <Text textAlign='center' mb={3}>
+          Mejorar la calidad de vida de niños y familias en situación de vulnerabilidad en el
+          barrio La Cava, otorgando un cambio de rumbo en cada individuo a través de la
+          educación, salud, trabajo, deporte, responsabilidad y compromiso.
+          </Text>
+          </Box>
+          <Box>
+          <Heading as='h2' size='md' textAlign='center' mb={3}>Misión</Heading>
+          <Text textAlign='center' mb={3}>
+          Trabajar articuladamente con los distintos aspectos de la vida de las familias,
+          generando espacios de desarrollo personal y familiar, brindando herramientas que
+          logren mejorar la calidad de vida a través de su propio esfuerzo.
+          </Text>
+          </Box>
         </Container>
     </Flex>
   );
