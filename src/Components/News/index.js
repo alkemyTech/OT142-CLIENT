@@ -3,6 +3,7 @@ import NewsList from './NewsList';
 import { useSelector } from 'react-redux';
 import LastEvent from './LastEvent';
 // import { getAllNews } from '../../app/features/newsSlice';
+import { Heading } from '@chakra-ui/react';
 
 export const News = () => {
   const { news } = useSelector((state) => state);
@@ -30,7 +31,7 @@ export const News = () => {
 
   return (
     <>
-      <Title children='Novedades' />
+      <Heading children='Novedades' />
       <LastEvent video={'https://youtu.be/4YnSk1gI_Oo'} />
       <NewsList
         newsList={news.news || []}
