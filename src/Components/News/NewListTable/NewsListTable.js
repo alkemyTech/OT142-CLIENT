@@ -13,8 +13,16 @@ import {
   Tbody,
   Tr,
   Th,
-  Td
+  Td,
+  FormControl,
+  Input
 } from '@chakra-ui/react';
+
+const handleChange = (e) => {
+  if (e.target.value.length > 3) {
+    console.log(e.target.value);
+  }
+};
 
 const NewsListTable = ({ data, handleDeleteNews }) => {
   return (
@@ -22,7 +30,7 @@ const NewsListTable = ({ data, handleDeleteNews }) => {
             <Container maxW='container.lg'>
                 <Flex margin={10}>
                     <Box p='2'>
-                        <Heading size='md'>Listado de Novedades</Heading>
+                        <Heading size='xl'>Listado de Novedades</Heading>
                     </Box>
                     <Spacer />
                     <Box>
@@ -33,6 +41,16 @@ const NewsListTable = ({ data, handleDeleteNews }) => {
                         </Link>
                     </Box>
                 </Flex>
+                <Flex>
+                  <FormControl>
+                    <Input
+                      m={'20px'}
+                      onChange={handleChange}
+                      bg='white'
+                      type='search'
+                      placeholder='Buscar novedad' />
+                    </FormControl>
+                  </Flex>
                 <Table variant='simple'>
                     <Thead>
                         <Tr>
