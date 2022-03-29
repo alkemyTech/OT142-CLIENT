@@ -1,6 +1,5 @@
-import { css } from "@emotion/react";
-import MoonLoader from "react-spinners/MoonLoader";
-
+import { css } from '@emotion/react';
+import MoonLoader from 'react-spinners/MoonLoader';
 
 const override = css`
   display: block;
@@ -8,12 +7,10 @@ const override = css`
   margin-top: 10%;
 `;
 
-const Spinner = ({isLoading, color, size}) => {
+const Spinner = ({ isLoading, color, size }) => {
+  return (
+    <MoonLoader loading={isLoading} css={override} size={size} color={color} />
+  );
+};
 
-    return (   
-            <MoonLoader  loading={isLoading} css={override} size={size} color={color} />
-        
-    )
-}
-
-export default Spinner
+export default Spinner;

@@ -1,10 +1,12 @@
-import axios from "axios";
+import axios from 'axios';
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const axiosInstance = axios.create({
-  baseURL: "https://ongapi.alkemy.org/api",
+  baseURL: BASE_URL,
   headers: {
-    Group: "142",
-  },
+    Group: '142'
+  }
 });
 
 export const get = (path) => {
@@ -25,4 +27,4 @@ export const post = (path, body) => {
 
 export const remove = (path, id) => {
   return axiosInstance.delete(`${path}/${id}`);
-}
+};

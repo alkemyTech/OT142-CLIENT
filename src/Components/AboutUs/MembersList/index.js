@@ -1,62 +1,83 @@
-import React from 'react'
-import { API_MEMBERS } from '../hooks/API';
-import { useState, useCallback, useEffect } from 'react';
+/* eslint-disable*/
+import React, { useEffect } from "react";
+
 import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    TableCaption,
-    Spinner
-  } from '@chakra-ui/react'
-
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  Image,
+} from "@chakra-ui/react";
+import Spinner from "../../Spinner/index";
+import { showAlertErr } from "../../../Services/AlertServicie/AlertServicie";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllMembers,
+  getMembersList,
+} from "../../../app/features/MembersSlice";
 const MembersList = () => {
-    
-    const [data, setData] = useState();
-    const [error, setError] = useState();
+  const dispatch = useDispatch();
+  const members = useSelector(getAllMembers);
 
+  const memberStatus = useSelector((state) => state.members.status);
 
-        const getData = useCallback (async () => {
-            try {
-                const { data } = await API_MEMBERS.get();
-                setData(data.data);
-            } catch (e) {
-                setError(e);
-            }
-        });
+  useEffect(() => {
+    if (memberStatus === "idle") {
+      dispatch(getMembersList());
+    }
+  }, [memberStatus, dispatch]);
 
-        useEffect(() => {
-            getData();
-        }, []);
+  return (
+    <>
+      <Table variant="simple" size="md" colorScheme="telegram">
+        <TableCaption placement="top">Listado de Miembros</TableCaption>
+        <Thead style={{ backgroundColor: "#EDF2F7" }}>
+          <Tr>
+            <Th>Nombre</Th>
+            <Th>Imagen</Th>
+            <Th>Descripción</Th>
+            <Th>Facebook</Th>
+            <Th>Linkedin</Th>
+          </Tr>
+        </Thead>
+        {memberStatus === "loading" && (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        )}
+        <Tbody>
+          {members ? (
+            members.map((member, i) => (
+              <Tr key={i}>
+                <Td>{member.name}</Td>
+                <Td>
+                  <Image
+                    boxSize="110px"
+                    objectFit="cover"
+                    src={member.image}
+                    alt={member.name}
+                  />
+                </Td>
+                <Td>{member.description}</Td>
+                <Td>{member.facebookUrl}</Td>
+                <Td>{member.linkedinUrl}</Td>
+              </Tr>
+            ))
+          ) : (
+            <Td>Sin miembros</Td>
+          )}
+          ,
+        </Tbody>
+      </Table>
+    </>
+  );
+};
 
-    return (
-        <Table variant="striped" size="sm" colorScheme="blue">
-            <TableCaption>Listado de miembros</TableCaption>
-            <Thead>
-                <Tr>
-                <Th>Nombre</Th>
-                <Th>Imagen</Th>
-                <Th>Descripcion</Th>
-                <Th>Facebook</Th>
-                <Th>Linkedin</Th>
-                </Tr>
-            </Thead>
-            <Tbody>
-                {data?
-                    data.map((member) => (
-                    <Tr>
-                        <Td>{member.name}</Td>
-                        <Td>{member.image}</Td>
-                        <Td>{member.description}</Td>
-                        <Td>{member.facebookUrl}</Td>
-                        <Td>{member.linkedinUrl}</Td>
-                    </Tr> 
-                    )) : <Spinner d="flex" size="xl"/>}
-            </Tbody>
-            </Table>
-    )
-}
- 
 export default MembersList;
