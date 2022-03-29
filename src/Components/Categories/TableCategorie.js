@@ -5,12 +5,14 @@ import {
   Tr,
   Th,
   Td,
+  Box,
   TableCaption, Stack, Heading, Button, Flex, FormControl, Input
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { getAllCategories, getCategorieByName, getCategoriesList } from '../../app/features/ReducerCategories';
 import { useDispatch, useSelector } from 'react-redux';
 import { debouncer } from '../../utils/debouncer';
+import { AiFillDelete, AiFillEdit } from 'react-icons';
 
 const TableCategorie = () => {
   const dispatch = useDispatch();
@@ -66,19 +68,25 @@ const TableCategorie = () => {
             ? 'cargando...'
             : categories.map((categorie) => {
               return (
-                  <Tr key={categorie.id}>
-                    <Td>{categorie.name}</Td>
-                    <Td>{categorie.createdAt}</Td>
-                    <Td isNumeric>{categorie.id}</Td>
-                    <Td>
-                      <Button variant="outline" colorScheme="teal" size="xs">
-                        Eliminar
-                      </Button>
-                      <Button variant="outline" colorScheme="teal" size="xs">
-                        Editar
-                      </Button>
-                    </Td>
-                  </Tr>
+                <Tr key={categories.key}>
+                  <Td>{categorie.name}</Td>
+                  <Td>{new Date(categorie.created_at).toLocaleDateString('es-ES')}</Td>
+                  <Td>{categorie.id}</Td>
+                  <Td>
+                    <Stack spacing={2}>
+                      <Box>
+                        <Button colorScheme='blue'>
+                          <AiFillEdit />
+                        </Button>
+                      </Box>
+                      <Box>
+                        <Button colorScheme='red'>
+                          <AiFillDelete />
+                        </Button>
+                      </Box>
+                    </Stack>
+                  </Td>
+                </Tr>
               );
             })}
         </Table>
