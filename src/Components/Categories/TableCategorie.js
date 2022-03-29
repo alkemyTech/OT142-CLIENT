@@ -5,6 +5,7 @@ import {
   Tr,
   Th,
   Td,
+  Box,
   TableCaption, Stack, Heading, Button, Flex, FormControl, Input
 } from '@chakra-ui/react';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
@@ -69,25 +70,25 @@ const TableCategorie = () => {
             : categories.map((categorie) => {
               console.log(categorie);
               return (
-                  <Tr key={categorie.id}>
-                    <Td>{categorie.name}</Td>
-                    <Td>{categorie.createdAt}</Td>
-                    <Td>{categorie.id}</Td>
-                    <Td>
+                <Tr key={categories.key}>
+                  <Td>{categorie.name}</Td>
+                  <Td>{new Date(categorie.created_at).toLocaleDateString('es-ES')}</Td>
+                  <Td>{categorie.id}</Td>
+                  <Td>
                     <Stack spacing={2}>
-                    <Link>
-                      <Button colorScheme='blue'>
-                        <AiFillEdit />
-                      </Button>
-                    </Link>
-                    <Link>
-                      <Button colorScheme='red'>
-                        <AiFillDelete />
-                      </Button>
-                    </Link>
+                      <Box>
+                        <Button colorScheme='blue'>
+                          <AiFillEdit />
+                        </Button>
+                      </Box>
+                      <Box>
+                        <Button colorScheme='red'>
+                          <AiFillDelete />
+                        </Button>
+                      </Box>
                     </Stack>
-                    </Td>
-                  </Tr>
+                  </Td>
+                </Tr>
               );
             })}
         </Table>
