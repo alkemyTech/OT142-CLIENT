@@ -19,6 +19,7 @@ import TrTable from '../../../utils/TrTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteNovedad, deleteNews, searchNews } from '../../../app/features/newsSlice';
 import { useDebounceSearch } from '../../../hooks/useDebounceSearch';
+import { useHistory } from 'react-router-dom';
 
 const BackOfficeNews = () => {
   const [valuesSearch, setValuesSearch] = useState('');
@@ -27,8 +28,7 @@ const BackOfficeNews = () => {
   const dispatch = useDispatch();
   const { news } = useSelector(state => state.news);
   const { status } = useSelector(state => state.news);
-
-  console.log(news.data);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(searchNews(searchValues));
