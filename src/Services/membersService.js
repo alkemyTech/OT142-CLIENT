@@ -36,6 +36,9 @@ export const postMember = (
     .catch((error) => console.log(error));
 };
 
+export const searchMembers = (word) => {
+  return 
+}
 export const deleteMember = (id) => {
   return remove('members', id)
     .then((res) => res.data)
