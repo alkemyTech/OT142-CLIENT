@@ -26,11 +26,11 @@ const TableCategorie = () => {
   return (
     <>
       <Container maxW='100%'>
-      <Box mb={5}>
+        <Box mb={5}>
           <Text fontSize='6xl'>Backoffice de Categorías</Text>
-            <Button colorScheme='green'>
-              <Link to="/backoffice/Categorías/create">Crear nueva categoría</Link>
-            </Button>
+          <Button colorScheme='green'>
+            <Link to="/backoffice/Categorías/create">Crear nueva categoría</Link>
+          </Button>
         </Box>
         <Table variant="simple">
           <TableCaption>Screen Listado de Categorías (backoffice)</TableCaption>
@@ -47,25 +47,25 @@ const TableCategorie = () => {
             ? 'cargando...'
             : categories.map((categorie) => {
               return (
-                  <Tr key={categories.key}>
-                    <Td>{categorie.name}</Td>
-                    <Td>{categorie.createdAt}</Td>
-                    <Td>{categorie.id}</Td>
-                    <Td>
+                <Tr key={categories.key}>
+                  <Td>{categorie.name}</Td>
+                  <Td>{new Date(categorie.created_at).toLocaleDateString('es-ES')}</Td>
+                  <Td>{categorie.id}</Td>
+                  <Td>
                     <Stack spacing={2}>
-                    <Link>
-                      <Button colorScheme='blue'>
-                        <AiFillEdit />
-                      </Button>
-                    </Link>
-                    <Link>
-                      <Button colorScheme='red'>
-                        <AiFillDelete />
-                      </Button>
-                    </Link>
+                      <Box>
+                        <Button colorScheme='blue'>
+                          <AiFillEdit />
+                        </Button>
+                      </Box>
+                      <Box>
+                        <Button colorScheme='red'>
+                          <AiFillDelete />
+                        </Button>
+                      </Box>
                     </Stack>
-                    </Td>
-                  </Tr>
+                  </Td>
+                </Tr>
               );
             })}
         </Table>

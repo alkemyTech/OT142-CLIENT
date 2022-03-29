@@ -11,13 +11,14 @@ import {
   Button
 } from '@chakra-ui/react';
 import TrTable from '../../../utils/TrTable';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteActivities, getAllActivities, deleteActivity } from '../../../app/features/activitiesSlice';
 
 const BackOfficeActivities = () => {
   const dispatch = useDispatch();
   const { activities } = useSelector(state => state);
+  const history = useHistory();
 
   useEffect(async () => {
     dispatch(await getAllActivities());
@@ -41,11 +42,9 @@ const BackOfficeActivities = () => {
 
             <Box mb={5}>
                 <Text fontSize='6xl'>Backoffice de Actividades</Text>
-                <Link to="/backoffice/activities/create">
-                    <Button colorScheme='green'>
-                        Crear nueva actividad
-                    </Button>
-                </Link>
+                <Button onClick={() => history.push('/backoffice/activities/create')} colorScheme='green'>
+                    Crear nueva actividad
+                </Button>
             </Box>
 
             <Table variant='simple'>

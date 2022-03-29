@@ -11,7 +11,6 @@ import newsSlice from './features/newsSlice';
 
 import membersReducer from './features/MembersSlice';
 
-
 export default configureStore({
   reducer: {
     categories,
