@@ -1,93 +1,80 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from 'react';
 import {
   Table,
   Thead,
-  Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
-} from "@chakra-ui/react";
-import { Stack, Heading } from "@chakra-ui/react";
-import styleCS from "../Categories/styleCS.css";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
- import { getAllCategories } from "../Reducer/ReducerCategories";
-import { useDispatch, useSelector } from "react-redux";
+  TableCaption, Text, Button, Box, Container, Stack
+} from '@chakra-ui/react';
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
- const TableCategorie = () => {
+import { Link } from 'react-router-dom';
+import { getAllCategories } from '../../app/features/ReducerCategories';
+import { useDispatch, useSelector } from 'react-redux';
 
+const TableCategorie = () => {
+  const { list: categories } = useSelector((state) => state.categories);
+  console.log(categories);
 
-   const { list: categories } = useSelector((state) => state.categories);
-   console.log(categories);
+  const dispatch = useDispatch();
 
-   const dispatch = useDispatch();
-
- useEffect(() => {
-
-   dispatch(getAllCategories());
-
- }, [dispatch]);
-
-
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, [dispatch]);
 
   return (
     <>
-      <Stack>
-        <Stack style={{ display: " flex", alignItems: " center" }}>
-          <Heading as="h4" size="md">
-            Listado de Categorías
-          </Heading>
-
-          <Stack>
-            <Button variant="outline" colorScheme="teal" size="xs">
-              <Link to="/backoffice/Categorías/create">Crear Categorias</Link>
+      <Container maxW='100%'>
+      <Box mb={5}>
+          <Text fontSize='6xl'>Backoffice de Categorías</Text>
+            <Button colorScheme='green'>
+              <Link to="/backoffice/Categorías/create">Crear nueva categoría</Link>
             </Button>
-          </Stack>
-        </Stack>
-        <Table className="Table" size="lg" variant="striped" colorScheme="teal">
+        </Box>
+        <Table variant="simple">
           <TableCaption>Screen Listado de Categorías (backoffice)</TableCaption>
           <Thead>
             <Tr>
-              <Th>Name</Th>
-              <Th>Create4</Th>
-              <Th isNumeric>Id</Th>
-              <Th>Acciones</Th>
+              <Th>Nombre</Th>
+              <Th>Fecha de Creación</Th>
+              <Th>Id</Th>
+              <Th>Acción</Th>
             </Tr>
           </Thead>
 
           {!categories
-            ? "cargando..."
+            ? 'cargando...'
             : categories.map((categorie) => {
-                return (
-                  <Tr>
-                    {categories.key}
+              return (
+                  <Tr key={categories.key}>
                     <Td>{categorie.name}</Td>
                     <Td>{categorie.createdAt}</Td>
-                    <Td isNumeric>{categorie.id}</Td>
+                    <Td>{categorie.id}</Td>
                     <Td>
-                      <Button variant="outline" colorScheme="teal" size="xs">
-                        Eliminar
+                    <Stack spacing={2}>
+                    <Link>
+                      <Button colorScheme='blue'>
+                        <AiFillEdit />
                       </Button>
-                      <Button variant="outline" colorScheme="teal" size="xs">
-                        Editar
+                    </Link>
+                    <Link>
+                      <Button colorScheme='red'>
+                        <AiFillDelete />
                       </Button>
+                    </Link>
+                    </Stack>
                     </Td>
                   </Tr>
-                );
-              })}
+              );
+            })}
         </Table>
-      </Stack>
+      </Container>
     </>
   );
 };
 
-
 export default TableCategorie;
-
-
-
 
 // import React from "react";
 // import {

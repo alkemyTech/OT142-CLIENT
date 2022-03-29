@@ -1,23 +1,23 @@
-import axios from "axios";
-import { get } from "../../../Services/publicApiService";
-import { post, put, remove } from "../../../Services/privateApiService";
+import axios from 'axios';
+import { get } from '../../../Services/publicApiService';
+import { post, put, remove } from '../../../Services/privateApiService';
 
-const path = process.env.REACT_APP_SLIDES;
+const apiInstance = axios.create({
+  baseURL: 'http://ongapi.alkemy.org/api/slides'
+});
 
-export const getSlideRequest = (id) => {
-  const fullPath = id ? `${path}/${id}` : path;
-  return get(fullPath);
+export const getSlideRequest = () => {
+  return apiInstance.get();
 };
 
 export const postSlideRequest = (values) => {
-  return post(path, values);
+  return apiInstance.post('', values);
 };
 
 export const putSlideRequest = (id, values) => {
-  return put(id, values);
+  return apiInstance.put(`/${id}`, values);
 };
 
 export const deleteSlideRequest = (id) => {
-  const fullPath = `${path}/${id}`;
-  return remove(fullPath);
+  return apiInstance.delete(`/${id}`);
 };

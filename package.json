@@ -1,53 +1,74 @@
 {
-    "name": "ong-client",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@babel/core": "^7.17.5",
-        "@chakra-ui/react": "^1.8.3",
-        "@ckeditor/ckeditor5-build-classic": "^32.0.0",
-        "@ckeditor/ckeditor5-react": "^4.0.0",
-        "@emotion/react": "^11",
-        "@emotion/styled": "^11",
-        "@reduxjs/toolkit": "^1.8.0",
-        "@testing-library/jest-dom": "^5.14.1",
-        "@testing-library/react": "^12.0.0",
-        "@testing-library/user-event": "^13.2.1",
-        "axios": "^0.21.1",
-        "formik": "^2.2.9",
-        "framer-motion": "4.1.17",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-icons": "^4.3.1",
-        "react-lazy-load-image-component": "^1.5.1",
-        "react-redux": "^7.2.6",
-        "react-router-dom": "^5.2.0",
-        "react-scripts": "^4.0.3",
-        "react-slick": "^0.28.1",
-        "react-spinners": "^0.11.0",
-        "sweetalert2": "^11.4.0",
-        "sweetalert2-react": "^0.8.3",
-        "yup": "^0.32.11"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+  "name": "ong-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.17.5",
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.3",
+    "@ckeditor/ckeditor5-build-classic": "^32.0.0",
+    "@ckeditor/ckeditor5-react": "^4.0.0",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@googlemaps/react-wrapper": "^1.1.27",
+    "@reduxjs/toolkit": "^1.8.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "animate.css": "^4.1.1",
+    "axios": "^0.21.1",
+    "formik": "^2.2.9",
+    "framer-motion": "4.1.17",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-lazy-load-image-component": "^1.5.1",
+    "react-player": "^2.10.0",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^5.2.0",
+    "react-router-transition": "^2.1.0",
+    "react-scripts": "^5.0.0",
+    "react-slick": "^0.28.1",
+    "react-social-plugins": "^2.1.0",
+    "react-spinners": "^0.11.0",
+    "screenfull": "^6.0.1",
+    "sweetalert2": "^11.4.0",
+    "sweetalert2-react": "^0.8.3",
+    "use-deep-compare-effect": "^1.8.1",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "eslint . --fix",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest)/)'",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "env": {
+      "jest": true
     }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "eslint-plugin-react": "^7.29.4",
+    "jest": "^26.6.0"
+  }
 }

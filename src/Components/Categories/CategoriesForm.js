@@ -1,41 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import "../FormStyles.css";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import '../FormStyles.css';
+import {
+  postRequest,
+  patchRequest
+} from '../../Services/ServiceCategories';
 import {
   Image,
   Input,
   Button,
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Stack,
-  Textarea,
-  Heading,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-  Box,
-} from "@chakra-ui/react";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import styleCS from "./styleCS.css";
+  Heading
+
+} from '@chakra-ui/react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import axios from 'axios';
 
 const state = {
-  name: "",
-  description: "",
-  image: "",
+  name: '',
+  description: '',
+  image: ''
 };
 
 const CategoriesForm = () => {
   const { categorie } = useParams();
-  const [initialValues, setInitialValues] = useState(state == false);
+  const [initialValues, setInitialValues] = useState(state === false);
 
   useEffect(() => {
     if (categorie) {
-      var BASE_URL = `http://ongapi.alkemy.org/api/categories/${categorie}`;
+      const BASE_URL = `http://ongapi.alkemy.org/api/categories/${categorie}`;
       axios
         .get(BASE_URL)
         .then((res) => res.data.data)
@@ -43,26 +39,28 @@ const CategoriesForm = () => {
           setInitialValues({
             name: data.name,
             description: data.description,
-            image: data.image,
+            image: data.image
           });
         });
     }
   }, [categorie]);
   const handleChange = (e) => {
-    if (e.target.name === "name") {
+    if (e.target.name === 'name') {
       setInitialValues({ ...initialValues, name: e.target.value });
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("enviado ", initialValues);
-    if (categorie) {
-      const res = await axios.patch("/categories", initialValues);
-      return res;
+    console.log('enviado ', initialValues);
+    if (categorie.id) {
+      patchRequest(`categories/${categorie.id}`, initialValues).then((data) => {
+        console.log(data);
+      });
     } else {
-      const res = await axios.post("/categories", initialValues);
-      return res;
+      postRequest('/categories', initialValues).then((data) => {
+        console.log(data);
+      });
     }
   };
 
@@ -92,7 +90,7 @@ const CategoriesForm = () => {
           <FormControl isRequired>
             <FormLabel htmlFor="first-name">Description</FormLabel>
             <CKEditor
-              config={{ placeholder: "...Description" }}
+              config={{ placeholder: '...Description' }}
               editor={ClassicEditor}
               data={initialValues.description}
               onChange={(event, editor) => {
@@ -115,10 +113,10 @@ const CategoriesForm = () => {
               variant="flushed"
               onChange={(event) => {
                 const files = event.target.files;
-                let myFiles = Array.from(files);
+                const myFiles = Array.from(files);
                 setInitialValues({
                   ...initialValues,
-                  image: myFiles[0].name,
+                  image: myFiles[0].name
                 });
               }}
               mb={2}

@@ -1,62 +1,68 @@
-import React, { useState } from "react";
-import { Button } from "@chakra-ui/button";
-import { FormControl, FormErrorMessage } from "@chakra-ui/form-control";
-import { Input, InputLeftAddon, InputGroup } from "@chakra-ui/input";
-import { VStack } from "@chakra-ui/layout";
-import { Formik, Form, useFormik } from "formik";
-import { Checkbox, Center } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-import { SlideFade } from "@chakra-ui/react";
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react';
+import { Button } from '@chakra-ui/button';
+import { FormControl } from '@chakra-ui/form-control';
+import { Input, InputLeftAddon, InputGroup } from '@chakra-ui/input';
+import { VStack } from '@chakra-ui/layout';
+import { useFormik } from 'formik';
 import {
+  Checkbox, Center, Box, SlideFade,
   AlertTitle,
   Alert,
-  AlertDescription,
-  AlertIcon,
-} from "@chakra-ui/react";
+  AlertIcon
+} from '@chakra-ui/react';
 
-import * as Yup from "yup";
+import * as Yup from 'yup';
+import { AlertOkeyInfo } from '../../Services/AlertServicie/AlertServicie';
 
 const Footer = () => {
   const [isSubscribed, setIsSubscribed] = useState(
-    localStorage.getItem("isSuscribed")
+    localStorage.getItem('isSuscribed')
   );
-
+  const [logined, setLogined] = useState(false);
   const [subscriberList, setSubscriberList] = useState([]);
 
+  useEffect(() => {
+    const quepe = sessionStorage.getItem('login-token');
+    quepe && setLogined(true);
+    // && setIsLoggedIn(true);
+  }, []);
+  console.log(logined);
   const SubscriptionSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Por favor, introduzca un email válido.")
-      .required("Por favor, introduzca un email"),
+      .email('Por favor, introduzca un email válido.')
+      .required('Por favor, introduzca un email'),
     acceptSuscribe: Yup.bool().oneOf(
       [true],
-      "Debes tildar el casillero para recibir novedades."
-    ),
+      'Debes tildar el casillero para recibir novedades.'
+    )
   });
 
   const InitialValues = {
-    email: "",
+    email: ''
   };
 
   const formik = useFormik({
     initialValues: InitialValues,
     onSubmit: (values) => {
-      localStorage.setItem("isSuscribed", true);
+      localStorage.setItem('isSuscribed', true);
       setIsSubscribed(true);
+      AlertOkeyInfo({ title: 'Muchas gracias', text: 'Te has subscripto a Newsletter' });
       // Here we will introduce the Axios POST logic in the future
       setSubscriberList((prev) => [...prev, values.email]);
       console.log(values.email);
     },
-    validationSchema: SubscriptionSchema,
+    validationSchema: SubscriptionSchema
   });
 
   const NewsletterForm = (
     <Center>
+      {(logined) &&
       <VStack
         as="form"
         h="auto"
         mx="auto"
         onSubmit={formik.handleSubmit}
-        p="2em"
       >
         <Checkbox isRequired={true} name="acceptSubscribe">
           Deseo suscribirme al Newsletter para recibir actualizaciones
@@ -82,22 +88,25 @@ const Footer = () => {
           </Box>
           <Box mt="1em">
             <SlideFade in={formik.errors.email && formik.touched.email}>
-              {formik.errors.email && formik.touched.email ? (
+              {formik.errors.email && formik.touched.email
+                ? (
                 <Alert borderRadius="0.5em" status="error" tm="1em">
                   <AlertIcon />
                   <AlertTitle>{formik.errors.email}</AlertTitle>
                 </Alert>
-              ) : (
+                  )
+                : (
                 <></>
-              )}
+                  )}
             </SlideFade>
           </Box>
         </FormControl>
       </VStack>
+      }
     </Center>
   );
 
-  return isSubscribed ? null : <Box p="2em">{NewsletterForm}</Box>;
+  return isSubscribed ? null : <Box p="1em">{NewsletterForm}</Box>;
 };
 
 export default Footer;

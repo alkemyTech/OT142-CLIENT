@@ -1,57 +1,56 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {
-    VStack,
-    Container,
-    Flex,
-    Box,
-    Button,
-    Heading,
-    Thead,
-    Table,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    TableCaption,
-    Image
+  VStack,
+  Container,
+  Flex,
+  Box,
+  Button,
+  Heading,
+  Thead,
+  Table,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  Image
 } from '@chakra-ui/react';
 import { MdBuild, MdCreate, MdDeleteForever } from 'react-icons/md';
 import { getSlideRequest, deleteSlideRequest } from './services/SlidesApiService';
 
 const SlidesTable = () => {
+  const [slides, setSlides] = useState([{}]);
 
-    const [slides, setSlides] = useState([{}]);
-
-    const getSlides = async () => {
-        try {
-            const result = await getSlideRequest();
-            if (result.status === 200) {
-                const { data } = await result.data;
-                setSlides(data);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  const getSlides = async () => {
+    try {
+      const result = await getSlideRequest();
+      if (result.status === 200) {
+        const { data } = await result.data;
+        setSlides(data);
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    const handleDelete = async (id) => {
-        try {
-            const result = await deleteSlideRequest(id);
-            if (result.status === 200) {
-                setSlides(slides.filter((slide) => slide.id !== id));
-            }
-        } catch (error) {
-            console.log(error);
-        }
+  const handleDelete = async (id) => {
+    try {
+      const result = await deleteSlideRequest(id);
+      if (result.status === 200) {
+        setSlides(slides.filter((slide) => slide.id !== id));
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    useEffect(() => {
-        getSlides();
-    }, [])
+  useEffect(() => {
+    getSlides();
+  }, []);
 
-    return (
+  return (
         <VStack >
             <Container maxW='container.lg'>
                 <Flex margin={16}>
@@ -81,8 +80,8 @@ const SlidesTable = () => {
                     </Thead>
                     <Tbody>
                         {slides.length > 0
-                            ? slides.map((slide, index) => {
-                                return (
+                          ? slides.map((slide, index) => {
+                            return (
                                     <Tr key={index}>
                                         <Td>{slide.name}</Td>
                                         <Td><Image boxSize="100px" alt='imgSlide' src={slide.image} /></Td>
@@ -108,15 +107,15 @@ const SlidesTable = () => {
                                             </Button>
                                         </Td>
                                     </Tr>
-                                )
-                            })
-                            : <Td>No hay Slides activos</Td>
+                            );
+                          })
+                          : <Td>No hay Slides activos</Td>
                         }
                     </Tbody>
                 </Table>
             </Container>
         </VStack>
-    )
-}
+  );
+};
 
-export default SlidesTable
+export default SlidesTable;
