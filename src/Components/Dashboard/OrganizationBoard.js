@@ -46,7 +46,7 @@ const OrganizationBoard = ({ data }) => {
         </Stat>
 
         <Stat>
-          <StatLabel fontSize="xl" textAlign="center">Descripción actual:</StatLabel>
+          <StatLabel fontSize="xl" textAlign="center" mb={2}>Descripción actual:</StatLabel>
           <Text textAlign="center">
           Desde 1997 en Somos Más trabajamos con los chicos y chicas, mamás y papás,
           abuelos y vecinos del barrio La Cava generando procesos de crecimiento y de

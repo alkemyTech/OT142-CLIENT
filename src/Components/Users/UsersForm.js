@@ -62,7 +62,7 @@ const UserForm = () => {
           <Flex borderRadius='md' p='4' flexDirection='column' bg='gray.200' justifyContent='center' alignItems='center'>
 
             <Image src='/images/LOGO-SOMOS-MAS.png' boxSize='100px' />
-            <Text fontSize='lg'>Creacion/edicion de usuarios</Text>
+            <Text fontSize='lg'>Creación / Edición de usuarios</Text>
 
             <FormControl mt='4' isInvalid={errors.name}>
               <FormLabel>Nombre</FormLabel>
