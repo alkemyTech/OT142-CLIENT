@@ -19,13 +19,15 @@ const NewsList = () => {
 
   return (
     <>
-      {data.length > 0 ? (
+      {data.length > 0
+        ? (
         <Box>
           <NewsListTable data={data} handleDeleteNews={handleDeleteNews} />
         </Box>
-      ) : (
+          )
+        : (
         <p>No hay novedades</p>
-      )}
+          )}
     </>
   );
 };

@@ -13,19 +13,7 @@ export const getSearchActivities = (word) => {
     .catch((error) => console.log(error));
 };
 
-export const postActivity = (id, name, slug, description, image, user_id, category_id, created_at, updated_at, deleted_at) => {
-  const payload = {
-    id: id,
-    name: name,
-    slug: slug,
-    content: description,
-    image: image,
-    user_id: user_id,
-    category_id: category_id,
-    created_at: created_at,
-    updated_at: updated_at,
-    deleted_at: deleted_at
-  };
+export const postActivity = (payload) => {
   return post('activities', payload)
     .then((res) => res.data)
     .catch((error) => console.log(error));

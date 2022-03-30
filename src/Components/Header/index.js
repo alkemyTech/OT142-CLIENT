@@ -46,14 +46,13 @@ export default function WithSubnavigation() {
   };
 
   return (
-    <Box mb={"20px"}>
+    <Box>
       <Flex
         bg={useColorModeValue("gray.300", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
-        borderBottom={1}
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
@@ -185,10 +184,11 @@ const DesktopNav = ({ isLoggedIn }) => {
 };
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+  console.log("href: " + href)
   return (
     <Link
       as={ReachLink}
-      href={href}
+      to={href}
       role={"group"}
       display={"block"}
       p={2}
@@ -311,10 +311,6 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Actividades',
     href: '/actividades',
-  },
-  {
-    label: 'Novedades',
-    href: '/novedades',
   },
   {
     label: 'Contacto',
