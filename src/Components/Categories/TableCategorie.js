@@ -8,16 +8,15 @@ import {
   Box,
   TableCaption, Stack, Heading, Button, Flex, FormControl, Input
 } from '@chakra-ui/react';
-import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
-
 import { Link } from 'react-router-dom';
 import { getAllCategories, getCategorieByName, getCategoriesList } from '../../app/features/ReducerCategories';
 import { useDispatch, useSelector } from 'react-redux';
+import { debouncer } from '../../utils/debouncer';
+import { AiFillDelete, AiFillEdit } from 'react-icons';
 
 const TableCategorie = () => {
   const dispatch = useDispatch();
   const categories = useSelector(getAllCategories);
-  console.log(categories);
 
   const handleChange = (e) => {
     if (e.target.value.length > 2) {
@@ -46,7 +45,7 @@ const TableCategorie = () => {
             <Flex mt='2'>
               <FormControl>
                 <Input
-                  onChange={handleChange}
+                  onChange={debouncer(handleChange)}
                   bg='white'
                   type='search'
                   placeholder='Buscar categoria' />
@@ -59,16 +58,15 @@ const TableCategorie = () => {
           <Thead>
             <Tr>
               <Th>Nombre</Th>
-              <Th>Fecha de Creación</Th>
-              <Th>Id</Th>
-              <Th>Acción</Th>
+              <Th>Crear</Th>
+              <Th isNumeric>Id</Th>
+              <Th>Acciones</Th>
             </Tr>
           </Thead>
 
           {!categories
             ? 'cargando...'
             : categories.map((categorie) => {
-              console.log(categorie);
               return (
                 <Tr key={categories.key}>
                   <Td>{categorie.name}</Td>
