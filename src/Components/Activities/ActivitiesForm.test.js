@@ -3,6 +3,7 @@ import { fireEvent, render, waitFor } from '@testing-library/react';
 import ActivitiesForm from './ActivitiesForm';
 
 // Este es el inicio del test
+
 describe('Activities form test', () => {
 
   // Este test lo que hace es verificar si el formulario ActivitiesForm esta renderizado en el DOM.
