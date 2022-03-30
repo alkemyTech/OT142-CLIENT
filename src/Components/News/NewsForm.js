@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import { Formik } from 'formik';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {
   Button,
   Input,
