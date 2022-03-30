@@ -12,7 +12,7 @@ const getAuthorizationToken = () => {
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
-    // Group: '142'
+    Group: '142'
   }
 });
 
@@ -46,6 +46,15 @@ export const post = (route, payload) => {
 };
 
 export const put = (route, body, id) => {
+  return axiosInstance
+    .put(`${route}/${id}`, body, {
+      headers: getAuthorizationToken()
+    })
+    .then((res) => res.data)
+    .catch((error) => console.log(error));
+};
+
+export const patch = (route, body, id) => {
   return axiosInstance
     .put(`${route}/${id}`, body, {
       headers: getAuthorizationToken()
