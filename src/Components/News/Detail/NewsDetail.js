@@ -100,7 +100,8 @@ const NewsDetail = ({ tittle, news }) => {
           <h1 ref={targetRef}>COMENTARIOS</h1>
         </Center>
 
-        {loading ? (
+        {loading
+          ? (
           <>
             <Spinner isLoading color='blue' size={40} />
             <ul>
@@ -124,7 +125,8 @@ const NewsDetail = ({ tittle, news }) => {
               </li>
             </ul>
           </>
-        ) : (
+            )
+          : (
           <ul>
             {newsDetailCommentsReducer.map((comments) => {
               return (
@@ -134,7 +136,7 @@ const NewsDetail = ({ tittle, news }) => {
               );
             })}
           </ul>
-        )}
+            )}
       </Box>
     </>
   );
