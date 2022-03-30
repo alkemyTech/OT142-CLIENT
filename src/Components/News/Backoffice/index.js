@@ -16,9 +16,9 @@ import {
   Center
 } from '@chakra-ui/react';
 import TrTable from '../../../utils/TrTable';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteNovedad, deleteNews, searchNews } from '../../../app/features/newsSlice';
+import { getAllNews, deleteNovedad, deleteNews } from '../../../app/features/newsSlice';
+import { useHistory } from 'react-router-dom';
 import { useDebounceSearch } from '../../../hooks/useDebounceSearch';
 
 const BackOfficeNews = () => {
@@ -26,13 +26,11 @@ const BackOfficeNews = () => {
   const searchValues = useDebounceSearch(valuesSearch);
 
   const dispatch = useDispatch();
-  const { news } = useSelector(state => state.news);
-  const { status } = useSelector(state => state.news);
-
-  console.log(news.data);
+  const { news } = useSelector(state => state);
+  const history = useHistory();
 
   useEffect(() => {
-    dispatch(searchNews(searchValues));
+    dispatch(getAllNews(searchValues));
     console.log('entra');
   }, [dispatch, searchValues]);
 
@@ -48,11 +46,9 @@ const BackOfficeNews = () => {
 
             <Box mb={5}>
                 <Text fontSize='6xl'>Backoffice de Novedades</Text>
-                <Link to="/backoffice/news/create">
-                    <Button colorScheme='green'>
+                    <Button onClick={() => history.push('/backoffice/news/create')} colorScheme='green'>
                         Crear nueva novedad
                     </Button>
-                </Link>
             </Box>
 
             <Flex mt='2'>

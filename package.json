@@ -13,7 +13,6 @@
     "@googlemaps/react-wrapper": "^1.1.27",
     "@reduxjs/toolkit": "^1.8.0",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",
@@ -59,6 +58,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@testing-library/react": "^12.1.4",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.4",
