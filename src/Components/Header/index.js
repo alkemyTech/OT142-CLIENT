@@ -313,7 +313,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Contacto',
-    href: '/contacto',
+    href: '/contacto'
   },
   {
     label: 'Campañas',
