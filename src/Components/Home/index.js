@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllNews } from '../../app/features/newsSlice';
 import NewsList from '../News/NewsList';
 import TestimonialSeccion from '../Testimonials';
+import SchoolCarousel from '../../Campaigns/School/SchoolCarousel';
 
 const Home = () => {
   const [loading, setLoading] = useState();
@@ -28,7 +29,7 @@ const Home = () => {
   const [testimonialsData, setTestimonialsData] = useState();
 
   const dispatch = useDispatch();
-  const { news } = useSelector(state => state);
+  const { news } = useSelector((state) => state);
 
   useEffect(() => {
     const dataNews = news.news;
@@ -87,107 +88,115 @@ const Home = () => {
 
   return (
     <>
-      {loading
-        ? (
-          <Grid
-            templateRows="auto"
-            templateColumns="1fr"
-          >
-            <CarouselSlides />
-            <GridItem mb={6}>
-              <Flex justify="center">
-                <Image
-                  objectFit="cover"
-                  src={organizationData.logo}
-                  alt="placeholder"
+      {loading ? (
+        <Grid templateRows='auto' templateColumns='1fr'>
+          <SchoolCarousel />
+          {/* <CarouselSlides /> */}
+          <GridItem mb={6}>
+            <Flex justify='center'>
+              <Image
+                objectFit='cover'
+                src={organizationData.logo}
+                alt='placeholder'
+              />
+            </Flex>
+          </GridItem>
+
+          <GridItem marginBottom={'20px'}>
+            <Text align={'center'} fontSize='4xl'>
+              {organizationData.welcome_text}
+            </Text>
+          </GridItem>
+
+          <GridItem marginBottom={'40px'}>
+            <Text align={'center'} fontSize='3xl' marginBottom={'20px'}>
+              Últimas novedades
+            </Text>
+
+            <Flex justify={'space-around'} marginBottom={'30px'}>
+              {news.news?.length > 0 ? (
+                <NewsList
+                  newsList={newsData.slice(0, 4) || []}
+                  loading={news.newsLoading}
+                  error={news.newsError}
                 />
-              </Flex>
-            </GridItem>
+              ) : (
+                <Text>No hay datos que mostrar</Text>
+              )}
+            </Flex>
 
-            <GridItem marginBottom={'20px'} >
-              <Text align={'center'} fontSize="4xl">
-                {organizationData.welcome_text}
-              </Text>
-            </GridItem>
+            <Link to='/Novedades'>
+              <Center>
+                <Button
+                  display={{ base: 'none', md: 'inline-flex' }}
+                  fontSize={'sm'}
+                  fontWeight={600}
+                  color={'blue.300'}
+                  bg={'white'}
+                  variant='outline'
+                  borderColor='blue.300'
+                  _hover={{
+                    bg: 'blue.300',
+                    color: 'white'
+                  }}
+                >
+                  Ver todas
+                </Button>
+              </Center>
+            </Link>
+          </GridItem>
 
-            <GridItem marginBottom={'40px'}>
-              <Text align={'center'} fontSize="3xl" marginBottom={'20px'}>
-                Últimas novedades
-              </Text>
-
-              <Flex justify={'space-around'} marginBottom={'30px'}>
-                {news.news?.length > 0
-                  ? <NewsList newsList={newsData.slice(0, 4) || []} loading={news.newsLoading} error={news.newsError}/>
-                  : <Text>No hay datos que mostrar</Text>}
-              </Flex>
-
-              <Link to="/Novedades">
-                <Center>
-                  <Button
-                    display={{ base: 'none', md: 'inline-flex' }}
-                    fontSize={'sm'}
-                    fontWeight={600}
-                    color={'blue.300'}
-                    bg={'white'}
-                    variant="outline"
-                    borderColor="blue.300"
-                    _hover={{
-                      bg: 'blue.300',
-                      color: 'white'
-                    }}
-                  >
-                    Ver todas
-                  </Button>
-                </Center>
-              </Link>
-            </GridItem>
-
-            <GridItem marginBottom={'40px'}>
-              <Text align={'center'} fontSize="3xl" marginBottom={'20px'}>
-                Testimonios
-              </Text>
-              <Flex direction={{ base: 'column', sm: 'column', md: 'row' }} marginBottom={'30px'} alignItems='flex-end' background={'gray.100'}>
-                {testimonialsData?.length > 0
-                  ? testimonialsData.slice(0, 4).map(({ id, image, name, description }) => {
+          <GridItem marginBottom={'40px'}>
+            <Text align={'center'} fontSize='3xl' marginBottom={'20px'}>
+              Testimonios
+            </Text>
+            <Flex
+              direction={{ base: 'column', sm: 'column', md: 'row' }}
+              marginBottom={'30px'}
+              alignItems='flex-end'
+              background={'gray.100'}
+            >
+              {testimonialsData?.length > 0 ? (
+                testimonialsData
+                  .slice(0, 4)
+                  .map(({ id, image, name, description }) => {
                     return (
-
                       <TestimonialSeccion
                         key={id}
                         src={image}
                         name={name}
                         description={description}
-                        />
-
+                      />
                     );
                   })
-                  : <Text>No hay datos que mostrar</Text>}
-              </Flex>
-              <Link to="/testimonials">
-                    <Center>
-                      <Button
-                        display={{ base: 'none', md: 'inline-flex' }}
-                        fontSize={'sm'}
-                        fontWeight={600}
-                        color={'blue.300'}
-                        bg={'white'}
-                        variant="outline"
-                        borderColor="blue.300"
-                        _hover={{
-                          bg: 'blue.300',
-                          color: 'white'
-                        }}
-                  >
-                    Ver todos
-                  </Button>
-                </Center>
-              </Link>
-            </GridItem>
-
-          </Grid>
-          )
-        : (
-          <Spinner />
-          )}
+              ) : (
+                <Text>No hay datos que mostrar</Text>
+              )}
+            </Flex>
+            <Link to='/testimonials'>
+              <Center>
+                <Button
+                  display={{ base: 'none', md: 'inline-flex' }}
+                  fontSize={'sm'}
+                  fontWeight={600}
+                  color={'blue.300'}
+                  bg={'white'}
+                  variant='outline'
+                  borderColor='blue.300'
+                  _hover={{
+                    bg: 'blue.300',
+                    color: 'white'
+                  }}
+                >
+                  Ver todos
+                </Button>
+              </Center>
+            </Link>
+          </GridItem>
+        </Grid>
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 };
