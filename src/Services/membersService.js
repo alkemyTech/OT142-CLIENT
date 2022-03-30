@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { remove, get, post, put } from './privateApiService';
+import { remove, get, post, put, getSearch } from './privateApiService';
 
 export const getMembers = (id) => {
   const route = id ? `members/${id}` : 'members';
@@ -40,6 +40,11 @@ export const postMember = (
     });
 };
 
+export const searchMembers = (word) => {
+  return getSearch('members', word)
+    .then((res) => res.data)
+    .catch((error) => console.log(error));
+};
 export const deleteMember = (id) => {
   return remove('members', id)
     .then((res) => res.data)
