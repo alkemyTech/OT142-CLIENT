@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Table,
   Thead,
@@ -8,14 +8,20 @@ import {
   Text,
   Container,
   Box,
-  Button
+  Button,
+  FormControl,
+  Input
 } from '@chakra-ui/react';
 import TrTable from '../../../utils/TrTable';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteActivities, getAllActivities, deleteActivity } from '../../../app/features/activitiesSlice';
+import { deleteActivities, getAllActivities, deleteActivity, getOnChangeActivities } from '../../../app/features/activitiesSlice';
+import { useDebounceSearch } from '../../../../src/hooks/useDebounceSearch';
 
 const BackOfficeActivities = () => {
+  const [valuesSearch, setValuesSearch] = useState('');
+  const searchValues = useDebounceSearch(valuesSearch);
+
   const dispatch = useDispatch();
   const { activities } = useSelector(state => state);
   const history = useHistory();
@@ -24,11 +30,19 @@ const BackOfficeActivities = () => {
     dispatch(await getAllActivities());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getOnChangeActivities(searchValues));
+  }, [dispatch, searchValues]);
+
   const handleDelete = (id) => {
     console.log('delete :' + id);
     // comentar esta asi no modifica la api
     dispatch(deleteActivity(id));
     dispatch(deleteActivities(id));
+  };
+
+  const handleChange = (e) => {
+    setValuesSearch(e.target.value);
   };
 
   // useEffect(() => {
@@ -46,6 +60,15 @@ const BackOfficeActivities = () => {
                     Crear nueva actividad
                 </Button>
             </Box>
+
+            <FormControl>
+                <Input
+                  onChange={handleChange}
+                  bg='white'
+                  type='search'
+                  placeholder='Buscar Actividad'
+                  width='30%'/>
+              </FormControl>
 
             <Table variant='simple'>
                 <Thead>
