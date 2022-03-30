@@ -34,3 +34,9 @@ export const post = (path, body) => {
 export const remove = (path, id) => {
   return axiosInstance.delete(`${path}/${id}`);
 };
+
+export const getSearch = (path, word) => {
+  const fullRoute = word ? `${path}?search=${word}` : `${path}`;
+  console.log(fullRoute);
+  return axiosInstance.get(fullRoute);
+};
