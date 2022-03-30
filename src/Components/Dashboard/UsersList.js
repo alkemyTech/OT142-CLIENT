@@ -5,21 +5,19 @@ import {
   Tr,
   Th,
   Td,
-  // Td,
-  // TableCaption,
   TableCaption,
   Button,
   Flex,
-  Link,
   Text,
   FormControl,
   Input
 } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers, getUsersList, getUserFromName, renderUserList, deletetUsersApi } from '../../app/features/UsersSlice';
 import { debouncer } from '../../utils/debouncer';
+import { getAllUsers, getUsersList, getUserFromName, renderUserList, deletetUsersApi } from '../../app/features/UsersSlice';
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
 const UserList = () => {
   const history = useHistory();
