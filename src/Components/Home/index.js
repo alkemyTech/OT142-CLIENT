@@ -13,6 +13,7 @@ import CarouselSlides from '../Slides/HomeSlide';
 import { get } from '../../Services/publicApiService';
 import Spinner from '../Spinner/index';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllNews } from '../../app/features/newsSlice';
 import NewsList from '../News/NewsList';
@@ -149,12 +150,14 @@ const Home = () => {
                 {testimonialsData?.length > 0
                   ? testimonialsData.slice(0, 4).map(({ id, image, name, description }) => {
                     return (
+
                       <TestimonialSeccion
                         key={id}
                         src={image}
                         name={name}
                         description={description}
                         />
+
                     );
                   })
                   : <Text>No hay datos que mostrar</Text>}

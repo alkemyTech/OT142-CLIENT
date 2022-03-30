@@ -12,7 +12,7 @@ const getAuthorizationToken = () => {
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
-    // Group: '142'
+    Group: '142'
   }
 });
 
