@@ -9951,32 +9951,6 @@
   "resolved" "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-12.0.0.tgz"
   "version" "12.0.0"
   dependencies:
-<<<<<<< HEAD
-    "@babel/code-frame" "7.10.4"
-    address "1.1.2"
-    browserslist "4.14.2"
-    chalk "2.4.2"
-    cross-spawn "7.0.3"
-    detect-port-alt "1.1.6"
-    escape-string-regexp "2.0.0"
-    filesize "6.1.0"
-    find-up "4.1.0"
-    fork-ts-checker-webpack-plugin "4.1.6"
-    global-modules "2.0.0"
-    globby "11.0.1"
-    gzip-size "5.1.1"
-    immer "8.0.1"
-    is-root "2.1.0"
-    loader-utils "2.0.0"
-    open "^7.0.2"
-    pkg-up "3.1.0"
-    prompts "2.4.0"
-    react-error-overlay "^6.0.10"
-    recursive-readdir "2.2.2"
-    shell-quote "1.7.2"
-    strip-ansi "6.0.0"
-    text-table "0.2.0"
-=======
     "@babel/code-frame" "^7.16.0"
     "address" "^1.1.2"
     "browserslist" "^4.18.1"
@@ -10001,7 +9975,6 @@
     "shell-quote" "^1.7.3"
     "strip-ansi" "^6.0.1"
     "text-table" "^0.2.0"
->>>>>>> 85796f6d2becb97da467d02d91db10a03648e2e8
 
 "react-dom@*", "react-dom@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react-dom@^15.x.x || ^16.x.x || ^17.x.x", "react-dom@^16.0.0", "react-dom@^16.0.0 || ^17.0.0", "react-dom@^16.3.0 || ^17.0.0 || ^18.0.0", "react-dom@^16.8.0", "react-dom@^16.8.0 || 17.x", "react-dom@^17.0.1", "react-dom@^17.0.2", "react-dom@>=16.8 || ^17.0.0", "react-dom@>=16.8.6":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
