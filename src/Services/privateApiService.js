@@ -53,3 +53,12 @@ export const put = (route, body, id) => {
     .then((res) => res.data)
     .catch((error) => console.log(error));
 };
+
+export const patch = (route, body, id) => {
+  return axiosInstance
+    .put(`${route}/${id}`, body, {
+      headers: getAuthorizationToken()
+    })
+    .then((res) => res.data)
+    .catch((error) => console.log(error));
+};
