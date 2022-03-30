@@ -202,7 +202,7 @@ const NewsForm = () => {
 
                                 <FormControl isInvalid={formik.errors.content && formik.touched.content}>
                                     <FormLabel>Contenido de la novedad</FormLabel>
-                                    <CKEditor
+                                    {/* <CKEditor
                                         config={{ placeholder: '...' }}
                                         editor={ClassicEditor}
                                         data={formik.values.content}
@@ -211,7 +211,7 @@ const NewsForm = () => {
                                           const data = editor.getData();
                                           formik.setFieldValue('content', data);
                                         }}
-                                    />
+                                    /> */}
                                     <FormErrorMessage>{formik.errors.content}</FormErrorMessage>
                                 </FormControl>
 
