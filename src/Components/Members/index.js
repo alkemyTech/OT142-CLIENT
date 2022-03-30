@@ -4,6 +4,7 @@ import { getMembers } from '../../Services/membersService';
 import MembersSearch from './MembersSearch';
 import { searchMembers } from '../../Services/membersService';
 import { Box, Center } from '@chakra-ui/react';
+import { debouncer } from '../../utils/debouncer';
 
 const Members = () => {
   const [members, setMembers] = useState([]);
@@ -12,7 +13,6 @@ const Members = () => {
 
   const handleChange = (e) => {
     if (e.target.value.length >= 2) {
-      console.log(searchValue);
       setIsInvalid(false);
       setSearchValue(e.target.value);
     } else {
@@ -44,7 +44,10 @@ const Members = () => {
 
   return (
     <Box>
-      <MembersSearch handleChange={handleChange} isInvalid={isInvalid} />
+      <MembersSearch
+        handleChange={debouncer(handleChange)}
+        isInvalid={isInvalid}
+      />
       <MembersTable members={members} />
     </Box>
   );
