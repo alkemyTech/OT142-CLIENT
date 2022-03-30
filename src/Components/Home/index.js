@@ -35,6 +35,13 @@ const Home = () => {
     setNewsData(dataNews);
   }, [news]);
 
+  useEffect(() => {
+    if (news.newsError) {
+      const errMsj = { text: 'upssss...!! sucedió un error con las novedades' };
+      showAlertErr(errMsj);
+    }
+  }, [news.newsError]);
+
   const getDataOrganization = useCallback(async () => {
     try {
       const { data } = await get('/organization');
