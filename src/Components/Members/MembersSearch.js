@@ -1,28 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
+  Input,
+  Box,
+  Center,
   FormControl,
   FormLabel,
   FormErrorMessage,
   FormHelperText
 } from '@chakra-ui/react';
 
-const MembersSearch = (input) => {
-  const [isInvalid, setIsInvalid] = useState(true);
-
-  useEffect(() => {
-    if (input.length < 2) {
-      setIsInvalid(true);
-    } else {
-      setIsInvalid(false);
-    }
-  }, [input]);
+const MembersSearch = ({ handleChange, isInvalid }) => {
+  // const [isInvalid, setIsInvalid] = useState(true);
 
   return (
-    <FormControl>
-      <FormLabel htmlFor='memberSearch'>Buscar Miembros</FormLabel>
-      <Input id='membersSearch' type='text' />
-      <FormHelperText>Ingrese el miembro que desea buscar</FormHelperText>
-    </FormControl>
+    <Center>
+      <Box p={6}>
+        <FormControl isInvalid={isInvalid}>
+          <FormLabel htmlFor='memberSearch'>Buscar Miembros</FormLabel>
+          <Input id='membersSearch' type='text' onChange={handleChange} />
+          {!isInvalid ? (
+            <FormHelperText>Ingrese el miembro que desea buscar</FormHelperText>
+          ) : (
+            <FormErrorMessage>
+              {' '}
+              Debe ingresar como mínimo 2 letras.
+            </FormErrorMessage>
+          )}
+        </FormControl>
+      </Box>
+    </Center>
   );
 };
 
