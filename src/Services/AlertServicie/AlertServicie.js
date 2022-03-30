@@ -47,10 +47,32 @@ export const showAlertErr = (props = {}) => {
   });
 };
 
+export const AlertOkeyInfo = (props = {}) => {
+  swal.fire({
+    icon: 'success',
+    title: props.title ? props.title : 'Tarea realizada con éxito',
+    text: props.text ? props.text : 'Felicitaciones',
+    showConfirmButton: true,
+    confirmButtonColor: '#EF3D3D',
+    showCancelButton: false,
+    cancelButtonText: 'Cancelar',
+    cancelButtonAriaLabel: 'Cancelar',
+    showCloseButton: true,
+    closeButtonAriaLabel: 'Cerrar alerta',
+    timer: props.timer ? props.timer : 5000,
+    timerProgressBar: true,
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    allowEnterKey: false,
+    stopKeydownPropagation: false
+  });
+};
+
 const allFuntionAlert = {
   showAlertOkey,
   showAlertInfo,
-  showAlertErr
+  showAlertErr,
+  AlertOkeyInfo
 };
 
 export default allFuntionAlert;
