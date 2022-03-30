@@ -1,4 +1,4 @@
-import { Box, FormControl, FormErrorMessage, FormLabel, Heading, VStack, Stack } from '@chakra-ui/react';
+import { Box, FormControl, FormErrorMessage, FormLabel, Heading, VStack, Stack, Container } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
 import { Formik } from 'formik';
@@ -47,6 +47,7 @@ const Members = (membersData) => {
   });
 
   return (
+    <Container maxW='container.xl'>
         <Formik
             initialValues={initialValues}
             validationSchema={formSchema}
@@ -144,6 +145,7 @@ const Members = (membersData) => {
                 </VStack>
             )}
         </Formik>
+      </Container>
   );
 };
 export default Members;

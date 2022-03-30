@@ -113,7 +113,7 @@ const CarouselSlides = () => {
                 w={'full'}
                 maxW={{ base: 'lg' }}
                 position="absolute"
-                top={{ base: '22%', sm: 110, lg: 150 }}
+                top={{ base: '22%', sm: 110, lg: 180 }}
                 left={{ base: '-2%', sm: -5, md: -155, lg: -250 }}
                 border="1px solid"
                 borderRadius="5px"

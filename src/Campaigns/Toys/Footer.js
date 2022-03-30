@@ -73,8 +73,8 @@ const Footer = () => {
             >
               <Icon w="6" h="6" as={BiWorld} />
               Accede a nuestro sitio web
-              <Link as={RouterLink} to='/' target='_blank'>
-                <Link target="_blank" color="blue.500" ms="1">
+              <Link as={RouterLink} to='/'>
+                <Link color="blue.500" ms="1">
                   aquí
                 </Link>
               </Link>
