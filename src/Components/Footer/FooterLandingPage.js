@@ -23,6 +23,28 @@ export const FooterLandingPage = () => {
            <Image src={logo} alt="logoONG" />
           </Link>
 
+        <Box d={{ md: 'none' }}>
+          <Center>
+            <Image src={logo} alt='logoONG' />
+          </Center>
+          <Center>
+            <Box p={3}><Link><HiOutlineMail size={30} /></Link></Box>
+            <Box p={3}><Link><FaInstagram size={30} padding={5} /></Link></Box>
+            <Box p={3}><Link><FaFacebook size={30} /></Link></Box>
+          </Center>
+          <Center>
+            <Box>
+              <Text fontWeight={'bold'}><Link>Noticias</Link></Text>
+              <Text fontWeight={'bold'}><Link>Actividades</Link></Text>
+              <Text fontWeight={'bold'}><Link>Novedades</Link></Text>
+              <Text fontWeight={'bold'}><Link>Testimonios</Link></Text>
+              <Text fontWeight={'bold'}><Link>Nosotros</Link></Text>
+              <Text fontWeight={'bold'}><Link>Contacto</Link></Text>
+            </Box>
+          </Center>
+        </Box>
+
+        {/* ---- TABLET VIEW ---- */}
         </Center>
         <Center>
           <Box p={3}>
