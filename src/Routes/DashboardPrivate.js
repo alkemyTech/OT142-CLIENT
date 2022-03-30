@@ -17,6 +17,7 @@ import { Container, Stack } from '@chakra-ui/react';
 import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
 import UserForm from '../Components/Users/UsersForm';
 import BackOfficeSlides from '../Components/Slides/backoffice';
+import ActivitiesForm from '../Components/Activities/ActivitiesForm';
 
 const DashboardPrivate = () => {
   const history = useHistory();
@@ -41,7 +42,7 @@ const DashboardPrivate = () => {
             <Route exact path="/backoffice/news/create" component={NewsForm} />
             <Route exact path="/backoffice/news/:id" component={NewsForm} />
             {/* faltacomponente formulario actividades */}
-            {/* <Route exact path="/backoffice/activities/create" component={activitiesForm} /> */}
+            <Route exact path="/backoffice/activities/create" component={ActivitiesForm} />
             <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
             {/* falta componente para el editar actividades */}
             <Route exact path="/backoffice/activities/:id" component={BackOfficeActivities} />

@@ -19,7 +19,6 @@ import { getAllNews } from '../../app/features/newsSlice';
 import NewsList from '../News/NewsList';
 import TestimonialSeccion from '../Testimonials';
 
-
 const Home = () => {
   const [loading, setLoading] = useState();
   // eslint-disable-next-line no-unused-vars
