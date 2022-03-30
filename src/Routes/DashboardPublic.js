@@ -83,7 +83,6 @@ const DashboardPublic = () => {
             <Route exact path='/create-project' component={ProjectsForm} />
             <Route exact path='/update-project/:id' component={ProjectsForm} />
             <Route exact path='/about-us/members' component={MembersList} />
-            <Route exact path='/nosotros' component={About} />
           </Suspense>
           <Route path='/*' component={PageNotFound} />
         </Switch>
