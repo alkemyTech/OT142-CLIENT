@@ -22,7 +22,7 @@ const SignupSchema = Yup.object().shape({
     .min(8, 'El campo password debe tener al menos 8 caracteres')
     .max(15, 'El campo password puede tener máximo 15 caracteres')
 });
-
+//
 const UserForm = () => {
   const history = useHistory();
   const userdata = history.location.state;
