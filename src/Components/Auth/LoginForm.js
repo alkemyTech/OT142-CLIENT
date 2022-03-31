@@ -1,4 +1,4 @@
-import { Button, Flex, Box, FormControl, FormLabel, Input, Text, Link, Image } from '@chakra-ui/react';
+import { Button, Flex, Box, FormControl, FormLabel, Input, Text, Image, Link } from '@chakra-ui/react';
 import { Link as ReachLink, useHistory } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';

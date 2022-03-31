@@ -12,7 +12,7 @@ import {
   SliderThumb,
   Text
 } from '@chakra-ui/react';
-import screenfull from 'screenfull';
+// import screenfull from 'screenfull';
 import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import { MdOutlineFullscreen } from 'react-icons/md';
 
@@ -41,9 +41,9 @@ const VideoPlayer = ({ video }) => {
 
   const handleClickFullScreen = () => {
     setIsFullscreen(!isFullscreen);
-    if (screenfull.isEnabled) {
-      screenfull.request(player.wrapper);
-    }
+    // if (screenfull.isEnabled) {
+    //   screenfull.request(player.wrapper);
+    // }
   };
 
   const proportionalSeek = (currentSeek) => {

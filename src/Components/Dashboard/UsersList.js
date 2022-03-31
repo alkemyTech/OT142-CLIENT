@@ -17,7 +17,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { debouncer } from '../../utils/debouncer';
 import { getAllUsers, getUsersList, getUserFromName, renderUserList, deletetUsersApi } from '../../app/features/UsersSlice';
-import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
 const UserList = () => {
   const history = useHistory();
