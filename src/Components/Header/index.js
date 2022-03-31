@@ -231,8 +231,7 @@ const DesktopNav = ({ isLoggedIn, isAdmin, navItems }) => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }) => {
-  console.log("href: " + href)
+const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
     <Link
       as={ReachLink}

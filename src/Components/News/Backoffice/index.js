@@ -26,7 +26,7 @@ const BackOfficeNews = () => {
   const searchValues = useDebounceSearch(valuesSearch);
 
   const dispatch = useDispatch();
-  const { news } = useSelector(state => state);
+  const { news } = useSelector(state => state.news);
   const { status } = useSelector(state => state.news);
   const history = useHistory();
 
