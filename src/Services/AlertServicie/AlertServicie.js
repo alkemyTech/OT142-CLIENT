@@ -45,6 +45,7 @@ export const showAlertErr = (props = {}) => {
     // timer: 3000
     // footer: props.footer ? props.footer : 'Comience de nuevo!!'
   });
+  // eslint-disable-next-line no-debugger
   debugger;
 };
 
