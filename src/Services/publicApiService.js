@@ -5,7 +5,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
-    Group: '142'
+  //  Group: '142'
   }
 });
 
@@ -27,4 +27,10 @@ export const post = (path, body) => {
 
 export const remove = (path, id) => {
   return axiosInstance.delete(`${path}/${id}`);
+};
+
+export const getSearch = (path, word) => {
+  const fullRoute = word ? `${path}?search=${word}` : `${path}`;
+  console.log(fullRoute);
+  return axiosInstance.get(fullRoute);
 };

@@ -27,10 +27,50 @@ import {
 import { Link as ReachLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 
+const initialNav = [
+  {
+    label: "Inicio",
+    href: "/",
+  },
+  {
+    label: "Nosotros",
+    href: "/nosotros",
+  },
+  {
+    label: 'Actividades',
+    href: '/actividades',
+  },
+  {
+    label: 'Novedades',
+    href: '/novedades',
+  },
+  {
+    label: 'Contacto',
+    href: '/contacto',
+  },
+  {
+    label: 'Campañas',
+    href: '/',
+    children: [
+      {
+        label: "Escuela",
+        subLabel: "Recolección de útiles escolares",
+        href: "/school-campaign",
+      },
+      {
+        label: "Juguetes",
+        subLabel: "Recolección de juguetes",
+        href: "/toys-campaign",
+      },
+    ],
+  },
+];
+
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [navItems, setNavItems] = useState(initialNav);
 
   useEffect(() => {
     sessionStorage.getItem("login-token") && setIsLoggedIn(true);
@@ -38,6 +78,14 @@ export default function WithSubnavigation() {
       sessionStorage.getItem("login-role") === "1" &&
       setIsAdmin(true);
   }, [isLoggedIn]);
+
+    useEffect(() => {
+     if (isAdmin === true) {
+       setNavItems(navItems.filter((navItem) => navItem.label != 'Contacto'));
+     } else {
+       setNavItems(initialNav);
+     }
+    }, [isAdmin])
 
   const handleCloseSesion = () => {
     sessionStorage.removeItem("login-token");
@@ -82,7 +130,7 @@ export default function WithSubnavigation() {
           </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
-            <DesktopNav isLoggedIn={isLoggedIn} />
+            <DesktopNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} navItems={navItems} />
           </Flex>
         </Flex>
 
@@ -127,20 +175,20 @@ export default function WithSubnavigation() {
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <MobileNav navItems={navItems} />
       </Collapse>
     </Box>
   );
 }
 
-const DesktopNav = ({ isLoggedIn }) => {
+const DesktopNav = ({ isLoggedIn, isAdmin, navItems }) => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
-
+ 
   return (
     <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
+        {navItems.map((navItem) => ( 
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
@@ -183,7 +231,7 @@ const DesktopNav = ({ isLoggedIn }) => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+const DesktopSubNav = ({ label, href, subLabel }) => {
   console.log("href: " + href)
   return (
     <Link
@@ -222,21 +270,21 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   );
 };
 
-const MobileNav = () => {
+const MobileNav = ({navItems}) => {
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
       p={4}
       display={{ md: "none" }}
     >
-      {NAV_ITEMS.map((navItem) => (
+      {navItems.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
   );
 };
 
-const MobileNavItem = ({ label, children, href }: NavItem) => {
+const MobileNavItem = ({ label, children, href }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -291,45 +339,3 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     </Stack>
   );
 };
-
-interface NavItem {
-  label: string;
-  subLabel?: string;
-  children?: Array<NavItem>;
-  href?: string;
-}
-
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: "Inicio",
-    href: "/",
-  },
-  {
-    label: "Nosotros",
-    href: "/nosotros",
-  },
-  {
-    label: 'Actividades',
-    href: '/actividades',
-  },
-  {
-    label: 'Contacto',
-    href: '/contacto',
-  },
-  {
-    label: 'Campañas',
-    href: '/',
-    children: [
-      {
-        label: "Escuela",
-        subLabel: "Recolección de útiles escolares",
-        href: "/school-campaign",
-      },
-      {
-        label: "Juguetes",
-        subLabel: "Recolección de juguetes",
-        href: "/toys-campaign",
-      },
-    ],
-  },
-];
