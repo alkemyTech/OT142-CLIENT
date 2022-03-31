@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { deleteSlides, editSlides, getSlides, postSlides } from '../../Services/slidesService';
+import { deleteSlides, editSlides, getSlides, postSlides, searchSlides } from '../../Services/slidesService';
 
 export const getSlidesSlice = createAsyncThunk(
   'slide/getSlide',
@@ -7,6 +7,19 @@ export const getSlidesSlice = createAsyncThunk(
     return await getSlides(data);
   }
 );
+
+export const searchSlidesSlice = createAsyncThunk(
+  'slide/searchSlides',
+  async (word) => {
+    try {
+      const response = await searchSlides(word);
+      return response;
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
+  }
+);
+
 export const newSlideSlice = createAsyncThunk(
   'slide/newSlide',
   async (data) => {
@@ -81,10 +94,12 @@ const slidesSlice = createSlice({
     [removeSlideSlice.rejected]: (state, action) => {
       state.status = 'failed';
       state.error = action.error;
+    },
+    [searchSlidesSlice.fulfilled]: (state, { payload }) => {
+      state.slides = payload.data;
+      state.status = 'success';
     }
-
   }
-
 });
 
 export default slidesSlice.reducer;
