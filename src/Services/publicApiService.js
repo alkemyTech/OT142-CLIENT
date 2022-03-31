@@ -5,12 +5,18 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
-    Group: '142'
+  //  Group: '142'
   }
 });
 
 export const get = (path) => {
   return axiosInstance.get(path);
+};
+
+export const getSearch = (path, word) => {
+  const fullRoute = word ? `${path}?search=${word}` : `${path}`;
+  console.log(fullRoute);
+  return axiosInstance.get(fullRoute);
 };
 
 export const getById = (path, id) => {

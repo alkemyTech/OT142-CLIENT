@@ -1,8 +1,8 @@
 import NewsList from './NewsList';
 // import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Heading } from '@chakra-ui/react';
 import LastEvent from './LastEvent';
-// import { Heading } from '@chakra-ui/react';
 // import { getAllNews } from '../../app/features/newsSlice';
 import Title from '../Titles';
 
