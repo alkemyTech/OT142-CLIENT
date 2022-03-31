@@ -16,51 +16,56 @@ import {
   Center
 } from '@chakra-ui/react';
 import TrTable from '../../../utils/TrTable';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteNovedad, deleteNews, searchNews } from '../../../app/features/newsSlice';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getSlidesSlice, removeSlideSlice, searchSlidesSlice } from '../../../app/features/slidesSlice';
 import { useDebounceSearch } from '../../../hooks/useDebounceSearch';
-import { useHistory } from 'react-router-dom';
 
-const BackOfficeNews = () => {
+const BackOfficeSlides = () => {
   const [valuesSearch, setValuesSearch] = useState('');
   const searchValues = useDebounceSearch(valuesSearch);
 
   const dispatch = useDispatch();
-  const { news } = useSelector(state => state.news);
-  const { status } = useSelector(state => state.news);
-  const history = useHistory();
+  const { slides } = useSelector(state => state);
 
   useEffect(() => {
-    dispatch(searchNews(searchValues));
+    dispatch(getSlidesSlice());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(searchSlidesSlice(searchValues));
   }, [dispatch, searchValues]);
 
   const handleDelete = (id) => {
-    dispatch(deleteNovedad(id));
-    dispatch(deleteNews(id));
+    dispatch(removeSlideSlice(id));
   };
-  const handleSearch = (e) => {
+
+  const handleChange = (e) => {
     setValuesSearch(e.target.value);
   };
+
   return (
         <Container maxW='100%'>
 
             <Box mb={5}>
-                <Text fontSize='6xl'>Backoffice de Novedades</Text>
-                    <Button onClick={() => history.push('/backoffice/news/create')} colorScheme='green'>
-                        Crear nueva novedad
+                <Text fontSize='6xl'>Backoffice de slides</Text>
+                <Link to="/backoffice/slides/create">
+                    <Button colorScheme='green'>
+                        Crear nuevo Slide
                     </Button>
+                </Link>
             </Box>
 
             <Flex mt='2'>
               <FormControl>
                 <Input
-                  onChange={handleSearch}
+                  onChange={handleChange}
                   bg='white'
                   type='search'
-                  placeholder='Buscar novedades' />
+                  placeholder='Buscar slides' />
               </FormControl>
             </Flex>
-                  {status === 'loading' &&
+                  {slides.status === 'loading' &&
                     <Center h='100px'>
                       <Spinner
                         thickness='4px'
@@ -82,19 +87,19 @@ const BackOfficeNews = () => {
                 </Thead>
                 <Tbody>
                     {
-                      (news.data)
-                        ? news.data.map(news => {
+                      (slides.slides)
+                        ? slides.slides.map(slide => {
                           return <TrTable
-                                key={news.id}
-                                id ={news.id}
-                                name={news.name}
-                                image={news.image}
-                                createdAt={news.created_at}
+                                key={slide.id}
+                                id ={slide.id}
+                                name={slide.name}
+                                image={slide.image}
+                                createdAt={slide.created_at}
                                 handleDelete={handleDelete}
-                                path={'news/'}
+                                path={'slides/'}
                             />;
                         })
-                        : <Text>No hay novedades</Text>
+                        : <Text>No hay slides</Text>
                     }
                 </Tbody>
             </Table>
@@ -103,4 +108,4 @@ const BackOfficeNews = () => {
   );
 };
 
-export default BackOfficeNews;
+export default BackOfficeSlides;

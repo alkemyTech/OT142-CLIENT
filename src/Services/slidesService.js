@@ -1,8 +1,14 @@
 import { remove, post, put } from './privateApiService';
-import { get } from './publicApiService';
+import { get, getSearch } from './publicApiService';
 
 export const getSlides = (id = null) => {
   return get('slides', id)
+    .then((res) => res.data)
+    .catch((error) => console.log(error));
+};
+
+export const searchSlides = (word) => {
+  return getSearch('slides', word)
     .then((res) => res.data)
     .catch((error) => console.log(error));
 };
