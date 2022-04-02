@@ -7,6 +7,7 @@ import PageNotFound from '../Components/PageNotFound';
 import News from '../Components/News';
 import NewsForm from '../Components/News/NewsForm';
 import NewsDetail from '../Components/News/Detail/NewsDetail';
+import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
 const Home = React.lazy(() => import('../Components/Home'));
 const Activities = React.lazy(() =>
   import('../Components/Activities/Activities')
@@ -84,6 +85,8 @@ const DashboardPublic = () => {
             <Route exact path='/update-project/:id' component={ProjectsForm} />
             <Route exact path='/about-us/members' component={MembersList} />
             <Route exact path='/nosotros' component={About} />
+            <Route exact path='/testimonialsForms' component={TestimonialForm} />
+
           </Suspense>
           <Route path='/*' component={PageNotFound} />
         </Switch>
