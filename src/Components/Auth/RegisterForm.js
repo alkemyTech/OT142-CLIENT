@@ -10,13 +10,16 @@ import {
   FormLabel,
   FormErrorMessage,
   Flex,
-  Link,
   Text,
   Image
+  // Link
 } from '@chakra-ui/react';
-import MapsWrapper from '../Maps/MapsWrapper';
+// import MapsWrapper from '../Maps/MapsWrapper';
 import { register } from '../../Services/authService';
-import { useHistory, Link as ReachLink } from 'react-router-dom';
+import {
+  useHistory
+  // Link as ReachLink
+} from 'react-router-dom';
 import Spinner from '../Spinner';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
 
@@ -49,17 +52,18 @@ const validationSchema = Yup.object({
 const RegisterForm = () => {
   const [registerValue, setRegisterValue] = useState();
 
-  const [latLng, setLatLng] = useState({
-    latitude: 0,
-    longitude: 0,
-    adress: ''
-  });
+  // const [latLng, setLatLng] = useState({
+  //   latitude: 0,
+  //   longitude: 0,
+  //   adress: ''
+  // });
 
   const history = useHistory();
 
   const onCheckChange = (string) => {
     setRegisterValue(string);
   };
+  console.log(registerValue);
 
   useEffect(() => {
     // Esto es para que no pueda entrar al registro si ya esta autenticado
@@ -81,7 +85,6 @@ const RegisterForm = () => {
             const { token, user } = await result.data;
             sessionStorage.setItem('login-token', token);
             sessionStorage.setItem('login-role', user.role_id);
-            console.log(latLng);
             history.push('/');
           }
         } catch (error) {
@@ -115,14 +118,14 @@ const RegisterForm = () => {
                   {errors && <FormErrorMessage maxW='150px'>{errors.password}</FormErrorMessage>}
                 </FormControl>
                 <FormControl mt='2' isInvalid={errors.passwordRepeat}>
-                  <FormLabel>Repetir contraseña</FormLabel>
+                  <FormLabel>Repetir</FormLabel>
                   <Input value={values.passwordRepeat} name='passwordRepeat' onChange={handleChange} onBlur={handleBlur} bg='white' type='password' placeholder='Repita su contraseña' />
                   {errors && <FormErrorMessage maxW='150px'>{errors.passwordRepeat}</FormErrorMessage>}
                 </FormControl>
               </Flex>
             </Flex>
             <FormControl mt='4'>
-              <MapsWrapper setLatLng={setLatLng} />
+              {/* <MapsWrapper setLatLng={setLatLng} /> */}
             </FormControl>
             <Flex flexDirection='column' mt='2'>
               <TermsAndConditions handleChange={onCheckChange} />
@@ -131,7 +134,7 @@ const RegisterForm = () => {
               isSubmitting
               ? <Spinner isLoading={isSubmitting} size='40px' color='blue' />
               : <Button onClick={handleSubmit} background='gray.300' mt='4' type='submit'>Registrarme</Button>}
-            <Text fontSize='sm' mt='4'>¿Ya tienes una cuenta?<Link color='blue.400' as={ReachLink} to='/login'> Inicia sesión</Link></Text>
+            {/* <Text fontSize='sm' mt='4'>¿Ya tienes una cuenta?<Link color='blue.400' as={ReachLink} to='/login'> Inicia sesión</Link></Text> */}
           </Flex>
         </Flex>
       )}

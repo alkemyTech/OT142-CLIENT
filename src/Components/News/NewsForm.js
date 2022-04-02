@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import { Formik } from 'formik';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {
   Button,
   Input,
@@ -202,7 +202,7 @@ const NewsForm = () => {
 
                                 <FormControl isInvalid={formik.errors.content && formik.touched.content}>
                                     <FormLabel>Contenido de la novedad</FormLabel>
-                                    <CKEditor
+                                    {/* <CKEditor
                                         config={{ placeholder: '...' }}
                                         editor={ClassicEditor}
                                         data={formik.values.content}
@@ -211,11 +211,12 @@ const NewsForm = () => {
                                           const data = editor.getData();
                                           formik.setFieldValue('content', data);
                                         }}
-                                    />
+                                    /> */}
                                     <FormErrorMessage>{formik.errors.content}</FormErrorMessage>
                                 </FormControl>
 
                                 <FormControl isInvalid={formik.errors.category && formik.touched.category}>
+                                <FormLabel>Categoría</FormLabel>
                                     <Select name="category" value={formik.values.category} onChange={formik.handleChange}>
                                         <option value="" disabled>Select category</option>
                                         {
@@ -228,7 +229,7 @@ const NewsForm = () => {
                                 </FormControl>
 
                                 <FormControl isInvalid={formik.errors.image && formik.touched.image}>
-                                    <FormLabel>Imagen</FormLabel>
+                                <FormLabel>Imagen</FormLabel>
                                     <Input
                                         id="image"
                                         type="file"

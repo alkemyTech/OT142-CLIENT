@@ -13,6 +13,12 @@ export const get = (path) => {
   return axiosInstance.get(path);
 };
 
+export const getSearch = (path, word) => {
+  const fullRoute = word ? `${path}?search=${word}` : `${path}`;
+  console.log(fullRoute);
+  return axiosInstance.get(fullRoute);
+};
+
 export const getById = (path, id) => {
   return axiosInstance.get(`${path}/${id}`);
 };
