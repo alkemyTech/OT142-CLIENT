@@ -2,7 +2,9 @@ import NewsList from './NewsList';
 // import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Heading } from '@chakra-ui/react';
+import LastEvent from './LastEvent';
 // import { getAllNews } from '../../app/features/newsSlice';
+import Title from '../Titles';
 
 export const News = () => {
   const { news } = useSelector((state) => state);
@@ -29,10 +31,15 @@ export const News = () => {
   // }, [news]);
 
   return (
-        <>
-            <Heading as='h2' size='md' textAlign='center' mb={3}>Novedades</Heading>
-            <NewsList newsList={news.news || []} loading={news.newsLoading} error={news.newsError}/>
-        </>
+    <>
+      <Title>Novedades</Title>
+      <LastEvent video={'https://youtu.be/4YnSk1gI_Oo'} />
+      <NewsList
+        newsList={news.news || []}
+        loading={news.newsLoading}
+        error={news.newsError}
+      />
+    </>
   );
 };
 

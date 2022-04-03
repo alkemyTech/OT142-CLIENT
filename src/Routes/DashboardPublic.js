@@ -37,7 +37,6 @@ const TestimonialList = React.lazy(() =>
 
 // import Layout from '../Components/Layout';
 // import { AnimatedSwitch, spring } from 'react-router-transition';
-
 /* <AnimatedSwitch
     atEnter={{ opacity: 0, translateX: -100 }}
     atActive={{ opacity: bounce(1), translateX: bounce(0) }}
@@ -83,7 +82,6 @@ const DashboardPublic = () => {
             <Route exact path='/create-project' component={ProjectsForm} />
             <Route exact path='/update-project/:id' component={ProjectsForm} />
             <Route exact path='/about-us/members' component={MembersList} />
-            <Route exact path='/nosotros' component={About} />
           </Suspense>
           <Route path='/*' component={PageNotFound} />
         </Switch>
