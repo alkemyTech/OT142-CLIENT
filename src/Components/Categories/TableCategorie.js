@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 import { getAllCategories, getCategorieByName, getCategoriesList } from '../../app/features/ReducerCategories';
 import { useDispatch, useSelector } from 'react-redux';
 import { debouncer } from '../../utils/debouncer';
-import { AiFillDelete, AiFillEdit } from 'react-icons';
 
 const TableCategorie = () => {
   const dispatch = useDispatch();
@@ -76,12 +75,10 @@ const TableCategorie = () => {
                     <Stack spacing={2}>
                       <Box>
                         <Button colorScheme='blue'>
-                          <AiFillEdit />
                         </Button>
                       </Box>
                       <Box>
                         <Button colorScheme='red'>
-                          <AiFillDelete />
                         </Button>
                       </Box>
                     </Stack>

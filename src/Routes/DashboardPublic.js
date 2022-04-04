@@ -1,12 +1,19 @@
+/* eslint-disable no-unused-vars */
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Loader from '../Components/Loader';
 import FooterPublic from '../Components/Footer/FooterPublic';
 import WithSubnavigation from '../Components/Header';
-import PageNotFound from '../Components/PageNotFound';
+// import PageNotFound from '../Components/PageNotFound';
 import News from '../Components/News';
 import NewsForm from '../Components/News/NewsForm';
 import NewsDetail from '../Components/News/Detail/NewsDetail';
+
+// import Layout from '../Components/Layout';
+// import { AnimatedSwitch, spring } from 'react-router-transition';
+import PageNotFound from '../Components/PageNotFound';
+// import TestimonialList from '../Components/Testimonials/TestimonialsList';
+import Login from '../Components/Auth/Login';
 const Home = React.lazy(() => import('../Components/Home'));
 const Activities = React.lazy(() =>
   import('../Components/Activities/Activities')
@@ -34,12 +41,6 @@ const LoginForm = React.lazy(() => import('../Components/Auth/LoginForm'));
 const TestimonialList = React.lazy(() =>
   import('../Components/Testimonials/TestimonialsList')
 );
-
-// import Layout from '../Components/Layout';
-// import { AnimatedSwitch, spring } from 'react-router-transition';
-import PageNotFound from '../Components/PageNotFound';
-import TestimonialList from '../Components/Testimonials/TestimonialsList';
-import Login from '../Components/Auth/Login';
 
 /* <AnimatedSwitch
     atEnter={{ opacity: 0, translateX: -100 }}

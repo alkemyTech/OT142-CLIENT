@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   Grid,
@@ -9,7 +10,7 @@ import {
   Button
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import CarouselSlides from '../Slides/HomeSlide';
+// import CarouselSlides from '../Slides/HomeSlide';
 import { get } from '../../Services/publicApiService';
 import Spinner from '../Spinner/index';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
@@ -121,15 +122,17 @@ const Home = () => {
             </Text>
 
             <Flex justify={'space-around'} marginBottom={'30px'}>
-              {news.news?.length > 0 ? (
+              {news.news?.length > 0
+                ? (
                 <NewsList
                   newsList={newsData.slice(0, 4) || []}
                   loading={news.newsLoading}
                   error={news.newsError}
                 />
-              ) : (
+                  )
+                : (
                 <Text>No hay datos que mostrar</Text>
-              )}
+                  )}
             </Flex>
 
             <Link to='/Novedades'>
@@ -163,22 +166,24 @@ const Home = () => {
               alignItems='flex-end'
               background={'gray.100'}
             >
-              {testimonialsData?.length > 0 ? (
-                testimonialsData
-                  .slice(0, 4)
-                  .map(({ id, image, name, description }) => {
-                    return (
+              {testimonialsData?.length > 0
+                ? (
+                    testimonialsData
+                      .slice(0, 4)
+                      .map(({ id, image, name, description }) => {
+                        return (
                       <TestimonialSeccion
                         key={id}
                         src={image}
                         name={name}
                         description={description}
                       />
-                    );
-                  })
-              ) : (
+                        );
+                      })
+                  )
+                : (
                 <Text>No hay datos que mostrar</Text>
-              )}
+                  )}
             </Flex>
             <Link to='/testimonials'>
               <Center>

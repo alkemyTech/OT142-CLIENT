@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import '../FormStyles.css';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import TermsAndConditions from '../Modal/TermsAndCond';
+// import TermsAndConditions from '../Modal/TermsAndCond';
 import {
   Button,
   Input,
@@ -14,7 +15,6 @@ import {
   Text,
   Image
 } from '@chakra-ui/react';
-import MapsWrapper from '../Maps/MapsWrapper';
 import { register } from '../../Services/authService';
 import { useHistory, Link as ReachLink } from 'react-router-dom';
 import Spinner from '../Spinner';
@@ -47,19 +47,13 @@ const validationSchema = Yup.object({
 });
 
 const RegisterForm = () => {
-  const [registerValue, setRegisterValue] = useState();
-
-  const [latLng, setLatLng] = useState({
-    latitude: 0,
-    longitude: 0,
-    adress: ''
-  });
+  // const [registerValue, setRegisterValue] = useState();
 
   const history = useHistory();
 
-  const onCheckChange = (string) => {
-    setRegisterValue(string);
-  };
+  // const onCheckChange = (string) => {
+  //   setRegisterValue(string);
+  // };
 
   useEffect(() => {
     // Esto es para que no pueda entrar al registro si ya esta autenticado.
@@ -81,7 +75,6 @@ const RegisterForm = () => {
             const { token, user } = await result.data;
             sessionStorage.setItem('login-token', token);
             sessionStorage.setItem('login-role', user.role_id);
-            console.log(latLng);
             history.push('/');
           }
         } catch (error) {
@@ -122,15 +115,14 @@ const RegisterForm = () => {
               </Flex>
             </Flex>
             <FormControl mt='4'>
-              <MapsWrapper setLatLng={setLatLng} />
             </FormControl>
             <Flex flexDirection='column' mt='2'>
-              <TermsAndConditions handleChange={onCheckChange} />
+              {/* <TermsAndConditions handleChange={onCheckChange} /> */}
             </Flex>
-            {registerValue === 'accept' &&
+            {
               isSubmitting
-              ? <Spinner isLoading={isSubmitting} size='40px' color='blue' />
-              : <Button onClick={handleSubmit} background='gray.300' mt='4' type='submit'>Registrarme</Button>}
+                ? <Spinner isLoading={isSubmitting} size='40px' color='blue' />
+                : <Button onClick={handleSubmit} background='gray.300' mt='4' type='submit'>Registrarme</Button>}
             <Text fontSize='sm' mt='4'>¿Ya tienes una cuenta?<Link color='blue.400' as={ReachLink} to='/login'> Inicia sesión</Link></Text>
           </Flex>
         </Flex>

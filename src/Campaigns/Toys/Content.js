@@ -6,7 +6,7 @@ import foto3 from './assets/toy3.webp';
 import foto6 from './assets/toy7.jpg';
 
 const Content = () => {
-  const future = Date.parse('Mar 31, 2022 12:00:00');
+  const future = Date.parse('Apr 31, 2022 12:00:00');
   const now = new Date();
   const diff = future - now;
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -19,7 +19,7 @@ const Content = () => {
     <Box className="fondo">
       <Stack textAlign={'center'} py={{ base: 5, md: 8 }}>
         <Heading fontWeight={600} fontSize={{ base: '5xl', sm: '4xl', md: '6xl' }}>
-          31 de Marzo{' '}
+          31 de Abril{' '}
           <Text as={'span'} color={'#9AC9FB'}>
             12:00 hs
           </Text>
