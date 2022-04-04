@@ -5,41 +5,62 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption, Text, Button, Box, Container, Stack
+  Box,
+  TableCaption, Stack, Heading, Button, Flex, FormControl, Input
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import { getAllCategories, getCategorieByName, getCategoriesList } from '../../app/features/ReducerCategories';
+import { useDispatch, useSelector } from 'react-redux';
+import { debouncer } from '../../utils/debouncer';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
-import { Link } from 'react-router-dom';
-import { getAllCategories } from '../../app/features/ReducerCategories';
-import { useDispatch, useSelector } from 'react-redux';
-
 const TableCategorie = () => {
-  const { list: categories } = useSelector((state) => state.categories);
-  console.log(categories);
-
   const dispatch = useDispatch();
+  const categories = useSelector(getAllCategories);
+
+  const handleChange = (e) => {
+    if (e.target.value.length > 2) {
+      dispatch(getCategorieByName(e.target.value));
+    } else {
+      dispatch(getCategoriesList());
+    }
+  };
 
   useEffect(() => {
-    dispatch(getAllCategories());
+    dispatch(getCategoriesList());
   }, [dispatch]);
 
   return (
     <>
-      <Container maxW='100%'>
-      <Box mb={5}>
-          <Text fontSize='6xl'>Backoffice de Categorías</Text>
-            <Button colorScheme='green'>
-              <Link to="/backoffice/Categorías/create">Crear nueva categoría</Link>
+      <Stack>
+        <Stack style={{ display: ' flex', alignItems: ' center' }}>
+          <Heading as="h4" size="md">
+            Listado de Categorías
+          </Heading>
+
+          <Stack>
+            <Button variant="outline" colorScheme="teal" size="xs">
+              <Link to="/backoffice/categories/create">Crear Categorías</Link>
             </Button>
-        </Box>
-        <Table variant="simple">
+            <Flex mt='2'>
+              <FormControl>
+                <Input
+                  onChange={debouncer(handleChange)}
+                  bg='white'
+                  type='search'
+                  placeholder='Buscar categoria' />
+              </FormControl>
+            </Flex>
+          </Stack>
+        </Stack>
+        <Table className="Table" size="lg" variant="striped" colorScheme="teal">
           <TableCaption>Screen Listado de Categorías (backoffice)</TableCaption>
           <Thead>
             <Tr>
               <Th>Nombre</Th>
-              <Th>Fecha de Creación</Th>
-              <Th>Id</Th>
-              <Th>Acción</Th>
+              <Th>Crear</Th>
+              <Th isNumeric>Id</Th>
+              <Th>Acciones</Th>
             </Tr>
           </Thead>
 
@@ -47,29 +68,29 @@ const TableCategorie = () => {
             ? 'cargando...'
             : categories.map((categorie) => {
               return (
-                  <Tr key={categories.key}>
-                    <Td>{categorie.name}</Td>
-                    <Td>{categorie.createdAt}</Td>
-                    <Td>{categorie.id}</Td>
-                    <Td>
+                <Tr key={categories.key}>
+                  <Td>{categorie.name}</Td>
+                  <Td>{new Date(categorie.created_at).toLocaleDateString('es-ES')}</Td>
+                  <Td>{categorie.id}</Td>
+                  <Td>
                     <Stack spacing={2}>
-                    <Link>
-                      <Button colorScheme='blue'>
-                        <AiFillEdit />
-                      </Button>
-                    </Link>
-                    <Link>
-                      <Button colorScheme='red'>
-                        <AiFillDelete />
-                      </Button>
-                    </Link>
+                      <Box>
+                        <Button colorScheme='blue'>
+                          <AiFillEdit />
+                        </Button>
+                      </Box>
+                      <Box>
+                        <Button colorScheme='red'>
+                          <AiFillDelete />
+                        </Button>
+                      </Box>
                     </Stack>
-                    </Td>
-                  </Tr>
+                  </Td>
+                </Tr>
               );
             })}
         </Table>
-      </Container>
+      </Stack>
     </>
   );
 };

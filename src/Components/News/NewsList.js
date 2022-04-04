@@ -1,3 +1,4 @@
+
 // import React, { useEffect, useState } from 'react';
 import { Box, SimpleGrid, GridItem, Text } from '@chakra-ui/react';
 /* import { getNews } from "../../Services/newsService"; */

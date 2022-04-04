@@ -13,17 +13,25 @@ import { AiOutlineTwitter, AiFillFacebook, AiFillLinkedin, AiFillInstagram } fro
 import './footer.css';
 import { get } from '../../Services/publicApiService';
 import logo from '../../Assets/logoSomosMas.png';
+import Footer from '.';
 
 const FooterPublic = () => {
   const [organization, setOrganization] = useState({});
+  const [isAdminLoged, setIsAdminLoged] = useState(false);
+
+  const getData = async () => {
+    const { data } = await get('/organization');
+    setOrganization(data.data);
+  };
+  const handleLoged = () => {
+    if (sessionStorage.getItem('login-role') === '1') {
+      setIsAdminLoged(true);
+    }
+  };
 
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await get('/organization');
-      setOrganization(data.data);
-    };
-
     getData();
+    handleLoged();
   }, []);
 
   return (
@@ -35,8 +43,10 @@ const FooterPublic = () => {
               height: '40px',
               margin: '-1px',
               marginTop: '150px'
-            }}></div>
+            }}>
+            </div>
             <Container bg='gray.300' padding='4' maxW='100%'>
+                <Footer/>
                 <footer>
                     <Stack
                         spacing='24px'
@@ -67,9 +77,11 @@ const FooterPublic = () => {
                                             <li>
                                                 <Link to='/actividades'>Actividades</Link>
                                             </li>
-                                            <li>
+                                            { isAdminLoged
+                                              ? null
+                                              : <li>
                                                 <Link to='/contacto'>Contacto</Link>
-                                            </li>
+                                            </li>}
                                             <li>
                                                 <Link to='/registro'>Registro</Link>
                                             </li>
