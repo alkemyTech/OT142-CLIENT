@@ -28,17 +28,16 @@
     "react-pdf": "^5.7.1",
     "react-player": "^2.10.0",
     "react-redux": "^7.2.6",
-    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^5.2.0",
     "react-router-transition": "^2.1.0",
-    "react-scripts": "^4.0.3",
-    "react-sdk-mercadopago": "^1.1.1",
+    "react-scripts": "^5.0.0",
     "react-slick": "^0.28.1",
     "react-social-plugins": "^2.1.0",
     "react-spinners": "^0.11.0",
     "screenfull": "^6.0.1",
     "sweetalert2": "^11.4.0",
     "sweetalert2-react": "^0.8.3",
+    "use-debounce": "^7.0.1",
     "use-deep-compare-effect": "^1.8.1",
     "yup": "^0.32.11"
   },
@@ -61,6 +60,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@testing-library/react": "^12.1.4",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.4",

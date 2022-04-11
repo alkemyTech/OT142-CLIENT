@@ -13,6 +13,8 @@ import NewsDetail from '../Components/News/Detail/NewsDetail';
 // import PageNotFound from '../Components/PageNotFound';
 // import TestimonialList from '../Components/Testimonials/TestimonialsList';
 import Login from '../Components/Auth/Login';
+import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
+import { ButtonPay } from '../Components/ButtonPay/ButtonPay';
 const Home = React.lazy(() => import('../Components/Home'));
 const Activities = React.lazy(() =>
   import('../Components/Activities/Activities')
@@ -71,7 +73,7 @@ const DashboardPublic = () => {
           <Suspense fallback={<Loader />}>
             <Route exact path='/' component={Home} />
             <Route exact path='/registro' component={RegisterForm} />
-            <Route exact path='/login' component={Login} />
+            <Route exact path='/login' component={LoginForm} />
             <Route exact path='/contacto' component={Contact} />
             <Route exact path='/nosotros' component={About} />
             <Route exact path='/actividades' component={Activities} />
@@ -85,6 +87,10 @@ const DashboardPublic = () => {
             <Route exact path='/create-project' component={ProjectsForm} />
             <Route exact path='/update-project/:id' component={ProjectsForm} />
             <Route exact path='/about-us/members' component={MembersList} />
+            <Route exact path='/nosotros' component={About} />
+            <Route exact path='/testimonialsForms' component={TestimonialForm} />
+            <Route exact path='/pagar' component={ButtonPay} />
+
           </Suspense>
           <Route path='/*' component={PageNotFound} />
         </Switch>

@@ -53,12 +53,12 @@ const CategoriesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('enviado ', initialValues);
-    if (categorie?.id) {
-      patchRequest(`${categorie.id}`, initialValues).then((data) => {
+    if (categorie.id) {
+      patchRequest(`categories/${categorie.id}`, initialValues).then((data) => {
         console.log(data);
       });
     } else {
-      postRequest(initialValues).then((data) => {
+      postRequest('/categories', initialValues).then((data) => {
         console.log(data);
       });
     }

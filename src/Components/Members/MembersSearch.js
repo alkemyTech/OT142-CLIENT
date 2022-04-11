@@ -18,14 +18,16 @@ const MembersSearch = ({ handleChange, isInvalid }) => {
         <FormControl isInvalid={isInvalid}>
           <FormLabel htmlFor='memberSearch'>Buscar Miembros</FormLabel>
           <Input id='membersSearch' type='text' onChange={handleChange} />
-          {!isInvalid ? (
+          {!isInvalid
+            ? (
             <FormHelperText>Ingrese el miembro que desea buscar</FormHelperText>
-          ) : (
+              )
+            : (
             <FormErrorMessage>
               {' '}
               Debe ingresar como mínimo 2 letras.
             </FormErrorMessage>
-          )}
+              )}
         </FormControl>
       </Box>
     </Center>

@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { get } from '../../../Services/publicApiService';
-import { post, put, remove } from '../../../Services/privateApiService';
 
 const apiInstance = axios.create({
   baseURL: 'http://ongapi.alkemy.org/api/slides'

@@ -1,4 +1,4 @@
-import { Text, Spinner, SimpleGrid, Box, GridItem, Heading } from '@chakra-ui/react';
+import { Text, Spinner, SimpleGrid, Box, GridItem } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities, getOnChangeActivities } from '../../app/features/activitiesSlice';
@@ -26,7 +26,7 @@ const ActivitiesList = () => {
 
   return (
         <Box bg='#F8F9FA' p={4} width="100%">
-            <Heading as='h2' size='md' textAlign='center' mb={3}>Actividades</Heading>
+            <Text fontSize='5xl' d='flex' justifyContent='center'>Actividades</Text>
             <Searchbar handleChange={debouncer(handleChange)} />
             {activities.status !== 'success' && <Spinner color="blue" size='xl' />}
             {activities.status === 'failed' && showAlertErr()}

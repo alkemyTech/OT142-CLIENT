@@ -22,7 +22,7 @@ const SignupSchema = Yup.object().shape({
     .min(8, 'El campo password debe tener al menos 8 caracteres')
     .max(15, 'El campo password puede tener máximo 15 caracteres')
 });
-//
+
 const UserForm = () => {
   const history = useHistory();
   const userdata = history.location.state;
@@ -62,7 +62,7 @@ const UserForm = () => {
           <Flex borderRadius='md' p='4' flexDirection='column' bg='gray.200' justifyContent='center' alignItems='center'>
 
             <Image src='/images/LOGO-SOMOS-MAS.png' boxSize='100px' />
-            <Text fontSize='lg'>Creación / Edición de usuarios</Text>
+            <Text fontSize='lg'>Creacion/edicion de usuarios</Text>
 
             <FormControl mt='4' isInvalid={errors.name}>
               <FormLabel>Nombre</FormLabel>

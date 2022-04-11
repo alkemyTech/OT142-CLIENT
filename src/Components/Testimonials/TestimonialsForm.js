@@ -5,12 +5,12 @@ import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import { CKEditor } from '@ckeditor/ckeditor5-react';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { useLocation } from 'react-router-dom';
 
 // <TestimonialForm { ...responseAPI} />
-const TestimonialForm = (testimonialData) => {
+const TestimonialForm = ({ testimonialData }) => {
   const [values, setValues] = useState([]);
   console.log('valores ingresados: ', values);
 
@@ -70,7 +70,7 @@ const TestimonialForm = (testimonialData) => {
                             bg="tomato"
                             color="white"
                             textAlign="center">
-                               <Heading >Formulario Edición / Creación de Testimonios</Heading>
+                               <Heading >{testimonialData ? 'Editar testimonial' : 'Crear testimonial'}</Heading>
                         </Box>
 
                         <FormControl isInvalid={formik.errors.name && formik.touched.name}>
@@ -87,7 +87,7 @@ const TestimonialForm = (testimonialData) => {
 
                         <FormControl isInvalid={formik.errors.description && formik.touched.description}>
                             <FormLabel>Descripción del testimonio</FormLabel>
-                            <CKEditor
+                            {/* <CKEditor
                                 config={{ placeholder: '...' }}
                                 editor={ClassicEditor}
                                 data={formik.values.description}
@@ -96,7 +96,7 @@ const TestimonialForm = (testimonialData) => {
                                   const data = editor.getData();
                                   formik.setFieldValue('description', data);
                                 }}
-                            />
+                            /> */}
                                 <FormErrorMessage>{formik.errors.description}</FormErrorMessage>
                         </FormControl>
 

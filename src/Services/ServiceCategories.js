@@ -1,24 +1,20 @@
-import { get, post, put, remove, patch } from './privateApiService';
+import axios from 'axios';
 
-export const getRequest = async () => {
-  const response = await get(process.env.REACT_APP_CATEGORIES);
-  return response.data;
-};
+export const axiosInstance = axios.create({
+  baseURL: 'http://ongapi.alkemy.org/api'
+});
 
-export const deleteRequest = async () => {
-  return await remove(process.env.REACT_APP_CATEGORIES);
-};
-
-export const putRequest = async ({ name, description }) => {
-  const response = await put(process.env.REACT_APP_CATEGORIES, {
-    name,
-    description
-  });
-
+export const getRequest = (path) => {
+  const response = axiosInstance.get(path);
+  console.log(response);
   return response;
 };
-export const postRequest = async ({ name, description }) => {
-  const response = await post(process.env.REACT_APP_CATEGORIES, {
+export const deleteRequest = (path) => {
+  return axiosInstance.delete(path);
+};
+
+export const putRequest = (path, { name, description }) => {
+  const response = axiosInstance.put('/categories', {
     name,
     description
 
@@ -26,9 +22,18 @@ export const postRequest = async ({ name, description }) => {
 
   return response;
 };
+export const postRequest = (path, { name, description }) => {
+  const response = axiosInstance.post('/categories', {
+    name,
+    description
 
-export const patchRequest = async ({ name, description }) => {
-  const response = await patch(process.env.REACT_APP_CATEGORIES, {
+  });
+
+  return response;
+};
+
+export const patchRequest = (path, { name, description }) => {
+  const response = axiosInstance.patch(path, {
     name,
     description
 

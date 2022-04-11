@@ -4,12 +4,11 @@ import ActivitiesForm from './ActivitiesForm';
 
 // Este es el inicio del test
 describe('Activities form test', () => {
-
   // Este test lo que hace es verificar si el formulario ActivitiesForm esta renderizado en el DOM.
   test('Activities form should be in the document', () => {
     // Renderiza el formulario
     const { getByText } = render(<ActivitiesForm />);
-    
+
     // Verifica si existe el texto Formulario Edición / Creación de Actividades en el dom
     const form = getByText('Formulario Edición / Creación de Actividades');
     expect(form).toBeInTheDocument();
@@ -23,12 +22,12 @@ describe('Activities form test', () => {
     // Obtiene el boton "Enviar" del formulario
     const button = getByText('Enviar');
 
-    // Ejecuta un evento "click" en el boton "Enviar" 
+    // Ejecuta un evento "click" en el boton "Enviar"
     await waitFor(() => {
       fireEvent.click(button);
     });
 
-    // Verifica que existan los todos los errores en caso de hacer submit sin llenar los campos 
+    // Verifica que existan los todos los errores en caso de hacer submit sin llenar los campos
     const emptyNameError = getByText('Nombre requerido');
     expect(emptyNameError).toBeInTheDocument();
     const emptyImageError = getByText('Imagen requerida');

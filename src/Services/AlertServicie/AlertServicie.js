@@ -40,13 +40,11 @@ export const showAlertErr = (props = {}) => {
   swal.fire({
     icon: 'error',
     title: 'Error',
-    text: props.text ? props.text : 'Upssss...!! ha sucedido un error',
-    showConfirmButton: true
-    // timer: 3000
+    text: props.text ? props.text : 'Upssss...!! No has completado la tarea',
+    showConfirmButton: true,
+    timer: 3000
     // footer: props.footer ? props.footer : 'Comience de nuevo!!'
   });
-  // eslint-disable-next-line no-debugger
-  debugger;
 };
 
 export const AlertOkeyInfo = (props = {}) => {

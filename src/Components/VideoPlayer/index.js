@@ -10,7 +10,8 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-  Text
+  Text,
+  useBreakpoint
 } from '@chakra-ui/react';
 // import screenfull from 'screenfull';
 import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';

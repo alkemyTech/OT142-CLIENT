@@ -15,10 +15,9 @@ import SlidesForm from '../Components/Slides/SlidesForm';
 import PageNotFound from '../Components/PageNotFound';
 import { Container, Stack } from '@chakra-ui/react';
 import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
-import CategoriesForm from '../Components/Categories/CategoriesForm';
 import UserForm from '../Components/Users/UsersForm';
 import BackOfficeSlides from '../Components/Slides/backoffice';
-import ActivitiesForm from '../Components/Activities/ActivitiesForm';
+// import ActivitiesForm from '../Components/Activities/ActivitiesForm';
 
 const DashboardPrivate = () => {
   const history = useHistory();
@@ -43,12 +42,11 @@ const DashboardPrivate = () => {
             <Route exact path="/backoffice/news/create" component={NewsForm} />
             <Route exact path="/backoffice/news/create/:id" component={NewsForm} />
             {/* faltacomponente formulario actividades */}
-            <Route exact path="/backoffice/activities/create" component={ActivitiesForm} />
+            {/* <Route exact path="/backoffice/activities/create" component={activitiesForm} /> */}
             <Route exact path="/backoffice/activities" component={BackOfficeActivities} />
             {/* falta componente para el editar actividades */}
             <Route exact path="/backoffice/activities/:id" component={BackOfficeActivities} />
             <Route exact path="/backoffice/users" component={UserList} />
-            <Route exact path="/backoffice/categories/create" component={CategoriesForm} />
             <Route exact path="/backoffice/create-user" component={UserForm} />
             <Route exact path="/backoffice/edit-user" component={UserForm} />
             <Route exact path="/backoffice/members/create" component={Members} />
