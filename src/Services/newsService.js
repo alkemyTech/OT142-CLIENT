@@ -1,8 +1,14 @@
 /* eslint-disable camelcase */
-import { remove, get, post, put } from './privateApiService';
+import { remove, get, post, put, getSearch } from './privateApiService';
 
 export const getNews = (id) => {
   return get('news', id)
+    .then((res) => res.data)
+    .catch((error) => console.log(error));
+};
+
+export const searchNew = (word) => {
+  return getSearch('news', word)
     .then((res) => res.data)
     .catch((error) => console.log(error));
 };

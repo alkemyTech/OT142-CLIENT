@@ -8,6 +8,7 @@ import News from '../Components/News';
 import NewsForm from '../Components/News/NewsForm';
 import NewsDetail from '../Components/News/Detail/NewsDetail';
 import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
+import { ButtonPay } from '../Components/ButtonPay/ButtonPay';
 const Home = React.lazy(() => import('../Components/Home'));
 const Activities = React.lazy(() =>
   import('../Components/Activities/Activities')
@@ -38,7 +39,6 @@ const TestimonialList = React.lazy(() =>
 
 // import Layout from '../Components/Layout';
 // import { AnimatedSwitch, spring } from 'react-router-transition';
-
 /* <AnimatedSwitch
     atEnter={{ opacity: 0, translateX: -100 }}
     atActive={{ opacity: bounce(1), translateX: bounce(0) }}
@@ -86,6 +86,7 @@ const DashboardPublic = () => {
             <Route exact path='/about-us/members' component={MembersList} />
             <Route exact path='/nosotros' component={About} />
             <Route exact path='/testimonialsForms' component={TestimonialForm} />
+            <Route exact path='/pagar' component={ButtonPay} />
 
           </Suspense>
           <Route path='/*' component={PageNotFound} />
