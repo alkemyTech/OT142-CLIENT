@@ -1,43 +1,47 @@
 import NewsList from './NewsList';
-// import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import LastEvent from './LastEvent';
-// import { getAllNews } from '../../app/features/newsSlice';
+import { getAllNews, filterNews } from '../../app/features/newsSlice';
 import Title from '../Titles';
+import Searchbar from '../../utils/Searchbar';
+import { debouncer } from '../../utils/debouncer';
+import { Box } from '@chakra-ui/react';
 
 export const News = () => {
   const { news } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   // const [newsList, setNewsList] = useState([]);
   // const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(false);
 
-  // const dispatch = useDispatch();
-  // const { news } = useSelector(state => state);
+  useEffect(() => {
+    dispatch(getAllNews());
+  }, [dispatch]);
 
-  // useEffect(async () => {
-  //   try {
-  //     setLoading(true);
-  //     await dispatch(getAllNews());
-  //   } catch (error) {
-  //     console.log(error);
-  //     setError(true);
-  //   }
-  //   setLoading(false);
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   setNewsList(news.news);
-  // }, [news]);
+  const handleChange = (e) => {
+    const { value } = e.target;
+    if (value.length > 3) {
+      dispatch(filterNews(e.target.value));
+    } else {
+      dispatch(getAllNews());
+    }
+  };
 
   return (
     <>
       <Title>Novedades</Title>
       <LastEvent video={'https://youtu.be/4YnSk1gI_Oo'} />
+      <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
+      <Searchbar handleChange={debouncer(handleChange)} />
       <NewsList
         newsList={news.news || []}
         loading={news.newsLoading}
         error={news.newsError}
+        handleChange={handleChange}
       />
+      </Box>
     </>
   );
 };
