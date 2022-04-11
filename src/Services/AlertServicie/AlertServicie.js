@@ -45,7 +45,6 @@ export const showAlertErr = (props = {}) => {
     // timer: 3000
     // footer: props.footer ? props.footer : 'Comience de nuevo!!'
   });
-  debugger;
 };
 
 export const AlertOkeyInfo = (props = {}) => {

@@ -37,10 +37,6 @@ const TestimonialList = React.lazy(() =>
 
 // import Layout from '../Components/Layout';
 // import { AnimatedSwitch, spring } from 'react-router-transition';
-import PageNotFound from '../Components/PageNotFound';
-import TestimonialList from '../Components/Testimonials/TestimonialsList';
-import Login from '../Components/Auth/Login';
-
 /* <AnimatedSwitch
     atEnter={{ opacity: 0, translateX: -100 }}
     atActive={{ opacity: bounce(1), translateX: bounce(0) }}
@@ -72,7 +68,7 @@ const DashboardPublic = () => {
           <Suspense fallback={<Loader />}>
             <Route exact path='/' component={Home} />
             <Route exact path='/registro' component={RegisterForm} />
-            <Route exact path='/login' component={Login} />
+            <Route exact path='/login' component={LoginForm} />
             <Route exact path='/contacto' component={Contact} />
             <Route exact path='/nosotros' component={About} />
             <Route exact path='/actividades' component={Activities} />

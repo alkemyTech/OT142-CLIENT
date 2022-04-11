@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import { getAllCategories, getCategorieByName, getCategoriesList } from '../../app/features/ReducerCategories';
 import { useDispatch, useSelector } from 'react-redux';
 import { debouncer } from '../../utils/debouncer';
-import { AiFillDelete, AiFillEdit } from 'react-icons';
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
 
 const TableCategorie = () => {
   const dispatch = useDispatch();

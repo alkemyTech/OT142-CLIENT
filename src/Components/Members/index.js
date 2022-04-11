@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import MembersTable from './MembersTable';
-import { getMembers } from '../../Services/membersService';
+import { getMembers, searchMembers } from '../../Services/membersService';
 import MembersSearch from './MembersSearch';
-import { searchMembers } from '../../Services/membersService';
+
 import { Box, Center } from '@chakra-ui/react';
 import { debouncer } from '../../utils/debouncer';
 

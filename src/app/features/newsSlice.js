@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
-import { getNews, deleteNews as deleteApiNews, editNews as editApiNews } from '../../Services/newsService';
+import { getNews, deleteNews as deleteApiNews, editNews as editApiNews, searchNew } from '../../Services/newsService';
 import { get } from '../../Services/publicApiService';
 
 export const searchNews = createAsyncThunk(
@@ -19,6 +19,18 @@ export const getAllNews = createAsyncThunk(
   async (id) => {
     try {
       const response = await getNews(id);
+      return response;
+    } catch (error) {
+      console.log(error, 'ERROR');
+    }
+  }
+);
+
+export const filterNews = createAsyncThunk(
+  'news/filterNew',
+  async (word) => {
+    try {
+      const response = await searchNew(word);
       return response;
     } catch (error) {
       console.log(error, 'ERROR');
@@ -97,6 +109,9 @@ export const newsSlice = createSlice({
     [searchNews.rejected]: (state) => {
       state.status = 'failed';
       state.newsError = true;
+    },
+    [filterNews.fulfilled]: (state, { payload }) => {
+      state.news = payload.data;
     }
   }
 });
