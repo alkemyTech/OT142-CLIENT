@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   Grid,
@@ -9,7 +10,7 @@ import {
   Button
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import CarouselSlides from '../Slides/HomeSlide';
+// import CarouselSlides from '../Slides/HomeSlide';
 import { get } from '../../Services/publicApiService';
 import Spinner from '../Spinner/index';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
@@ -114,11 +115,19 @@ const Home = () => {
                 Últimas novedades
               </Text>
 
-              <Flex justify={'space-around'} marginBottom={'30px'}>
-                {news.news?.length > 0
-                  ? <NewsList newsList={newsData.slice(0, 4) || []} loading={news.newsLoading} error={news.newsError}/>
-                  : <Text>No hay datos que mostrar</Text>}
-              </Flex>
+            <Flex justify={'space-around'} marginBottom={'30px'}>
+              {news.news?.length > 0
+                ? (
+                <NewsList
+                  newsList={newsData.slice(0, 4) || []}
+                  loading={news.newsLoading}
+                  error={news.newsError}
+                />
+                  )
+                : (
+                <Text>No hay datos que mostrar</Text>
+                  )}
+            </Flex>
 
               <Link to="/Novedades">
                 <Center>
@@ -141,51 +150,59 @@ const Home = () => {
               </Link>
             </GridItem>
 
-            <GridItem marginBottom={'40px'}>
-              <Text align={'center'} fontSize="3xl" marginBottom={'20px'}>
-                Testimonios
-              </Text>
-              <Flex direction={{ base: 'column', sm: 'column', md: 'row' }} marginBottom={'30px'} alignItems='flex-end' background={'gray.100'}>
-                {testimonialsData?.length > 0
-                  ? testimonialsData.slice(0, 4).map(({ id, image, name, description }) => {
-                    return (
-
+          <GridItem marginBottom={'40px'}>
+            <Text align={'center'} fontSize='3xl' marginBottom={'20px'}>
+              Testimonios
+            </Text>
+            <Flex
+              direction={{ base: 'column', sm: 'column', md: 'row' }}
+              marginBottom={'30px'}
+              alignItems='flex-end'
+              background={'gray.100'}
+            >
+              {testimonialsData?.length > 0
+                ? (
+                    testimonialsData
+                      .slice(0, 4)
+                      .map(({ id, image, name, description }) => {
+                        return (
                       <TestimonialSeccion
                         key={id}
                         src={image}
                         name={name}
                         description={description}
-                        />
-                    );
-                  })
-                  : <Text>No hay datos que mostrar</Text>}
-              </Flex>
-              <Link to="/testimonials">
-                    <Center>
-                      <Button
-                        display={{ base: 'none', md: 'inline-flex' }}
-                        fontSize={'sm'}
-                        fontWeight={600}
-                        color={'blue.300'}
-                        bg={'white'}
-                        variant="outline"
-                        borderColor="blue.300"
-                        _hover={{
-                          bg: 'blue.300',
-                          color: 'white'
-                        }}
-                  >
-                    Ver todos
-                  </Button>
-                </Center>
-              </Link>
-            </GridItem>
-
-          </Grid>
-          )
-        : (
-          <Spinner />
-          )}
+                      />
+                        );
+                      })
+                  )
+                : (
+                <Text>No hay datos que mostrar</Text>
+                  )}
+            </Flex>
+            <Link to='/testimonials'>
+              <Center>
+                <Button
+                  display={{ base: 'none', md: 'inline-flex' }}
+                  fontSize={'sm'}
+                  fontWeight={600}
+                  color={'blue.300'}
+                  bg={'white'}
+                  variant='outline'
+                  borderColor='blue.300'
+                  _hover={{
+                    bg: 'blue.300',
+                    color: 'white'
+                  }}
+                >
+                  Ver todos
+                </Button>
+              </Center>
+            </Link>
+          </GridItem>
+        </Grid>
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 };

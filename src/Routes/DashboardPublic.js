@@ -7,6 +7,12 @@ import PageNotFound from '../Components/PageNotFound';
 import News from '../Components/News';
 import NewsForm from '../Components/News/NewsForm';
 import NewsDetail from '../Components/News/Detail/NewsDetail';
+
+// import Layout from '../Components/Layout';
+// import { AnimatedSwitch, spring } from 'react-router-transition';
+// import PageNotFound from '../Components/PageNotFound';
+// import TestimonialList from '../Components/Testimonials/TestimonialsList';
+import Login from '../Components/Auth/Login';
 import TestimonialForm from '../Components/Testimonials/TestimonialsForm';
 import { ButtonPay } from '../Components/ButtonPay/ButtonPay';
 const Home = React.lazy(() => import('../Components/Home'));
@@ -32,13 +38,10 @@ const ActivityDetail = React.lazy(() =>
 const MembersList = React.lazy(() =>
   import('../Components/AboutUs/MembersList')
 );
-const LoginForm = React.lazy(() => import('../Components/Auth/LoginForm'));
 const TestimonialList = React.lazy(() =>
   import('../Components/Testimonials/TestimonialsList')
 );
 
-// import Layout from '../Components/Layout';
-// import { AnimatedSwitch, spring } from 'react-router-transition';
 /* <AnimatedSwitch
     atEnter={{ opacity: 0, translateX: -100 }}
     atActive={{ opacity: bounce(1), translateX: bounce(0) }}
