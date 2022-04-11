@@ -17,21 +17,14 @@ import Footer from '.';
 
 const FooterPublic = () => {
   const [organization, setOrganization] = useState({});
-  const [isAdminLoged, setIsAdminLoged] = useState(false);
-
-  const getData = async () => {
-    const { data } = await get('/organization');
-    setOrganization(data.data);
-  };
-  const handleLoged = () => {
-    if (sessionStorage.getItem('login-role') === '1') {
-      setIsAdminLoged(true);
-    }
-  };
 
   useEffect(() => {
+    const getData = async () => {
+      const { data } = await get('/organization');
+      setOrganization(data.data);
+    };
+
     getData();
-    handleLoged();
   }, []);
 
   return (
@@ -77,11 +70,9 @@ const FooterPublic = () => {
                                             <li>
                                                 <Link to='/actividades'>Actividades</Link>
                                             </li>
-                                            { isAdminLoged
-                                              ? null
-                                              : <li>
+                                            <li>
                                                 <Link to='/contacto'>Contacto</Link>
-                                            </li>}
+                                            </li>
                                             <li>
                                                 <Link to='/registro'>Registro</Link>
                                             </li>

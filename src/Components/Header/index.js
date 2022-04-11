@@ -28,50 +28,10 @@ import { Link as ReachLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import DonateButton from "../DonateButton/DonateButton";
 
-const initialNav = [
-  {
-    label: "Inicio",
-    href: "/",
-  },
-  {
-    label: "Nosotros",
-    href: "/nosotros",
-  },
-  {
-    label: 'Actividades',
-    href: '/actividades',
-  },
-  {
-    label: 'Novedades',
-    href: '/novedades',
-  },
-  {
-    label: 'Contacto',
-    href: '/contacto',
-  },
-  {
-    label: 'Campañas',
-    href: '/',
-    children: [
-      {
-        label: "Escuela",
-        subLabel: "Recolección de útiles escolares",
-        href: "/school-campaign",
-      },
-      {
-        label: "Juguetes",
-        subLabel: "Recolección de juguetes",
-        href: "/toys-campaign",
-      },
-    ],
-  },
-];
-
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [navItems, setNavItems] = useState(initialNav);
 
   useEffect(() => {
     sessionStorage.getItem("login-token") && setIsLoggedIn(true);
@@ -80,14 +40,6 @@ export default function WithSubnavigation() {
       setIsAdmin(true);
   }, [isLoggedIn]);
 
-    useEffect(() => {
-     if (isAdmin === true) {
-       setNavItems(navItems.filter((navItem) => navItem.label != 'Contacto'));
-     } else {
-       setNavItems(initialNav);
-     }
-    }, [isAdmin])
-
   const handleCloseSesion = () => {
     sessionStorage.removeItem("login-token");
     sessionStorage.removeItem("login-role");
@@ -95,13 +47,14 @@ export default function WithSubnavigation() {
   };
 
   return (
-    <Box>
+    <Box mb={"20px"}>
       <Flex
         bg={useColorModeValue("gray.300", "gray.800")}
         color={useColorModeValue("gray.600", "white")}
         minH={"60px"}
         py={{ base: 2 }}
         px={{ base: 4 }}
+        borderBottom={1}
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.200", "gray.900")}
         align={"center"}
@@ -131,7 +84,7 @@ export default function WithSubnavigation() {
           </Link>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
-            <DesktopNav isLoggedIn={isLoggedIn} isAdmin={isAdmin} navItems={navItems} />
+            <DesktopNav isLoggedIn={isLoggedIn} />
           </Flex>
         </Flex>
 
@@ -177,20 +130,20 @@ export default function WithSubnavigation() {
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav navItems={navItems} />
+        <MobileNav />
       </Collapse>
     </Box>
   );
 }
 
-const DesktopNav = ({ isLoggedIn, isAdmin, navItems }) => {
+const DesktopNav = ({ isLoggedIn }) => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
- 
+
   return (
     <Stack direction={"row"} spacing={4}>
-        {navItems.map((navItem) => ( 
+      {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
@@ -271,21 +224,21 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   );
 };
 
-const MobileNav = ({navItems}) => {
+const MobileNav = () => {
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
       p={4}
       display={{ md: "none" }}
     >
-      {navItems.map((navItem) => (
+      {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
   );
 };
 
-const MobileNavItem = ({ label, children, href }) => {
+const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -340,3 +293,49 @@ const MobileNavItem = ({ label, children, href }) => {
     </Stack>
   );
 };
+
+interface NavItem {
+  label: string;
+  subLabel?: string;
+  children?: Array<NavItem>;
+  href?: string;
+}
+
+const NAV_ITEMS: Array<NavItem> = [
+  {
+    label: "Inicio",
+    href: "/",
+  },
+  {
+    label: "Nosotros",
+    href: "/nosotros",
+  },
+  {
+    label: 'Actividades',
+    href: '/actividades',
+  },
+  {
+    label: 'Novedades',
+    href: '/novedades',
+  },
+  {
+    label: 'Contacto',
+    href: '/contacto',
+  },
+  {
+    label: 'Campañas',
+    href: '/',
+    children: [
+      {
+        label: "Escuela",
+        subLabel: "Recolección de útiles escolares",
+        href: "/school-campaign",
+      },
+      {
+        label: "Juguetes",
+        subLabel: "Recolección de juguetes",
+        href: "/toys-campaign",
+      },
+    ],
+  },
+];

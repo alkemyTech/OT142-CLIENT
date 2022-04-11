@@ -27,7 +27,7 @@ const Footer = () => {
     quepe && setLogined(true);
     // && setIsLoggedIn(true);
   }, []);
-
+  console.log(logined);
   const SubscriptionSchema = Yup.object().shape({
     email: Yup.string()
       .email('Por favor, introduzca un email válido.')

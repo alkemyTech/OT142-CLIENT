@@ -1,3 +1,4 @@
+import Title from '../Titles';
 import NewsList from './NewsList';
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -31,7 +32,7 @@ export const News = () => {
 
   return (
     <>
-      <Title>Novedades</Title>
+      <Title children='Novedades' />
       <LastEvent video={'https://youtu.be/4YnSk1gI_Oo'} />
       <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' } }>
       <Searchbar handleChange={debouncer(handleChange)} />

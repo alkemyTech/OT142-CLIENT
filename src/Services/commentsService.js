@@ -3,9 +3,7 @@ import { remove, get, post, put } from './privateApiService';
 export const getComment = (id) => {
   return get(process.env.REACT_APP_ROUTE_COMMENTS, id)
     .then((res) => res.data)
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => console.log(error));
 };
 
 export const postComment = (payload) => {
