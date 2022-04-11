@@ -26,6 +26,7 @@ import {
 
 import { Link as ReachLink } from "react-router-dom";
 import { useState, useEffect } from "react";
+import DonateButton from "../DonateButton/DonateButton";
 
 const initialNav = [
   {
@@ -142,6 +143,7 @@ export default function WithSubnavigation() {
         >
           {isLoggedIn ? (
             <>
+            <DonateButton/>
               {isAdmin && (
                 <Link as={ReachLink} to="/backoffice">
                   <Button bg="none" fontSize="sm" _hover={{ bg: "none" }}>
