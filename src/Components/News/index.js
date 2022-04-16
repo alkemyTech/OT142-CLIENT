@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import LastEvent from './LastEvent';
 import { getAllNews, filterNews } from '../../app/features/newsSlice';
-import Title from '../Titles';
 import Searchbar from '../../utils/Searchbar';
 import { debouncer } from '../../utils/debouncer';
 import { Box } from '@chakra-ui/react';

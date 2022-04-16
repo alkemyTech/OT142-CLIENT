@@ -73,7 +73,7 @@ const DashboardPublic = () => {
           <Suspense fallback={<Loader />}>
             <Route exact path='/' component={Home} />
             <Route exact path='/registro' component={RegisterForm} />
-            <Route exact path='/login' component={LoginForm} />
+            <Route exact path='/login' component={Login} />
             <Route exact path='/contacto' component={Contact} />
             <Route exact path='/nosotros' component={About} />
             <Route exact path='/actividades' component={Activities} />

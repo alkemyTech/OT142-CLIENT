@@ -1,5 +1,5 @@
 import { remove, post, put } from './privateApiService';
-import { get, getSearch } from './publicApiService';
+import { get } from './publicApiService';
 
 export const getSlides = (id = null) => {
   return get('slides', id)
@@ -8,7 +8,7 @@ export const getSlides = (id = null) => {
 };
 
 export const searchSlides = (word) => {
-  return getSearch('slides', word)
+  return get('slides', word)
     .then((res) => res.data)
     .catch((error) => console.log(error));
 };

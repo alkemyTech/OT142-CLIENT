@@ -10,7 +10,7 @@ import {
   Button
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-// import CarouselSlides from '../Slides/HomeSlide';
+import CarouselSlides from '../Slides/HomeSlide';
 import { get } from '../../Services/publicApiService';
 import Spinner from '../Spinner/index';
 import { showAlertErr } from '../../Services/AlertServicie/AlertServicie';
@@ -200,9 +200,9 @@ const Home = () => {
             </Link>
           </GridItem>
         </Grid>
-      ) : (
+          ) : (
         <Spinner />
-      )}
+          )}
     </>
   );
 };
